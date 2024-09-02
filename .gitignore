@@ -1,0 +1,11 @@
+/target
+/.idea
+/.DS_Store
+/build
+/output
+/gradle
+/.gradle
+/.externalNativeBuild
+/out
+/target
+/src/main/resources
