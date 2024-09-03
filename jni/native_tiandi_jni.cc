@@ -12,16 +12,15 @@
 #include "native_tiandi_jni.h"
 
 JNIEXPORT jlong JNICALL
-Java_com_gshx_camera_tiandi_NativeTiandi_nativeCreateInstance(JNIEnv *,
+Java_com_gshx_camera_tiandi_NVSDKClient_nativeCreateInstance(JNIEnv *,
                                                               jobject)
 {
   return 0;
 }
 
 JNIEXPORT void JNICALL
-Java_com_gshx_camera_tiandi_NativeTiandi_nativeDestroyInstance(JNIEnv *,
+Java_com_gshx_camera_tiandi_NVSDKClient_nativeDestroyInstance(JNIEnv *,
                                                                jobject,
                                                                jlong)
 {
-  return 0;
 }

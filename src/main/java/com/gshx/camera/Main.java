@@ -1,13 +1,13 @@
 package com.gshx.camera;
 
-import com.gshx.camera.tiandi.NativeTiandi;
+import com.gshx.camera.tiandi.NVSDKClient;
 
 public class Main {
-    private static NativeTiandi nativeTiandi = new NativeTiandi();
+    private static NVSDKClient NVSDKClient = new NVSDKClient();
     public static void main(String[] args) {
         System.out.println("Hello world!");
-        nativeTiandi.DestroyInstance();
-        nativeTiandi = null;
+        NVSDKClient.Dispose();
+        NVSDKClient = null;
     }
 
     public static void test() {

@@ -15,7 +15,7 @@ Target platform: Windows x64 and Linux x64 (centos 7.8)
 - GCC (Linux)
 - VSCODE [Download](https://code.visualstudio.com/)
 - Maven for Java [Download](https://maven.apache.org/download.cgi)
-- -Extension Pack for Java [Download](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
+- Extension Pack for Java [Download](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
 
 ## Build
 
@@ -70,14 +70,14 @@ Target platform: Windows x64 and Linux x64 (centos 7.8)
 
    ```shell
    cd src\main\java
-   javah -jni -d ..\..\..\jni -encoding utf-8 com.gshx.camera.tiandi.NativeTiandi
+   javah -jni -d ..\..\..\jni -encoding utf-8 com.gshx.camera.tiandi.NVSDKClient
    ```
 
    or
 
    ```shell
    cd jni
-   javah -cp ..\target\classes -o native_tiandi_jni.h -encoding utf-8  com.gshx.camera.tiandi.NativeTiandi
+   javah -cp ..\target\classes -o native_tiandi_jni.h -encoding utf-8  com.gshx.camera.tiandi.NVSDKClient
    ```
 
    The JNI header file is located in the `jni\` directory.
@@ -97,19 +97,15 @@ Target platform: Windows x64 and Linux x64 (centos 7.8)
 2. Load the library in your Java code:
 
    ```java
-    System.loadLibrary("tiandi");
+   import com.gshx.camera.tiandi.NVSDKClient;
+   private static NVSDKClient nativeNVClient = new NVSDKClient();
     ```
 
 3. Use the Tiandi Camera SDK in your Java code:
 
    ```java
-   TiandiCamera camera = new TiandiCamera();
-   camera.init();
-   camera.open();
-   camera.start();
-   camera.stop();
-   camera.close();
-   camera.release();
+   nativeNVClient.Dispose();
+   nativeNVClient = null;
    ```
 
 ## License
@@ -117,3 +113,4 @@ Target platform: Windows x64 and Linux x64 (centos 7.8)
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 [How to Package JNI Shared Library into Jar File](https://www.dynamsoft.com/codepool/package-jni-shared-library-jar-file.html)
+[Java formatting and linting](https://code.visualstudio.com/docs/java/java-linting)

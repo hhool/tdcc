@@ -63,7 +63,7 @@ public class NativeLoader {
         } else {
             throw new Exception("Unsupported OS.");
         }
-        if (NativeTiandi.class.getResource(dbrNativeLibraryPath + "/" + dbrNativeLibraryName) == null) {
+        if (NVSDKClient.class.getResource(dbrNativeLibraryPath + "/" + dbrNativeLibraryName) == null) {
             throw new Exception("Error loading native library: " + dbrNativeLibraryPath + "/" + dbrNativeLibraryName);
         }
 
@@ -103,7 +103,7 @@ public class NativeLoader {
         try {
             if (extractedLibFile.exists()) {
                 // test md5sum value
-                String md5sum1 = md5sum(NativeTiandi.class.getResourceAsStream(nativeLibraryFilePath));
+                String md5sum1 = md5sum(NVSDKClient.class.getResourceAsStream(nativeLibraryFilePath));
                 String md5sum2 = md5sum(new FileInputStream(extractedLibFile));
 
                 if (md5sum1.equals(md5sum2)) {
@@ -119,7 +119,7 @@ public class NativeLoader {
             }
 
             // Extract file into the current directory
-            InputStream reader = NativeTiandi.class.getResourceAsStream(nativeLibraryFilePath);
+            InputStream reader = NVSDKClient.class.getResourceAsStream(nativeLibraryFilePath);
             FileOutputStream writer = new FileOutputStream(extractedLibFile);
             byte[] buffer = new byte[1024];
             int bytesRead = 0;
