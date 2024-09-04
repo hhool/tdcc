@@ -6,6 +6,6 @@
 /gradle
 /.gradle
 /.externalNativeBuild
-/out
+/out*
 /target
 /src/main/resources

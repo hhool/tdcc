@@ -60,13 +60,15 @@ elseif(LINUX)
     target_link_libraries(tiandi_jni ${JNI_LIBRARIES})
 endif()
 
-# Set output path
-set_target_properties(tiandi_jni PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/jni)
 
 # Set output name
-set_target_properties(tiandi_jni PROPERTIES
-    OUTPUT_NAME tiandi_jni)
+if (WINDOWS)
+    set_target_properties(tiandi_jni PROPERTIES
+        OUTPUT_NAME tiandi_jni)
+elseif(LINUX)
+    set_target_properties(tiandi_jni PROPERTIES
+        OUTPUT_NAME libtiandi_jni)
+endif()
 
 # Set output suffix
 if (WINDOWS)

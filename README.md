@@ -27,8 +27,8 @@ Target platform: Windows x64 and Linux x64 (centos 7.8)
    Run the following commands to build the project:
 
    ```shell
-   cmake -S .\jni -B .\out -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE="Release"
-   cmake --build .\out --config Release --target install
+   cmake -S .\jni -B .\out_win -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE="Release"
+   cmake --build .\out_win --config Release --target install
    ```
 
    The native library is located in the `out` directory.
@@ -42,6 +42,13 @@ Target platform: Windows x64 and Linux x64 (centos 7.8)
 
    The JAR file is located in the `target` directory.
 
+4. Run the JAR file
+   Run the following command to run the JAR file:
+
+   ```shell
+   java -jar target\tdcc-1.0-SNAPSHOT.jar
+   ```
+
 ### Linux
 
 1. Open a terminal and navigate to the project directory.
@@ -50,8 +57,8 @@ Target platform: Windows x64 and Linux x64 (centos 7.8)
    Run the following command to build the project:
 
    ```shell
-   cmake -S .\jni -B .\out -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release"
-   cmake --build .\out --config Release --target install
+   cmake -S ./jni -B ./out_linux -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release"
+   cmake --build ./out_linux --config Release --target install
    ```
 
 3. Package the native library into a JAR file
@@ -62,6 +69,12 @@ Target platform: Windows x64 and Linux x64 (centos 7.8)
    ```
 
    The build output is located in the `target` directory.
+
+4. Run the JAR file
+
+   ```shell
+   java -jar target/tdcc-1.0-SNAPSHOT.jar
+   ```
 
 ## Gnereate JNI Header File
 
