@@ -197,9 +197,9 @@ typedef struct tagPOINT
 //High precision PTZ information
 typedef struct
 {
-	int m_PanPosition;   //Horizontal coordinates p*10000£¬p£º[0,360]
-	int	m_TiltPosition;  //Vertical coordinates t*10000, t£º[-90,90]
-	int	m_ZoomPosition;  //Multiplying factor z*10000, z£º[1,Actual ratio]
+	int m_PanPosition;   //Horizontal coordinates p*10000ï¼Œpï¼š[0,360]
+	int	m_TiltPosition;  //Vertical coordinates t*10000, tï¼š[-90,90]
+	int	m_ZoomPosition;  //Multiplying factor z*10000, zï¼š[1,Actual ratio]
 } TPtzInfoEx;
 
 //Vi Wide height
@@ -212,9 +212,9 @@ typedef struct
 //The velocity meter elevation and other information
 typedef struct
 {
-	int	altitude;		//Camera height£¬unit:mm
-	int	waterlevel;		//Water level£¬unit:mm
-	int	width;			//The actual scene width of the center of the camera£¬unit:mm
+	int	altitude;		//Camera heightï¼Œunit:mm
+	int	waterlevel;		//Water levelï¼Œunit:mm
+	int	width;			//The actual scene width of the center of the cameraï¼Œunit:mm
 }TWSScene;
 
 typedef struct
@@ -227,9 +227,9 @@ typedef struct
 
 typedef struct
 {
-	unsigned short		x;		//The matching point is the coordinate£¬millionth
-	unsigned short		y;		//Match point ordinate£¬millionth
-	unsigned int	time;	//Match time stamp£¬unit:ms
+	unsigned short		x;		//The matching point is the coordinateï¼Œmillionth
+	unsigned short		y;		//Match point ordinateï¼Œmillionth
+	unsigned int	time;	//Match time stampï¼Œunit:ms
 }TWSPointInfo;
 
 #define WATER_SPEED_POINT_NUM  2		  
@@ -496,7 +496,7 @@ typedef struct
 
 /**********************************************************************************************/
 /* Currently supported illegal types */
-#define LPR_IT_UNKOWN			0,     //Î´ÖªÀàÐÍ
+#define LPR_IT_UNKOWN			0,     //æœªçŸ¥ç±»åž‹
 #define LPR_IT_NOSAFETYBELT		1,    //Do not wear seat belts
 #define LPR_IT_PHONE			(1<< 1)         // Call
 #define LPR_IT_NOPRESSLINE		(1<< 2)
@@ -566,11 +566,11 @@ typedef struct
 typedef struct tagAVDecodeMode
 {
 	int			iSize;
-	int			iVideoDecLibType;			//Video Decoder Library Types£ºHisi£¬Ffmpeg
+	int			iVideoDecLibType;			//Video Decoder Library Typesï¼šHisiï¼ŒFfmpeg
 	int			iCommonAudioDecLibType;		//Universal Audio Decoder Library Type: Hisi, Open Source Library
-	int			iAACAudioDecLibType;		//Types of AAC Audio Decoder Library£ºfaad£¬Ffmpeg
-	int			iVideoShowMainMode;			//Main mode of video display£ºDraw£¬D3D
-	int			iVideoShowSubMode;			//Video Display Submode£ºYuv420£¬Yuv422
+	int			iAACAudioDecLibType;		//Types of AAC Audio Decoder Libraryï¼šfaadï¼ŒFfmpeg
+	int			iVideoShowMainMode;			//Main mode of video displayï¼šDrawï¼ŒD3D
+	int			iVideoShowSubMode;			//Video Display Submodeï¼šYuv420ï¼ŒYuv422
 	int			iVideoDecHisiLibType;		//Valid When iVideoDecLibType is Hisi, 0-StreamMode 1-FrameMode 
 } AVDecodeMode, * pAVDecodeMode;
 
@@ -960,11 +960,11 @@ typedef struct tagPSPACK_INFO
 
 typedef struct
 {
-	unsigned long	nWidth;				//Video width, audio data is 0£»
-	unsigned long	nHeight;			//Video height, audio data is 0£»
-	unsigned long	nStamp;				//Time stamp(ms)¡£
-	unsigned long	nType;				//Audio type£¬T_AUDIO8,T_YUV420£¬¡£
-	unsigned long	nFrameRate;			//Frame rate¡£
+	unsigned long	nWidth;				//Video width, audio data is 0ï¼›
+	unsigned long	nHeight;			//Video height, audio data is 0ï¼›
+	unsigned long	nStamp;				//Time stamp(ms)ã€‚
+	unsigned long	nType;				//Audio typeï¼ŒT_AUDIO8,T_YUV420ï¼Œã€‚
+	unsigned long	nFrameRate;			//Frame rateã€‚
 	void*	nReserved;					//reserve
 }FRAME_INFO;
 /**********************************************************************************************/
@@ -977,14 +977,14 @@ typedef struct
 typedef struct __tagVitalSignData 
 {
 	char			cVersion;			//treaty version
-	char			cType;				//vital signs instrument information type,1£ºheart rate 2£ºblood oxygen concentration 3£ºblood pressure
-	char			cMonFlg;			//1:normal 2:Upper limit 3£ºUltra-low limit 4:probe off 5:device offline    
-	char			iOscilloGramSeqID;	//´Ó1¿ªÊ¼£¬ÐÄµç×î¶àÈý²¨ÒÀ´Î´«µÝ1£¬2£¬3£¬ÑªÑõÒ»²¨£¬Ê¹ÓÃ1
-	int				iMonVal[4];			//ÌåÕ÷ÊµÊ±Öµ, ÑªÑ¹3¸ö,SYS DIA PRÒÀ´Î´æ·Å£¬¾«¶È£ºÔ­Öµ³ËÒÔ100;
-	int				iGramRate;			//1sÓÐ¶àÉÙ¸öµã
-	int				iSizeType;			//ÊÓÆµµþ¼Ó²ã´óÐ¡  1:´ó 2£ºÖÐ 3£ºÐ¡
-	int				iXPosition;			//Ïà¶ÔÓÚÊÓÆµÇø×óÉÏ½Ç(0,0)µÄÏà¶Ôºá×ø±ê(Íò·Ö±È)
-	int				iYPosition;			//Ïà¶ÔÓÚÊÓÆµÇø×óÉÏ½Ç(0,0)µÄÏà¶Ô×Ý×ø±ê(Íò·Ö±È)
+	char			cType;				//vital signs instrument information type,1ï¼šheart rate 2ï¼šblood oxygen concentration 3ï¼šblood pressure
+	char			cMonFlg;			//1:normal 2:Upper limit 3ï¼šUltra-low limit 4:probe off 5:device offline    
+	char			iOscilloGramSeqID;	//ä»Ž1å¼€å§‹ï¼Œå¿ƒç”µæœ€å¤šä¸‰æ³¢ä¾æ¬¡ä¼ é€’1ï¼Œ2ï¼Œ3ï¼Œè¡€æ°§ä¸€æ³¢ï¼Œä½¿ç”¨1
+	int				iMonVal[4];			//ä½“å¾å®žæ—¶å€¼, è¡€åŽ‹3ä¸ª,SYS DIA PRä¾æ¬¡å­˜æ”¾ï¼Œç²¾åº¦ï¼šåŽŸå€¼ä¹˜ä»¥100;
+	int				iGramRate;			//1sæœ‰å¤šå°‘ä¸ªç‚¹
+	int				iSizeType;			//è§†é¢‘å åŠ å±‚å¤§å°  1:å¤§ 2ï¼šä¸­ 3ï¼šå°
+	int				iXPosition;			//ç›¸å¯¹äºŽè§†é¢‘åŒºå·¦ä¸Šè§’(0,0)çš„ç›¸å¯¹æ¨ªåæ ‡(ä¸‡åˆ†æ¯”)
+	int				iYPosition;			//ç›¸å¯¹äºŽè§†é¢‘åŒºå·¦ä¸Šè§’(0,0)çš„ç›¸å¯¹çºµåæ ‡(ä¸‡åˆ†æ¯”)
 	int				iPointLen;
 	unsigned char	cPointValue[MAX_POINTS_NUM];
 } VitalSignData, *pVitalSignData;
@@ -1022,14 +1022,14 @@ typedef struct __tagTStreamData
 
 typedef struct
 {
-	unsigned int		uiOSDType;			//1£ºChannel name£¨Text£© 2£ºTime and date 3:logo color 4£ºappend osd  characters 5:traffic ipc exclusive use  6£ºtraffic ipc combining picture
-	unsigned int		uiOSDBGColor;		// back color, total 32 bit low 24 bit means color rgb,bgr in figure£º0x00BBGGRR¡£High 8bit useless
+	unsigned int		uiOSDType;			//1ï¼šChannel nameï¼ˆTextï¼‰ 2ï¼šTime and date 3:logo color 4ï¼šappend osd  characters 5:traffic ipc exclusive use  6ï¼štraffic ipc combining picture
+	unsigned int		uiOSDBGColor;		// back color, total 32 bit low 24 bit means color rgb,bgr in figureï¼š0x00BBGGRRã€‚High 8bit useless
 	unsigned int		uiOSDColor;			//text color
-	unsigned int		uiOSDSize;			// 1¡«5,total 32 bit low 16 bit means Height £¬High 16 bit means width,0-Auto
-	unsigned int		uiOSDDiaphaneity;	//diaphaneity  range¡¾0¡«100¡¿
+	unsigned int		uiOSDSize;			// 1ï½ž5,total 32 bit low 16 bit means Height ï¼ŒHigh 16 bit means width,0-Auto
+	unsigned int		uiOSDDiaphaneity;	//diaphaneity  rangeã€0ï½ž100ã€‘
 	unsigned int		uiOSDPostionX;		//abscissa or location number
-	//1£ºif uiOSDPostionY equal to 0 £»uiOSDPostionX means location number £¬range¡¾0¡«15¡¿£¬
-	//2£ºif uiOSDPostionY greater t 0£»uiOSDPostionX and uiOSDPostionY combine a point means osd postion£¬uiOSDPostionY must plus 1 £¬eg: want set(16,0)£¬network treaty send£¨16£¬1£©£¬ipc actual set£¨16£¬0£©
+	//1ï¼šif uiOSDPostionY equal to 0 ï¼›uiOSDPostionX means location number ï¼Œrangeã€0ï½ž15ã€‘ï¼Œ
+	//2ï¼šif uiOSDPostionY greater t 0ï¼›uiOSDPostionX and uiOSDPostionY combine a point means osd postionï¼ŒuiOSDPostionY must plus 1 ï¼Œeg: want set(16,0)ï¼Œnetwork treaty sendï¼ˆ16ï¼Œ1ï¼‰ï¼Œipc actual setï¼ˆ16ï¼Œ0ï¼‰
 	unsigned int		uiOSDPostionY;		
 	int					ilength;
 	char				cText[LEN_512];		//osd text content
@@ -1142,35 +1142,35 @@ typedef void (*DECYUV_NOTIFY_V4)(unsigned int _ulID,unsigned char *_cData, int _
 #define FILE_COUNT			16	//max support num
 #define FILE_COUNT_EX		8	
 
-//´æ´¢²ÎÊýµ¼³öÎÄ¼þÃû£¬Ö§³ÖËùÓÐÉè±¸ 
+//å­˜å‚¨å‚æ•°å¯¼å‡ºæ–‡ä»¶åï¼Œæ”¯æŒæ‰€æœ‰è®¾å¤‡ 
 //Storage parameters export file name, support all devices
 #define DEVPARAMFILE_STORAGE				"config_rec.dat"
 
-//±¨¾¯²ÎÊýµ¼³öÎÄ¼þÃû£¬Ö§³ÖËùÓÐÉè±¸
+//æŠ¥è­¦å‚æ•°å¯¼å‡ºæ–‡ä»¶åï¼Œæ”¯æŒæ‰€æœ‰è®¾å¤‡
 //Alarm parameter export file name, support all devices
 #define DEVPARAMFILE_ALARM					"config_alm.dat"
 #define DEVPARAMFILE_ALARM_CONFIG			"config_alarm.ini"
 #define DEVPARAMFILE_ALARM_SERIAL_ALARM		"config_serialalarmercnf.dat"
 #define DEVPARAMFILE_ALARM_NET_ALARM		"config_netalarmercnf.dat"
 
-//Ô¤ÀÀ²ÎÊýµ¼³öÎÄ¼þÃû£¬Ö§³ÖËùÓÐÉè±¸
+//é¢„è§ˆå‚æ•°å¯¼å‡ºæ–‡ä»¶åï¼Œæ”¯æŒæ‰€æœ‰è®¾å¤‡
 //Preview parameter export file name, support all devices
 #define DEVPARAMFILE_PREVIEW_DISPLAY		"./gui_config/display.cnf"
 #define DEVPARAMFILE_PREVIEW_SWITCH			"config_switch.dat"
 
-//ÖÇÄÜ·ÖÎö²ÎÊýµ¼³öÎÄ¼þÃû£¬Ö§³ÖËùÓÐÉè±¸ 
+//æ™ºèƒ½åˆ†æžå‚æ•°å¯¼å‡ºæ–‡ä»¶åï¼Œæ”¯æŒæ‰€æœ‰è®¾å¤‡ 
 //Intelligent analysis parameter export file name, support all devices
 #define DEVPARAMFILE_VCA					"config_vca.dat"
 #define DEVPARAMFILE_SCENE					"config_scene.dat"
-//ÖÇÄÜ·ÖÎö²ÎÊý-½»Í¨²ÎÊýµ¼³öÎÄ¼þÃû£¬Ö§³Ö´æ´¢nvrÏµÁÐºÍ½»Í¨Ïà»úÏµÁÐÉè±¸
+//æ™ºèƒ½åˆ†æžå‚æ•°-äº¤é€šå‚æ•°å¯¼å‡ºæ–‡ä»¶åï¼Œæ”¯æŒå­˜å‚¨nvrç³»åˆ—å’Œäº¤é€šç›¸æœºç³»åˆ—è®¾å¤‡
 //Intelligent analysis parameter export file name, only support to store NVR series device
 #define	DEVPARAMFILE_ITS					"config_its.ini"
-//ÖÇÄÜ·ÖÎö²ÎÊýµ¼³öÎÄ¼þÃû£¬½öÖ§³Ö´æ´¢nvrÏµÁÐÉè±¸
+//æ™ºèƒ½åˆ†æžå‚æ•°å¯¼å‡ºæ–‡ä»¶åï¼Œä»…æ”¯æŒå­˜å‚¨nvrç³»åˆ—è®¾å¤‡
 //Intelligent analysis parameter export file name, only support to store NVR series device
 #define DEVPARAMFILE_VCAEX					"config_vca_ex.dat"
 #define DEVPARAMFILE_ITS_DAT				"config_its.dat"
 
-//ÏµÍ³²ÎÊýµ¼³öÎÄ¼þÃû£¬Ö§³ÖËùÓÐÉè±¸
+//ç³»ç»Ÿå‚æ•°å¯¼å‡ºæ–‡ä»¶åï¼Œæ”¯æŒæ‰€æœ‰è®¾å¤‡
 //System parameters export file name, support all devices
 #define DEVPARAMFILE_SYSTEM_SERVER			"config_server.ini"
 #define DEVPARAMFILE_SYSTEM_EXTEND			"extendword.txt"
@@ -1178,14 +1178,14 @@ typedef void (*DECYUV_NOTIFY_V4)(unsigned int _ulID,unsigned char *_cData, int _
 #define DEVPARAMFILE_SYSTEM_RIGHT			"config_right.dat"
 #define DEVPARAMFILE_SYSTEM_DG				"config_dg.dat"
 #define DEVPARAMFILE_SYSTEM_BURN			"config_burn.dat"
-//ÏµÍ³²ÎÊýµ¼³öÎÄ¼þÃû£¬½öÖ§³ÖSmartS3EÏµÁÐÉè±¸
+//ç³»ç»Ÿå‚æ•°å¯¼å‡ºæ–‡ä»¶åï¼Œä»…æ”¯æŒSmartS3Eç³»åˆ—è®¾å¤‡
 //System parameters export file name, only support smarts3e series devices
 #define DEVPARAMFILE_SYSTEM_COVER			"config_pdcover.dat"
-//ÏµÍ³²ÎÊýµ¼³öÎÄ¼þÃû£¬½öÖ§³Ö¶àÄ¿Ïà»úÏµÁÐ
+//ç³»ç»Ÿå‚æ•°å¯¼å‡ºæ–‡ä»¶åï¼Œä»…æ”¯æŒå¤šç›®ç›¸æœºç³»åˆ—
 //System parameters export file name, only support multi camera series
 #define DEVPARAMFILE_CHN0					"config_chn0.ini"
 #define DEVPARAMFILE_NET					"config_net.ini"
-//ÏµÍ³²ÎÊýµ¼³öÎÄ¼þÃû£¬½öÖ§³ÖÕþ·¨ÇòÏµÁÐ
+//ç³»ç»Ÿå‚æ•°å¯¼å‡ºæ–‡ä»¶åï¼Œä»…æ”¯æŒæ”¿æ³•çƒç³»åˆ—
 //System parameters export file name, only support political and legal ball series
 #define DEVPARAMFILE_SYSTEM_DOMESETTING		"dome_cfg/dome_setting.dat"
 #define DEVPARAMFILE_SCENE_PATTERN			"dome_cfg/pattern.dat"
@@ -1193,10 +1193,10 @@ typedef void (*DECYUV_NOTIFY_V4)(unsigned int _ulID,unsigned char *_cData, int _
 typedef struct tagExportConfig
 {
 	int		iSize;		    //Size of the structure,must be initialized before used
-	int		iCount;		    //ÐèÒªµ¼³öµÄÎÄ¼þ×Ü¸öÊý	Total number of files to be exported      
-	char   	cFileList[FILE_COUNT][MAX_NAME_LEN];	//ÐèÒªµ¼³öµÄÎÄ¼þÃû³ÆÁÐ±í List of file names to be exported
-	char    cFileOut[LEN_128];  //µ¼³öµ½±¾µØÉú³ÉµÄboxÎÄ¼þÃû Export to locally generated box file name
-	char   	cFileListEx[FILE_COUNT_EX][MAX_NAME_LEN];	//¸½¼ÓÎÄ¼þÃû³ÆÁÐ±í£¬³¬¹ý16¸öÎÄ¼þµÄ¸³Öµ¸ø¸Ã±äÁ¿ Attached file name list, more than 16 files assigned to this variable 
+	int		iCount;		    //éœ€è¦å¯¼å‡ºçš„æ–‡ä»¶æ€»ä¸ªæ•°	Total number of files to be exported      
+	char   	cFileList[FILE_COUNT][MAX_NAME_LEN];	//éœ€è¦å¯¼å‡ºçš„æ–‡ä»¶åç§°åˆ—è¡¨ List of file names to be exported
+	char    cFileOut[LEN_128];  //å¯¼å‡ºåˆ°æœ¬åœ°ç”Ÿæˆçš„boxæ–‡ä»¶å Export to locally generated box file name
+	char   	cFileListEx[FILE_COUNT_EX][MAX_NAME_LEN];	//é™„åŠ æ–‡ä»¶åç§°åˆ—è¡¨ï¼Œè¶…è¿‡16ä¸ªæ–‡ä»¶çš„èµ‹å€¼ç»™è¯¥å˜é‡ Attached file name list, more than 16 files assigned to this variable 
 } ExportConfig  ,*PExportConfig;
 
 typedef int RAWFRAMETYPE;
@@ -1224,7 +1224,7 @@ typedef struct
 	unsigned int nFrameRate;//Frame rate
 	unsigned int nAbsStamp; //Absolute Time(s)
 	unsigned char ucBitsPerSample;// bit per sample [8/16/24] default 16
-	unsigned int uiSamplesPerSec;// Samples Per Sec£¬default 8000
+	unsigned int uiSamplesPerSec;// Samples Per Secï¼Œdefault 8000
 }RAWFRAME_INFO;
 
 typedef struct
@@ -1237,7 +1237,7 @@ typedef struct
 	unsigned int nFrameRate;//Frame rate
 	unsigned int nAbsStamp; //Absolute Time(s)
 	unsigned char ucBitsPerSample;// bit per sample [8/16/24] default 16
-	unsigned int uiSamplesPerSec;// Samples Per Sec£¬default 8000
+	unsigned int uiSamplesPerSec;// Samples Per Secï¼Œdefault 8000
 	unsigned int ui32FrameNO;
 	unsigned int uiResPara1;
 	unsigned int uiResPara2;

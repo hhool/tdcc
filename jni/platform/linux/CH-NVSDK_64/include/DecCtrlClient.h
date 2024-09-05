@@ -8,20 +8,20 @@ extern "C" {
 #endif
 
 /**
-    @brief ³õÊ¼»¯ 
-    @param nPort ¶Ë¿ÚºÅ
-    @retval TRUE ³É¹¦ 
-    @retval FALSE Ê§°Ü
+    @brief åˆå§‹åŒ– 
+    @param nPort ç«¯å£å·
+    @retval TRUE æˆåŠŸ 
+    @retval FALSE å¤±è´¥
  */
 
 X_API int STDCALL 
 DEC_ClientStartup(unsigned int _uiMessage, void *_hWnd);
 
 /**
-    @brief ·´³õÊ¼»¯
-    @param nPort ¶Ë¿ÚºÅ
-    @retval TRUE ³É¹¦ 
-    @retval FALSE Ê§°Ü
+    @brief ååˆå§‹åŒ–
+    @param nPort ç«¯å£å·
+    @retval TRUE æˆåŠŸ 
+    @retval FALSE å¤±è´¥
  */
 X_API int STDCALL
 DEC_ClientCleanup();
@@ -58,16 +58,16 @@ DEC_ClientGetStreamBufferState(long _ulPushID, int * _piStreamBufferState);
 
 X_API int STDCALL
 DEC_ClientStreamControl(long  _ulPushID, int  _iCmd, void* _pvCmdBuf, int _iCmdLen);
-/** ²ÎÊı£º	_iPushID			DEC_ClientStartPushStreamµÄ·µ»ØÖµ
-			_iCmd		    	±êÊ¶·¢ËÍÂëÁ÷µÄ²Ù×÷Ö¸Áî£¬0£ºÔİÍ££¬1£º¿ì·Å£¬2£ºÂı·Å
-			*_pvCmdBuf			´æ´¢²Ù×÷µÄÖ¸ÁîÖµ£¬Ä¿Ç°½öÖ§³ÖÒÔÏÂÈıÖÖ²Ù×÷£º
-									<1>ÔİÍ£Ö¸Áî£º1£ºÔİÍ££¬     0£º»Ö¸´
-                                    <2>¿ì·ÅÖ¸Áî£º0£ºÕı³£ 1£ºÁ½±¶ËÙ  2£ºËÄ±¶ËÙ  3£º°Ë±¶ËÙ  4£ºÊ®Áù±¶ËÙ
-                                    <3>Âı·ÅÖ¸Áî£º0£ºÕı³£ 1£ºÁ½±¶ËÙ  2£ºËÄ±¶ËÙ  3£º°Ë±¶ËÙ 4£ºÊ®Áù±¶ËÙ
-			_iCmdLen			Ö¸ÁîÖµ´æ´¢ÇøµÄ³¤¶È
+/** å‚æ•°ï¼š	_iPushID			DEC_ClientStartPushStreamçš„è¿”å›å€¼
+			_iCmd		    	æ ‡è¯†å‘é€ç æµçš„æ“ä½œæŒ‡ä»¤ï¼Œ0ï¼šæš‚åœï¼Œ1ï¼šå¿«æ”¾ï¼Œ2ï¼šæ…¢æ”¾
+			*_pvCmdBuf			å­˜å‚¨æ“ä½œçš„æŒ‡ä»¤å€¼ï¼Œç›®å‰ä»…æ”¯æŒä»¥ä¸‹ä¸‰ç§æ“ä½œï¼š
+									<1>æš‚åœæŒ‡ä»¤ï¼š1ï¼šæš‚åœï¼Œ     0ï¼šæ¢å¤
+                                    <2>å¿«æ”¾æŒ‡ä»¤ï¼š0ï¼šæ­£å¸¸ 1ï¼šä¸¤å€é€Ÿ  2ï¼šå››å€é€Ÿ  3ï¼šå…«å€é€Ÿ  4ï¼šåå…­å€é€Ÿ
+                                    <3>æ…¢æ”¾æŒ‡ä»¤ï¼š0ï¼šæ­£å¸¸ 1ï¼šä¸¤å€é€Ÿ  2ï¼šå››å€é€Ÿ  3ï¼šå…«å€é€Ÿ 4ï¼šåå…­å€é€Ÿ
+			_iCmdLen			æŒ‡ä»¤å€¼å­˜å‚¨åŒºçš„é•¿åº¦
  */
 
-//·¢ËÍÕûÖ¡Ô­Ê¼ÂãÁ÷Êı¾İ
+//å‘é€æ•´å¸§åŸå§‹è£¸æµæ•°æ®
 X_API int STDCALL 
 DEC_ClientSendRawFrame(long _ulPushID, int _iLen, char* _cStreambuf);
 
@@ -218,11 +218,11 @@ DEC_ClientGetCapability(int _iID, char *_pcCap);
 X_API int STDCALL  
 DEC_ClientSetVGASize(int _iID, int _iChannel, int _iSize);
 
-//×¢²áÏûÏ¢»Øµ÷À©Õ¹
+//æ³¨å†Œæ¶ˆæ¯å›è°ƒæ‰©å±•
 X_API int STDCALL 
 DEC_ClientSetMsgCallbackEx(pTDPostMessageEx _TDPostMsg);
  
-//·¢ËÍÕûÖ¡Ô­Ê¼NVÂãÁ÷£¬¶¨ÖÆ½Ó¿Ú
+//å‘é€æ•´å¸§åŸå§‹NVè£¸æµï¼Œå®šåˆ¶æ¥å£
 X_API int STDCALL 
 DEC_ClientSendNonstandardRawFrame(long _ulPushID, int _iLen, char* _cStreambuf);
 
@@ -236,64 +236,64 @@ X_API int STDCALL
 DEC_ClientSetCommonEnable(int _iID, int _iEnableID, int _iChannelNo, int _iEnableValue);
 
 /*_iEnableID:
-0x13001:¶ÏÍø±£Áô×îºóÒ»Ö¡; _iEnableValue£º0--->²»Ê¹ÄÜ;1--->Ê¹ÄÜ¡£
-0x13002:Ô¤ÀÀÆ«ºÃÉèÖÃ;	  _iEnableValue£º0--->µÍÑÓÊ±;1--->¸ßÁ÷³©¡£*/
+0x13001:æ–­ç½‘ä¿ç•™æœ€åä¸€å¸§; _iEnableValueï¼š0--->ä¸ä½¿èƒ½;1--->ä½¿èƒ½ã€‚
+0x13002:é¢„è§ˆåå¥½è®¾ç½®;	  _iEnableValueï¼š0--->ä½å»¶æ—¶;1--->é«˜æµç•…ã€‚*/
 X_API int STDCALL 
 DEC_ClientGetCommonEnable(int _iID, int _iEnableID, int *_piEnableLastFrame, int *_piEnablePreference);
 
 X_API int STDCALL 
 DEC_ClientGetCommonEnableEx(int _iID, int _iEnableID, int _iChannelNo, int* _piEnableValue);
 
-//À©Õ¹½Ó¿Ú£¬Ôö¼ÓpushÁ÷±£Áô×îºóÒ»Ö¡ĞèÇó
-//À©Õ¹½Ó¿Ú£¬Ôö¼ÓÒôÆµ²ÉÑùÂÊ
+//æ‰©å±•æ¥å£ï¼Œå¢åŠ pushæµä¿ç•™æœ€åä¸€å¸§éœ€æ±‚
+//æ‰©å±•æ¥å£ï¼Œå¢åŠ éŸ³é¢‘é‡‡æ ·ç‡
 X_API int STDCALL 
 DEC_ClientConfigStreamInfo(int _iID, int _iChannel, int _iPos, int _iCmd, void* _pvCmdBuf, int _iBuffSize);
 
  /***************************************************************
- Function     £º		DEC_ClientSetDevConfig
- Description  £º		ÉèÖÃ½âÂëÆ÷µÄÄ³¸ö²ÎÊı£¬¸ù¾İ_iCmd²»Í¬£¬Ö´ĞĞ²»Í¬µÄ²Ù×÷
- Prameter(in) £º		_ulID£ºµÇÂ¼ID
- 				_iChannel£ºÍ¨µÀºÅ
- 				_iPos: »­ÃæºÅ
- 				_iCmd£º²Ù×÷Âë
- 				_iBuffSize£º´«Èë»º³åÇøµÄ´óĞ¡
- Prameter(in, out)£º	_pvCmdBuf £º ´«Èë»º³åÇøÖ¸Õë            
- return       £º		0£º³É¹¦
-                 -1£º»º³åÇø²»×ã
-                 other£ºÊ§°Ü
- others       £º		2013-08-14 
+ Function     ï¼š		DEC_ClientSetDevConfig
+ Description  ï¼š		è®¾ç½®è§£ç å™¨çš„æŸä¸ªå‚æ•°ï¼Œæ ¹æ®_iCmdä¸åŒï¼Œæ‰§è¡Œä¸åŒçš„æ“ä½œ
+ Prameter(in) ï¼š		_ulIDï¼šç™»å½•ID
+ 				_iChannelï¼šé€šé“å·
+ 				_iPos: ç”»é¢å·
+ 				_iCmdï¼šæ“ä½œç 
+ 				_iBuffSizeï¼šä¼ å…¥ç¼“å†²åŒºçš„å¤§å°
+ Prameter(in, out)ï¼š	_pvCmdBuf ï¼š ä¼ å…¥ç¼“å†²åŒºæŒ‡é’ˆ            
+ return       ï¼š		0ï¼šæˆåŠŸ
+                 -1ï¼šç¼“å†²åŒºä¸è¶³
+                 otherï¼šå¤±è´¥
+ others       ï¼š		2013-08-14 
  ***************************************************************/
 X_API int STDCALL 
 DEC_ClientSetDevConfig(long _ulID, int _iChannel, int _iPos, int _iCmd, void* _pvCmdBuf, int _iBuffSize);
  
 /***************************************************************
-Function     £º		DEC_ClientGetDevConfig
-Description  £º		»ñÈ¡½âÂëÆ÷µÄÄ³¸ö²ÎÊı£¬¸ù¾İ_iCmd²»Í¬£¬Ö´ĞĞ²»Í¬µÄ²Ù×÷
-Prameter(in) £º		_ulID£ºµÇÂ¼ID
-				_iChannel£ºÍ¨µÀºÅ
-				_iPos: »­ÃæºÅ
-				_iCmd£º²Ù×÷Âë
-				_iBuffSize£º´«Èë»º³åÇøµÄ´óĞ¡
-Prameter(in, out)£º	_pvCmdBuf £º ´«Èë»º³åÇøÖ¸Õë            
-return       £º		0£º³É¹¦
-                -1£º»º³åÇø²»×ã
-                other£ºÊ§°Ü
-others       £º		2013-08-14 
+Function     ï¼š		DEC_ClientGetDevConfig
+Description  ï¼š		è·å–è§£ç å™¨çš„æŸä¸ªå‚æ•°ï¼Œæ ¹æ®_iCmdä¸åŒï¼Œæ‰§è¡Œä¸åŒçš„æ“ä½œ
+Prameter(in) ï¼š		_ulIDï¼šç™»å½•ID
+				_iChannelï¼šé€šé“å·
+				_iPos: ç”»é¢å·
+				_iCmdï¼šæ“ä½œç 
+				_iBuffSizeï¼šä¼ å…¥ç¼“å†²åŒºçš„å¤§å°
+Prameter(in, out)ï¼š	_pvCmdBuf ï¼š ä¼ å…¥ç¼“å†²åŒºæŒ‡é’ˆ            
+return       ï¼š		0ï¼šæˆåŠŸ
+                -1ï¼šç¼“å†²åŒºä¸è¶³
+                otherï¼šå¤±è´¥
+others       ï¼š		2013-08-14 
 ***************************************************************/
 X_API int STDCALL 
 DEC_ClientGetDevConfig(long _ulID, int _iChannel, int _iPos, int _iCmd, void* _pvCmdBuf, int _iBuffSize);
 
 /***************************************************************
-Function     £º		DEC_ClientSetAutoTest
-Description  £º		×Ô¶¯»¯µ÷ÊÔÉèÖÃ½Ó¿Ú
-Prameter(in) £º		_ulID£ºµÇÂ¼ID
-				_iCmd£º²Ù×÷Âë
-				_iBuffSize£º´«Èë»º³åÇøµÄ´óĞ¡
-				_pvCmdBuf£º ´«Èë»º³åÇøÖ¸Õë            
-return       £º		0£º³É¹¦
-                -1£º»º³åÇø²»×ã
-                other£ºÊ§°Ü
-others       £º		2014-06-11 
+Function     ï¼š		DEC_ClientSetAutoTest
+Description  ï¼š		è‡ªåŠ¨åŒ–è°ƒè¯•è®¾ç½®æ¥å£
+Prameter(in) ï¼š		_ulIDï¼šç™»å½•ID
+				_iCmdï¼šæ“ä½œç 
+				_iBuffSizeï¼šä¼ å…¥ç¼“å†²åŒºçš„å¤§å°
+				_pvCmdBufï¼š ä¼ å…¥ç¼“å†²åŒºæŒ‡é’ˆ            
+return       ï¼š		0ï¼šæˆåŠŸ
+                -1ï¼šç¼“å†²åŒºä¸è¶³
+                otherï¼šå¤±è´¥
+others       ï¼š		2014-06-11 
 ***************************************************************/
 X_API int STDCALL 
 DEC_ClientSetAutoTest(long _ulID, int _iCmd, void* _pvCmdBuf, int _iBuffSize);

@@ -144,7 +144,7 @@
 #define FACE_MAX_FEATURE_COUNT					10
 #define FACE_MAX_RECT_POINT_COUNT				10
 
-////1£ºÍ¨µÀÃû³Æ£¨ÎÄ±¾£© 2£ºÊ±¼äÈÕÆÚ 3:logoÑÕÉ« 4£º¸½¼Ó×Ö·û 5:½»Í¨×¨ÓÃ 6£º½»Í¨ºÏ³ÉÍ¼Æ¬ 7£ºÈËÁ³µş¼ÓOSD
+////1ï¼šé€šé“åç§°ï¼ˆæ–‡æœ¬ï¼‰ 2ï¼šæ—¶é—´æ—¥æœŸ 3:logoé¢œè‰² 4ï¼šé™„åŠ å­—ç¬¦ 5:äº¤é€šä¸“ç”¨ 6ï¼šäº¤é€šåˆæˆå›¾ç‰‡ 7ï¼šäººè„¸å åŠ OSD
 #define COMMON_OSD_TYPE_CHANNEL     1
 #define COMMON_OSD_TYPE_DATETIME    2
 #define COMMON_OSD_TYPE_LOGOCOLOR   3
@@ -173,49 +173,49 @@ typedef struct tagQueryChanNo
 
 typedef struct tagNetFileQueryVca
 {
-	int					iSize;				//½á¹¹Ìå´óĞ¡				
-	int					iChanCount;         //Í¨µÀ¸öÊı
-	int					iChanSize;			//½á¹¹ÌåQueryChanNo´óĞ¡
-	QueryChanNo*		pChanList;			//Í¨µÀÁĞ±í
-	int					iVcaCount;			//ÖÇÄÜ·ÖÎöËã·¨¸öÊı
-	int					iVcaList[MAX_QUERY_LIST_COUNT];		//ÖÇÄÜ·ÖÎöËã·¨ÁĞ±í
-	NVS_FILE_TIME		tBegTime;			//¿ªÊ¼Ê±¼ä
-	NVS_FILE_TIME		tEndTime;			//½áÊøÊ±¼ä
-	int					iPageCount;			//Ò³´óĞ¡
-	int					iPageNo;			//Ò³±àºÅ
-	int					iFileType;			//ÎÄ¼şÀàĞÍ£¬ 0£ºÈ«²¿£¬1£ºÂ¼Ïñ£¬2£ºÍ¼Æ¬
-	int					iConditionCount;	//²éÑ¯Ìõ¼ş¸öÊı, ×î´ó32£¬ µ±ÖµÎª 0 Ê±£¬±íÊ¾²éÑ¯È«²¿
+	int					iSize;				//ç»“æ„ä½“å¤§å°				
+	int					iChanCount;         //é€šé“ä¸ªæ•°
+	int					iChanSize;			//ç»“æ„ä½“QueryChanNoå¤§å°
+	QueryChanNo*		pChanList;			//é€šé“åˆ—è¡¨
+	int					iVcaCount;			//æ™ºèƒ½åˆ†æç®—æ³•ä¸ªæ•°
+	int					iVcaList[MAX_QUERY_LIST_COUNT];		//æ™ºèƒ½åˆ†æç®—æ³•åˆ—è¡¨
+	NVS_FILE_TIME		tBegTime;			//å¼€å§‹æ—¶é—´
+	NVS_FILE_TIME		tEndTime;			//ç»“æŸæ—¶é—´
+	int					iPageCount;			//é¡µå¤§å°
+	int					iPageNo;			//é¡µç¼–å·
+	int					iFileType;			//æ–‡ä»¶ç±»å‹ï¼Œ 0ï¼šå…¨éƒ¨ï¼Œ1ï¼šå½•åƒï¼Œ2ï¼šå›¾ç‰‡
+	int					iConditionCount;	//æŸ¥è¯¢æ¡ä»¶ä¸ªæ•°, æœ€å¤§32ï¼Œ å½“å€¼ä¸º 0 æ—¶ï¼Œè¡¨ç¤ºæŸ¥è¯¢å…¨éƒ¨
 	char				cQueryCondition[MAX_QUERY_VCA_CONDITION][LEN_256];	
 /*
-   µ±ÖÇÄÜ·ÖÎöÀàĞÍÎª9Ê±: 
-	cQueryCondition[0]£º±íÊ¾¼ìË÷ÀàĞÍ 0-°´ÌØÕ÷¼ìË÷£¬1-°´ÊÂ¼ş¼ìË÷£¬2-°´Í¼Æ¬¼ìË÷;
-	cQueryCondition[1]£ºcQueryCondition[0]Îª0Ê± ±íÊ¾ÄêÁä£¬1-ÉÙÄê£¬2-ÇàÄê£¬3-ÖĞÄê£¬4-ÀÏÄê;
-	cQueryCondition[0]Îª1Ê± 1-ÈËÁ³¼ì²â 2-ÈËÁ³±È¶Ô 3-Ä°ÉúÈË 4-Æµ´Î 5-Ê±³¤;
-	cQueryCondition[2]£ºcQueryCondition[0]Îª0Ê± ±íÊ¾ĞÔ±ğ£¬1-ÄĞ£¬2-Å®£¬3-Î´Öª; cQueryCondition[0]Îª2Ê± ±íÊ¾²Ù×÷ 1-²éÑ¯ 2-»ñÈ¡½á¹û;
-	cQueryCondition[3]£ºcQueryCondition[0]Îª0Ê± ±íÊ¾Ãñ×å£¬1-ºº×å£¬2-ÉÙÊıÃñ×å; cQueryCondition[0]Îª2Ê± ±íÊ¾Í¼Æ¬ÀàĞÍ 1-Ö¸¶¨ÎÄ¼ş 2-´ÓÈËÁ³¿âÖĞÑ¡ÔñÎÄ¼ş;
-	cQueryCondition[4]£ºcQueryCondition[0]Îª0Ê± ±íÊ¾ĞÕÃû; cQueryCondition[0]Îª2, cQueryCondition[2]Îª1Ê± cQueryCondition[3]Îª1Ê± ±íÊ¾Í¼Æ¬Ãû³Æ; cQueryCondition[0]Îª2, cQueryCondition[2]Îª1Ê± cQueryCondition[3]Îª2Ê± ÈËÁ³¿âÍ¼Æ¬Id;
-	cQueryCondition[5]£ºcQueryCondition[0]Îª0Ê±£¬±íÊ¾´÷ÑÛ¾µ 0-Ô¤Áô£¬1-Åå´÷£¬2-Î´Åå´÷ cQueryCondition[0]Îª2£¬cQueryCondition[2]Îª1Ê± ±íÊ¾ÏàËÆ¶È
-	cQueryCondition[6]£ºcQueryCondition[0]Îª0Ê±£¬±íÊ¾´÷¿ÚÕÖ 0-Ô¤Áô£¬1-Åå´÷£¬2-Î´Åå´÷ cQueryCondition[0]Îª2£¬cQueryCondition[2]Îª1Ê± ±íÊ¾ÅÅĞò·½Ê½ 0-°´Ê±¼äÅÅĞò 1-°´ÏàËÆ¶ÈÅÅĞò
-   µ±iVcaType = 22Ê±
-	cQueryCondition[0]:±íÊ¾Ä¿±ê£¬0x7FFFFFFF-È«²¿£¬1-ÈË£¬2-ÆäËü£¬3-³µ
-	cQueryCondition[1]:±íÊ¾ÀàĞÍ, 0x7FFFFFFF-È«²¿£¬1-ÖÜ½ç-ÈëÇÖ£¬2-ÖÜ½ç-Àë¿ª,3-°íÏß
-   µ±iVcaType = 23Ê±
-	cQueryCondition[0]:±íÊ¾³µÅÆºÅÂë
-   µ±iVcaType = 30Ê±
-	cQueryCondition[0]:±íÊ¾°²È«Ã±ÑÕÉ« 0x7FFFFFFF-È«²¿,1-ºìÉ«£¬2-»ÆÉ«£¬3-À¶É«£¬4-°×É«£¬5-ÆäËü
-	cQueryCondition[1]:±íÊ¾°²È«Ã±Î´Åå´÷£¬0-Ô¤Áô£¬1-Åå´÷£¬2-Î´Åå´÷
+   å½“æ™ºèƒ½åˆ†æç±»å‹ä¸º9æ—¶: 
+	cQueryCondition[0]ï¼šè¡¨ç¤ºæ£€ç´¢ç±»å‹ 0-æŒ‰ç‰¹å¾æ£€ç´¢ï¼Œ1-æŒ‰äº‹ä»¶æ£€ç´¢ï¼Œ2-æŒ‰å›¾ç‰‡æ£€ç´¢;
+	cQueryCondition[1]ï¼šcQueryCondition[0]ä¸º0æ—¶ è¡¨ç¤ºå¹´é¾„ï¼Œ1-å°‘å¹´ï¼Œ2-é’å¹´ï¼Œ3-ä¸­å¹´ï¼Œ4-è€å¹´;
+	cQueryCondition[0]ä¸º1æ—¶ 1-äººè„¸æ£€æµ‹ 2-äººè„¸æ¯”å¯¹ 3-é™Œç”Ÿäºº 4-é¢‘æ¬¡ 5-æ—¶é•¿;
+	cQueryCondition[2]ï¼šcQueryCondition[0]ä¸º0æ—¶ è¡¨ç¤ºæ€§åˆ«ï¼Œ1-ç”·ï¼Œ2-å¥³ï¼Œ3-æœªçŸ¥; cQueryCondition[0]ä¸º2æ—¶ è¡¨ç¤ºæ“ä½œ 1-æŸ¥è¯¢ 2-è·å–ç»“æœ;
+	cQueryCondition[3]ï¼šcQueryCondition[0]ä¸º0æ—¶ è¡¨ç¤ºæ°‘æ—ï¼Œ1-æ±‰æ—ï¼Œ2-å°‘æ•°æ°‘æ—; cQueryCondition[0]ä¸º2æ—¶ è¡¨ç¤ºå›¾ç‰‡ç±»å‹ 1-æŒ‡å®šæ–‡ä»¶ 2-ä»äººè„¸åº“ä¸­é€‰æ‹©æ–‡ä»¶;
+	cQueryCondition[4]ï¼šcQueryCondition[0]ä¸º0æ—¶ è¡¨ç¤ºå§“å; cQueryCondition[0]ä¸º2, cQueryCondition[2]ä¸º1æ—¶ cQueryCondition[3]ä¸º1æ—¶ è¡¨ç¤ºå›¾ç‰‡åç§°; cQueryCondition[0]ä¸º2, cQueryCondition[2]ä¸º1æ—¶ cQueryCondition[3]ä¸º2æ—¶ äººè„¸åº“å›¾ç‰‡Id;
+	cQueryCondition[5]ï¼šcQueryCondition[0]ä¸º0æ—¶ï¼Œè¡¨ç¤ºæˆ´çœ¼é•œ 0-é¢„ç•™ï¼Œ1-ä½©æˆ´ï¼Œ2-æœªä½©æˆ´ cQueryCondition[0]ä¸º2ï¼ŒcQueryCondition[2]ä¸º1æ—¶ è¡¨ç¤ºç›¸ä¼¼åº¦
+	cQueryCondition[6]ï¼šcQueryCondition[0]ä¸º0æ—¶ï¼Œè¡¨ç¤ºæˆ´å£ç½© 0-é¢„ç•™ï¼Œ1-ä½©æˆ´ï¼Œ2-æœªä½©æˆ´ cQueryCondition[0]ä¸º2ï¼ŒcQueryCondition[2]ä¸º1æ—¶ è¡¨ç¤ºæ’åºæ–¹å¼ 0-æŒ‰æ—¶é—´æ’åº 1-æŒ‰ç›¸ä¼¼åº¦æ’åº
+   å½“iVcaType = 22æ—¶
+	cQueryCondition[0]:è¡¨ç¤ºç›®æ ‡ï¼Œ0x7FFFFFFF-å…¨éƒ¨ï¼Œ1-äººï¼Œ2-å…¶å®ƒï¼Œ3-è½¦
+	cQueryCondition[1]:è¡¨ç¤ºç±»å‹, 0x7FFFFFFF-å…¨éƒ¨ï¼Œ1-å‘¨ç•Œ-å…¥ä¾µï¼Œ2-å‘¨ç•Œ-ç¦»å¼€,3-ç»Šçº¿
+   å½“iVcaType = 23æ—¶
+	cQueryCondition[0]:è¡¨ç¤ºè½¦ç‰Œå·ç 
+   å½“iVcaType = 30æ—¶
+	cQueryCondition[0]:è¡¨ç¤ºå®‰å…¨å¸½é¢œè‰² 0x7FFFFFFF-å…¨éƒ¨,1-çº¢è‰²ï¼Œ2-é»„è‰²ï¼Œ3-è“è‰²ï¼Œ4-ç™½è‰²ï¼Œ5-å…¶å®ƒ
+	cQueryCondition[1]:è¡¨ç¤ºå®‰å…¨å¸½æœªä½©æˆ´ï¼Œ0-é¢„ç•™ï¼Œ1-ä½©æˆ´ï¼Œ2-æœªä½©æˆ´
   */
 }NetFileQueryVca, *pNetFileQueryVca;
 
 
 typedef struct tagVcaFileAttr
 {
-	int					iFileIndex;				//ĞòºÅ£º¶àÕÅÍ¼Ê±£¬Ã¿¸öÍ¼·ÖÅäÒ»¸öĞòºÅ£¬´Ó10001¿ªÊ¼£¬¿É¶ÔĞòºÅ×öĞ£Ñé¡£
-	char				cFileName[LEN_256];		//Í¼Æ¬Ãû³Æ
-	int					iFileSize;				//Í¼Æ¬Ãû³Æ
-	int					iFileType;				//Í¼Æ¬ÀàĞÍ£º1-Ğ¡Í¼£¬2-´óÍ¼ 
-	int					iReserve;				//±£Áô×Ö¶Î
-	char				cReserve[LEN_64];		//±£Áô×Ö¶Î
+	int					iFileIndex;				//åºå·ï¼šå¤šå¼ å›¾æ—¶ï¼Œæ¯ä¸ªå›¾åˆ†é…ä¸€ä¸ªåºå·ï¼Œä»10001å¼€å§‹ï¼Œå¯å¯¹åºå·åšæ ¡éªŒã€‚
+	char				cFileName[LEN_256];		//å›¾ç‰‡åç§°
+	int					iFileSize;				//å›¾ç‰‡åç§°
+	int					iFileType;				//å›¾ç‰‡ç±»å‹ï¼š1-å°å›¾ï¼Œ2-å¤§å›¾ 
+	int					iReserve;				//ä¿ç•™å­—æ®µ
+	char				cReserve[LEN_64];		//ä¿ç•™å­—æ®µ
 }VcaFileAttr, *pVcaFileAttr;
 
 typedef struct __tagVcaTPoint
@@ -437,8 +437,8 @@ typedef struct tagITSWHISTLESNAPSHOTRESULT
 {
     int iSize;
     int iChannelNo;
-    int iCapFrameNo;        //È¡Öµ·¶Î§£º1~10
-    int iResult;            //0£ºÔ¤Áô£¬1£º³É¹¦£»2£ºÊ§°Ü
+    int iCapFrameNo;        //å–å€¼èŒƒå›´ï¼š1~10
+    int iResult;            //0ï¼šé¢„ç•™ï¼Œ1ï¼šæˆåŠŸï¼›2ï¼šå¤±è´¥
 }ITS_WHISTLESNAPSHOTRESULT, *pITS_WHISTLESNAPSHOTRESULT;
 
 
@@ -649,7 +649,7 @@ typedef struct tagVCAColorTrack
 
 typedef struct tagVCACommonPara
 {
-	int					iDevType;								//0-IPC£¬1-NVR
+	int					iDevType;								//0-IPCï¼Œ1-NVR
 	VCARule				tRule;
 	vca_TDisplayParam	tDisplayParam;
 	int					iDisplayTarget;
@@ -742,8 +742,8 @@ typedef struct tagVCAParaSleep
 	vca_TPolygonEx		stInvalidPoints[MAX_DETECT_AREA_NUM];
 }VCAParaSleep, *pVCAParaSleep;
 
-#define		MAX_LOCAL_NVR_TARGET_NUM   4			//Ã¿ÇøÓòÄ¿±ê×î¶à4¸ö
-#define		MAX_LOCAL_NVR_REGION_NUM   8			//ÇøÓò×î´ó8¸ö
+#define		MAX_LOCAL_NVR_TARGET_NUM   4			//æ¯åŒºåŸŸç›®æ ‡æœ€å¤š4ä¸ª
+#define		MAX_LOCAL_NVR_REGION_NUM   8			//åŒºåŸŸæœ€å¤§8ä¸ª
 typedef struct tagTargetResult
 {
 	int				iAlarmState;
@@ -813,105 +813,105 @@ typedef struct _tagExtraAlarmSchedule
 
 typedef struct tagFaceReply
 {
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iLibKey;				//ÈËÁ³¿âkeyÖµ£¬iLibKey>0	  
-	int 				iFaceKey;				//Í¼Æ¬keyÖµ£¬iFaceKey>0 
-	int					iOptType;				//0-Ìí¼ÓÈËÁ³ 1-±à¼­ÈËÁ³ 2-É¾³ıÈËÁ³ 3-Ìí¼ÓÈËÁ³¿â 4-±à¼­ÈËÁ³¿â 5-É¾³ıÈËÁ³¿â 6-ÈËÁ³½¨Ä£ 7-²éÑ¯ÈËÁ³¿â
-												//8-²éÑ¯ÈËÁ³ 9-ÈËÁ³ÊôĞÔ²éÑ¯ 10-ÈËÁ³ÊôĞÔÌáÈ¡ 11-¿ÛÈËÁ³ 12-ÒÔÍ¼ËÑµ×Í¼ 13-Í¬²½ÈËÁ³¿â 14-²éÑ¯Í¬²½ÈËÁ³¿â×´Ì¬
-												//15-ÒÔÍ¼ËÑ×¥ÅÄÍ¼ 16-ÈËÁ³¿â¿½±´Ç¨ÒÆ 17-ÈËÁ³¿â½âËøÃÜÂëĞ£Ñé 18-ÈËÁ³ÌØÕ÷Öµ±È¶Ô
-	int					iResult;				//0-³É¹¦£¬1-ÏµÍ³×¼±¸ºÃ 2-Ê§°Ü 3-³¬³ö×î´ó·¶Î§ 4-ÏµÍ³ÕıÔÚÉ¾³ı 5-ÏµÍ³ÕıÔÚ¿ÛÈËÁ³ 
-												//6-ÏµÍ³ÕıÔÚÖ´ĞĞÒÔÍ¼ËÑ×¥ÅÄÍ¼²Ù×÷ 7-ÃÜÂë´íÎó
-	char				cLibUUID[LEN_UUID];		//ÈËÁ³¿âÔÚÆ½Ì¨µÄID
-	char				cFaceUUID[LEN_UUID];	//Í¼Æ¬ÔÚÆ½Ì¨¶ÔÓ¦ID
-	int					iDelLibProgress;		//µ±iResult=4Ê±ÓĞĞ§£¬±íÊ¾ÈËÁ³¿âÉ¾³ı½ø¶È£¬È¡Öµ·¶Î§0-100
-												//µ±iResult=6Ê±ÓĞĞ§£¬±íÊ¾ÒÔÍ¼ËÑ×¥ÅÄÍ¼ËÑË÷½ø¶È£¬È¡Öµ·¶Î§0-100
-												/*µ±iOptType=0 && iResult=2Ê±ÓĞĞ§, ·µ»Ø½á¹ûÈçÏÂ
-													1£ºÈËÁ³µ×¿â²»´æÔÚ
-													2£ºÔİÍ£ÖÇÄÜ·ÖÎöÊ§°Ü
-													3: Éè±¸ÕıÔÚÉı¼¶ºÍ¶Ô½²
-													4: Ìí¼ÓÊı¾İ¿âÊ§°Ü
-													5£ºÉú³ÉÍ¼Æ¬´íÎó
-													6£º½¨Ä£´íÎó---½¨Ä£Í¼Æ¬²»·ûºÏÒªÇó
-													7£º½¨Ä£´íÎó---½¨Ä£Í¼Æ¬Ëã·¨Ã»ÓĞ¼ì³öÈËÁ³
-													8£º½¨Ä£´íÎó---½¨Ä£Í¼Æ¬ÈËÁ³¼ì³öÀ©ÕÅÖ®ºó³¬¹ı1280*736
-													9£º½¨Ä£´íÎó---Í¼Æ¬µÄ¸ñÊ½ºÍÄÚÈİ²»Æ¥Åä
-													10£º½¨Ä£´íÎó---½¨Ä£Í¼Æ¬²åÈëµ½Ëã·¨Êı¾İ¿âÊ§°Ü
-													11£º½¨Ä£´íÎó---½¨Ä£Í¼Æ¬´ÓËã·¨Êı¾İ¿âÉ¾³ıÊ§°Ü
-													12£º½¨Ä£´íÎó---´ÓjpegÍ·²¿ĞÅÏ¢ÕÒÍ¼Æ¬¿í¸ß´íÎó
-													13: JPG ×ª YUV Ê§°Ü
-													14: JPG ×ª ARGB Ê§°Ü
-													15£ºÎŞĞ§µÄfeature data
-													16£ºËã·¨·µ»Ø´íÎó
-													17£ºVGSËõ·ÅÊ§°Ü                                                     
-													18: ½¨Ä£´íÎó---»ñÈ¡ÊÓÆµÖ¡Ê§°Ü  
-													19: VGS¾Ö²¿Ëõ·Å»òÕßÔ­Í¼Ëõ·ÅÊ§°Ü  
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iLibKey;				//äººè„¸åº“keyå€¼ï¼ŒiLibKey>0	  
+	int 				iFaceKey;				//å›¾ç‰‡keyå€¼ï¼ŒiFaceKey>0 
+	int					iOptType;				//0-æ·»åŠ äººè„¸ 1-ç¼–è¾‘äººè„¸ 2-åˆ é™¤äººè„¸ 3-æ·»åŠ äººè„¸åº“ 4-ç¼–è¾‘äººè„¸åº“ 5-åˆ é™¤äººè„¸åº“ 6-äººè„¸å»ºæ¨¡ 7-æŸ¥è¯¢äººè„¸åº“
+												//8-æŸ¥è¯¢äººè„¸ 9-äººè„¸å±æ€§æŸ¥è¯¢ 10-äººè„¸å±æ€§æå– 11-æ‰£äººè„¸ 12-ä»¥å›¾æœåº•å›¾ 13-åŒæ­¥äººè„¸åº“ 14-æŸ¥è¯¢åŒæ­¥äººè„¸åº“çŠ¶æ€
+												//15-ä»¥å›¾æœæŠ“æ‹å›¾ 16-äººè„¸åº“æ‹·è´è¿ç§» 17-äººè„¸åº“è§£é”å¯†ç æ ¡éªŒ 18-äººè„¸ç‰¹å¾å€¼æ¯”å¯¹
+	int					iResult;				//0-æˆåŠŸï¼Œ1-ç³»ç»Ÿå‡†å¤‡å¥½ 2-å¤±è´¥ 3-è¶…å‡ºæœ€å¤§èŒƒå›´ 4-ç³»ç»Ÿæ­£åœ¨åˆ é™¤ 5-ç³»ç»Ÿæ­£åœ¨æ‰£äººè„¸ 
+												//6-ç³»ç»Ÿæ­£åœ¨æ‰§è¡Œä»¥å›¾æœæŠ“æ‹å›¾æ“ä½œ 7-å¯†ç é”™è¯¯
+	char				cLibUUID[LEN_UUID];		//äººè„¸åº“åœ¨å¹³å°çš„ID
+	char				cFaceUUID[LEN_UUID];	//å›¾ç‰‡åœ¨å¹³å°å¯¹åº”ID
+	int					iDelLibProgress;		//å½“iResult=4æ—¶æœ‰æ•ˆï¼Œè¡¨ç¤ºäººè„¸åº“åˆ é™¤è¿›åº¦ï¼Œå–å€¼èŒƒå›´0-100
+												//å½“iResult=6æ—¶æœ‰æ•ˆï¼Œè¡¨ç¤ºä»¥å›¾æœæŠ“æ‹å›¾æœç´¢è¿›åº¦ï¼Œå–å€¼èŒƒå›´0-100
+												/*å½“iOptType=0 && iResult=2æ—¶æœ‰æ•ˆ, è¿”å›ç»“æœå¦‚ä¸‹
+													1ï¼šäººè„¸åº•åº“ä¸å­˜åœ¨
+													2ï¼šæš‚åœæ™ºèƒ½åˆ†æå¤±è´¥
+													3: è®¾å¤‡æ­£åœ¨å‡çº§å’Œå¯¹è®²
+													4: æ·»åŠ æ•°æ®åº“å¤±è´¥
+													5ï¼šç”Ÿæˆå›¾ç‰‡é”™è¯¯
+													6ï¼šå»ºæ¨¡é”™è¯¯---å»ºæ¨¡å›¾ç‰‡ä¸ç¬¦åˆè¦æ±‚
+													7ï¼šå»ºæ¨¡é”™è¯¯---å»ºæ¨¡å›¾ç‰‡ç®—æ³•æ²¡æœ‰æ£€å‡ºäººè„¸
+													8ï¼šå»ºæ¨¡é”™è¯¯---å»ºæ¨¡å›¾ç‰‡äººè„¸æ£€å‡ºæ‰©å¼ ä¹‹åè¶…è¿‡1280*736
+													9ï¼šå»ºæ¨¡é”™è¯¯---å›¾ç‰‡çš„æ ¼å¼å’Œå†…å®¹ä¸åŒ¹é…
+													10ï¼šå»ºæ¨¡é”™è¯¯---å»ºæ¨¡å›¾ç‰‡æ’å…¥åˆ°ç®—æ³•æ•°æ®åº“å¤±è´¥
+													11ï¼šå»ºæ¨¡é”™è¯¯---å»ºæ¨¡å›¾ç‰‡ä»ç®—æ³•æ•°æ®åº“åˆ é™¤å¤±è´¥
+													12ï¼šå»ºæ¨¡é”™è¯¯---ä»jpegå¤´éƒ¨ä¿¡æ¯æ‰¾å›¾ç‰‡å®½é«˜é”™è¯¯
+													13: JPG è½¬ YUV å¤±è´¥
+													14: JPG è½¬ ARGB å¤±è´¥
+													15ï¼šæ— æ•ˆçš„feature data
+													16ï¼šç®—æ³•è¿”å›é”™è¯¯
+													17ï¼šVGSç¼©æ”¾å¤±è´¥                                                     
+													18: å»ºæ¨¡é”™è¯¯---è·å–è§†é¢‘å¸§å¤±è´¥  
+													19: VGSå±€éƒ¨ç¼©æ”¾æˆ–è€…åŸå›¾ç¼©æ”¾å¤±è´¥  
 												*/
 }FaceReply,*pFaceReply;
 
 typedef struct tagFaceInfo
 {
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iLibKey;				//ÈËÁ³¿âkeyÖµ£¬iLibKey>0£¨iLibKeyÎª0£¬cLibUUIDÎª¿ÕÊ±±íÊ¾²éÑ¯ËùÓĞ¿â£© 
-	int 				iFaceKey;				//Í¼Æ¬keyÖµ£¬ iFaceKey>0
-	int					iCheckCode;				//ÎÄ¼şĞ£ÑéÂë£¬iFaceKey=0Ê±ÓĞĞ§£¬ÓÃÀ´Ğ£ÑéÈËÁ³Í¼Æ¬
-	int					iFileType;				//ÎÄ¼şÀ©Õ¹ÀàĞÍ£¬iFaceKey=0Ê±ÓĞĞ§£¬0-jpg£¬1-png  
-	int					iModeling;				//ÊÇ·ñ½¨Ä££º0-²»½¨Ä££¬1-½¨Ä££»µ¥ÕÅµ¼ÈëÊ±·¢1£¬ÅúÁ¿µ¼ÈëÊ±·¢0
-	char				cName[LEN_64];			//ĞÕÃû
-	int					iSex;					//ĞÔ±ğ£º0-Î´Öª£¬1-ÄĞ£¬2-Å®
-	char				cBirthTime[LEN_16];		//³öÉúÈÕÆÚ£¬¸ñÊ½Îª£º2017-04-04£¬×î´ó16¸ö×Ö½Ú
-	int					iNation;				//Ãñ×å£¬°´¹ú¼Ò±ê×¼´úÂë £¨¼ûÃñ×å´úÂë±í£©
-	int					iPlace;					//¼®¹á£¬¸ß16Î»±íÊ¾Ê¡£¬µÍ16Î»±íÊ¾ÊĞ£»£¨¼ûÊ¡·İ³ÇÊĞ´úÂë±í£©·Ö±ğ°´¹ú¼ÒĞĞÕşÇø»®´úÂë¸³Öµ£¬0±íÊ¾Î´Öª
-	int					iCertType;				//Ö¤¼şÀàĞÍ£¬0-Î´Öª£¬1-Éí·İÖ¤£¬2-¾ü¹ÙÖ¤£¬3-»¤ÕÕ£¬4-Ô±¹¤±àºÅ
-	char				cCertNum[LEN_64];		//Ö¤¼şºÅ
-	int					iOptType;				//²Ù×÷ÀàĞÍ£º1=Ìí¼Ó£¬2=ĞŞ¸Ä£¬3=¸´ÖÆ£¬4=Ç¨ÒÆ
-	char				cLibUUID[LEN_UUID];		//ÈËÁ³¿âÔÚÆ½Ì¨µÄID£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
-	char				cFaceUUID[LEN_UUID];	//Í¼Æ¬ÔÚÆ½Ì¨¶ÔÓ¦ID£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
-	char				cLibVersion[LEN_64];	//ÈËÁ³¿â°æ±¾ºÅ
-	char				cVerifyCode[LEN_64];	//Í¼Æ¬Ğ£ÑéÂë£¬Í¼Æ¬ÎÄ¼şMD5
-	int					iTaskId;				//ÊÂÎñID£¬ÒÔÍ¼ËÑµ×Í¼ÓĞĞ§
-	char				cFileName[LEN_256];		//Í¼Æ¬Ãû³Æ£¬µ×¿âÍ¼Æ¬Ãû
-	int					iSimilar;				//ÏàËÆ¶È£¬0-100£¨ÒÔÍ¼ËÑµ×Í¼ÖĞµÄÏàËÆ¶È£©
-	int					iCountry;				//¹ú¼Ò£¬°´¹ú¼ÒºÍµØÇøISO 3166-1´úÂë±í£¨¼ûÊı×Ö£©
-	char				cAddress[LEN_64];		//µØÖ·
-	char				cCompany[LEN_64];		//¹«Ë¾
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iLibKey;				//äººè„¸åº“keyå€¼ï¼ŒiLibKey>0ï¼ˆiLibKeyä¸º0ï¼ŒcLibUUIDä¸ºç©ºæ—¶è¡¨ç¤ºæŸ¥è¯¢æ‰€æœ‰åº“ï¼‰ 
+	int 				iFaceKey;				//å›¾ç‰‡keyå€¼ï¼Œ iFaceKey>0
+	int					iCheckCode;				//æ–‡ä»¶æ ¡éªŒç ï¼ŒiFaceKey=0æ—¶æœ‰æ•ˆï¼Œç”¨æ¥æ ¡éªŒäººè„¸å›¾ç‰‡
+	int					iFileType;				//æ–‡ä»¶æ‰©å±•ç±»å‹ï¼ŒiFaceKey=0æ—¶æœ‰æ•ˆï¼Œ0-jpgï¼Œ1-png  
+	int					iModeling;				//æ˜¯å¦å»ºæ¨¡ï¼š0-ä¸å»ºæ¨¡ï¼Œ1-å»ºæ¨¡ï¼›å•å¼ å¯¼å…¥æ—¶å‘1ï¼Œæ‰¹é‡å¯¼å…¥æ—¶å‘0
+	char				cName[LEN_64];			//å§“å
+	int					iSex;					//æ€§åˆ«ï¼š0-æœªçŸ¥ï¼Œ1-ç”·ï¼Œ2-å¥³
+	char				cBirthTime[LEN_16];		//å‡ºç”Ÿæ—¥æœŸï¼Œæ ¼å¼ä¸ºï¼š2017-04-04ï¼Œæœ€å¤§16ä¸ªå­—èŠ‚
+	int					iNation;				//æ°‘æ—ï¼ŒæŒ‰å›½å®¶æ ‡å‡†ä»£ç  ï¼ˆè§æ°‘æ—ä»£ç è¡¨ï¼‰
+	int					iPlace;					//ç±è´¯ï¼Œé«˜16ä½è¡¨ç¤ºçœï¼Œä½16ä½è¡¨ç¤ºå¸‚ï¼›ï¼ˆè§çœä»½åŸå¸‚ä»£ç è¡¨ï¼‰åˆ†åˆ«æŒ‰å›½å®¶è¡Œæ”¿åŒºåˆ’ä»£ç èµ‹å€¼ï¼Œ0è¡¨ç¤ºæœªçŸ¥
+	int					iCertType;				//è¯ä»¶ç±»å‹ï¼Œ0-æœªçŸ¥ï¼Œ1-èº«ä»½è¯ï¼Œ2-å†›å®˜è¯ï¼Œ3-æŠ¤ç…§ï¼Œ4-å‘˜å·¥ç¼–å·
+	char				cCertNum[LEN_64];		//è¯ä»¶å·
+	int					iOptType;				//æ“ä½œç±»å‹ï¼š1=æ·»åŠ ï¼Œ2=ä¿®æ”¹ï¼Œ3=å¤åˆ¶ï¼Œ4=è¿ç§»
+	char				cLibUUID[LEN_UUID];		//äººè„¸åº“åœ¨å¹³å°çš„IDï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
+	char				cFaceUUID[LEN_UUID];	//å›¾ç‰‡åœ¨å¹³å°å¯¹åº”IDï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
+	char				cLibVersion[LEN_64];	//äººè„¸åº“ç‰ˆæœ¬å·
+	char				cVerifyCode[LEN_64];	//å›¾ç‰‡æ ¡éªŒç ï¼Œå›¾ç‰‡æ–‡ä»¶MD5
+	int					iTaskId;				//äº‹åŠ¡IDï¼Œä»¥å›¾æœåº•å›¾æœ‰æ•ˆ
+	char				cFileName[LEN_256];		//å›¾ç‰‡åç§°ï¼Œåº•åº“å›¾ç‰‡å
+	int					iSimilar;				//ç›¸ä¼¼åº¦ï¼Œ0-100ï¼ˆä»¥å›¾æœåº•å›¾ä¸­çš„ç›¸ä¼¼åº¦ï¼‰
+	int					iCountry;				//å›½å®¶ï¼ŒæŒ‰å›½å®¶å’Œåœ°åŒºISO 3166-1ä»£ç è¡¨ï¼ˆè§æ•°å­—ï¼‰
+	char				cAddress[LEN_64];		//åœ°å€
+	char				cCompany[LEN_64];		//å…¬å¸
 }FaceInfo,*pFaceInfo;
 
 typedef struct tagFaceEdit
 {
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iChanNo;				//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	char				cFacePic[LEN_256];		//ÊäÈëÒª±à¼­µÄÍ¼Æ¬Ãû³Æ	
-	FaceInfo			tFace;					//Í¼Æ¬ĞÅÏ¢
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iChanNo;				//é€šé“å·ï¼Œä»0å¼€å§‹
+	char				cFacePic[LEN_256];		//è¾“å…¥è¦ç¼–è¾‘çš„å›¾ç‰‡åç§°	
+	FaceInfo			tFace;					//å›¾ç‰‡ä¿¡æ¯
 }FaceEdit,*pFaceEdit;
 
 typedef struct tagFaceDelete
 {
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iChanNo;				//Í¨µÀºÅ´Ó0¿ªÊ¼
-	int					iLibKey;				//ÈËÁ³¿âkeyÖµ£¬iLibKey>0	  
-	int 				iFaceKey;				//Í¼Æ¬keyÖµ£¬ iFaceKey>0
-	char				cLibUUID[LEN_UUID];		//ÈËÁ³¿âÔÚÆ½Ì¨µÄID£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
-	char				cFaceUUID[LEN_UUID];	//Í¼Æ¬ÔÚÆ½Ì¨¶ÔÓ¦ID£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iChanNo;				//é€šé“å·ä»0å¼€å§‹
+	int					iLibKey;				//äººè„¸åº“keyå€¼ï¼ŒiLibKey>0	  
+	int 				iFaceKey;				//å›¾ç‰‡keyå€¼ï¼Œ iFaceKey>0
+	char				cLibUUID[LEN_UUID];		//äººè„¸åº“åœ¨å¹³å°çš„IDï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
+	char				cFaceUUID[LEN_UUID];	//å›¾ç‰‡åœ¨å¹³å°å¯¹åº”IDï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
 }FaceDelete,*pFaceDelete;
 
 typedef struct tagFaceQuery
 {
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iChanNo;				//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iPageNo;				//Ò³Âë£¬iPageNo>=0
-	int					iPageCount;				//µ±Ç°Ò³ÌõÊı£¬iPageSize>=0
-	int					iLibKey;				//ÈËÁ³¿âkeyÖµ£¬iLibKey>0£¨iLibKeyÎª0£¬cLibUUIDÎª¿ÕÊ±±íÊ¾²éÑ¯ËùÓĞ¿â£©
-	int 				iModeling;				//½¨Ä£×´Ì¬£¬ 0-½¨Ä£³É¹¦£¬1-½¨Ä£Ê§°Ü£¬2-Î´½¨Ä£ 
-	char				cName[LEN_64];			//ĞÕÃû
-	int					iSex;					//ĞÔ±ğ£¬0-Î´Öª£¬1-ÄĞ£¬2-Å®
-	char				cBirthStart[LEN_16];	//³öÉúÈÕÆÚ²éÑ¯¿ªÊ¼Ê±¼ä£¬¸ñÊ½Îª£º2017-04-04
-	char				cBirthEnd[LEN_16];		//³öÉúÈÕÆÚ²éÑ¯½áÊøÊ±¼ä£¬¸ñÊ½Îª£º2017-04-04
-	int					iNation;				//Ãñ×å£¬°´¹ú¼Ò±ê×¼´úÂë 
-	int					iPlace;					//¼®¹á£¬¸ß16Î»±íÊ¾Ê¡£¬µÍ16Î»±íÊ¾ÊĞ£»
-												//·Ö±ğ°´¹ú¼ÒĞĞÕşÇø»®´úÂë¸³Öµ£¬0±íÊ¾Î´Öª  £¨¼ûÊ¡·İ³ÇÊĞ´úÂë±í£©
-	int					iCertType;				//Ö¤¼şÀàĞÍ£¬0-Î´Öª£¬1-Éí·İÖ¤£¬2-¾ü¹ÙÖ¤£¬3-»¤ÕÕ£¬4-Ô±¹¤±àºÅ
-	char				cCertNum[LEN_64];		//Ö¤¼şºÅ
-	char				cLibUUID[LEN_UUID];		//ÈËÁ³¿âÔÚÆ½Ì¨µÄID
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iChanNo;				//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iPageNo;				//é¡µç ï¼ŒiPageNo>=0
+	int					iPageCount;				//å½“å‰é¡µæ¡æ•°ï¼ŒiPageSize>=0
+	int					iLibKey;				//äººè„¸åº“keyå€¼ï¼ŒiLibKey>0ï¼ˆiLibKeyä¸º0ï¼ŒcLibUUIDä¸ºç©ºæ—¶è¡¨ç¤ºæŸ¥è¯¢æ‰€æœ‰åº“ï¼‰
+	int 				iModeling;				//å»ºæ¨¡çŠ¶æ€ï¼Œ 0-å»ºæ¨¡æˆåŠŸï¼Œ1-å»ºæ¨¡å¤±è´¥ï¼Œ2-æœªå»ºæ¨¡ 
+	char				cName[LEN_64];			//å§“å
+	int					iSex;					//æ€§åˆ«ï¼Œ0-æœªçŸ¥ï¼Œ1-ç”·ï¼Œ2-å¥³
+	char				cBirthStart[LEN_16];	//å‡ºç”Ÿæ—¥æœŸæŸ¥è¯¢å¼€å§‹æ—¶é—´ï¼Œæ ¼å¼ä¸ºï¼š2017-04-04
+	char				cBirthEnd[LEN_16];		//å‡ºç”Ÿæ—¥æœŸæŸ¥è¯¢ç»“æŸæ—¶é—´ï¼Œæ ¼å¼ä¸ºï¼š2017-04-04
+	int					iNation;				//æ°‘æ—ï¼ŒæŒ‰å›½å®¶æ ‡å‡†ä»£ç  
+	int					iPlace;					//ç±è´¯ï¼Œé«˜16ä½è¡¨ç¤ºçœï¼Œä½16ä½è¡¨ç¤ºå¸‚ï¼›
+												//åˆ†åˆ«æŒ‰å›½å®¶è¡Œæ”¿åŒºåˆ’ä»£ç èµ‹å€¼ï¼Œ0è¡¨ç¤ºæœªçŸ¥  ï¼ˆè§çœä»½åŸå¸‚ä»£ç è¡¨ï¼‰
+	int					iCertType;				//è¯ä»¶ç±»å‹ï¼Œ0-æœªçŸ¥ï¼Œ1-èº«ä»½è¯ï¼Œ2-å†›å®˜è¯ï¼Œ3-æŠ¤ç…§ï¼Œ4-å‘˜å·¥ç¼–å·
+	char				cCertNum[LEN_64];		//è¯ä»¶å·
+	char				cLibUUID[LEN_UUID];		//äººè„¸åº“åœ¨å¹³å°çš„ID
 	char				cLibPwd[LEN_64];		//library password
 	int					iCountry;				//country
 	char				cAddress[LEN_64];		//address
@@ -920,187 +920,187 @@ typedef struct tagFaceQuery
 
 typedef struct tagFaceQueryResult
 {
-	int					iSize;					//½á¹¹Ìå´óĞ¡					
-	int					iChanNo;				//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iTotal;					//×ÜÌõÊı
-	int					iPageNo;				//Ò³Âë£¬´Ó0¿ªÊ¼
-	int					iPageCount;				//µ±Ç°Ò³ÌõÊı
-	int					iIndex;					//Ò³ÂëÄÚĞòºÅ£¬´Ó0¿ªÊ¼
-	FaceInfo			tFace;					//ÈËÁ³ĞÅÏ¢½á¹¹Ìå
+	int					iSize;					//ç»“æ„ä½“å¤§å°					
+	int					iChanNo;				//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iTotal;					//æ€»æ¡æ•°
+	int					iPageNo;				//é¡µç ï¼Œä»0å¼€å§‹
+	int					iPageCount;				//å½“å‰é¡µæ¡æ•°
+	int					iIndex;					//é¡µç å†…åºå·ï¼Œä»0å¼€å§‹
+	FaceInfo			tFace;					//äººè„¸ä¿¡æ¯ç»“æ„ä½“
 }FaceQueryResult,*pFaceQueryResult;
 
 typedef struct tagFaceLibInfo
 {
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iLibKey;				//ÈËÁ³¿âkeyÖµ£¬iLibKey=0±íÊ¾Ìí¼ÓÈËÁ³¿â£¬>0±íÊ¾ĞŞ¸ÄÈËÁ³¿â  
-	char				cName[LEN_64];			//ÈËÁ³¿âÃû³Æ
-	int					iThreshold;				//ÈËÁ³¿âãĞÖµ
-	char				cExtrInfo[LEN_64];		//¸½¼ÓĞÅÏ¢
-	int					iAlarmType;				//ÊÇ·ñÉÏ´«Ê¶±ğĞÅÏ¢£¬0-²»ÉÏ´«£¬1-ÉÏ´«
-	int					iOptType;				//²Ù×÷ÀàĞÍ£¬1--Ìí¼ÓÈËÁ³¿â£¬2--ĞŞ¸ÄÈËÁ³¿â£¬3--Ëø¶¨ÃÜÂëĞ£Ñé£¬4--Í¨¹ıNVRĞŞ¸ÄÇ°¶ËÏàËÆ¶È
-	char				cLibUUID[LEN_UUID];		//ÈËÁ³¿âÔÚÆ½Ì¨µÄID£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
-	char				cLibVersion[LEN_64];	//ÈËÁ³¿â°æ±¾ºÅ
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iLibKey;				//äººè„¸åº“keyå€¼ï¼ŒiLibKey=0è¡¨ç¤ºæ·»åŠ äººè„¸åº“ï¼Œ>0è¡¨ç¤ºä¿®æ”¹äººè„¸åº“  
+	char				cName[LEN_64];			//äººè„¸åº“åç§°
+	int					iThreshold;				//äººè„¸åº“é˜ˆå€¼
+	char				cExtrInfo[LEN_64];		//é™„åŠ ä¿¡æ¯
+	int					iAlarmType;				//æ˜¯å¦ä¸Šä¼ è¯†åˆ«ä¿¡æ¯ï¼Œ0-ä¸ä¸Šä¼ ï¼Œ1-ä¸Šä¼ 
+	int					iOptType;				//æ“ä½œç±»å‹ï¼Œ1--æ·»åŠ äººè„¸åº“ï¼Œ2--ä¿®æ”¹äººè„¸åº“ï¼Œ3--é”å®šå¯†ç æ ¡éªŒï¼Œ4--é€šè¿‡NVRä¿®æ”¹å‰ç«¯ç›¸ä¼¼åº¦
+	char				cLibUUID[LEN_UUID];		//äººè„¸åº“åœ¨å¹³å°çš„IDï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
+	char				cLibVersion[LEN_64];	//äººè„¸åº“ç‰ˆæœ¬å·
 }FaceLibInfo,*pFaceLibInfo;
 
 typedef struct tagFaceLibEdit
 {
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iChanNo;				//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	FaceLibInfo			tFaceLib;				//ÈËÁ³¿âĞÅÏ¢½á¹¹Ìå£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iChanNo;				//é€šé“å·ï¼Œä»0å¼€å§‹
+	FaceLibInfo			tFaceLib;				//äººè„¸åº“ä¿¡æ¯ç»“æ„ä½“ï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
 }FaceLibEdit,*pFaceLibEdit;
 
 typedef struct tagFaceLibDelete
 {
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iChanNo;				//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iLibKey;				//ÈËÁ³¿âkeyÖµ£¬iLibKey>0
-	char				cLibUUID[LEN_UUID];		//ÈËÁ³¿âÔÚÆ½Ì¨µÄID
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iChanNo;				//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iLibKey;				//äººè„¸åº“keyå€¼ï¼ŒiLibKey>0
+	char				cLibUUID[LEN_UUID];		//äººè„¸åº“åœ¨å¹³å°çš„ID
 }FaceLibDelete,*pFaceLibDelete;
 
 typedef struct tagFaceLibQuery
 {
-	int					iSize;			//½á¹¹Ìå´óĞ¡
-	int					iChanNo;		//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iPageNo;		//µ±Ç°Ò³±àºÅ£¬´Ó0¿ªÊ¼
-	int					iPageCount;		//µ±Ç°Ò³´óĞ¡
+	int					iSize;			//ç»“æ„ä½“å¤§å°
+	int					iChanNo;		//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iPageNo;		//å½“å‰é¡µç¼–å·ï¼Œä»0å¼€å§‹
+	int					iPageCount;		//å½“å‰é¡µå¤§å°
 }FaceLibQuery,*pFaceLibQuery;
 
 typedef struct tagFaceLibQueryResult
 {
-	int					iSize;			//½á¹¹Ìå´óĞ¡
-	int					iChanNo;		//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iTotal;			//×Ü¸öÊı
-	int					iPageNo;		//µ±Ç°Ò³±àºÅ£¬´Ó0¿ªÊ¼
-	int					iIndex;			//Ò³ÂëÄÚĞòºÅ£¬´Ó0¿ªÊ¼
-	int					iPageCount;		//µ±Ç°Ò³´óĞ¡
-	FaceLibInfo			tFaceLib;		//ÈËÁ³¿âĞÅÏ¢½á¹¹Ìå	
+	int					iSize;			//ç»“æ„ä½“å¤§å°
+	int					iChanNo;		//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iTotal;			//æ€»ä¸ªæ•°
+	int					iPageNo;		//å½“å‰é¡µç¼–å·ï¼Œä»0å¼€å§‹
+	int					iIndex;			//é¡µç å†…åºå·ï¼Œä»0å¼€å§‹
+	int					iPageCount;		//å½“å‰é¡µå¤§å°
+	FaceLibInfo			tFaceLib;		//äººè„¸åº“ä¿¡æ¯ç»“æ„ä½“	
 }FaceLibQueryResult,*pFaceLibQueryResult;
 
 
 typedef struct tagFaceModeling
 {
-	int					iSize;			//½á¹¹Ìå´óĞ¡
-	int					iChanNo;		//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iType;			//½¨Ä£ÀàĞÍ£¬0-µ¥ÕÅ½¨Ä££¬1-ÅúÁ¿½¨Ä££¨Î´½¨Ä£ÈËÁ³£©£¬2-ÅúÁ¿½¨Ä££¨È«²¿ÈËÁ³£©£¬3-È¡Ïû½¨Ä£
-	int					iLibKey;		//ÈËÁ³¿âkeyÖµ£¬iLibKey>0
-	int					iFaceNum;		//½¨Ä£½ø¶È
-	int					iFaceKey[FACE_MAX_PAGE_COUNT];	//Í¼Æ¬keyÖµ
+	int					iSize;			//ç»“æ„ä½“å¤§å°
+	int					iChanNo;		//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iType;			//å»ºæ¨¡ç±»å‹ï¼Œ0-å•å¼ å»ºæ¨¡ï¼Œ1-æ‰¹é‡å»ºæ¨¡ï¼ˆæœªå»ºæ¨¡äººè„¸ï¼‰ï¼Œ2-æ‰¹é‡å»ºæ¨¡ï¼ˆå…¨éƒ¨äººè„¸ï¼‰ï¼Œ3-å–æ¶ˆå»ºæ¨¡
+	int					iLibKey;		//äººè„¸åº“keyå€¼ï¼ŒiLibKey>0
+	int					iFaceNum;		//å»ºæ¨¡è¿›åº¦
+	int					iFaceKey[FACE_MAX_PAGE_COUNT];	//å›¾ç‰‡keyå€¼
 }FaceModeling,*pFaceModeling;
 
 typedef struct tagFaceModeResult
 {
-	int					iSize;			//½á¹¹Ìå´óĞ¡
-	int					iChanNo;		//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iType;			//½¨Ä£ÀàĞÍ£¬0-µ¥ÕÅ½¨Ä££¬1-ÅúÁ¿½¨Ä££¨Î´½¨Ä£ÈËÁ³£©£¬2-ÅúÁ¿½¨Ä££¨È«²¿ÈËÁ³£©£¬3-È¡Ïû½¨Ä£
-	int					iLibKey;		//ÈËÁ³¿âkeyÖµ£¬iLibKey>0
-	int					iFaceKey;		//Í¼Æ¬keyÖµ
-	char				cName[LEN_64];	//ĞÕÃû
-	int					iRetsult;		//½¨Ä£½á¹û£º0-³É¹¦£¬1-ÏµÍ³Ã¦£¬2-Í¼Æ¬¸ñÊ½´íÎó£¬3-ÎŞÈËÁ³£¬4-¶à¸öÈËÁ³ 5-ÖÊÁ¿µÍ
-	int					iTotal;			//½¨Ä£×ÜÊı£ºiTotal>=0
-	int					iIndex;			//½¨Ä£½ø¶È£¬³¢ÊÔ½¨Ä£¸öÊı
+	int					iSize;			//ç»“æ„ä½“å¤§å°
+	int					iChanNo;		//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iType;			//å»ºæ¨¡ç±»å‹ï¼Œ0-å•å¼ å»ºæ¨¡ï¼Œ1-æ‰¹é‡å»ºæ¨¡ï¼ˆæœªå»ºæ¨¡äººè„¸ï¼‰ï¼Œ2-æ‰¹é‡å»ºæ¨¡ï¼ˆå…¨éƒ¨äººè„¸ï¼‰ï¼Œ3-å–æ¶ˆå»ºæ¨¡
+	int					iLibKey;		//äººè„¸åº“keyå€¼ï¼ŒiLibKey>0
+	int					iFaceKey;		//å›¾ç‰‡keyå€¼
+	char				cName[LEN_64];	//å§“å
+	int					iRetsult;		//å»ºæ¨¡ç»“æœï¼š0-æˆåŠŸï¼Œ1-ç³»ç»Ÿå¿™ï¼Œ2-å›¾ç‰‡æ ¼å¼é”™è¯¯ï¼Œ3-æ— äººè„¸ï¼Œ4-å¤šä¸ªäººè„¸ 5-è´¨é‡ä½
+	int					iTotal;			//å»ºæ¨¡æ€»æ•°ï¼šiTotal>=0
+	int					iIndex;			//å»ºæ¨¡è¿›åº¦ï¼Œå°è¯•å»ºæ¨¡ä¸ªæ•°
 }FaceModeResult,*pFaceModeResult;
 
 
 typedef struct tagFaceFeatureQuery
 {	
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iChanNo;				//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iLibKey;				//ÈËÁ³¿âkeyÖµ£¬iLibKey>0
-	int					iFaceKey;				//Í¼Æ¬keyÖµ
-	char				cLibUUID[LEN_UUID];		//ÈËÁ³¿âÔÚÆ½Ì¨µÄID£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
-	char				cFaceUUID[LEN_UUID];	//Í¼Æ¬ÔÚÆ½Ì¨¶ÔÓ¦ID£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iChanNo;				//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iLibKey;				//äººè„¸åº“keyå€¼ï¼ŒiLibKey>0
+	int					iFaceKey;				//å›¾ç‰‡keyå€¼
+	char				cLibUUID[LEN_UUID];		//äººè„¸åº“åœ¨å¹³å°çš„IDï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
+	char				cFaceUUID[LEN_UUID];	//å›¾ç‰‡åœ¨å¹³å°å¯¹åº”IDï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
 }FaceFeatureQuery,*pFaceFeatureQuery;
 
 typedef struct tagFaceFeatureCalc
 {	
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iChanNo;				//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iCheckCode;				//ÎÄ¼şĞ£ÑéÂë£¬ÓÃÀ´Ğ£ÑéÈËÁ³Í¼Æ¬£¬0±íÊ¾²»Ğ£Ñé
-	int					iPicType;				//ÎÄ¼şÀ©Õ¹ÀàĞÍ£º0-jpg£¬1-png
-	char				cPicPath[LEN_256];		//ĞèÒªÌáÈ¡ÈËÁ³ÊôĞÔµÄÍ¼Æ¬Â·¾¶
-	char				cPicUUID[LEN_UUID];		//Í¼Æ¬ĞòÁĞºÅ
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iChanNo;				//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iCheckCode;				//æ–‡ä»¶æ ¡éªŒç ï¼Œç”¨æ¥æ ¡éªŒäººè„¸å›¾ç‰‡ï¼Œ0è¡¨ç¤ºä¸æ ¡éªŒ
+	int					iPicType;				//æ–‡ä»¶æ‰©å±•ç±»å‹ï¼š0-jpgï¼Œ1-png
+	char				cPicPath[LEN_256];		//éœ€è¦æå–äººè„¸å±æ€§çš„å›¾ç‰‡è·¯å¾„
+	char				cPicUUID[LEN_UUID];		//å›¾ç‰‡åºåˆ—å·
 }FaceFeatureCalc,*pFaceFeatureCalc;
 
-//¿ÛÈËÁ³
+//æ‰£äººè„¸
 typedef struct tagFaceCut
 {	
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iChanNo;				//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	char				cCheckCode[LEN_64];		//ÎÄ¼şĞ£ÑéÂë£¬ÓÃÀ´Ğ£ÑéÈËÁ³Í¼Æ¬MD5 
-	int					iTaskId;				//ÊÂÎñID
-	int					iPicType;				//ÎÄ¼şÀ©Õ¹ÀàĞÍ£º0-jpg£¬1-png
-	char				cPicPath[LEN_256];		//ĞèÒª¿ÙÍ¼µÄÍ¼Æ¬Â·¾¶
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iChanNo;				//é€šé“å·ï¼Œä»0å¼€å§‹
+	char				cCheckCode[LEN_64];		//æ–‡ä»¶æ ¡éªŒç ï¼Œç”¨æ¥æ ¡éªŒäººè„¸å›¾ç‰‡MD5 
+	int					iTaskId;				//äº‹åŠ¡ID
+	int					iPicType;				//æ–‡ä»¶æ‰©å±•ç±»å‹ï¼š0-jpgï¼Œ1-png
+	char				cPicPath[LEN_256];		//éœ€è¦æŠ å›¾çš„å›¾ç‰‡è·¯å¾„
 }FaceCut,*pFaceCut;
 
 typedef struct tagFaceCutQuery
 {
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iChanNo;				//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iTaskId;				//ÊÂÎñID
-	int					iPageNo;				//Ò³±àºÅ
-	int					iPageCount;				//Ò³´óĞ¡
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iChanNo;				//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iTaskId;				//äº‹åŠ¡ID
+	int					iPageNo;				//é¡µç¼–å·
+	int					iPageCount;				//é¡µå¤§å°
 }FaceCutQuery,*pFaceCutQuery;
 
 
 typedef struct tagFaceCutEx
 {	
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iChanNo;				//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	char				cCheckCode[LEN_64];		//ÎÄ¼şĞ£ÑéÂë£¬ÓÃÀ´Ğ£ÑéÈËÁ³Í¼Æ¬MD5 
-	int					iPicType;				//ÎÄ¼şÀ©Õ¹ÀàĞÍ£º0-jpg£¬1-png
-	char				cPicPath[LEN_256];		//ĞèÒª¿ÙÍ¼µÄÍ¼Æ¬Â·¾¶
-	int					iPageNo;				//Ò³±àºÅ
-	int					iPageCount;				//Ò³´óĞ¡
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iChanNo;				//é€šé“å·ï¼Œä»0å¼€å§‹
+	char				cCheckCode[LEN_64];		//æ–‡ä»¶æ ¡éªŒç ï¼Œç”¨æ¥æ ¡éªŒäººè„¸å›¾ç‰‡MD5 
+	int					iPicType;				//æ–‡ä»¶æ‰©å±•ç±»å‹ï¼š0-jpgï¼Œ1-png
+	char				cPicPath[LEN_256];		//éœ€è¦æŠ å›¾çš„å›¾ç‰‡è·¯å¾„
+	int					iPageNo;				//é¡µç¼–å·
+	int					iPageCount;				//é¡µå¤§å°
 }FaceCutEx,*pFaceCutEx;
 
 typedef struct tagFaceCutQueryResult
 {
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iChanNo;				//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iTaskId;				//ÊÂÎñID
-	int					iTotal;					//¿ÙÍ¼×ÜÊı
-	int					iPageNo;				//Ò³±àºÅ
-	int					iIndex;					//µ±Ç°µÚ¼¸Ìõ£¬×î´óÖµ20
-	int					iPageCount;				//µ±Ç°Ò³ÌõÊı
-	char				cFileName[LEN_256];		//Í¼Æ¬Ãû³Æ£¬Í¼Æ¬ÏÂÔØ×ßÖ®Ç°µÄÍ¼Æ¬ÏÂÔØĞ­Òé
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iChanNo;				//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iTaskId;				//äº‹åŠ¡ID
+	int					iTotal;					//æŠ å›¾æ€»æ•°
+	int					iPageNo;				//é¡µç¼–å·
+	int					iIndex;					//å½“å‰ç¬¬å‡ æ¡ï¼Œæœ€å¤§å€¼20
+	int					iPageCount;				//å½“å‰é¡µæ¡æ•°
+	char				cFileName[LEN_256];		//å›¾ç‰‡åç§°ï¼Œå›¾ç‰‡ä¸‹è½½èµ°ä¹‹å‰çš„å›¾ç‰‡ä¸‹è½½åè®®
 }FaceCutQueryResult,*pFaceCutQueryResult;
 
-//ÒÔÍ¼ËÑµ×Í¼£¨»Ø¸´²éÑ¯ÈËÁ³ĞÅÏ¢£©
+//ä»¥å›¾æœåº•å›¾ï¼ˆå›å¤æŸ¥è¯¢äººè„¸ä¿¡æ¯ï¼‰
 typedef struct tagFaceSearch
 {
-	int					iSize;				//½á¹¹Ìå´óĞ¡
-	int					iChanNo;			//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iTaskId;			//ÊÂÎñID
-	char				cLibKey[LEN_64];	//ÈËÁ³¿âÔÚÆ½Ì¨µÄID£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
-	char				cPicName[LEN_256];	//Í¼Æ¬Ãû³Æ
-	int					iSimilar;			//ÏàËÆ¶È£¬0-100
-	int					iPageNo;			//µ±Ç°Ò³Âë£¬´Ó0¿ªÊ¼
-	int					iPageCount;			//Ã¿Ò³¸öÊı£¬×î´ó20
-	int					iLibKey;			//¿âid£¬iLibKey>0(iLibKeyÎª0£¬cLibUUIDÎª¿ÕÊ±±íÊ¾²éÑ¯ËùÓĞ¿â)
+	int					iSize;				//ç»“æ„ä½“å¤§å°
+	int					iChanNo;			//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iTaskId;			//äº‹åŠ¡ID
+	char				cLibKey[LEN_64];	//äººè„¸åº“åœ¨å¹³å°çš„IDï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
+	char				cPicName[LEN_256];	//å›¾ç‰‡åç§°
+	int					iSimilar;			//ç›¸ä¼¼åº¦ï¼Œ0-100
+	int					iPageNo;			//å½“å‰é¡µç ï¼Œä»0å¼€å§‹
+	int					iPageCount;			//æ¯é¡µä¸ªæ•°ï¼Œæœ€å¤§20
+	int					iLibKey;			//åº“idï¼ŒiLibKey>0(iLibKeyä¸º0ï¼ŒcLibUUIDä¸ºç©ºæ—¶è¡¨ç¤ºæŸ¥è¯¢æ‰€æœ‰åº“)
 }FaceSearch,*pFaceSearch;
 
 typedef struct tagFaceTaskFree
 {
-	int					iSize;				//½á¹¹Ìå´óĞ¡
-	int					iTaskId;			//ÊÂÎñID
+	int					iSize;				//ç»“æ„ä½“å¤§å°
+	int					iTaskId;			//äº‹åŠ¡ID
 }FaceTaskFree,*pFaceTaskFree;
 
 #define MAX_FEATURE_DATA_LEN		(32*1024)
 
 typedef struct tagFaceFeatureResult
 {		
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iChanNo;				//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iType;					//ÌáÈ¡ÀàĞÍ£º1£ºÌáÈ¡µ¥ÕÅÍ¼Æ¬µÄfeature£¬2£º²éÑ¯Í¼Æ¬µÄfeature
-	int					iLibKey;				//ÈËÁ³¿âkeyÖµ£ºÌáÈ¡µ¥ÕÅÍ¼Æ¬featureÊ±£¬¸ÃÖµÎª0
-	int					iFaceKey;				//Í¼Æ¬keyÖµ£ºÌáÈ¡µ¥ÕÅÍ¼Æ¬featureÊ±£¬¸ÃÖµÎª0
-	char				cLibUUID[LEN_UUID];		//ÈËÁ³¿âÔÚÆ½Ì¨µÄID£ºÌáÈ¡µ¥ÕÅÍ¼Æ¬featureÊ±£¬¸ÃÖµÎª0
-	char				cFaceUUID[LEN_UUID];	//Í¼Æ¬ÔÚÆ½Ì¨¶ÔÓ¦ID£¬»òÍ¼Æ¬ĞòÁĞºÅ
-	int					iFaceNum;				//ÈËÁ³ÊıÄ¿
-	int					iFaceRectCount[FACE_MAX_FEATURE_COUNT];		//µ±Ç°ÈËÁ³ÇøÓò¸öÊı
-	TPoint				tFaceRectPoint[FACE_MAX_FEATURE_COUNT][FACE_MAX_RECT_POINT_COUNT];	//µ±Ç°ÈËÁ³ÇøÓò×ø±ê
-	int					iFaceDataLen[FACE_MAX_FEATURE_COUNT];	//µ±Ç°ÈËÁ³featureÊı¾İµÄ×Ü³¤¶È
-	char				cFaceData[FACE_MAX_FEATURE_COUNT][MAX_FEATURE_DATA_LEN];	//feature¶ş½øÖÆÊı¾İ
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iChanNo;				//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iType;					//æå–ç±»å‹ï¼š1ï¼šæå–å•å¼ å›¾ç‰‡çš„featureï¼Œ2ï¼šæŸ¥è¯¢å›¾ç‰‡çš„feature
+	int					iLibKey;				//äººè„¸åº“keyå€¼ï¼šæå–å•å¼ å›¾ç‰‡featureæ—¶ï¼Œè¯¥å€¼ä¸º0
+	int					iFaceKey;				//å›¾ç‰‡keyå€¼ï¼šæå–å•å¼ å›¾ç‰‡featureæ—¶ï¼Œè¯¥å€¼ä¸º0
+	char				cLibUUID[LEN_UUID];		//äººè„¸åº“åœ¨å¹³å°çš„IDï¼šæå–å•å¼ å›¾ç‰‡featureæ—¶ï¼Œè¯¥å€¼ä¸º0
+	char				cFaceUUID[LEN_UUID];	//å›¾ç‰‡åœ¨å¹³å°å¯¹åº”IDï¼Œæˆ–å›¾ç‰‡åºåˆ—å·
+	int					iFaceNum;				//äººè„¸æ•°ç›®
+	int					iFaceRectCount[FACE_MAX_FEATURE_COUNT];		//å½“å‰äººè„¸åŒºåŸŸä¸ªæ•°
+	TPoint				tFaceRectPoint[FACE_MAX_FEATURE_COUNT][FACE_MAX_RECT_POINT_COUNT];	//å½“å‰äººè„¸åŒºåŸŸåæ ‡
+	int					iFaceDataLen[FACE_MAX_FEATURE_COUNT];	//å½“å‰äººè„¸featureæ•°æ®çš„æ€»é•¿åº¦
+	char				cFaceData[FACE_MAX_FEATURE_COUNT][MAX_FEATURE_DATA_LEN];	//featureäºŒè¿›åˆ¶æ•°æ®
 }FaceFeatureResult,*pFaceFeatureResult;
 
 #define FACE_ALARM_DETECTION				0		//Face detection
@@ -1111,26 +1111,26 @@ typedef struct tagFaceFeatureResult
 
 typedef struct tagFaceAlarmParam
 {
-	int					iSize;					//½á¹¹Ìå´óĞ¡
-	int					iChanNo;				//Í¨µÀºÅ£¬´Ó0¿ªÊ¼
-	int					iAlarmType;				//±¨¾¯ÀàĞÍÁĞ±í			
-	int					iParam1;				//iType=21£¬NVRµÄÖÇÄÜ·ÖÎöÁĞ±í							
-	int					iParam2;				//µ±iType=21£¬ iParam1=3,4Ê±´ú±íÊ±¼ä
-	int					iParam3;				//iType =21£¬iParam2=3Ê±£¬´ú±íÆµ´Î
-	char				cLibkey[LEN_64];		//ÈËÁ³¿âkeyÖµ	
-	int					iRecognition;			//ÊÇ·ñÉÏ´«Ê¶±ğĞÅÏ¢£º0-²»Ö§³Ö£¬1-²»ÉÏ´«£¬2-ÉÏ´«
-	int					iSimilar;				//ÏàËÆ¶È£º0--100
-	int					iDevType;				//Éè±¸ÀàĞÍ£º0-IPC£¬1-NVR	
-	int					iEnable;				//Ê¹ÄÜ£º0-²»Ê¹ÄÜ  1-Ê¹ÄÜ
-	char				cLibUUID[LEN_UUID];		//ÈËÁ³¿âÔÚÆ½Ì¨µÄIDÁĞ±í£ºUUIDÁĞ±í£¬×î´ó10¸ö£¬¶ººÅ·Ö¸ô
-	int					iLibEnable;				//ÈËÁ³¿âÊ¹ÄÜÁĞ±í£º0-²»Ê¹ÄÜ  1-Ê¹ÄÜ£¬¸öÊıÍ¬cLibUUIDList£¬¶ººÅ·Ö¸ô  Àı£º1,0,1
+	int					iSize;					//ç»“æ„ä½“å¤§å°
+	int					iChanNo;				//é€šé“å·ï¼Œä»0å¼€å§‹
+	int					iAlarmType;				//æŠ¥è­¦ç±»å‹åˆ—è¡¨			
+	int					iParam1;				//iType=21ï¼ŒNVRçš„æ™ºèƒ½åˆ†æåˆ—è¡¨							
+	int					iParam2;				//å½“iType=21ï¼Œ iParam1=3,4æ—¶ä»£è¡¨æ—¶é—´
+	int					iParam3;				//iType =21ï¼ŒiParam2=3æ—¶ï¼Œä»£è¡¨é¢‘æ¬¡
+	char				cLibkey[LEN_64];		//äººè„¸åº“keyå€¼	
+	int					iRecognition;			//æ˜¯å¦ä¸Šä¼ è¯†åˆ«ä¿¡æ¯ï¼š0-ä¸æ”¯æŒï¼Œ1-ä¸ä¸Šä¼ ï¼Œ2-ä¸Šä¼ 
+	int					iSimilar;				//ç›¸ä¼¼åº¦ï¼š0--100
+	int					iDevType;				//è®¾å¤‡ç±»å‹ï¼š0-IPCï¼Œ1-NVR	
+	int					iEnable;				//ä½¿èƒ½ï¼š0-ä¸ä½¿èƒ½  1-ä½¿èƒ½
+	char				cLibUUID[LEN_UUID];		//äººè„¸åº“åœ¨å¹³å°çš„IDåˆ—è¡¨ï¼šUUIDåˆ—è¡¨ï¼Œæœ€å¤§10ä¸ªï¼Œé€—å·åˆ†éš”
+	int					iLibEnable;				//äººè„¸åº“ä½¿èƒ½åˆ—è¡¨ï¼š0-ä¸ä½¿èƒ½  1-ä½¿èƒ½ï¼Œä¸ªæ•°åŒcLibUUIDListï¼Œé€—å·åˆ†éš”  ä¾‹ï¼š1,0,1
 }FaceAlarmParam, *pFaceAlarmParam;
 
 typedef struct tagFaceAlarmParamIn
 {
-	int					iSize;			//½á¹¹Ìå´óĞ¡
-	int					iType;			//ÈËÁ³±¨¾¯ÀàĞÍ£º0--ÈËÁ³¼ì²â£¬1--±È¶Ô±¨¾¯£¬2--Ä°ÉúÈË±¨¾¯£¬3--Æµ´Î±¨¾¯£¬4--ÖÍÁô±¨¾¯
-	int					iRetCount;		//ÊäÈëĞèÒª»ñÈ¡µÄ±¨¾¯ĞÅÏ¢µ¥ÔªµÄ¸öÊı
+	int					iSize;			//ç»“æ„ä½“å¤§å°
+	int					iType;			//äººè„¸æŠ¥è­¦ç±»å‹ï¼š0--äººè„¸æ£€æµ‹ï¼Œ1--æ¯”å¯¹æŠ¥è­¦ï¼Œ2--é™Œç”ŸäººæŠ¥è­¦ï¼Œ3--é¢‘æ¬¡æŠ¥è­¦ï¼Œ4--æ»ç•™æŠ¥è­¦
+	int					iRetCount;		//è¾“å…¥éœ€è¦è·å–çš„æŠ¥è­¦ä¿¡æ¯å•å…ƒçš„ä¸ªæ•°
 }FaceAlarmParamIn, *pFaceAlarmParamIn;
 
 #define  MAX_DETECTAREA_NUM 128
@@ -1140,8 +1140,8 @@ typedef struct _tagDetectArea
 	int				 	iSize;
 	int              	iChannelNO;
 	int              	iSceneID;
-	int              	iStatus;//1-¿ªÊ¼ÉÏ±¨¼ì²âÇøÓò 2-Í£Ö¹ÉÏ±¨¼ì²âÇøÓò
-	int                 iType; //0-ÈËÁ³¼ì²â 1-Á÷ËÙ¼ì²â 2-Ë®Î»Ë®³ß¼ì²â
+	int              	iStatus;//1-å¼€å§‹ä¸ŠæŠ¥æ£€æµ‹åŒºåŸŸ 2-åœæ­¢ä¸ŠæŠ¥æ£€æµ‹åŒºåŸŸ
+	int                 iType; //0-äººè„¸æ£€æµ‹ 1-æµé€Ÿæ£€æµ‹ 2-æ°´ä½æ°´å°ºæ£€æµ‹
 }DetectArea, *pDetectArea;
 
 typedef struct _tagDetectAreaResult
@@ -1149,10 +1149,10 @@ typedef struct _tagDetectAreaResult
 	int				  	iSize;
 	int               	iChannelNO;
 	int               	iSceneID;//0-127
-	int               	iAreaNum;//3¡«32
-	int               	iState;   //0-Î´ÉèÖÃ 1-ÒÑÉèÖÃ
+	int               	iAreaNum;//3ï½32
+	int               	iState;   //0-æœªè®¾ç½® 1-å·²è®¾ç½®
 	vca_TPolygonEx    	tPoint;
-	int                 iAreaType;//0-ÈËÁ³¼ì²â 1-Á÷ËÙ¼ì²â 2-Ë®Î»Ë®³ß¼ì²â
+	int                 iAreaType;//0-äººè„¸æ£€æµ‹ 1-æµé€Ÿæ£€æµ‹ 2-æ°´ä½æ°´å°ºæ£€æµ‹
 }DetectAreaResult, *pDetectAreaResult;
 
 typedef struct _tagDetectAreaFinish
@@ -1162,7 +1162,7 @@ typedef struct _tagDetectAreaFinish
 	int               	iSceneID;
 	int               	iAreaNum; 
 	int               	iAreaList[MAX_DETECTAREA_NUM];
-	int                 iAreaType;//0-ÈËÁ³¼ì²â 1-Á÷ËÙ¼ì²â 2-Ë®Î»Ë®³ß¼ì²â
+	int                 iAreaType;//0-äººè„¸æ£€æµ‹ 1-æµé€Ÿæ£€æµ‹ 2-æ°´ä½æ°´å°ºæ£€æµ‹
 }DetectAreaFinish, *pDetectAreaFinish; 
 
 #define MAX_PACK_AREA_LIST      16
@@ -1180,7 +1180,7 @@ typedef struct _tagDetectAreaFinishEx
 	int               	iSceneID;
 	int               	iAreaNum; 
     DetectAreaListInfo  tInfo[MAX_PACK_NUM];
-	int                 iAreaType;//0-ÈËÁ³¼ì²â 1-Á÷ËÙ¼ì²â 2-Ë®Î»Ë®³ß¼ì²â
+	int                 iAreaType;//0-äººè„¸æ£€æµ‹ 1-æµé€Ÿæ£€æµ‹ 2-æ°´ä½æ°´å°ºæ£€æµ‹
 }DetectAreaFinishEx, *pDetectAreaFinishEx;
 
 typedef struct _tagDetectPara
@@ -1229,8 +1229,8 @@ typedef struct _tagRainFallAlarmInfo
 	int                 iModerateRainThershold;         //Moderate Rain Thershold (mm/min) 
 	int                 iHeavyRainThershold;            //Heavy Rain Thershold mm/min
 	int                 iTorrentialRainThershold;       //Torrential Rain Thershold mm/min
-	int	                iUploadType;					//ÉÏ±¨·½Ê½	0-±£Áô 1-³¡´ÎÉÏ±¨ 2-¶¨Ê±ÉÏ±¨					
-	int                	iInterval;						//Í³¼ÆÊ±³¤¼ä¸ô	·¶Î§:0-µ±Ç°±ä»¯µÄÓêÁ¿¡¢60-86400£¬Ä¬ÈÏ:3600£¬µ¥Î»:Ãë					
+	int	                iUploadType;					//ä¸ŠæŠ¥æ–¹å¼	0-ä¿ç•™ 1-åœºæ¬¡ä¸ŠæŠ¥ 2-å®šæ—¶ä¸ŠæŠ¥					
+	int                	iInterval;						//ç»Ÿè®¡æ—¶é•¿é—´éš”	èŒƒå›´:0-å½“å‰å˜åŒ–çš„é›¨é‡ã€60-86400ï¼Œé»˜è®¤:3600ï¼Œå•ä½:ç§’					
 }RainFallAlarmInfo, *pRainFallAlarmInfo;
 
 #define DEFAULT_CHECKSTAND								1
@@ -1262,7 +1262,7 @@ typedef struct _tagAlertWaterAlarmInfo
 	int                 iSecondWaterLevelThershold;		//Second Water Level Thershold(cm/h)
 	int                 iThirdWaterLevelThershold;		//Third Water Level Thershold(cm/h)
 	int					iAlgorithmType;					//Algorithm Type
-	int                 iWaterNum;                      //Alert Water Level Alarm Thershold num£»
+	int                 iWaterNum;                      //Alert Water Level Alarm Thershold numï¼›
 	int                 iWaterAlarm[MAX_WATER_THERSHOLD_NUM]; //Alert Water Data;
 	int                 iWaterLowValue;                 //
 	int                 iWarnHighValue;                 //decline of the water level(superior limit)
@@ -1328,7 +1328,7 @@ typedef struct tagPeripheralPara
 #define IRRIGATION_TYPE_VOLTAGE						33    //Voltage
 #define IRRIGATION_TYPE_UNDER_VOLTAGE				34    //Under Voltage alarm status
 #define IRRIGATION_TYPE_FLOAT_GAUGE_LEVEL			35    //Float level gauge
-//36.¼×È©£»37.°±Æø£»38.ÒºÎ»±äËÍÆ÷£»
+//36.ç”²é†›ï¼›37.æ°¨æ°”ï¼›38.æ¶²ä½å˜é€å™¨ï¼›
 #define IRRIGATION_TYPE_FORMALDEHYDE				36		//Formaldehyde
 #define IRRIGATION_TYPE_AMMONIA						37		//ammonia
 #define IRRIGATION_TYPE_LIQUID_LEVEL_TRANSMITER		38		//liquid level transmitter
@@ -1356,9 +1356,9 @@ typedef union tagIrrigationPara9
 typedef struct tagIrrigationPara
 {
 	int					iSize;
-	int					iType;				//Irrigation type 1:ÓêÁ¿;2:½µÓêÊ±³¤;3:Ë®Î»;4:»ıË®Éî¶È;5:³¬¾¯½äË®Î»Öµ;6:Á÷ËÙ;7:µçÆ¿Ê£ÓàµçÁ¿;8:ÆøÑ¹;9:·çËÙ;10:·çÏò;11:ÎÂ¶È;12:Êª¶È;13:Ëá¼î¶È;14:ÈÜ½âÑõ;15:Ñõ»¯»¹Ô­;16:GPS;17:¸ß³Ì;18:×Ç¶È;19:°±µª;20:Ë®ÎÂ;21:µçµ¼ÂÊ;22:»¯Ñ§ĞèÑõÁ¿;23:×Üµª;24:×ÜÁ×;25:Á÷ËÙ³¡;
+	int					iType;				//Irrigation type 1:é›¨é‡;2:é™é›¨æ—¶é•¿;3:æ°´ä½;4:ç§¯æ°´æ·±åº¦;5:è¶…è­¦æˆ’æ°´ä½å€¼;6:æµé€Ÿ;7:ç”µç“¶å‰©ä½™ç”µé‡;8:æ°”å‹;9:é£é€Ÿ;10:é£å‘;11:æ¸©åº¦;12:æ¹¿åº¦;13:é…¸ç¢±åº¦;14:æº¶è§£æ°§;15:æ°§åŒ–è¿˜åŸ;16:GPS;17:é«˜ç¨‹;18:æµŠåº¦;19:æ°¨æ°®;20:æ°´æ¸©;21:ç”µå¯¼ç‡;22:åŒ–å­¦éœ€æ°§é‡;23:æ€»æ°®;24:æ€»ç£·;25:æµé€Ÿåœº;
 	int					iValue;				//Param2 iType(1,3,4,5)-->Unit:mm;  iType(2)-->Unit:minute ;iType(6)-->Unit:mm/s;iType(7,12)-->Unit:%;
-											//		 iType(8)-->Unit:hpa; iType(9)-->Unit:m/s; iType(10)-->Unit:angle¡ã;iType(11)-->Unit:degree centigrade ¡æ;	
+											//		 iType(8)-->Unit:hpa; iType(9)-->Unit:m/s; iType(10)-->Unit:angleÂ°;iType(11)-->Unit:degree centigrade â„ƒ;	
 	int					iSrc;				//Param3  0:algorithm acquisition; 1:peripheral acquisition;iType = 26,this means waterLevel
 	int					iSceneID;			//Param4  Scene ID
 	int					iRuleID;			//Param5  Rule ID
@@ -1371,13 +1371,13 @@ typedef struct tagIrrigationPara
 	int					iBaseNum;			//Param12 the distance of baseLine(when the type is flowSpeed)
 	NVS_FILE_TIME		tRecordTime;		//start time of Record file(when the type is flowSpeed),other type use param13
 	char				cFactoryID[LEN_64];	//Param14 Device ID, no more than 64 bytes
-	int					iIrriParam6;		//Param6  when iType=26,means ¼ì²âÇøÓò±àºÅ
-	int					iIrriParam13;		//Param13 when iType=26,means ÏñËØµãÖÕÖ¹ºá×ø±ê
-	int					iIrriParam15;		//Param15 when iType=26,means ÏñËØµãÖÕÖ¹×İ×ø±ê
-	int					iIrriParam16;		//Param16 when iType=26,means ¿Õ¼äµãÆğÊ¼ºá×ø±ê
-	int					iIrriParam17;		//Param17 when iType=26,means ¿Õ¼äµãÆğÊ¼×İ×ø±ê
-	int					iIrriParam18;		//Param18 when iType=26,means ¿Õ¼äµãÖÕÖ¹ºá×ø±ê
-	int					iIrriParam19;		//Param19 when iType=26,means ¿Õ¼äµãÖÕÖ¹×İ×ø±ê
+	int					iIrriParam6;		//Param6  when iType=26,means æ£€æµ‹åŒºåŸŸç¼–å·
+	int					iIrriParam13;		//Param13 when iType=26,means åƒç´ ç‚¹ç»ˆæ­¢æ¨ªåæ ‡
+	int					iIrriParam15;		//Param15 when iType=26,means åƒç´ ç‚¹ç»ˆæ­¢çºµåæ ‡
+	int					iIrriParam16;		//Param16 when iType=26,means ç©ºé—´ç‚¹èµ·å§‹æ¨ªåæ ‡
+	int					iIrriParam17;		//Param17 when iType=26,means ç©ºé—´ç‚¹èµ·å§‹çºµåæ ‡
+	int					iIrriParam18;		//Param18 when iType=26,means ç©ºé—´ç‚¹ç»ˆæ­¢æ¨ªåæ ‡
+	int					iIrriParam19;		//Param19 when iType=26,means ç©ºé—´ç‚¹ç»ˆæ­¢çºµåæ ‡
 	unsigned long long	ulLastTimeStamp;	//Param20 when iType=26,means Last frame timestamp
 	unsigned long long	ulCurTimeStamp;		//Param21 when iType=26,means Current frame timestamp
 	unsigned long long	ulIrriParam22;		//serial number
@@ -1390,16 +1390,16 @@ typedef struct tagIrrigationPara
 #define MAX_PERIPHREALTYPE_NUM   8
 typedef struct tagPeriphrealParam
 {
-	int       iSize;             //PeriphrealNum½á¹¹Ìå´óĞ¡
-	int       iPeriphrealType;    //ÍâÉèÀàĞÍ
-	int       iPeriphrealIndex;   //ÍâÉèĞòºÅ
+	int       iSize;             //PeriphrealNumç»“æ„ä½“å¤§å°
+	int       iPeriphrealType;    //å¤–è®¾ç±»å‹
+	int       iPeriphrealIndex;   //å¤–è®¾åºå·
 }PeriphrealParam, *pPeriphrealParam;
 
 typedef struct tagIrriFuncAssemble
 {
-	int							iSize;            //IrriFuncAssemble ½á¹¹Ìå´óĞ¡
-	int							iOsdType;         //Ë®Àû×Ö·ûµş¼ÓÀàĞÍ IRRIGATION_TYPE_RAINFALL--IRRIGATION_TYPE_UNDER_VOLTAGE
-	int							iPeripheralCount;  //ÍâÉè¸öÊı£¬·¶Î§¡¾1-255¡¿,Ä¿Ç°Ò»¸ö×Ö·ûµş¼ÓÀàĞÍ×î¶àÖ§³Ö8¸ö
+	int							iSize;            //IrriFuncAssemble ç»“æ„ä½“å¤§å°
+	int							iOsdType;         //æ°´åˆ©å­—ç¬¦å åŠ ç±»å‹ IRRIGATION_TYPE_RAINFALL--IRRIGATION_TYPE_UNDER_VOLTAGE
+	int							iPeripheralCount;  //å¤–è®¾ä¸ªæ•°ï¼ŒèŒƒå›´ã€1-255ã€‘,ç›®å‰ä¸€ä¸ªå­—ç¬¦å åŠ ç±»å‹æœ€å¤šæ”¯æŒ8ä¸ª
 	PeriphrealParam				tPeriphrealNum[MAX_PERIPHREALTYPE_NUM];
 }IrriFuncAssemble, *pIrriFuncAssemble;
 
@@ -1422,7 +1422,7 @@ typedef struct tagVcaManCarDetectArithmetic
 {
  	int				iSize;				//structure size
  	int				iSceneID;			//Scene id(0~15)
-	int				iType;				//Structured algorithm model bit£º0-Face£¬1-pedestrian£¬2-plate£¬3-motor vehicles£¬4-Non-motor vehicle
+	int				iType;				//Structured algorithm model bitï¼š0-Faceï¼Œ1-pedestrianï¼Œ2-plateï¼Œ3-motor vehiclesï¼Œ4-Non-motor vehicle
  	int				iSensitiv;			//Sensitivity(0~5)
  	int				iDisplayTarget;		//display target box, 0-not dispaly, 1-dispaly
  	int				iExposureBright;	//exposure light strength (0~255)
@@ -1431,8 +1431,8 @@ typedef struct tagVcaManCarDetectArithmetic
  	int				iPushLevel;			//push level effect when iPushMode == 3;(0:reserved,1:fast 2:normal 3:slow)   effect when iPushMode == 4;(value is timing time. range 1~255)
  	int				iSnapMode;			//snap mode (0:reserved 1:snap all 2:snap high quality 3:custom)
  	int				iSnapTimes;			//Snap times(1~10)
- 	int				iMinFaceSize;		//minimum face size(1~10000 percentage of image width£¬10000 indicates the width of entire screen)(This field is 0 and will not be processed.)
-	int				iMinPlateSize;		//minimum plate size(1~10000 percentage of image width£¬10000 indicates the width of entire screen)(This field is 0 and will not be processed.)
+ 	int				iMinFaceSize;		//minimum face size(1~10000 percentage of image widthï¼Œ10000 indicates the width of entire screen)(This field is 0 and will not be processed.)
+	int				iMinPlateSize;		//minimum plate size(1~10000 percentage of image widthï¼Œ10000 indicates the width of entire screen)(This field is 0 and will not be processed.)
  	int				iFaceQuality;		//Facial quality [0-100]
 	int				iHumanQuality;		//Pedestrian quality  [0-100]
 	int				iPlateQuality;		//Plate quality[0-100]
@@ -1440,15 +1440,15 @@ typedef struct tagVcaManCarDetectArithmetic
 	int				iCycleQuality;		//Non-motor vehicle quality[0-100]
 	int				iBigbkimgQuality;	//Background image quality[0-100]
 	int				iSmallimgQuality;	//Small image quality[0-100]
-	int				iPointNum;			//polygon area vertex number(3¡«32)
+	int				iPointNum;			//polygon area vertex number(3ï½32)
  	TPoint			ptArea[MAX_MANCAR_DETECT_AREA_COUNT]; //x:y percentage of image width
  	int				iTripPointNum;		//Number of vertices of the strike line  effect when iPushMode == 5(0 or 2~12)
  	TPoint			ptTripArea[MAX_MANCAR_DETECT_TRIPAREA_COUNT]; //x:y percentage of image width
-    int             iExposureType;      //ÆØ¹âÀàĞÍ	0-±£Áô, 1-³¤Ö¡, 2-¶ÌÖ¡
-    int             iExposureEnable;    //ÆØ¹âÊ¹ÄÜ	0-²»Ê¹ÄÜ, 1-Ê¹ÄÜ
-	int             iPlateAlarmType;    //³µÅÆ¸æ¾¯ÀàĞÍ	0-±£Áô, 1-³µÅÆºÚÃûµ¥±¨¾¯
-	int             iDelayPushSpan;    //Ê×ÕÅÍÆÍ¼ÑÓ³ÙÊ±¼ä	µ¥Î»£ººÁÃë£¬Ö§³ÖµÄÊıÖµ£º500,1000,2000
-	int             iTimeSpace;    //Ê±¼ä¼ä¸ô	µ¥Î»£ººÁÃë£¬Ö§³ÖµÄÊıÖµ£º100,200,300£¬500,1000,2000
+    int             iExposureType;      //æ›å…‰ç±»å‹	0-ä¿ç•™, 1-é•¿å¸§, 2-çŸ­å¸§
+    int             iExposureEnable;    //æ›å…‰ä½¿èƒ½	0-ä¸ä½¿èƒ½, 1-ä½¿èƒ½
+	int             iPlateAlarmType;    //è½¦ç‰Œå‘Šè­¦ç±»å‹	0-ä¿ç•™, 1-è½¦ç‰Œé»‘åå•æŠ¥è­¦
+	int             iDelayPushSpan;    //é¦–å¼ æ¨å›¾å»¶è¿Ÿæ—¶é—´	å•ä½ï¼šæ¯«ç§’ï¼Œæ”¯æŒçš„æ•°å€¼ï¼š500,1000,2000
+	int             iTimeSpace;    //æ—¶é—´é—´éš”	å•ä½ï¼šæ¯«ç§’ï¼Œæ”¯æŒçš„æ•°å€¼ï¼š100,200,300ï¼Œ500,1000,2000
 }VcaManCarDetectArithmetic, *pVcaManCarDetectArithmetic;
 
 typedef struct tagItsIpdWarningMsg
@@ -1473,7 +1473,7 @@ typedef struct tagSelfTest
 typedef struct tagNetTestPara
 {
 	int     		iTestType;		//NetWork Test Type 1:ping
-	int				iCardNum;		//Card Number 0£¬Lan1£»1£¬Lan2 ¡­.7£¬Lan8; 10000~10000+n:bond0~bondn
+	int				iCardNum;		//Card Number 0ï¼ŒLan1ï¼›1ï¼ŒLan2 â€¦.7ï¼ŒLan8; 10000~10000+n:bond0~bondn
 	char			cIp[LEN_16];	//Device Ip
 	int             iPort;			//Port
 	char            cReserve[LEN_64];
@@ -1513,35 +1513,35 @@ typedef struct tagUserLogonLockPara
 #define FACE_LIBSYNC_STATUS_DELETE			22	//delete sync task
 #define FACE_LIBSYNC_STATUS_DELETE_IPCLIB	23	//delete ipc lib
 
-//ÉèÖÃÍ¬²½Ç°¶ËÈËÁ³¿â
+//è®¾ç½®åŒæ­¥å‰ç«¯äººè„¸åº“
 typedef struct tagFaceLibSyncStart
 {
 	int					iSize;					//structure size
-	int					iChanListArraySize;		//ĞèÒªÍ¬²½µÄÍ¨µÀÁĞ±í¸öÊı
-	int 				iChanList[FACE_LIBSYNC_CHANLIST_COUNT];	//Í¨µÀÁĞ±í
-	int					iLibKey;				//ÈËÁ³¿âkeyÖµ
-	char				cLibUUID[LEN_UUID];		//ÈËÁ³¿âÔÚÆ½Ì¨µÄID£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
-	int					iStatus;				//¿ªÊ¼×´Ì¬£º20¿ªÊ¼£¬21Í£Ö¹£¬22É¾³ıÈÎÎñ£¬23 É¾³ıÇ°¶ËÈËÁ³¿â
-	int					iSame;					//ÏàËÆ¶È	0-100
+	int					iChanListArraySize;		//éœ€è¦åŒæ­¥çš„é€šé“åˆ—è¡¨ä¸ªæ•°
+	int 				iChanList[FACE_LIBSYNC_CHANLIST_COUNT];	//é€šé“åˆ—è¡¨
+	int					iLibKey;				//äººè„¸åº“keyå€¼
+	char				cLibUUID[LEN_UUID];		//äººè„¸åº“åœ¨å¹³å°çš„IDï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
+	int					iStatus;				//å¼€å§‹çŠ¶æ€ï¼š20å¼€å§‹ï¼Œ21åœæ­¢ï¼Œ22åˆ é™¤ä»»åŠ¡ï¼Œ23 åˆ é™¤å‰ç«¯äººè„¸åº“
+	int					iSame;					//ç›¸ä¼¼åº¦	0-100
 }FaceLibSyncStart,*pFaceLibSyncStart;
 
-//»ñÈ¡Í¬²½Ç°¶ËÈËÁ³¿â×´Ì¬
+//è·å–åŒæ­¥å‰ç«¯äººè„¸åº“çŠ¶æ€
 typedef struct tagFaceLibSyncQuery
 {
 	int					iSize;				//structure size
-	int					iChanNo;			//Í¨µÀºÅ£¬È¡Öµ·¶Î§¾İÉè±¸ÀàĞÍ¶ø¶¨,0x7FFFFFFF´ú±íËùÓĞÍ¨µÀ
+	int					iChanNo;			//é€šé“å·ï¼Œå–å€¼èŒƒå›´æ®è®¾å¤‡ç±»å‹è€Œå®š,0x7FFFFFFFä»£è¡¨æ‰€æœ‰é€šé“
 	int					iQueryResultSize;	//when iChanNo=0x7FFFFFFF,iQueryResultSize=1;else iQueryResultSize is NVR's all channel number.
-	int					iLibKey;			//ÈËÁ³¿âkeyÖµ
-	char				cLibUUID[LEN_UUID];	//ÈËÁ³¿âÔÚÆ½Ì¨µÄID£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
+	int					iLibKey;			//äººè„¸åº“keyå€¼
+	char				cLibUUID[LEN_UUID];	//äººè„¸åº“åœ¨å¹³å°çš„IDï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
 }FaceLibSyncQuery,*pFaceLibSyncQuery;
 
-//»ñÈ¡Í¬²½Ç°¶ËÈËÁ³¿â×´Ì¬½á¹û
+//è·å–åŒæ­¥å‰ç«¯äººè„¸åº“çŠ¶æ€ç»“æœ
 typedef struct tagFaceLibSyncQueryResult
 {
 	int					iSize;						//structure size
-	int					iChanNo;					//Í¨µÀºÅ£¬È¡Öµ·¶Î§¾İÉè±¸ÀàĞÍ¶ø¶¨,0x7FFFFFFF´ú±íËùÓĞÍ¨µÀ
-	int					iLibKey;					//ÈËÁ³¿âkeyÖµ
-	char				cLibUUID[LEN_UUID];			//ÈËÁ³¿âÔÚÆ½Ì¨µÄID£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
+	int					iChanNo;					//é€šé“å·ï¼Œå–å€¼èŒƒå›´æ®è®¾å¤‡ç±»å‹è€Œå®š,0x7FFFFFFFä»£è¡¨æ‰€æœ‰é€šé“
+	int					iLibKey;					//äººè„¸åº“keyå€¼
+	char				cLibUUID[LEN_UUID];			//äººè„¸åº“åœ¨å¹³å°çš„IDï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
 	int					iState;						//sync status:0-unsync, 1-synching, 2-sync success, 3-sync failure, 4-to be sync
 	int					iProcess;					//Percentage of progress: range:0-100
 	int					iSuccNum;					//sync success num		
@@ -1549,16 +1549,16 @@ typedef struct tagFaceLibSyncQueryResult
 }FaceLibSyncQueryResult,*pFaceLibSyncQueryResult;
 
 #define SINGLE_PRTOCOL_SYNC_RESULT_MAX_NUM 10
-//»ñÈ¡Í¬²½Ç°¶ËÈËÁ³¿âÃ¿¸öµ×Í¼µÄÏêÏ¸½á¹û(Í¬²½Ê§°ÜµÄ½á¹û)
+//è·å–åŒæ­¥å‰ç«¯äººè„¸åº“æ¯ä¸ªåº•å›¾çš„è¯¦ç»†ç»“æœ(åŒæ­¥å¤±è´¥çš„ç»“æœ)
 typedef struct tagFaceLibSyncResult
 {
 	int					iSize;						//structure size
-	int					iChanNo;					//Í¨µÀºÅ£¬È¡Öµ·¶Î§¾İÉè±¸ÀàĞÍ¶ø¶¨,0x7FFFFFFF´ú±íËùÓĞÍ¨µÀ
-	int					iLibKey;					//ÈËÁ³¿âkeyÖµ
-	char				cLibUUID[LEN_UUID];			//ÈËÁ³¿âÔÚÆ½Ì¨µÄID£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
-	int 				iFaceKey;					//Í¼Æ¬keyÖµ£¬ iFaceKey>0
-	char				cFaceUUID[LEN_UUID];		//Í¼Æ¬ÔÚÆ½Ì¨¶ÔÓ¦ID£¬²»Îª¿ÕÒÔ±¾×Ö¶ÎÎª×¼
-	int					iSyncResult;				//Sync result:0Ô¤Áô£¬1Í¬²½³É¹¦£¬2Í¬²½Ê§°Ü£¬
+	int					iChanNo;					//é€šé“å·ï¼Œå–å€¼èŒƒå›´æ®è®¾å¤‡ç±»å‹è€Œå®š,0x7FFFFFFFä»£è¡¨æ‰€æœ‰é€šé“
+	int					iLibKey;					//äººè„¸åº“keyå€¼
+	char				cLibUUID[LEN_UUID];			//äººè„¸åº“åœ¨å¹³å°çš„IDï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
+	int 				iFaceKey;					//å›¾ç‰‡keyå€¼ï¼Œ iFaceKey>0
+	char				cFaceUUID[LEN_UUID];		//å›¾ç‰‡åœ¨å¹³å°å¯¹åº”IDï¼Œä¸ä¸ºç©ºä»¥æœ¬å­—æ®µä¸ºå‡†
+	int					iSyncResult;				//Sync result:0é¢„ç•™ï¼Œ1åŒæ­¥æˆåŠŸï¼Œ2åŒæ­¥å¤±è´¥ï¼Œ
 }FaceLibSyncResult,*pFaceLibSyncResult;
 
 typedef struct tagAlarmOutPortPara
@@ -1624,55 +1624,55 @@ typedef struct tagAlarmInPortPara
 
 #define INVALID_FLAG	0x7fffffff
 
-//ÒÔÍ¼ËÑ×¥ÅÄÍ¼
+//ä»¥å›¾æœæŠ“æ‹å›¾
 typedef struct tagFaceSearchSnap
 {
 	int  			    iSize;			//structure size
-	int					iChanCount;		//ĞèÒªËÑË÷µÄÍ¨µÀ¸öÊı
-	int					iChanSize;		//½á¹¹ÌåQueryChanNoµÄ´óĞ¡£¬sizeof(QueryChanNo)
-	QueryChanNo*		pChanList;		//Í¨µÀÁĞ±í£¬½á¹¹ÌåQueryChanNoÊı×é±äÁ¿
-	NVS_FILE_TIME	    tBegTime;		//ËÑË÷ÆğÊ¼Ê±¼ä
-	NVS_FILE_TIME	    tEndTime;		//ËÑË÷½áÊøÊ±¼ä
-	char			    cPicturePath[LEN_256];	//ÒÔÍ¼ËÑ×¥ÅÄÍ¼ĞèÒª´«ÈëµÄÍ¼Æ¬Ãû³Æ¡££¨È·±£±¾µØ¸ÃÍ¼Æ¬´æÔÚ£¬²¢ÇÒÄÜÕı³£´ò¿ª£©
-	int 				iSimilarity;	//ÒÔÍ¼ËÑ×¥ÅÄÍ¼ÏàËÆ¶È
-	int 			    iSortMode;		//ÅÅĞò·½Ê½£º0-°´Ê±¼äÅÅĞò£¬1-°´ÏàËÆ¶ÈÅÅĞò(0-sort by time 1-sort by similarity)
-	int                 iTaskId;		//¿ÙÍ¼½¨Ä£µÄÊÂÎñID£¬¸ÃÖµÓÉ¿ÙÍ¼½á¹û·µ»Ø
+	int					iChanCount;		//éœ€è¦æœç´¢çš„é€šé“ä¸ªæ•°
+	int					iChanSize;		//ç»“æ„ä½“QueryChanNoçš„å¤§å°ï¼Œsizeof(QueryChanNo)
+	QueryChanNo*		pChanList;		//é€šé“åˆ—è¡¨ï¼Œç»“æ„ä½“QueryChanNoæ•°ç»„å˜é‡
+	NVS_FILE_TIME	    tBegTime;		//æœç´¢èµ·å§‹æ—¶é—´
+	NVS_FILE_TIME	    tEndTime;		//æœç´¢ç»“æŸæ—¶é—´
+	char			    cPicturePath[LEN_256];	//ä»¥å›¾æœæŠ“æ‹å›¾éœ€è¦ä¼ å…¥çš„å›¾ç‰‡åç§°ã€‚ï¼ˆç¡®ä¿æœ¬åœ°è¯¥å›¾ç‰‡å­˜åœ¨ï¼Œå¹¶ä¸”èƒ½æ­£å¸¸æ‰“å¼€ï¼‰
+	int 				iSimilarity;	//ä»¥å›¾æœæŠ“æ‹å›¾ç›¸ä¼¼åº¦
+	int 			    iSortMode;		//æ’åºæ–¹å¼ï¼š0-æŒ‰æ—¶é—´æ’åºï¼Œ1-æŒ‰ç›¸ä¼¼åº¦æ’åº(0-sort by time 1-sort by similarity)
+	int                 iTaskId;		//æŠ å›¾å»ºæ¨¡çš„äº‹åŠ¡IDï¼Œè¯¥å€¼ç”±æŠ å›¾ç»“æœè¿”å›
 }FaceSearchSnap, *pFaceSearchSnap;
 
-//»ñÈ¡ËÑË÷½ø¶È´«Èë²ÎÊı½á¹¹Ìå
+//è·å–æœç´¢è¿›åº¦ä¼ å…¥å‚æ•°ç»“æ„ä½“
 typedef struct tagFaceSearchSnapProcess
 {
 	int    iSize;						//structure size
-	int	   iTaskId;						//¿ÙÍ¼½¨Ä£µÄÊÂÎñID£¬¸ÃÖµÓÉ¿ÙÍ¼½á¹û·µ»Ø
+	int	   iTaskId;						//æŠ å›¾å»ºæ¨¡çš„äº‹åŠ¡IDï¼Œè¯¥å€¼ç”±æŠ å›¾ç»“æœè¿”å›
 } FaceSearchSnapProcess, *pFaceSearchSnapProcess;
 
 typedef struct tagFaceSearchSnapQuery
 {
 	int    iSize;			//structure size
-	int    iTaskId;			//¿ÙÍ¼½¨Ä£µÄÊÂÎñID£¬¸ÃÖµÓÉ¿ÙÍ¼½á¹û·µ»Ø
-	int    iPageSize;		//ÒÔÍ¼ËÑ×¥ÅÄÍ¼Ã¿´Î²éÑ¯µÄÒ³´óĞ¡£¬½¨ÒéÃ¿´Î20Ìõ¼ÇÂ¼
-	int    iPageNo;			//²éÑ¯µÄÒ³±àºÅ£º0£¬1£¬2,3¡­¡­
+	int    iTaskId;			//æŠ å›¾å»ºæ¨¡çš„äº‹åŠ¡IDï¼Œè¯¥å€¼ç”±æŠ å›¾ç»“æœè¿”å›
+	int    iPageSize;		//ä»¥å›¾æœæŠ“æ‹å›¾æ¯æ¬¡æŸ¥è¯¢çš„é¡µå¤§å°ï¼Œå»ºè®®æ¯æ¬¡20æ¡è®°å½•
+	int    iPageNo;			//æŸ¥è¯¢çš„é¡µç¼–å·ï¼š0ï¼Œ1ï¼Œ2,3â€¦â€¦
 }FaceSearchSnapQuery, *pFaceSearchSnapQuery;
 
 typedef struct tagFaceSearchSnapResult{
 	int					iSize;				//structure size
-	int					iChanNo;			//Í¨µÀºÅ£¬È¡Öµ·¶Î§¾İÉè±¸ÀàĞÍ¶ø¶¨,0x7FFFFFFF´ú±íËùÓĞÍ¨µÀ
-	int					iTotal;				//ËÑË÷µ½µÄ¼ÇÂ¼µÄ×Ü¸öÊı
-	int					iCurPageCount;		//±¾´Î»ñÈ¡µÄ¸öÊı£¬Ò³´óĞ¡
-	int					iItemIndex;			//µ±Ç°Ò³±àºÅ£¬¸ù¾İÒ³´óĞ¡´«ÈëÒ³±àºÅ¡£±ÈÈç×Ü¹²100Ìõ¼ÇÂ¼£¬Ã¿´ÎÈ¡20Ìõ£¬Ò³±àºÅÒÀ´ÎÎª0,1,2,3,4
-	NVS_FILE_TIME		tBegTime;			//¼ÇÂ¼¿ªÊ¼Ê±¼ä
-	NVS_FILE_TIME		tEndTime;			//¼ÇÂ¼½áÊøÊ±¼ä
-	int  				iAge;				//¼ÇÂ¼ÄêÁäÖµ
-	int                 iSex;				//¼ÇÂ¼ĞÔ±ğ£º1-ÄĞ£¬2-Å®£¬3-Î´Öª
-	int					iNation;			//¼ÇÂ¼Ãñ×å£º1-ºº×å£¬2-ÉÙÊıÃñ×å
-	int					iWearGlasses;		//±íÊ¾´÷ÑÛ¾µ£º0-Ô¤Áô£¬1-Åå´÷£¬2-Î´Åå´÷
-	int					iWearMask;			//±íÊ¾´÷¿ÚÕÖ£º0-Ô¤Áô£¬1-Åå´÷£¬2-Î´Åå´÷
-	int					iSimilarity;		//±íÊ¾ÏàËÆ¶È£¬·¶Î§0-100
-	VcaFileAttr			tPicSnap;			//×¥ÅÄÍ¼ÊôĞÔ
-	VcaFileAttr			tPicNeg;			//ÈËÁ³µ×Í¼ÊôĞÔ
-	char				cLibUUID[LEN_UUID];	//ÈËÁ³¿âÔÚÆ½Ì¨µÄID
-	char				cFaceUUID[LEN_UUID];//Í¼Æ¬ÔÚÆ½Ì¨¶ÔÓ¦ID
-	char				cName[LEN_64];		//ĞÕÃû
+	int					iChanNo;			//é€šé“å·ï¼Œå–å€¼èŒƒå›´æ®è®¾å¤‡ç±»å‹è€Œå®š,0x7FFFFFFFä»£è¡¨æ‰€æœ‰é€šé“
+	int					iTotal;				//æœç´¢åˆ°çš„è®°å½•çš„æ€»ä¸ªæ•°
+	int					iCurPageCount;		//æœ¬æ¬¡è·å–çš„ä¸ªæ•°ï¼Œé¡µå¤§å°
+	int					iItemIndex;			//å½“å‰é¡µç¼–å·ï¼Œæ ¹æ®é¡µå¤§å°ä¼ å…¥é¡µç¼–å·ã€‚æ¯”å¦‚æ€»å…±100æ¡è®°å½•ï¼Œæ¯æ¬¡å–20æ¡ï¼Œé¡µç¼–å·ä¾æ¬¡ä¸º0,1,2,3,4
+	NVS_FILE_TIME		tBegTime;			//è®°å½•å¼€å§‹æ—¶é—´
+	NVS_FILE_TIME		tEndTime;			//è®°å½•ç»“æŸæ—¶é—´
+	int  				iAge;				//è®°å½•å¹´é¾„å€¼
+	int                 iSex;				//è®°å½•æ€§åˆ«ï¼š1-ç”·ï¼Œ2-å¥³ï¼Œ3-æœªçŸ¥
+	int					iNation;			//è®°å½•æ°‘æ—ï¼š1-æ±‰æ—ï¼Œ2-å°‘æ•°æ°‘æ—
+	int					iWearGlasses;		//è¡¨ç¤ºæˆ´çœ¼é•œï¼š0-é¢„ç•™ï¼Œ1-ä½©æˆ´ï¼Œ2-æœªä½©æˆ´
+	int					iWearMask;			//è¡¨ç¤ºæˆ´å£ç½©ï¼š0-é¢„ç•™ï¼Œ1-ä½©æˆ´ï¼Œ2-æœªä½©æˆ´
+	int					iSimilarity;		//è¡¨ç¤ºç›¸ä¼¼åº¦ï¼ŒèŒƒå›´0-100
+	VcaFileAttr			tPicSnap;			//æŠ“æ‹å›¾å±æ€§
+	VcaFileAttr			tPicNeg;			//äººè„¸åº•å›¾å±æ€§
+	char				cLibUUID[LEN_UUID];	//äººè„¸åº“åœ¨å¹³å°çš„ID
+	char				cFaceUUID[LEN_UUID];//å›¾ç‰‡åœ¨å¹³å°å¯¹åº”ID
+	char				cName[LEN_64];		//å§“å
 }FaceSearchSnapResult, *pFaceSearchSnapResult;
 
 #define TYPE_SNAP_AGRIBANK    20000
@@ -1695,7 +1695,7 @@ typedef struct tagPicStreamUploadParam
 {
 	int         iSize;			
 	int         iSceneId;		//range:0~15
-	int         iRuleNo;		//range:0¡«7
+	int         iRuleNo;		//range:0ï½7
 	int         iPicType;		//Picture type: 0-Background big picture, 1-Small picture
 	int         iSnapEnable;	//Send enable:0-not upload, 1-upload
 	int         iIsOsd;			//Overlay information: 0-not stack, 1-stack.When iPicType=1,this parameter is invalid.
@@ -1725,7 +1725,7 @@ typedef struct tagHumanDetectArithmetic
 	int				iRuleNo;			//0-7
 	int				iSnapEnable;		//0-disenable,1-enabele
 	int				iDisplayTarget;		//display target box, 0-not dispaly, 1-dispaly
-	int				iMinSizeEx;			//minimum face size(0~10000 percentage of image width£¬10000 indicates the width of entire screen)
+	int				iMinSizeEx;			//minimum face size(0~10000 percentage of image widthï¼Œ10000 indicates the width of entire screen)
 	int				iMaxSizeEx;			//maximum face size(0~10000 percentage of image width,10000 indicates the width of entire screen)
 }HumanDetectArithmetic, *pHumanDetectArithmetic;
 
@@ -1980,7 +1980,7 @@ typedef struct __tagAutoJust
 {
 	int					iSize;
 	int					iChanNo; //channel no
-	int                 iFieldOfVision;	//0-±£Áô 1-´ó 2-Ğ¡
+	int                 iFieldOfVision;	//0-ä¿ç•™ 1-å¤§ 2-å°
 }AutoJust, *pAutoJust;
 
 typedef struct __tagSceneHeight
@@ -1999,7 +1999,7 @@ typedef struct __tagSceneHeightResult
 typedef struct _tagSinglePic
 {
 	int                 iSize;
-	int                 iVoDevId; //1-VGA/HDMI0, 17-HDMI1(bt1120), 33-CVBS,49-VC,50-VC1£¨H264£© ,Default:VC
+	int                 iVoDevId; //1-VGA/HDMI0, 17-HDMI1(bt1120), 33-CVBS,49-VC,50-VC1ï¼ˆH264ï¼‰ ,Default:VC
 	int                 iAct;     //1:Entry SinglePic 2:Exit SinglePic
 }SinglePic, *pSinglePic;
 
@@ -2036,9 +2036,9 @@ typedef struct tagNavigationShipDetection
 	int					iSize;
 	int					iChanNo;		//channel no
 	int					iSceneId;		//range:0~31
-	int					iRuleNo;		//range:0¡«15
+	int					iRuleNo;		//range:0ï½15
 	int					iSensitiv;		//sensitive:range:0~100
-	int					iPointNum;		//Number of vertices in a polygon area,rang:3¡«8
+	int					iPointNum;		//Number of vertices in a polygon area,rang:3ï½8
 	TPoint				tPoint[MAX_POLYGON_POINT_NUM];	//Point coordinates
 }NavigationShipDetection, *pNavigationShipDetection;
 
@@ -2064,7 +2064,7 @@ typedef struct __tagDetectAreaPoseX
 	int                 iCruiseAddMode; // 0:Auto;1:Manual
 	int                 iAreaNum;  //0-127
 	int                 iOperationType;//1-Set Area 2-Call Area 3-Detect Area
-	int                 iAreaType;//0-Á÷ËÙ 1-Ë®Î»Ë®³ß
+	int                 iAreaType;//0-æµé€Ÿ 1-æ°´ä½æ°´å°º
 }DetectAreaPoseX, *pDetectAreaPoseX;
 
 typedef struct __tagDetectAreaPoseXResult
@@ -2079,8 +2079,8 @@ typedef struct __tagDetectAreaPoseXResult
 	int                 iPtzT;
 	int                 iPtzZ;
 	int                 iResultInfo;	//If the iresult field is not 0, it is valid to indicate the error information of the corresponding error code; if iresult = 3, it is the current diagonal distance in meters
-    int                 iAreaType;//0-Á÷ËÙ 1-Ë®Î»Ë®³ß 2-ÁãµãÔ¤ÖÃÎ»
-	int                 iAngleValue;//Çã½ÇÒÇ½Ç¶Èx10000£¬µ¥Î»ÊÇ¡ã£¬·¶Î§0¡ª360
+    int                 iAreaType;//0-æµé€Ÿ 1-æ°´ä½æ°´å°º 2-é›¶ç‚¹é¢„ç½®ä½
+	int                 iAngleValue;//å€¾è§’ä»ªè§’åº¦x10000ï¼Œå•ä½æ˜¯Â°ï¼ŒèŒƒå›´0â€”360
 }DetectAreaPoseXResult, *pDetectAreaPoseXResult;
 
 typedef struct __tagDetectAreaParaX
@@ -2093,15 +2093,15 @@ typedef struct __tagDetectAreaParaX
 	int                 iPtzP;
 	int                 iPtzT;
 	int                 iPtzZ;
-	int                 iAreaType;//0-Á÷ËÙ 1-Ë®Î»Ë®³ß 2-ÁãµãÔ¤ÖÃÎ»
-	int                 iAngleValue;//Çã½ÇÒÇ½Ç¶Èx10000£¬µ¥Î»ÊÇ¡ã£¬·¶Î§0¡ª360
+	int                 iAreaType;//0-æµé€Ÿ 1-æ°´ä½æ°´å°º 2-é›¶ç‚¹é¢„ç½®ä½
+	int                 iAngleValue;//å€¾è§’ä»ªè§’åº¦x10000ï¼Œå•ä½æ˜¯Â°ï¼ŒèŒƒå›´0â€”360
 }DetectAreaParaX, *pDetectAreaParaX;
 
 typedef struct tagCallParamResult
 {
 	int		iBufSize;					//Call gengeral parameters structure size
-	int		iType;						//0-Call Scene ID£»1-Call privacy shelter location 2- call vca scene 3 - enable intelligent scene quickly 4-quickly start warning scene, 5-fire detection shielding area, 6-smoke detection shielding area, 7-temperature difference detection shielding area
-	int		iValue;						//Scene ID range£º0~15£» privacy shelter location range£º0~23
+	int		iType;						//0-Call Scene IDï¼›1-Call privacy shelter location 2- call vca scene 3 - enable intelligent scene quickly 4-quickly start warning scene, 5-fire detection shielding area, 6-smoke detection shielding area, 7-temperature difference detection shielding area
+	int		iValue;						//Scene ID rangeï¼š0~15ï¼› privacy shelter location rangeï¼š0~23
 	int		iSceneType;					//0-vca 1-alert
 	int     iResult;                    //0:success;other:failed
 }CallParamResult, *pCallParamResult;
@@ -2233,9 +2233,9 @@ typedef struct tagGranaryVehicleDetect
 	int					iSize;
 	int					iChanNo;		//channel no
 	int					iSceneId;		//range:0~31
-	int					iRuleNo;		//range:0¡«15
+	int					iRuleNo;		//range:0ï½15
 	int					iSensitiv;		//sensitive:range:0~100
-	int					iPointNum;		//Number of vertices in a polygon area,rang:3¡«8
+	int					iPointNum;		//Number of vertices in a polygon area,rang:3ï½8
 	TPoint				tPoint[MAX_POLYGON_AREA_POINT_NUM];	//Point coordinates
 }GranaryVehicleDetect, *pGranaryVehicleDetect;
 
@@ -2258,7 +2258,7 @@ typedef struct tagModifyFrontPsd
 #define MAX_VCA_STRANDED_POINT_NUM			 10
 typedef struct tagVCAStranded
 {
-	int					iDevType;				//0-IPC£¬1-NVR
+	int					iDevType;				//0-IPCï¼Œ1-NVR
 	VCARule				tRule;					//Rules General Parameters
 	vca_TDisplayParam	tDisplayParam;			//Display The Parameter Settings
 	int					iDisplayTarget;			//Display Target, 0-Not Dispaly, 1-Dispaly
@@ -2279,7 +2279,7 @@ typedef struct tagVCAAlone
 #define MAX_VCA_DELIVERGOODS_POINT_NUM			 10
 typedef struct tagVCADeliverGoods
 {
-	int					iDevType;				//0-IPC£¬1-NVR
+	int					iDevType;				//0-IPCï¼Œ1-NVR
 	VCARule				tRule;					//Rules General Parameters
 	vca_TDisplayParam	tDisplayParam;			//Display The Parameter Settings
 	int					iDisplayTarget;			//Display Target, 0-Not Dispaly, 1-Dispaly
@@ -2293,7 +2293,7 @@ typedef struct tagVCADeliverGoods
 typedef struct tagVCATops
 {
 	int					iChanNo;
-	int					iDevType;				//0-IPC£¬1-NVR
+	int					iDevType;				//0-IPCï¼Œ1-NVR
 	int					iSceneID;				//
 	int					iVcaType;
 	int					iTops;					//Reference value of calculation force occupied by this algorithm, range 1-100
@@ -2426,26 +2426,26 @@ typedef struct tagShdbCheckManageResult
 typedef struct tagHsjjFocusstate
 {
 	int						iSize;
-	int						iRunState;							//0£ºÎ´¾Û½¹Íê³É£»1£º¾Û½¹Íê³É
+	int						iRunState;							//0ï¼šæœªèšç„¦å®Œæˆï¼›1ï¼šèšç„¦å®Œæˆ
 }HsjjFocusstate, *pHsjjFocusstate;
 
 typedef struct tagAlmLoopDetec
 {
 	int                 iSize;        
-	int                 iChannelNo;                   //channel number£¬0~N-1£ºipc parameters of corresponding IPC channel£» 
-	                                                  //0x7fffffff£ºNVR local parameters
+	int                 iChannelNo;                   //channel numberï¼Œ0~N-1ï¼šipc parameters of corresponding IPC channelï¼› 
+	                                                  //0x7fffffffï¼šNVR local parameters
 	int                 iPortNo;                      //port number
-	int                 iEnable;                      //whether to open£º0, close£»1, open
+	int                 iEnable;                      //whether to openï¼š0, closeï¼›1, open
 } AlmLoopDetec, *pAlmLoopDetec;
 
 typedef struct tagIdentificationType
 {
 	int                 iSize;
-	int                 iChannelNo;                    //channel number£¬0~N-1£ºipc parameters of corresponding IPC channel£»
-	                                                   //0x7fffffff£ºNVR local parameters
-	int                 iProtocol;		               //protocol type, 0£ºrtsp£¬1£ºhttp
-	int                 ibasicConfig;	               //basic auth config, 0£ºforbid £¬1£ºallow
-	int                 iDigestlConfig;                //digestÈÏÖ¤ÅäÖÃ,  0£ºforbid £¬1£ºallow
+	int                 iChannelNo;                    //channel numberï¼Œ0~N-1ï¼šipc parameters of corresponding IPC channelï¼›
+	                                                   //0x7fffffffï¼šNVR local parameters
+	int                 iProtocol;		               //protocol type, 0ï¼šrtspï¼Œ1ï¼šhttp
+	int                 ibasicConfig;	               //basic auth config, 0ï¼šforbid ï¼Œ1ï¼šallow
+	int                 iDigestlConfig;                //digestè®¤è¯é…ç½®,  0ï¼šforbid ï¼Œ1ï¼šallow
 }IdentificationType, *pIdentificationType;
 
 typedef struct tagDevAutoTimingParam
@@ -2467,7 +2467,7 @@ typedef struct __tagIpFilter
 	char cSubMask[LENGTH_SUB_MASK];
 	int iFilterType;								//Filter typr:0,Disable IP permission qualification;1,IP access is disabled;2,Allow IP access
 	int iIpNum;										//Filter IP number,the maximum support 16 different IP addresses
-	char cFilterIp[MAX_IP_FILTER_NUM][LENGTH_IPV4];	//Network address string, such as£ºpcFilterIp[0]=¡°192.168.1.10¡±
+	char cFilterIp[MAX_IP_FILTER_NUM][LENGTH_IPV4];	//Network address string, such asï¼špcFilterIp[0]=â€œ192.168.1.10â€
 }TIpFilter, * pTIpFilter;
 
 typedef struct __tagIpv6Filter
@@ -2475,18 +2475,18 @@ typedef struct __tagIpv6Filter
 	int iSize;
 	int iIpNum;												//Filter IP number,the maximum support 16 different IP addresses
 	int iFilterType;										//Filter typr:0,Disable IP permission qualification;1,IP access is disabled;2,Allow IP access
-	char pcFilterIp[MAX_IP_FILTER_NUM][LENGTH_IPV6_V1];		//Network address string, such as£ºpcFilterIp[0]=¡°1234:5678:9abc:def::1¡±
+	char pcFilterIp[MAX_IP_FILTER_NUM][LENGTH_IPV6_V1];		//Network address string, such asï¼špcFilterIp[0]=â€œ1234:5678:9abc:def::1â€
 }TIpv6Filter, * pTIpv6Filter;
 
 typedef struct tagIpv6FilterParam
 {
 	int					iSize;				
-	int					iFilterType;														//¹ıÂËÀàĞÍ(0-½ûÓÃIPÈ¨ÏŞÉè¶¨,1-½ûÖ¹IP·ÃÎÊ,2-ÔÊĞíIP·ÃÎÊ)
-	int					iIpNum;																//¹ıÂËipÊıÁ¿(iIpNum ×î´óÖ§³Ö48¸ö²»Í¬µÄIPµØÖ·)
-	int					iPackageNum;														//×Ü°üÊı
-	int					iListIndex;															//ÁĞ±íĞòºÅ(´Ó1¿ªÊ¼)
-	int					iParamNum;															//²ÎÊıÁĞ±í³¤¶È(Ã¿´Î·¢ËÍµÄÁĞ±íÊıÄ¿)
-	char				pcFilterIp[MAX_IPV6_PACKAGE_FILTER_NUM][LENGTH_IPV6_V1];			//IPv6µØÖ·(ÍøÂçµØÖ·×Ö·û´®¡£Èç£ºpcFilterIp1=¡°1234:5678:9abc:def::1¡±»ò¡°192.168.1.10¡±£¨×î´ó³¤¶ÈÎª64×Ö½Ú£©)
+	int					iFilterType;														//è¿‡æ»¤ç±»å‹(0-ç¦ç”¨IPæƒé™è®¾å®š,1-ç¦æ­¢IPè®¿é—®,2-å…è®¸IPè®¿é—®)
+	int					iIpNum;																//è¿‡æ»¤ipæ•°é‡(iIpNum æœ€å¤§æ”¯æŒ48ä¸ªä¸åŒçš„IPåœ°å€)
+	int					iPackageNum;														//æ€»åŒ…æ•°
+	int					iListIndex;															//åˆ—è¡¨åºå·(ä»1å¼€å§‹)
+	int					iParamNum;															//å‚æ•°åˆ—è¡¨é•¿åº¦(æ¯æ¬¡å‘é€çš„åˆ—è¡¨æ•°ç›®)
+	char				pcFilterIp[MAX_IPV6_PACKAGE_FILTER_NUM][LENGTH_IPV6_V1];			//IPv6åœ°å€(ç½‘ç»œåœ°å€å­—ç¬¦ä¸²ã€‚å¦‚ï¼špcFilterIp1=â€œ1234:5678:9abc:def::1â€æˆ–â€œ192.168.1.10â€ï¼ˆæœ€å¤§é•¿åº¦ä¸º64å­—èŠ‚ï¼‰)
 }Ipv6FilterParam, * pIpv6FilterParam;
 
 typedef struct tagCloudAutoDetect
@@ -2501,8 +2501,8 @@ typedef struct tagCloudAutoDetect
 typedef struct tagDeviceName
 {
 	int                 iSize;
-	int                 iChannelNo;              //channel number£¬0~N-1£ºipc parameters of corresponding IPC channel£»
-	                                             //0x7fffffff£ºNVR local parameters
+	int                 iChannelNo;              //channel numberï¼Œ0~N-1ï¼šipc parameters of corresponding IPC channelï¼›
+	                                             //0x7fffffffï¼šNVR local parameters
 	char                pcDeviceName[LEN_32];    //device name
 }DeviceName, *pDeviceName;
 
@@ -2680,15 +2680,15 @@ typedef struct tagFaceOsdCommonDev
 typedef struct tagImageLocation
 {
         int            iSize; //input para Structure size
-        int            iLocation; //0-normal£¬1-turnover£¬2-h_mirror£¬3-v_mirror
+        int            iLocation; //0-normalï¼Œ1-turnoverï¼Œ2-h_mirrorï¼Œ3-v_mirror
 }ImageLocation, *pImageLocation;
 
 typedef struct tagPtzResult
 {
 	int iSize;
-	int iPtzP; //0~3600000 [0-360]£¬accurancy£º0.0001
-	int iPtzT; //100000~1900000 [-90 - 90]accurancy£º0.0001
-	int iPtzZ; //0~100000 [0-1000]£¬accurancy:0.01
+	int iPtzP; //0~3600000 [0-360]ï¼Œaccurancyï¼š0.0001
+	int iPtzT; //100000~1900000 [-90 - 90]accurancyï¼š0.0001
+	int iPtzZ; //0~100000 [0-1000]ï¼Œaccurancy:0.01
 }PtzResult, *pPtzResult;
 
 typedef struct
@@ -2731,13 +2731,13 @@ typedef struct
 #define BURN_BACKUP_FILE_ONLYPEN     1
 typedef struct tagBurnBackupFile
 {
-    int 	  iSize;  			//[IN]½á¹¹Ìå´óĞ¡
-    int	      iBurnFile;	    //[IN] BURN_BACKUP_FILE_ALL£ºÕı³£±¸·İËùÓĞÎÄ¼ş  BURN_BACKUP_FILE_ONLYPEN£ºÖ»±¸·İ±ÊÂ¼ÎÄ¼ş
+    int 	  iSize;  			//[IN]ç»“æ„ä½“å¤§å°
+    int	      iBurnFile;	    //[IN] BURN_BACKUP_FILE_ALLï¼šæ­£å¸¸å¤‡ä»½æ‰€æœ‰æ–‡ä»¶  BURN_BACKUP_FILE_ONLYPENï¼šåªå¤‡ä»½ç¬”å½•æ–‡ä»¶
 }BurnBackupFile, *pBurnBackupFile;
 
-#define RET_BURN_SUCCESS       0 //ÉèÖÃ³É¹¦
-#define RET_BURN_FAILED        1 //ÉèÖÃÊ§°Ü
-#define RET_BURN_RUNING        2 //µ±Ç°ÕıÔÚ¿ÌÂ¼£¬²»ÔÊĞíĞŞ¸ÄÅäÖÃ
+#define RET_BURN_SUCCESS       0 //è®¾ç½®æˆåŠŸ
+#define RET_BURN_FAILED        1 //è®¾ç½®å¤±è´¥
+#define RET_BURN_RUNING        2 //å½“å‰æ­£åœ¨åˆ»å½•ï¼Œä¸å…è®¸ä¿®æ”¹é…ç½®
 
 
 #define EASYDDNS_LINK_OFFLINE	0
@@ -2750,24 +2750,24 @@ typedef struct tagEasyDDNSLinkState
 
 typedef struct tagModulePowerLimit
 {
-	int				iSize;				// output para ½á¹¹Ìå´óĞ¡
-	int				iLimitPower;		// output para ÏŞÖÆ×Ü¹¦ºÄÖµ, Êµ¼Ê¹¦ºÄÖµÀ©´ó1000±¶
-	int				iModuleType;		// output para Ä£¿éÀàĞÍ£¬0£ººìÍâµÆ£¬1£º°×¹âµÆ£¬2£º¼¤¹âµÆ£¬3-9£ºÔ¤Áô
-	int				iPowerRatio1;		// output para Ä£¿é¹¦ºÄÏµÊı1, Ä£¿éÎªºìÍâ»ò°×¹âµÆÊ±±íÊ¾½ü¹â×éÃ¿µ¥Î»ÁÁ¶È±ä»¯µÄ¹¦ºÄÖµ£¬Ä£¿éÎª¼¤¹âµÆÊ±±íÊ¾¼¤¹âµÆÃ¿µ¥Î»ÁÁ¶È±ä»¯µÄ¹¦ºÄÖµ£¬Êµ¼ÊÀ©´ó1000±¶£¬²»Ö§³ÖÔòÎª0£¬ÆäËûÄ£¿éÔò¸ù¾İĞèÇó¶¨Òå
-	int				iPowerRatio2;		// output para Ä£¿é¹¦ºÄÏµÊı2, Ä£¿éÎªºìÍâ»ò°×¹âµÆÊ±±íÊ¾Ô¶¹â×éÃ¿µ¥Î»ÁÁ¶È±ä»¯µÄ¹¦ºÄÖµ£¬Êµ¼ÊÀ©´ó1000±¶£¬²»Ö§³ÖÔòÎª0£¬ÆäËûÄ£¿éÔò¸ù¾İĞèÇó¶¨Òå
-	int				iPowerRatio3;		// output para Ä£¿é¹¦ºÄÏµÊı3, Ä£¿éÎªºìÍâµÆÊ±±íÊ¾ÖĞ¹â×éÃ¿µ¥Î»ÁÁ¶È±ä»¯µÄ¹¦ºÄÖµ£¬Êµ¼ÊÀ©´ó1000±¶£¬²»Ö§³ÖÔòÎª0£¬ÆäËûÄ£¿éÔò¸ù¾İĞèÇó¶¨Òå
-	int				iPowerRatio4;		// output para Ä£¿é¹¦ºÄÏµÊı4, Ô¤Áô£¬²»Ö§³ÖÔòÎª0
-	int				iLightID;			// output para µÆ×é±àºÅ, 0±íÊ¾µÆ×é1£»1±íÊ¾µÆ×é2
+	int				iSize;				// output para ç»“æ„ä½“å¤§å°
+	int				iLimitPower;		// output para é™åˆ¶æ€»åŠŸè€—å€¼, å®é™…åŠŸè€—å€¼æ‰©å¤§1000å€
+	int				iModuleType;		// output para æ¨¡å—ç±»å‹ï¼Œ0ï¼šçº¢å¤–ç¯ï¼Œ1ï¼šç™½å…‰ç¯ï¼Œ2ï¼šæ¿€å…‰ç¯ï¼Œ3-9ï¼šé¢„ç•™
+	int				iPowerRatio1;		// output para æ¨¡å—åŠŸè€—ç³»æ•°1, æ¨¡å—ä¸ºçº¢å¤–æˆ–ç™½å…‰ç¯æ—¶è¡¨ç¤ºè¿‘å…‰ç»„æ¯å•ä½äº®åº¦å˜åŒ–çš„åŠŸè€—å€¼ï¼Œæ¨¡å—ä¸ºæ¿€å…‰ç¯æ—¶è¡¨ç¤ºæ¿€å…‰ç¯æ¯å•ä½äº®åº¦å˜åŒ–çš„åŠŸè€—å€¼ï¼Œå®é™…æ‰©å¤§1000å€ï¼Œä¸æ”¯æŒåˆ™ä¸º0ï¼Œå…¶ä»–æ¨¡å—åˆ™æ ¹æ®éœ€æ±‚å®šä¹‰
+	int				iPowerRatio2;		// output para æ¨¡å—åŠŸè€—ç³»æ•°2, æ¨¡å—ä¸ºçº¢å¤–æˆ–ç™½å…‰ç¯æ—¶è¡¨ç¤ºè¿œå…‰ç»„æ¯å•ä½äº®åº¦å˜åŒ–çš„åŠŸè€—å€¼ï¼Œå®é™…æ‰©å¤§1000å€ï¼Œä¸æ”¯æŒåˆ™ä¸º0ï¼Œå…¶ä»–æ¨¡å—åˆ™æ ¹æ®éœ€æ±‚å®šä¹‰
+	int				iPowerRatio3;		// output para æ¨¡å—åŠŸè€—ç³»æ•°3, æ¨¡å—ä¸ºçº¢å¤–ç¯æ—¶è¡¨ç¤ºä¸­å…‰ç»„æ¯å•ä½äº®åº¦å˜åŒ–çš„åŠŸè€—å€¼ï¼Œå®é™…æ‰©å¤§1000å€ï¼Œä¸æ”¯æŒåˆ™ä¸º0ï¼Œå…¶ä»–æ¨¡å—åˆ™æ ¹æ®éœ€æ±‚å®šä¹‰
+	int				iPowerRatio4;		// output para æ¨¡å—åŠŸè€—ç³»æ•°4, é¢„ç•™ï¼Œä¸æ”¯æŒåˆ™ä¸º0
+	int				iLightID;			// output para ç¯ç»„ç¼–å·, 0è¡¨ç¤ºç¯ç»„1ï¼›1è¡¨ç¤ºç¯ç»„2
 }ModulePowerLimit, *pModulePowerLimit;
 
 typedef struct tagManualPortMap
 {
     int  iSize;
-    int  iHttpWanPort;			// httpĞ­ÒéÍâÍøÓ³Éä¶Ë¿ÚºÅ
-    int  iRtspWanPort;			//rtspĞ­ÒéÍâÍøÓ³Éä¶Ë¿ÚºÅ
-    int  iServerWanPort;		//Ë½ÓĞĞ­ÒéÍâÍøÓ³Éä¶Ë¿ÚºÅ
-    int  iHttpsWanPort;			// httpsĞ­ÒéÍâÍøÓ³Éä¶Ë¿ÚºÅ
-    int  iRtmpWanPort;		    // rtmpĞ­ÒéÍâÍøÓ³Éä¶Ë¿ÚºÅ
+    int  iHttpWanPort;			// httpåè®®å¤–ç½‘æ˜ å°„ç«¯å£å·
+    int  iRtspWanPort;			//rtspåè®®å¤–ç½‘æ˜ å°„ç«¯å£å·
+    int  iServerWanPort;		//ç§æœ‰åè®®å¤–ç½‘æ˜ å°„ç«¯å£å·
+    int  iHttpsWanPort;			// httpsåè®®å¤–ç½‘æ˜ å°„ç«¯å£å·
+    int  iRtmpWanPort;		    // rtmpåè®®å¤–ç½‘æ˜ å°„ç«¯å£å·
 } ManualPortMap, *pManualPortMap, ManualPortMapResult, *pManualPortMapResult;
 
 #define OSDTYPE_TIME						0x01
@@ -2778,8 +2778,8 @@ typedef struct tagManualPortMap
 typedef struct tagNorthAngle
 {
 	int iSize;
-	int iAngle; //0~3600000 [0-360]£¬accurancy£º0.0001
-	int iStatus;//Ğ£Õı×´Ì¬:0£ºÔ¤Áô£¬1£ºĞ£Õı£¬2£¬Î´Ğ£Õı
+	int iAngle; //0~3600000 [0-360]ï¼Œaccurancyï¼š0.0001
+	int iStatus;//æ ¡æ­£çŠ¶æ€:0ï¼šé¢„ç•™ï¼Œ1ï¼šæ ¡æ­£ï¼Œ2ï¼Œæœªæ ¡æ­£
 }NorthAngle, *pNorthAngle;
 
 typedef struct tagCommonRECT 
@@ -2793,11 +2793,11 @@ typedef struct tagCommonRECT
 typedef struct tagIEEE8021X
 {
 	int iSize;
-	int iLanNo; //0£ºlan1  1:lan2¡­.
+	int iLanNo; //0ï¼šlan1  1:lan2â€¦.
 	int iEnable;	//0:not enable   1:enable
 	int iConnectType;	//0:automic  1:manual
-	int iEapType;		//0£¬EAP-MD5
-	int iEapolVersion;	//1£¬IEEEStd 802.1X-2001  2£¬IEEEStd 802.1X-2004
+	int iEapType;		//0ï¼ŒEAP-MD5
+	int iEapolVersion;	//1ï¼ŒIEEEStd 802.1X-2001  2ï¼ŒIEEEStd 802.1X-2004
 	char cUserName[LEN_64];	//user name
 	char cPassWord[LEN_64];	//password
 
@@ -2820,7 +2820,7 @@ typedef struct tagCommonRtmp
 typedef struct tagIEEE8021XState
 {
 	int iSize;
-	int iLanNo;			 //0£ºlan1  1:lan2¡­.
+	int iLanNo;			 //0ï¼šlan1  1:lan2â€¦.
 	int iConnectState;	//0:not connect 1:connected  2:connecting 3:connect failed
 }IEEE8021XState, *pIEEE8021XState;
 
@@ -2864,8 +2864,8 @@ typedef struct tagVCATemDetect
 	int					iRuleID;						     //rule ID(0~15)
 	int                 iValid;					             //0:invalid; 1:valid(default:0)
 	int					iDisplayTemScaleEnable;			     //0:not display 1:display (default:0)
-	int					iHighTemColor;						 //1:red 2:green 3:yellow 4:blue 5:purple 6:cyan 7:black 8:white (default:1£©
-	int					iLowTemColor;						 //1:red 2:green 3:yellow 4:blue 5:purple 6:cyan 7:black 8:white (default:1£©		
+	int					iHighTemColor;						 //1:red 2:green 3:yellow 4:blue 5:purple 6:cyan 7:black 8:white (default:1ï¼‰
+	int					iLowTemColor;						 //1:red 2:green 3:yellow 4:blue 5:purple 6:cyan 7:black 8:white (default:1ï¼‰		
 	int					iModelType;						     //1:Ambient temperature difference alarm 2:Environmental high temperature alarm 3:human high temperature alarm	
 	int					iTemUnit;						     //0:centigrade 1:Fahrenheit; 		
 	int  				iTemThreshold;	                     //The threshold value of temperature alarm is determined according to the imodeltype, and the value is the actual temperature * 100 
@@ -2889,11 +2889,11 @@ typedef struct tagVcaFireWork
 	int               iDisplayRule;//0:not display,1:display
 	int               iDisplayStat;//0:not display,1:display
 	int               iDisplayTarget;//0:not display,1:display
-	int               iColor;      //1£ºred 2£ºgreen 3£ºyellow 4£ºblue 5£ºpurple 6£ºCyan 7£ºblack 8£ºwhite  £¨default:2£©
-	int               iAlarmColor; //1£ºred 2£ºgreen 3£ºyellow 4£ºblue 5£ºpurple 6£ºCyan 7£ºblack 8£ºwhite  £¨default:1£©
+	int               iColor;      //1ï¼šred 2ï¼šgreen 3ï¼šyellow 4ï¼šblue 5ï¼špurple 6ï¼šCyan 7ï¼šblack 8ï¼šwhite  ï¼ˆdefault:2ï¼‰
+	int               iAlarmColor; //1ï¼šred 2ï¼šgreen 3ï¼šyellow 4ï¼šblue 5ï¼špurple 6ï¼šCyan 7ï¼šblack 8ï¼šwhite  ï¼ˆdefault:1ï¼‰
 	int               iFireSensitiv;//fire sensitive,range:[0-100],default:50
 	int               iSmogSensitiv;//smoke sensitive,range:[0-100],default:50
-	int               iModelType;//fire work test model:0:default£¬1:fire point detection£¬2:Smoke detection£¬3:fire point detection or Smoke detection£¬4:fire point detection and Smoke detection
+	int               iModelType;//fire work test model:0:defaultï¼Œ1:fire point detectionï¼Œ2:Smoke detectionï¼Œ3:fire point detection or Smoke detectionï¼Œ4:fire point detection and Smoke detection
 	int               iWaitTime;//find alarm waiting time,range[0-600]s,default:0
 }VcaFireWork, *pVcaFireWork;
 
@@ -2904,7 +2904,7 @@ typedef struct _tagMaskAreaEnable
 {
 	int             iSize;						//size of struct
     int             iMaskType;                  //0-reserved, 1-pyrotechnic detection - fire point shielding area, 2-pyrotechnic detection - Smoke shielding area, 3-temperature detection shielding area
-	int             iEnable;                    //0£ºunenable  1£ºenable  (default:0)
+	int             iEnable;                    //0ï¼šunenable  1ï¼šenable  (default:0)
 }MaskAreaEnable, *pMaskAreaEnable;
 
 #define SDK_MAX_MASKAREA_NUM   12
@@ -2942,7 +2942,7 @@ typedef struct tagVisualRange
 	int iChannel;
 }VisualRange, *pVisualRange;
 
-#define VIDEO_CONVOER_AREA			8	//ÊÓÆµÕÚµ²ÇøÓòÊı
+#define VIDEO_CONVOER_AREA			8	//è§†é¢‘é®æŒ¡åŒºåŸŸæ•°
 
 typedef struct tagVideoCover
 {
@@ -2954,7 +2954,7 @@ typedef struct tagVideoCover
 typedef struct tagRadarStatusInfo
 {
 	int		iSize;			
-	int		iType;						//radar type 0-reserve  1-´¨ËÙÀ×´ï
+	int		iType;						//radar type 0-reserve  1-å·é€Ÿé›·è¾¾
 	char	cRadarVersion[LEN_64];		//Version
 	int		iRadarStatus;				//Status 1-online, 0-offline
 }RadarStatusInfo, *pRadarStatusInfo;
@@ -3022,8 +3022,8 @@ typedef struct tagVcaScanPara
 
 typedef struct tagRtmpClientLinkState
 {
-    int				iSize;							// ½á¹¹Ìå´óĞ¡
-    int				iStateValue;					// Á¬½Ó×´Ì¬Öµ
+    int				iSize;							// ç»“æ„ä½“å¤§å°
+    int				iStateValue;					// è¿æ¥çŠ¶æ€å€¼
 } RtmpClientLinkState, *pRtmpClientLinkState;
 
 #define RADAR_EVENT_TYPE_PARK			1
@@ -3044,47 +3044,47 @@ typedef struct tagRadarEventPara
 typedef struct tagRadarRoadDir
 {
 	int				iId;		//[0,11]
-	int				iDir;		//0¨CÀ´Ïò³µµÀ, 1¨CÈ¥Ïò³µµÀ
+	int				iDir;		//0â€“æ¥å‘è½¦é“, 1â€“å»å‘è½¦é“
 }RadarRoadDir, *pRadarRoadDir;
 
 typedef struct tagRadarCrossSection
 {
-	int				iId;		//¶ÏÃæId,	·¶Î§ [0,3]
-	int				iPos;		//¶ÏÃæÎ»ÖÃ, ·¶Î§ [0,250], Ä¬ÈÏÖµ0±íÊ¾Î´ÅäÖÃ¶ÏÃæ£¬µ¥Î»m
+	int				iId;		//æ–­é¢Id,	èŒƒå›´ [0,3]
+	int				iPos;		//æ–­é¢ä½ç½®, èŒƒå›´ [0,250], é»˜è®¤å€¼0è¡¨ç¤ºæœªé…ç½®æ–­é¢ï¼Œå•ä½m
 }RadarCrossSection, *pRadarCrossSection;
 
 typedef struct tagRadarDevicePara
 {
 	int					iSize;
 	int					iChanNo;							//channel no
-	int					iRadarType;							//1-´¨ËÙÀ×´ï
-	int					iRoadNum;							//³µµÀÊıÁ¿ [1,12]
-	int					iRadarRoadWidth;					//³µµÀ¿í¶È [100,400]	µ¥Î» cm
-	RadarRoadDir		tRoadDir[RADAR_ROAD_MAXNUM];		//³µµÀ·½Ïò
-	int					iRadarMeasureMax;					//²â¾àÉÏÏŞ ·¶Î§ [100,28000], Ä¬ÈÏÖµ 25000£» µ¥Î»cm
-	int					iRadarMeasureMin;					//²â¾àÏÂÏŞ ·¶Î§ [100,25600], Ä¬ÈÏÖµ 3000£»µ¥Î»cm
-	int					iCrossSectionNum;					//¶ÏÃæ¸öÊı
-	RadarCrossSection	tCrossSection[RADAR_CROSS_SECTION];	//¶ÏÃæĞÅÏ¢
-	int					iRadarHeight;						//À×´ï°²×°¸ß¶È ·¶Î§ [100,1000]Ä¬ÈÏÖµ 700 µ¥Î»cm 
-	int					iRadarAngleDelta;					//À×´ï½Ç¶ÈĞŞÕı ·¶Î§ [0,20000] Ä¬ÈÏÖµ 10000 µ¥Î»(¶È*100) (Êµ¼Ê¶ÔÓ¦·¶Î§[-100¶È,100¶È])
-	int					iRadarCoordDelta;					//À×´ï×ø±êĞŞÕı ·¶Î§ [0,2000], Ä¬ÈÏÖµ 1000 µ¥Î»cm (Êµ¼Ê¶ÔÓ¦·¶Î§[-1000,1000])
-	int					iTrafficJamStartLine;				//Óµ¶ÂÅĞ¶ÏÆğÊ¼Î»ÖÃ ·¶Î§ [0,250], Ä¬ÈÏÖµ0£¬µ¥Î»m
-	int					iTrafficJamTerminationLine;			//Óµ¶ÂÅĞ¶ÏÖÕÖ¹Î»ÖÃ ·¶Î§ [0,250], Ä¬ÈÏÖµ0£¬µ¥Î»m
-	int					iQueueLengthThreshold;				//ÅÅ¶Ó³¤¶ÈãĞÖµ ·¶Î§ [0,8], Ä¬ÈÏÖµ0
-	int					iTrafficJamCarNumber;				//Óµ¶Â³µÁ¾ãĞÖµ ·¶Î§ [0,128], Ä¬ÈÏÖµ0
-	int					iLsolationBeltDriveway;				//¸ôÀë´øËùÔÚ³µµÀ ·¶Î§ [0,12], Ä¬ÈÏÖµ0
-	int					iLeftToTheLane;						//×ó²àÀ´Ïò³µµÀÊıÄ¿ ·¶Î§ [0,8], Ä¬ÈÏÖµ0 ´ú±íÈ«²¿ÎªÀ´Ïò
-	int					iNonmotorValue;						//Â·¿Ú·Ç»ú¶¯³µ¹ıÂËãĞÖµ ·¶Î§ [0,20], Ä¬ÈÏÖµ 0£»¶ÔÓ¦·¶Î§[-10,10] £¬-10²»¹ıÂË£¬ÖµÔ½´ó¹ıÂËĞ§¹ûÔ½Ç¿
-	int					iMotorValue;						//ĞĞ³µµÀ·Ç»ú¶¯³µ¹ıÂËãĞÖµ ÕûÊı, ·¶Î§ [0,20], Ä¬ÈÏÖµ 0£»¶ÔÓ¦·¶Î§[-10,10] £¬-10²»¹ıÂË£¬ÖµÔ½´ó¹ıÂËĞ§¹ûÔ½Ç¿
-	int					iShieldDistance;					//·´ÉäÆÁ±Î¾àÀë [0,250],µ¥Î»m£¬ Ä¬ÈÏÖµ80£¬0±íÊ¾´Ë¹¦ÄÜÎŞĞ§
+	int					iRadarType;							//1-å·é€Ÿé›·è¾¾
+	int					iRoadNum;							//è½¦é“æ•°é‡ [1,12]
+	int					iRadarRoadWidth;					//è½¦é“å®½åº¦ [100,400]	å•ä½ cm
+	RadarRoadDir		tRoadDir[RADAR_ROAD_MAXNUM];		//è½¦é“æ–¹å‘
+	int					iRadarMeasureMax;					//æµ‹è·ä¸Šé™ èŒƒå›´ [100,28000], é»˜è®¤å€¼ 25000ï¼› å•ä½cm
+	int					iRadarMeasureMin;					//æµ‹è·ä¸‹é™ èŒƒå›´ [100,25600], é»˜è®¤å€¼ 3000ï¼›å•ä½cm
+	int					iCrossSectionNum;					//æ–­é¢ä¸ªæ•°
+	RadarCrossSection	tCrossSection[RADAR_CROSS_SECTION];	//æ–­é¢ä¿¡æ¯
+	int					iRadarHeight;						//é›·è¾¾å®‰è£…é«˜åº¦ èŒƒå›´ [100,1000]é»˜è®¤å€¼ 700 å•ä½cm 
+	int					iRadarAngleDelta;					//é›·è¾¾è§’åº¦ä¿®æ­£ èŒƒå›´ [0,20000] é»˜è®¤å€¼ 10000 å•ä½(åº¦*100) (å®é™…å¯¹åº”èŒƒå›´[-100åº¦,100åº¦])
+	int					iRadarCoordDelta;					//é›·è¾¾åæ ‡ä¿®æ­£ èŒƒå›´ [0,2000], é»˜è®¤å€¼ 1000 å•ä½cm (å®é™…å¯¹åº”èŒƒå›´[-1000,1000])
+	int					iTrafficJamStartLine;				//æ‹¥å µåˆ¤æ–­èµ·å§‹ä½ç½® èŒƒå›´ [0,250], é»˜è®¤å€¼0ï¼Œå•ä½m
+	int					iTrafficJamTerminationLine;			//æ‹¥å µåˆ¤æ–­ç»ˆæ­¢ä½ç½® èŒƒå›´ [0,250], é»˜è®¤å€¼0ï¼Œå•ä½m
+	int					iQueueLengthThreshold;				//æ’é˜Ÿé•¿åº¦é˜ˆå€¼ èŒƒå›´ [0,8], é»˜è®¤å€¼0
+	int					iTrafficJamCarNumber;				//æ‹¥å µè½¦è¾†é˜ˆå€¼ èŒƒå›´ [0,128], é»˜è®¤å€¼0
+	int					iLsolationBeltDriveway;				//éš”ç¦»å¸¦æ‰€åœ¨è½¦é“ èŒƒå›´ [0,12], é»˜è®¤å€¼0
+	int					iLeftToTheLane;						//å·¦ä¾§æ¥å‘è½¦é“æ•°ç›® èŒƒå›´ [0,8], é»˜è®¤å€¼0 ä»£è¡¨å…¨éƒ¨ä¸ºæ¥å‘
+	int					iNonmotorValue;						//è·¯å£éæœºåŠ¨è½¦è¿‡æ»¤é˜ˆå€¼ èŒƒå›´ [0,20], é»˜è®¤å€¼ 0ï¼›å¯¹åº”èŒƒå›´[-10,10] ï¼Œ-10ä¸è¿‡æ»¤ï¼Œå€¼è¶Šå¤§è¿‡æ»¤æ•ˆæœè¶Šå¼º
+	int					iMotorValue;						//è¡Œè½¦é“éæœºåŠ¨è½¦è¿‡æ»¤é˜ˆå€¼ æ•´æ•°, èŒƒå›´ [0,20], é»˜è®¤å€¼ 0ï¼›å¯¹åº”èŒƒå›´[-10,10] ï¼Œ-10ä¸è¿‡æ»¤ï¼Œå€¼è¶Šå¤§è¿‡æ»¤æ•ˆæœè¶Šå¼º
+	int					iShieldDistance;					//åå°„å±è”½è·ç¦» [0,250],å•ä½mï¼Œ é»˜è®¤å€¼80ï¼Œ0è¡¨ç¤ºæ­¤åŠŸèƒ½æ— æ•ˆ
 }RadarDevicePara, *pRadarDevicePara;	
 
 #define MAX_CROP_NUM 2
 typedef struct _tagCropCoding
 {
 	int                iSize;
-	int                iEnable;                             //0£º²»Ê¹ÄÜ£»1£ºÊ¹ÄÜ
-	TPoint             tPoint[MAX_CROP_NUM];                //Ê¹ÓÃÍò·Ö±È±íÊ¾£¬È¡Öµ·¶Î§0¡«10000¡£¾ØĞÎ¿òÊµ¼Ê·Ö±æÂÊ×îĞ¡Îª352*288,ÇøÓò¶¥µã×ø±ê
+	int                iEnable;                             //0ï¼šä¸ä½¿èƒ½ï¼›1ï¼šä½¿èƒ½
+	TPoint             tPoint[MAX_CROP_NUM];                //ä½¿ç”¨ä¸‡åˆ†æ¯”è¡¨ç¤ºï¼Œå–å€¼èŒƒå›´0ï½10000ã€‚çŸ©å½¢æ¡†å®é™…åˆ†è¾¨ç‡æœ€å°ä¸º352*288,åŒºåŸŸé¡¶ç‚¹åæ ‡
 }CropCoding, *pCropCoding;
 
 #define MAX_VAR_GAUGE_POINT_NUM		8
@@ -3116,7 +3116,7 @@ typedef struct __tagInterestedArea
 	int iTop;
 	int iRight;
 	int iBottom;
-	int iDstFrameRate;	//destination frame rate£¬1-current framerate
+	int iDstFrameRate;	//destination frame rateï¼Œ1-current framerate
 }TInterestedArea, *pTInterestedArea;
 
 typedef struct __tagVcaFlowSpeedParam
@@ -3144,18 +3144,18 @@ typedef struct __tagVcaFlowSpeedParam
 	int                 iNightFocusMode;	//0: off 1: on
 	int                 iWaterSpeedDirEnable;	//0: Not Enable 1: Enable
 	vca_TLine			tWaterSpeedDirPoint;
-	int                 iWaterSpeedRatio;	//Water Speed Ratio,£¨0,1000]
-	int                 iFilterSensitivity;	//int	¹ıÂËÁéÃô¶È	0¡«100 
-	int              	iLinkAreaType;	//int	Ë®Î»Áª¶¯¼ì²âÇøÓòÀàĞÍ	0-²»Áª¶¯ 1-Á÷ËÙ·½Ïò×ó±ßÁª¶¯ 2-Á÷ËÙ·½ÏòÓÒ±ßÁª¶¯ 3-Ë«±ßÁª¶¯
-	int              	iMinSpeed;	//int	×îĞ¡Á÷ËÙÏŞÖÆ	-300000¡«300000£¬µ¥Î»£ººÁÃ×/Ãë(mm/s)
-	int              	iMaxSpeed;	//int	×î´óÁ÷ËÙÏŞÖÆ	-300000¡«300000£¬µ¥Î»£ººÁÃ×/Ãë(mm/s)
-	int             	iDisplayType;	//int	Á÷ËÙÏÔÊ¾ÀàĞÍ	0-Ë²Ê±Á÷ËÙ 1-Æ½¾ùÁ÷ËÙ
-	int                 iWaterLevelThreshold;//int ·¶Î§:-10000000¡«10000000£¬µ¥Î»:ºÁÃ×(mm)
-	int                 iDetectMode;          //Á÷ËÙ¼ì²âÄ£Ê½	0-±£Áô 1-×Ô¶¯ 2-µÍËÙ 3-¸ßËÙ
-	int                 iTrackFrameNum;       //¼ì²â¸ú×ÙÖ¡Êı	·¶Î§£º2-10  iDetectMode=1×Ô¶¯Ä£Ê½ÏÂÓĞĞ§
-	int                 iFieldOfVision;       //Á÷ËÙ¼ì²âÊÓÒ°´óĞ¡	0-±£Áô 1-´ó 2-Ğ¡
-	int                 iCorrlevel;           //Á÷ËÙÇúÏßĞ£Õı¼¶±ğ	0-±£Áô ·¶Î§:1-100
-	int					iStartDir;            //Á÷ËÙ¼ì²âÆğµã·½Ïò	0-±£Áô 1-Í¬Ïò(ÃæÏòÆğµã·½Ïò¼ì²â) 2-·´Ïò(±³ÏòÆğµã·½Ïò¼ì²â)
+	int                 iWaterSpeedRatio;	//Water Speed Ratio,ï¼ˆ0,1000]
+	int                 iFilterSensitivity;	//int	è¿‡æ»¤çµæ•åº¦	0ï½100 
+	int              	iLinkAreaType;	//int	æ°´ä½è”åŠ¨æ£€æµ‹åŒºåŸŸç±»å‹	0-ä¸è”åŠ¨ 1-æµé€Ÿæ–¹å‘å·¦è¾¹è”åŠ¨ 2-æµé€Ÿæ–¹å‘å³è¾¹è”åŠ¨ 3-åŒè¾¹è”åŠ¨
+	int              	iMinSpeed;	//int	æœ€å°æµé€Ÿé™åˆ¶	-300000ï½300000ï¼Œå•ä½ï¼šæ¯«ç±³/ç§’(mm/s)
+	int              	iMaxSpeed;	//int	æœ€å¤§æµé€Ÿé™åˆ¶	-300000ï½300000ï¼Œå•ä½ï¼šæ¯«ç±³/ç§’(mm/s)
+	int             	iDisplayType;	//int	æµé€Ÿæ˜¾ç¤ºç±»å‹	0-ç¬æ—¶æµé€Ÿ 1-å¹³å‡æµé€Ÿ
+	int                 iWaterLevelThreshold;//int èŒƒå›´:-10000000ï½10000000ï¼Œå•ä½:æ¯«ç±³(mm)
+	int                 iDetectMode;          //æµé€Ÿæ£€æµ‹æ¨¡å¼	0-ä¿ç•™ 1-è‡ªåŠ¨ 2-ä½é€Ÿ 3-é«˜é€Ÿ
+	int                 iTrackFrameNum;       //æ£€æµ‹è·Ÿè¸ªå¸§æ•°	èŒƒå›´ï¼š2-10  iDetectMode=1è‡ªåŠ¨æ¨¡å¼ä¸‹æœ‰æ•ˆ
+	int                 iFieldOfVision;       //æµé€Ÿæ£€æµ‹è§†é‡å¤§å°	0-ä¿ç•™ 1-å¤§ 2-å°
+	int                 iCorrlevel;           //æµé€Ÿæ›²çº¿æ ¡æ­£çº§åˆ«	0-ä¿ç•™ èŒƒå›´:1-100
+	int					iStartDir;            //æµé€Ÿæ£€æµ‹èµ·ç‚¹æ–¹å‘	0-ä¿ç•™ 1-åŒå‘(é¢å‘èµ·ç‚¹æ–¹å‘æ£€æµ‹) 2-åå‘(èƒŒå‘èµ·ç‚¹æ–¹å‘æ£€æµ‹)
 }VcaFlowSpeedParam, *pVcaFlowSpeedParam;
 
 #define MAX_PRESET_NUM_EX			32
@@ -3215,146 +3215,146 @@ typedef  struct WaterSamplePoint
 	WaterPresetInfo stPresetInfo[MAX_PRESET_NUM_EX];
 	int	iGaugeLength;
 	int iGaugeCount;        //this param is valid when the gauge type is pile gauge
-	int iDirection;         //0£ºleft 1£ºright
+	int iDirection;         //0ï¼šleft 1ï¼šright
 	int iVirGaugeMode;		//Virtual Gauge Detect Mode 0-algorithm detection mode 1-manual calibration mode
 	int iVirGaugePointNum;  //2--8,Effective in manual calibration mode 
 	vca_TPoint tVirGaugePoint[MAX_VAR_GAUGE_POINT_NUM];
-	int iCurGaugeNo;        //0£ºinvalid  >0 is Gauge Num
+	int iCurGaugeNo;        //0ï¼šinvalid  >0 is Gauge Num
 	int iSnapPresetEnable; //Snap interval enable
 	int iSnapPresetNo;     //Snap interval No
-	int iGaugeMinScale;    //the minize Scale(Unit:cm£¬range:0-20£¬0:auto)
-	int iGaugeCalibIntervel; //5-1440£¨unit:min£©
-	int iDetDisturbFlag; //0-default£¬1--close 2--detect human default£º1
+	int iGaugeMinScale;    //the minize Scale(Unit:cmï¼Œrange:0-20ï¼Œ0:auto)
+	int iGaugeCalibIntervel; //5-1440ï¼ˆunit:minï¼‰
+	int iDetDisturbFlag; //0-defaultï¼Œ1--close 2--detect human defaultï¼š1
 }WaterSamplePoint, *LPWaterSamplePoint;
 
-#define BANDWIDTH_ADAPTING         0    // 20M/40M ×ÔÊÊÓ¦
-#define BANDWIDTH_FIX              1    //¹Ì¶¨20M Æµ¿í
+#define BANDWIDTH_ADAPTING         0    // 20M/40M è‡ªé€‚åº”
+#define BANDWIDTH_FIX              1    //å›ºå®š20M é¢‘å®½
 #define MAX_WIFI_AP_CLIENT        16
 
 
-//²éÑ¯/»Ø¸´AP clientÉè±¸ÁĞ±í
+//æŸ¥è¯¢/å›å¤AP clientè®¾å¤‡åˆ—è¡¨
 typedef struct tagWIFIAPClientResult
 {
-    int     iSize;              // ½á¹¹Ìå´óĞ¡
-    int	    iCount;             // ×ÜÌõÊı
-    int     iNo;                // µ±Ç°ĞòºÅ´Ó¿ªÊ¼
-    char    cDevName[LEN_64]; // Éè±¸Ãû³Æ
-    char    cIp[LEN_64];      // ipµØÖ·
-    char    cMac[LEN_64];     // macµØÖ·
-    int     iSpeed;            // ËÙ¶ÈMbps
-    int     iBandWidth;        // ´ø¿íBANDWIDTH_ADAPTING/BANDWIDTH_FIX
-    int     iConnectTime;       // Á¬½ÓÊ±¼ä s
+    int     iSize;              // ç»“æ„ä½“å¤§å°
+    int	    iCount;             // æ€»æ¡æ•°
+    int     iNo;                // å½“å‰åºå·ä»å¼€å§‹
+    char    cDevName[LEN_64]; // è®¾å¤‡åç§°
+    char    cIp[LEN_64];      // ipåœ°å€
+    char    cMac[LEN_64];     // macåœ°å€
+    int     iSpeed;            // é€Ÿåº¦Mbps
+    int     iBandWidth;        // å¸¦å®½BANDWIDTH_ADAPTING/BANDWIDTH_FIX
+    int     iConnectTime;       // è¿æ¥æ—¶é—´ s
 
 } WIFIAPClientResult, *pWIFIAPClientResult;
 
 
 typedef struct tagWifiAPClientList
 {
-    int				    iSize; // ½á¹¹Ìå´óĞ¡
+    int				    iSize; // ç»“æ„ä½“å¤§å°
     WIFIAPClientResult	tResult[MAX_WIFI_AP_CLIENT];      
 }WifiAPClientList, *pWifiAPClientList;
 
-#define SPEED_ADAPTING         0    // 20M/40M ×ÔÊÊÓ¦
-#define SPEED_FIX              1    //¹Ì¶¨20M Æµ¿í
+#define SPEED_ADAPTING         0    // 20M/40M è‡ªé€‚åº”
+#define SPEED_FIX              1    //å›ºå®š20M é¢‘å®½
 #define MAX_WIFI_SEARCH_AP     32
 
 typedef struct tagWIFISearchAPResult
 {
-    int     iSize;               // ½á¹¹Ìå´óĞ¡
-    int     iCount;              // ×ÜÌõÊı
-    int     iNo;                 // µ±Ç°ĞòºÅ´Ó¿ªÊ¼
+    int     iSize;               // ç»“æ„ä½“å¤§å°
+    int     iCount;              // æ€»æ¡æ•°
+    int     iNo;                 // å½“å‰åºå·ä»å¼€å§‹
     char    cESSID[LEN_33];      //ESSID  LEN_33
-    char    cEncryption[LEN_16]; //wifi encrypttion flag; NULL no encryption£¬"WEP" encryption
-    int     iChannel;            // 0£¬Auto£¬¡«£¬ĞÅµÀ¡«ĞÅµÀ¡£
+    char    cEncryption[LEN_16]; //wifi encrypttion flag; NULL no encryptionï¼Œ"WEP" encryption
+    int     iChannel;            // 0ï¼ŒAutoï¼Œï½ï¼Œä¿¡é“ï½ä¿¡é“ã€‚
     int     iRSSL;               // Mbps
-    int     iSpeed;              // ËÙ¶ÈMbps SPEED_ADAPTING/SPEED_FIX
+    int     iSpeed;              // é€Ÿåº¦Mbps SPEED_ADAPTING/SPEED_FIX
 
 } WIFISearchAPResult, *pWIFISearchAPResult;
 
 typedef struct tagWIFISearchAPResultList
 {
-    int		            iSize;   // ½á¹¹Ìå´óĞ¡
+    int		            iSize;   // ç»“æ„ä½“å¤§å°
     WIFISearchAPResult  tResult[MAX_WIFI_SEARCH_AP];
 } WIFISearchAPResultList,*pWIFISearchAPResultList;
 
-#define LOCATION_NEM						1	//Â·¿Ú±àºÅ/µØµãÃû³Æ
-#define LANE_NUMBER							2	//³µµÀ±àºÅ/¼àÇøÃû³Æ
-#define DEVICE_NUMBER						3	//Éè±¸±àºÅ/Éè±¸Ãû³Æ
-#define DRIVE_DIRECTION_TYPE				4	//ĞĞÊ»·½ÏòÀàĞÍ£»
-#define DICTIONARY_VEHICLE_TYPE				5	//³µÁ¾ÀàĞÍ£»
-#define SNAP_TYPE							6	//×¥ÅÄÀàĞÍ£»
-#define VEHICLE_BRAND						7	//³µÁ¾Æ·ÅÆ£»
-#define VEHICLE_PLATE						8	//³µÅÆ£»
-#define VEHICLE_COLOR						9	//³µÉíÑÕÉ«
-#define PIC_NAME_FORMATE					10	//Í¼Æ¬Ãû³Æ¸ñÊ½£»
-#define PLATFORM_VERSION					11	//Æ½Ì¨°æ±¾£»
-#define VEHICLE_SUB_BRAND					12	//³µÁ¾×ÓÆ·ÅÆ£»
-#define EXPORT_PIC_ROUTE_FORMATE			13	//µ¼³öÍ¼Æ¬Â·¾¶¸ñÊ½£»
-#define PLATFORM_TYPE						14	//Æ½Ì¨ÀàĞÍ£»
-#define DEVICE_MODE							15	//Éè±¸ĞÍºÅ£»
-#define LED_INSERT_LABEL_ITEM				16	//Led×Ö·ûµş¼Ó¿ìËÙ²åÈë±êÇ©Ïî£»
-#define LED_DEV_MODE						17	//LedÉè±¸ÀàĞÍ£»
-#define LED_HINT_MODE						18	//LedÌáÊ¾Ä£Ê½£»
-#define SCH_ALRAM_MODE						19	//²¼¿Ø±¨¾¯ÀàĞÍ C
-#define SEPARATOR_TYPE						20	//·Ö¸ô·ûÀàĞÍ£»
-#define FTP_UPLOAD_TYPE						21	//FTPÉÏ´«ÎÄ¼şÀàĞÍ£»
-#define VEHICLE_FORM						22	//³µÁ¾ÍâĞÎ£»
-#define OSD_COLOR							23	//OSD×ÖÌåÑÕÉ«£»
-#define LANE_TYPE							24	//³µµÀÀàĞÍ£»
-#define PLATE_COLOR							25	//³µÅÆÑÕÉ«£»
-#define ITS_LOG_LEVEL						26	//½»Í¨ÈÕÖ¾µÈ¼¶£»
-#define CAM_NAME							27	//Ïà»úÃû³Æ£»
-#define LOCATION_NAME						28	//Â·¿ÚÃû³Æ£»
-#define OSD_OVERLAY_TYPE					29	//Osdµş¼ÓĞÅÏ¢ÀàĞÍ£»
-#define MD_CARD_VERSION						30	//Mq¿¨¿Ú°æ±¾£»
-#define MD_ILLEGAL_VERSION					31	//MqÎ¥·¨°æ±¾£»
-#define COMPOSTION_VIDESIZE_TYPE 			32	//ºÏ³É·Ö±æÂÊÀàĞÍ
+#define LOCATION_NEM						1	//è·¯å£ç¼–å·/åœ°ç‚¹åç§°
+#define LANE_NUMBER							2	//è½¦é“ç¼–å·/ç›‘åŒºåç§°
+#define DEVICE_NUMBER						3	//è®¾å¤‡ç¼–å·/è®¾å¤‡åç§°
+#define DRIVE_DIRECTION_TYPE				4	//è¡Œé©¶æ–¹å‘ç±»å‹ï¼›
+#define DICTIONARY_VEHICLE_TYPE				5	//è½¦è¾†ç±»å‹ï¼›
+#define SNAP_TYPE							6	//æŠ“æ‹ç±»å‹ï¼›
+#define VEHICLE_BRAND						7	//è½¦è¾†å“ç‰Œï¼›
+#define VEHICLE_PLATE						8	//è½¦ç‰Œï¼›
+#define VEHICLE_COLOR						9	//è½¦èº«é¢œè‰²
+#define PIC_NAME_FORMATE					10	//å›¾ç‰‡åç§°æ ¼å¼ï¼›
+#define PLATFORM_VERSION					11	//å¹³å°ç‰ˆæœ¬ï¼›
+#define VEHICLE_SUB_BRAND					12	//è½¦è¾†å­å“ç‰Œï¼›
+#define EXPORT_PIC_ROUTE_FORMATE			13	//å¯¼å‡ºå›¾ç‰‡è·¯å¾„æ ¼å¼ï¼›
+#define PLATFORM_TYPE						14	//å¹³å°ç±»å‹ï¼›
+#define DEVICE_MODE							15	//è®¾å¤‡å‹å·ï¼›
+#define LED_INSERT_LABEL_ITEM				16	//Ledå­—ç¬¦å åŠ å¿«é€Ÿæ’å…¥æ ‡ç­¾é¡¹ï¼›
+#define LED_DEV_MODE						17	//Ledè®¾å¤‡ç±»å‹ï¼›
+#define LED_HINT_MODE						18	//Ledæç¤ºæ¨¡å¼ï¼›
+#define SCH_ALRAM_MODE						19	//å¸ƒæ§æŠ¥è­¦ç±»å‹ C
+#define SEPARATOR_TYPE						20	//åˆ†éš”ç¬¦ç±»å‹ï¼›
+#define FTP_UPLOAD_TYPE						21	//FTPä¸Šä¼ æ–‡ä»¶ç±»å‹ï¼›
+#define VEHICLE_FORM						22	//è½¦è¾†å¤–å½¢ï¼›
+#define OSD_COLOR							23	//OSDå­—ä½“é¢œè‰²ï¼›
+#define LANE_TYPE							24	//è½¦é“ç±»å‹ï¼›
+#define PLATE_COLOR							25	//è½¦ç‰Œé¢œè‰²ï¼›
+#define ITS_LOG_LEVEL						26	//äº¤é€šæ—¥å¿—ç­‰çº§ï¼›
+#define CAM_NAME							27	//ç›¸æœºåç§°ï¼›
+#define LOCATION_NAME						28	//è·¯å£åç§°ï¼›
+#define OSD_OVERLAY_TYPE					29	//Osdå åŠ ä¿¡æ¯ç±»å‹ï¼›
+#define MD_CARD_VERSION						30	//Mqå¡å£ç‰ˆæœ¬ï¼›
+#define MD_ILLEGAL_VERSION					31	//Mqè¿æ³•ç‰ˆæœ¬ï¼›
+#define COMPOSTION_VIDESIZE_TYPE 			32	//åˆæˆåˆ†è¾¨ç‡ç±»å‹
 
 #define MAX_DATA_PIC_ITEM  10
 
 typedef struct tagDataDicionaryItem
 {
-	int		            iSize;   // ½á¹¹Ìå´óĞ¡
-	int					iFuncType;		//¹¦ÄÜÀàĞÍ£¬ÈçÉÏ
-	int		            iTotal;   // ²éÑ¯×ÜÊı
-	int		            iIndexNo;   // ×Ö¶ÎË÷Òı0~(N-1)
-	int		            iFuncTypeValueNo;   // µ±Ç°±àºÅ
-	char				cParam[LEN_128];   // ×Ö·û´®ÃèÊö£¬ÄÚÈİ¸ñÊ½¸ù¾İ¾ßÌåiFuncTypeÒÔ¼°iFuncTypeValueNo×Ô¼º¶¨Òå
+	int		            iSize;   // ç»“æ„ä½“å¤§å°
+	int					iFuncType;		//åŠŸèƒ½ç±»å‹ï¼Œå¦‚ä¸Š
+	int		            iTotal;   // æŸ¥è¯¢æ€»æ•°
+	int		            iIndexNo;   // å­—æ®µç´¢å¼•0~(N-1)
+	int		            iFuncTypeValueNo;   // å½“å‰ç¼–å·
+	char				cParam[LEN_128];   // å­—ç¬¦ä¸²æè¿°ï¼Œå†…å®¹æ ¼å¼æ ¹æ®å…·ä½“iFuncTypeä»¥åŠiFuncTypeValueNoè‡ªå·±å®šä¹‰
 }DataDicionaryItem,*pDataDicionaryItem;
 
 
 #define			MAX_HINT_INFO_TYPE_NUM   2
 typedef struct tagHintInfo
 {
-	int		            iSize;   // ½á¹¹Ìå´óĞ¡
-	int					iHintType;//ÌáÊ¾ÀàĞÍ 0£ºÓĞ³µ 1£ºÎŞ³µ
+	int		            iSize;   // ç»“æ„ä½“å¤§å°
+	int					iHintType;//æç¤ºç±»å‹ 0ï¼šæœ‰è½¦ 1ï¼šæ— è½¦
 	char				cDisplayInfo[LEN_128];
-	int					iHintTime;		//ÌáÊ¾Ê±¼ä,µ¥Î»£ºÃë
+	int					iHintTime;		//æç¤ºæ—¶é—´,å•ä½ï¼šç§’
 } HintInfo,*pHintInfo;
 
 
 typedef struct tagLedDevOsdInfo
 {
-	int     iSize;               // ½á¹¹Ìå´óĞ¡
-	int     iIdNum;              // ²»ÏÔÊ¾£¬ÄÚºË¸³Öµ£¬Ìí¼ÓÊ±Ä¬ÈÏ0£¬±à¼­ºÍÉ¾³ıÊ±¸ù¾İ»ñÈ¡ÖµÍ¸´«¼´¿É£¨´Ó1¿ªÊ¼£©£¨ºó¶ËÊ¹ÓÃ£©
-	int     iActionType;         // 0£ºÌí¼Ó£¬1£º±à¼­£¬2£ºÉ¾³ı 
-	int		iLedTypeId;			//LEDÆÁµÄÓ¦ÓÃÀàĞÍ±àºÅ(¶ÔÓ¦DATADICTIONARYITEM²éÑ¯ÀàĞÍ17µÄĞòºÅiFuncTypeValueNo)£¬´Ó1¿ªÊ¼£¬Èç£º1-µÀÂ·Ô¤¾¯ÆÁ£¬2-Óµ¶ÂÆÁ£¬3-³¬ËÙÆÁ£¬Ò²¿ÉÒÔ1-³¬ËÙÆÁ£¬2-µÀÂ·Ô¤¾¯ÆÁ£¬¾ßÌåÊıÖµÒÀ¾İDATADICTIONARYITEM²éÑ¯ÉÏ±¨¶ø¶¨
-	char    cLedDevNo[LEN_64];  //ÌáÊ¾ÆÁ±àºÅ
-	char    cledDevName[LEN_128];  //ÌáÊ¾ÆÁÃû³Æ
-	int     iAlarmTypeId;            // ÌáÊ¾Ä£Ê½,ÌáÊ¾Ä£Ê½(¶ÔÓ¦DATADICTIONARYITEM²éÑ¯ÀàĞÍ18µÄĞòºÅiFuncTypeValueNo)£¬´Ó1¿ªÊ¼£¬Èç£º1-µÀÂ·Ô¤¾¯
-	int     iFontWidth;               // ×ÖÌå¿í¶È  16,24,26,28£¬30£¬32,48,64
-	int     iFontHeight;              // ×ÖÌå¸ß¶È  16,24,26,28£¬30£¬32,48,64
-	int     iFontColor;				//×ÖÌåÑÕÉ«LEDÆÁµÄ×ÖÌåÑÕÉ«(¶ÔÓ¦DATADICTIONARYITEM²éÑ¯ÀàĞÍ23µÄĞòºÅiFuncTypeValueNo)£¬´Ó1¿ªÊ¼£¬Èç£º1-ºìÉ«
-	char    cLedSize[LEN_64];		//ÆÁÄ»³ß´ç   ±ÈÈç£º800*600  £¨LedÉè±¸Íâ¼ü¹ØÁª£©
-	HintInfo tHintInfo[MAX_HINT_INFO_TYPE_NUM];//Ä¬ÈÏtHintInfo[0]ÓĞ³µ tHintInfo[1]ÎŞ³µ
-	int		iActionResult;		//²Ù×÷·µ»Ø×´Ì¬  0£º³É¹¦ £¬-1 £ºÊ§°Ü
+	int     iSize;               // ç»“æ„ä½“å¤§å°
+	int     iIdNum;              // ä¸æ˜¾ç¤ºï¼Œå†…æ ¸èµ‹å€¼ï¼Œæ·»åŠ æ—¶é»˜è®¤0ï¼Œç¼–è¾‘å’Œåˆ é™¤æ—¶æ ¹æ®è·å–å€¼é€ä¼ å³å¯ï¼ˆä»1å¼€å§‹ï¼‰ï¼ˆåç«¯ä½¿ç”¨ï¼‰
+	int     iActionType;         // 0ï¼šæ·»åŠ ï¼Œ1ï¼šç¼–è¾‘ï¼Œ2ï¼šåˆ é™¤ 
+	int		iLedTypeId;			//LEDå±çš„åº”ç”¨ç±»å‹ç¼–å·(å¯¹åº”DATADICTIONARYITEMæŸ¥è¯¢ç±»å‹17çš„åºå·iFuncTypeValueNo)ï¼Œä»1å¼€å§‹ï¼Œå¦‚ï¼š1-é“è·¯é¢„è­¦å±ï¼Œ2-æ‹¥å µå±ï¼Œ3-è¶…é€Ÿå±ï¼Œä¹Ÿå¯ä»¥1-è¶…é€Ÿå±ï¼Œ2-é“è·¯é¢„è­¦å±ï¼Œå…·ä½“æ•°å€¼ä¾æ®DATADICTIONARYITEMæŸ¥è¯¢ä¸ŠæŠ¥è€Œå®š
+	char    cLedDevNo[LEN_64];  //æç¤ºå±ç¼–å·
+	char    cledDevName[LEN_128];  //æç¤ºå±åç§°
+	int     iAlarmTypeId;            // æç¤ºæ¨¡å¼,æç¤ºæ¨¡å¼(å¯¹åº”DATADICTIONARYITEMæŸ¥è¯¢ç±»å‹18çš„åºå·iFuncTypeValueNo)ï¼Œä»1å¼€å§‹ï¼Œå¦‚ï¼š1-é“è·¯é¢„è­¦
+	int     iFontWidth;               // å­—ä½“å®½åº¦  16,24,26,28ï¼Œ30ï¼Œ32,48,64
+	int     iFontHeight;              // å­—ä½“é«˜åº¦  16,24,26,28ï¼Œ30ï¼Œ32,48,64
+	int     iFontColor;				//å­—ä½“é¢œè‰²LEDå±çš„å­—ä½“é¢œè‰²(å¯¹åº”DATADICTIONARYITEMæŸ¥è¯¢ç±»å‹23çš„åºå·iFuncTypeValueNo)ï¼Œä»1å¼€å§‹ï¼Œå¦‚ï¼š1-çº¢è‰²
+	char    cLedSize[LEN_64];		//å±å¹•å°ºå¯¸   æ¯”å¦‚ï¼š800*600  ï¼ˆLedè®¾å¤‡å¤–é”®å…³è”ï¼‰
+	HintInfo tHintInfo[MAX_HINT_INFO_TYPE_NUM];//é»˜è®¤tHintInfo[0]æœ‰è½¦ tHintInfo[1]æ— è½¦
+	int		iActionResult;		//æ“ä½œè¿”å›çŠ¶æ€  0ï¼šæˆåŠŸ ï¼Œ-1 ï¼šå¤±è´¥
 } LedDevOsdInfo, *pLedDevOsdInfo;
 
 typedef struct tagLedDevOsdParamList
 {
-	int		            iSize;   // ½á¹¹Ìå´óĞ¡
+	int		            iSize;   // ç»“æ„ä½“å¤§å°
 	int					iTotal;
-	int					iIndexNo;		//ÌáÊ¾Ê±¼ä,µ¥Î»£ºÃë
+	int					iIndexNo;		//æç¤ºæ—¶é—´,å•ä½ï¼šç§’
 	LedDevOsdInfo       tLedDevOsdInfo;
 } LedDevOsdParamList,*pLedDevOsdParamList;
 
@@ -3381,23 +3381,23 @@ typedef struct tagLedDevInfo
 	int     iSize;               
 	int		iChanNo;
 	int     iIdNo;					//reserved
-	char    cLedDevNo[LEN_64];		//ÌáÊ¾ÆÁ±àºÅ
-	char    cLedDevName[LEN_128];   //ÌáÊ¾ÆÁÃû³Æ
-	int		iLedDevType;			//ÌáÊ¾ÆÁµÄÓ¦ÓÃÀàĞÍ
-	int     iLedDevWidth;           //ÆÁÄ»¿í¶È  µ¥Î»£ºÏñËØ(1-10000)
-	int     iLedDevHeight;          //ÆÁÄ»¸ß¶È  µ¥Î»£ºÏñËØ(1-10000)
-	int     iLedDevModel;			//ÌáÊ¾ÆÁĞÍºÅ
-	char    cIpAddr[LEN_64];		//IPµØÖ·
-	int		iPort;					//¶Ë¿ÚºÅ
+	char    cLedDevNo[LEN_64];		//æç¤ºå±ç¼–å·
+	char    cLedDevName[LEN_128];   //æç¤ºå±åç§°
+	int		iLedDevType;			//æç¤ºå±çš„åº”ç”¨ç±»å‹
+	int     iLedDevWidth;           //å±å¹•å®½åº¦  å•ä½ï¼šåƒç´ (1-10000)
+	int     iLedDevHeight;          //å±å¹•é«˜åº¦  å•ä½ï¼šåƒç´ (1-10000)
+	int     iLedDevModel;			//æç¤ºå±å‹å·
+	char    cIpAddr[LEN_64];		//IPåœ°å€
+	int		iPort;					//ç«¯å£å·
 }LedDevInfo, *pLedDevInfo;
 
 typedef struct tagLedDevReply
 {
 	int		            iSize;
 	int					iChanNo;
-	int					iActionType;		//opt type 0£ºÌí¼Ó£¬1£º±à¼­£¬2£ºÉ¾³ı£¬3£º²âÊÔ
-	char				cLedDevNo[LEN_64];			//ÌáÊ¾ÆÁ±àºÅ
-	int					iActionResult;		//²Ù×÷·µ»Ø×´Ì¬ 0£º³É¹¦£¬1:Ê§°Ü
+	int					iActionType;		//opt type 0ï¼šæ·»åŠ ï¼Œ1ï¼šç¼–è¾‘ï¼Œ2ï¼šåˆ é™¤ï¼Œ3ï¼šæµ‹è¯•
+	char				cLedDevNo[LEN_64];			//æç¤ºå±ç¼–å·
+	int					iActionResult;		//æ“ä½œè¿”å›çŠ¶æ€ 0ï¼šæˆåŠŸï¼Œ1:å¤±è´¥
 }LedDevReply,*pLedDevReply;
 
 typedef struct tagLedDevParamResult
@@ -3411,7 +3411,7 @@ typedef struct tagLedDevParamResult
 typedef struct tagLedDevParamOpt
 {
 	int		            iSize;   
-	int					iActionType;		//opt type 0£ºÌí¼Ó£¬1£º±à¼­£¬2£ºÉ¾³ı£¬3£º²âÊÔ£¬ 4,²éÑ¯
+	int					iActionType;		//opt type 0ï¼šæ·»åŠ ï¼Œ1ï¼šç¼–è¾‘ï¼Œ2ï¼šåˆ é™¤ï¼Œ3ï¼šæµ‹è¯•ï¼Œ 4,æŸ¥è¯¢
 	LedDevInfo			tLedDevInfo;
 }LedDevParamOpt,*pLedDevParamOpt;
 
@@ -3419,8 +3419,8 @@ typedef struct tagLedDevParamOpt
 
 typedef struct tagRadarPointInfo
 {	
-	vca_TPoint			tVideoPosition;	//Íò·Ö±È×ø±ê
-	vca_TPoint			tRealPosition;	//ÊıÖµ[0~100000]¶ÔÓ¦[-50000cm~50000cm] ÊıÖµ50000¶ÔÓ¦0cm
+	vca_TPoint			tVideoPosition;	//ä¸‡åˆ†æ¯”åæ ‡
+	vca_TPoint			tRealPosition;	//æ•°å€¼[0~100000]å¯¹åº”[-50000cm~50000cm] æ•°å€¼50000å¯¹åº”0cm
 }RadarPointInfo, *pRadarPointInfo;
 
 typedef struct tagItsRadarCalibrate
@@ -3444,8 +3444,8 @@ typedef struct tagDefaultDevParam
 {
 	int		iSize;   
 	int		iChanNo;
-	int		iType;			//input para 1-ÈÈ³ÉÏñÄ£×é»Ö¸´Ä¬ÈÏ  2-4GĞ¡»ùÕ¾FDDÄ£¿é»Ö¸´³ö³§ 3-4GĞ¡»ùÕ¾TDDÄ£¿é»Ö¸´³ö³§ 4-4GĞ¡»ùÕ¾FDDÄ£¿éÖØÆô 5-4GĞ¡»ùÕ¾TDDÄ£¿éÖØÆô
-	int		iResult;		//output para 0-success£¬1-failed
+	int		iType;			//input para 1-çƒ­æˆåƒæ¨¡ç»„æ¢å¤é»˜è®¤  2-4Gå°åŸºç«™FDDæ¨¡å—æ¢å¤å‡ºå‚ 3-4Gå°åŸºç«™TDDæ¨¡å—æ¢å¤å‡ºå‚ 4-4Gå°åŸºç«™FDDæ¨¡å—é‡å¯ 5-4Gå°åŸºç«™TDDæ¨¡å—é‡å¯
+	int		iResult;		//output para 0-successï¼Œ1-failed
 }DefaultDevParam, *pDefaultDevParam;
 
 
@@ -3495,22 +3495,22 @@ typedef struct tagSmallCellImsi_Notify
 typedef struct tagVcaHDSchedule
 {
     int     iSize;
-    int     iSceneId;               // ¸ß16Î»Îª0Ê±£¬µÍ16Î»±íÊ¾ÖÇÄÜ·ÖÎö£¬·¶Î§0~31;¸ß16Î»Îª1Ê±£¬µÍ16Î»±íÊ¾¾¯½ä£¬·¶Î§0~3
-    int     iType;			        //Ä£°åÀàĞÍ 0=±£Áô, 1=Í¨ÓÃ, 2=¶ÌÖ¡, 3=³¤Ö¡
-    int     iEnable;		        //0=²»Ê¹ÄÜ, 1=Ê¹ÄÜ
-    int     iDayId;			        // ÈÕÄ£°åID '-1=ÎŞĞ§, ·¶Î§[0,31]
-    int     iNightId;			    // Ò¹Ä£°åID '-1=ÎŞĞ§, ·¶Î§[0,31]
-	int     iColor2Gray;			//Áª¶¯²Ê×ªºÚ	0-±£Áô 1-ºÚ°× 2-ÆÕÍ¨
+    int     iSceneId;               // é«˜16ä½ä¸º0æ—¶ï¼Œä½16ä½è¡¨ç¤ºæ™ºèƒ½åˆ†æï¼ŒèŒƒå›´0~31;é«˜16ä½ä¸º1æ—¶ï¼Œä½16ä½è¡¨ç¤ºè­¦æˆ’ï¼ŒèŒƒå›´0~3
+    int     iType;			        //æ¨¡æ¿ç±»å‹ 0=ä¿ç•™, 1=é€šç”¨, 2=çŸ­å¸§, 3=é•¿å¸§
+    int     iEnable;		        //0=ä¸ä½¿èƒ½, 1=ä½¿èƒ½
+    int     iDayId;			        // æ—¥æ¨¡æ¿ID '-1=æ— æ•ˆ, èŒƒå›´[0,31]
+    int     iNightId;			    // å¤œæ¨¡æ¿ID '-1=æ— æ•ˆ, èŒƒå›´[0,31]
+	int     iColor2Gray;			//è”åŠ¨å½©è½¬é»‘	0-ä¿ç•™ 1-é»‘ç™½ 2-æ™®é€š
 } VcaHDSchedule, *pVcaHDSchedule, VcaHDScheduleResult, *pVcaHDScheduleResult;
 
 #define MAX_VCA_FOCUS_AREA 17
 typedef struct tagVcaFocusArea
 {
     int                 iSize;
-    int                 iSceneId;                   // ¸ß16Î»Îª0Ê±£¬µÍ16Î»±íÊ¾ÖÇÄÜ·ÖÎö£¬·¶Î§0~31,¸ß16Î»Îª1Ê±£¬µÍ16Î»±íÊ¾¾¯½ä£¬·¶Î§0~3
-    int                 iAlgType;                   // 0-±£Áô 1-ÈËÁ³ 2-½á¹¹»¯
-    int                 iEnable;                    // 0-²»Ê¹ÄÜ 1-Ê¹ÄÜ
-    int	                iAreaNum;                   //ÇøÓò¸öÊı È¡Öµ·¶Î§[0-16]
+    int                 iSceneId;                   // é«˜16ä½ä¸º0æ—¶ï¼Œä½16ä½è¡¨ç¤ºæ™ºèƒ½åˆ†æï¼ŒèŒƒå›´0~31,é«˜16ä½ä¸º1æ—¶ï¼Œä½16ä½è¡¨ç¤ºè­¦æˆ’ï¼ŒèŒƒå›´0~3
+    int                 iAlgType;                   // 0-ä¿ç•™ 1-äººè„¸ 2-ç»“æ„åŒ–
+    int                 iEnable;                    // 0-ä¸ä½¿èƒ½ 1-ä½¿èƒ½
+    int	                iAreaNum;                   //åŒºåŸŸä¸ªæ•° å–å€¼èŒƒå›´[0-16]
     vca_TPolygonEx		stAreas[MAX_VCA_FOCUS_AREA];	
 } VcaFocusArea, *pVcaFocusArea, VcaFocusAreaResult, *pVcaFocusAreaResult;
 
@@ -3535,10 +3535,10 @@ typedef struct tagCalibrateCheck
 {
     int					iSize;			
     int					iSceneId;		    // 0-32
-    int					iStartPointX;		//Íò·Ö±È×ø±ê0-10000
-    int					iStartPointY;		//Íò·Ö±È×ø±ê0-10000
-    int					iEndPointX;			//Íò·Ö±È×ø±ê0-10000
-    int					iEndPointY;			//Íò·Ö±È×ø±ê0-10000
+    int					iStartPointX;		//ä¸‡åˆ†æ¯”åæ ‡0-10000
+    int					iStartPointY;		//ä¸‡åˆ†æ¯”åæ ‡0-10000
+    int					iEndPointX;			//ä¸‡åˆ†æ¯”åæ ‡0-10000
+    int					iEndPointY;			//ä¸‡åˆ†æ¯”åæ ‡0-10000
 
 }CalibrateCheck,*pCalibrateCheck;
 
@@ -3546,18 +3546,18 @@ typedef struct tagCalibrateCheckResult
 {
     int					iSize;			
     int					iSceneId;		    // 0-32
-    int					iStartPointX;		//Íò·Ö±È×ø±ê0-10000
-    int					iStartPointY;		//Íò·Ö±È×ø±ê0-10000
-    int					iEndPointX;			//Íò·Ö±È×ø±ê0-10000
-    int					iEndPointY;			//Íò·Ö±È×ø±ê0-10000
-    int                 iResult;			// 0-SUCCESS£¬1-FAILED
+    int					iStartPointX;		//ä¸‡åˆ†æ¯”åæ ‡0-10000
+    int					iStartPointY;		//ä¸‡åˆ†æ¯”åæ ‡0-10000
+    int					iEndPointX;			//ä¸‡åˆ†æ¯”åæ ‡0-10000
+    int					iEndPointY;			//ä¸‡åˆ†æ¯”åæ ‡0-10000
+    int                 iResult;			// 0-SUCCESSï¼Œ1-FAILED
 } CalibrateCheckResult, *pCalibrateCheckResult;
 
 typedef struct tagWirelessSilent
 {
 	int						iSize;
-	int						iRestartTime;						//ÖØÆôÊ±¼ä
-	int                     iResult;			                // 0-SUCCESS£¬1-FAILED
+	int						iRestartTime;						//é‡å¯æ—¶é—´
+	int                     iResult;			                // 0-SUCCESSï¼Œ1-FAILED
 }WirelessSilent, *pWirelessSilent;
 #define WATER_FLOW_CONTROL_TYPE_DEFAULT		0
 #define WATER_FLOW_CONTROL_TYPE_ADD	        1
@@ -3567,22 +3567,22 @@ typedef struct tagWirelessSilent
 typedef struct tagWaterFlowRef
 {
 	int  iSize;
-	int  iControl; //0±£Áô¡¢1Ìí¼Ó¡¢2±à¼­¡¢3É¾³ı¡¢
-	int  iNum;     //±àºÅ	1~1000
-	int  iWaterLevel;//Ë®Î»Öµ	-10000000~10000000£¬µ¥Î»ºÁÃ×(mm)
-	int  iWaterFlow;//Ë®Á÷Á¿Öµ	0~100000000£¬µ¥Î»Á¢·½·ÖÃ×/Ãë(dm3/s)
-	int  iWaterSpeed;//Ë®Á÷ËÙ	0~30000£¬µ¥Î»£ººÁÃ×/Ãë(mm/s)
+	int  iControl; //0ä¿ç•™ã€1æ·»åŠ ã€2ç¼–è¾‘ã€3åˆ é™¤ã€
+	int  iNum;     //ç¼–å·	1~1000
+	int  iWaterLevel;//æ°´ä½å€¼	-10000000~10000000ï¼Œå•ä½æ¯«ç±³(mm)
+	int  iWaterFlow;//æ°´æµé‡å€¼	0~100000000ï¼Œå•ä½ç«‹æ–¹åˆ†ç±³/ç§’(dm3/s)
+	int  iWaterSpeed;//æ°´æµé€Ÿ	0~30000ï¼Œå•ä½ï¼šæ¯«ç±³/ç§’(mm/s)
 }WaterFlowRef, *pWaterFlowRef;
 
 typedef struct tagWaterFlowRefResult
 {
 	int  iSize;
-	int  iControl; //0±£Áô¡¢1Ìí¼Ó¡¢2±à¼­¡¢3É¾³ı¡¢
-	int  iNum;     //±àºÅ	1~1000
-	int  iWaterLevel;//Ë®Î»Öµ	-10000000~10000000£¬µ¥Î»ºÁÃ×(mm)
-	int  iWaterFlow;//Ë®Á÷Á¿Öµ	0~100000000£¬µ¥Î»Á¢·½·ÖÃ×/Ãë(dm3/s)
-	int  iResult;   //0-³É¹¦ 1-³¬³ö×î´ó¸öÊıÏŞÖÆ´íÎó 2-ÉèÖÃ²ÎÊı³¬³ö·¶Î§´íÎó
-	int  iWaterSpeed;//'0~30000£¬µ¥Î»£ººÁÃ×/Ãë(mm/s)
+	int  iControl; //0ä¿ç•™ã€1æ·»åŠ ã€2ç¼–è¾‘ã€3åˆ é™¤ã€
+	int  iNum;     //ç¼–å·	1~1000
+	int  iWaterLevel;//æ°´ä½å€¼	-10000000~10000000ï¼Œå•ä½æ¯«ç±³(mm)
+	int  iWaterFlow;//æ°´æµé‡å€¼	0~100000000ï¼Œå•ä½ç«‹æ–¹åˆ†ç±³/ç§’(dm3/s)
+	int  iResult;   //0-æˆåŠŸ 1-è¶…å‡ºæœ€å¤§ä¸ªæ•°é™åˆ¶é”™è¯¯ 2-è®¾ç½®å‚æ•°è¶…å‡ºèŒƒå›´é”™è¯¯
+	int  iWaterSpeed;//'0~30000ï¼Œå•ä½ï¼šæ¯«ç±³/ç§’(mm/s)
 } WaterFlowRefResult, *pWaterFlowRefResult;
 
 
@@ -3616,40 +3616,40 @@ typedef struct tagVCA_GaugeInfoPoint
 typedef struct tagGaugeInfo
 {
 	int    iSize;
-	int    iSceneId; //³¡¾°±àºÅ	0~31  £¨Ä¬ÈÏÊ¹ÓÃ0~15£©
-	int    iRuleID;  //¹æÔòID(Ô¤Áô)	0~15   £¨Ä¬ÈÏÊ¹ÓÃ 0£©
-	int    iGaugeNo; //int	Ë®³ß±àºÅ	0£ºÎŞĞ§  ´óÓÚ0ÎªË®³ß±àºÅ
-	int    iGaugeAltitude;//Ë®³ß¸ß³Ì -10000000~10000000µ¥Î»mm
-	int    iGaugeID;//0£ºÎŞĞ§  ´óÓÚ0ÎªË®³ßĞòºÅ
-	int    iGaugeType; //0-±£Áô 1-¿í³ß¡¢ĞÂ³ß 2-Õ­³ß¡¢¾É³ß£¨×¢ÒâÓëËã·¨¶ÔÓ¦×ª»»£©3-ÌØÖÆË®³ß,Ö§³Ö×Ô±ê¶¨  4-·½¿éË®³ß,Ö§³Ö×Ô±ê¶¨£¨Ö»ÓÃÓÚ»ıË®Éî¶ÈËã·¨£© 5-×®Ê½Ë®³ß£¬Ö§³Ö×Ô±ê¶¨ 6-ÎŞË®³ß 7-ĞéÄâË®³ß 8-×®Ê½Ë®³ß(×İÏò½ÓÁ¦) 9-ÎŞË®³ß(×İÏò½ÓÁ¦)
+	int    iSceneId; //åœºæ™¯ç¼–å·	0~31  ï¼ˆé»˜è®¤ä½¿ç”¨0~15ï¼‰
+	int    iRuleID;  //è§„åˆ™ID(é¢„ç•™)	0~15   ï¼ˆé»˜è®¤ä½¿ç”¨ 0ï¼‰
+	int    iGaugeNo; //int	æ°´å°ºç¼–å·	0ï¼šæ— æ•ˆ  å¤§äº0ä¸ºæ°´å°ºç¼–å·
+	int    iGaugeAltitude;//æ°´å°ºé«˜ç¨‹ -10000000~10000000å•ä½mm
+	int    iGaugeID;//0ï¼šæ— æ•ˆ  å¤§äº0ä¸ºæ°´å°ºåºå·
+	int    iGaugeType; //0-ä¿ç•™ 1-å®½å°ºã€æ–°å°º 2-çª„å°ºã€æ—§å°ºï¼ˆæ³¨æ„ä¸ç®—æ³•å¯¹åº”è½¬æ¢ï¼‰3-ç‰¹åˆ¶æ°´å°º,æ”¯æŒè‡ªæ ‡å®š  4-æ–¹å—æ°´å°º,æ”¯æŒè‡ªæ ‡å®šï¼ˆåªç”¨äºç§¯æ°´æ·±åº¦ç®—æ³•ï¼‰ 5-æ¡©å¼æ°´å°ºï¼Œæ”¯æŒè‡ªæ ‡å®š 6-æ— æ°´å°º 7-è™šæ‹Ÿæ°´å°º 8-æ¡©å¼æ°´å°º(çºµå‘æ¥åŠ›) 9-æ— æ°´å°º(çºµå‘æ¥åŠ›)
 	int    iReferNum;  //0~10
-	VCA_GaugeInfoPoint  tPoint[MAX_GAUGEINFO_NUM];//×ø±ê²ÎÊıÎªÍò·Ö±È
-	int    iGaugeValue; //Ë®³ß¶ÁÊı	-10000000~10000000µ¥Î»mm
-	int    iGaugeLength;//Ë®³ß³¤¶È£¨µ¥Î»mm£©iGaugeType=5×®Ê½Ë®³ßºáÏò½ÓÁ¦Ê±ÓĞĞ§£¬×¢Òâ×ª»»£¬Ëã·¨µ¥Î»m iGaugeType=8×®Ê½Ë®³ß×İÏò½ÓÁ¦Ê±ÓĞĞ§£¬×¢Òâ×ª»»£¬Ëã·¨µ¥Î»m 
-	int    iBlcEnable;//±³¹â²¹³¥Ê¹ÄÜ	0-±£Áô£¬1-¿ªÆô£¬2-¹Ø±Õ
-	CommonRECT tRect;//Ë®³ß¾ØĞÎÇøÓò¶Ô½ÇÏß×ø±ê,×ø±êÎªÍò·Ö±È
-	int	   iGaugeBaseValue; //Ë®³ß»ù×¼Ë®³ß¶ÁÊı	µ±Ç°Ë®Î»¶ÔÓ¦´Ë×éË®³ßµÄÕæÊµ¶ÁÊı£¬·¶Î§£º-10000000~10000000, µ¥Î»£ºmm£¨×¢Òâ×ª»»£¬Ëã·¨µ¥Î»m£©
-	int    iGaugeCalibNum; //Ë®³ß±ê¶¨Ô¤ÖÃÎ»¸öÊı	Ö§³ÖË®³ß±ê¶¨Ô¤ÖÃÎ»µÄ¸öÊı£¬·¶Î§£º1¡«20
-	int    iGaugeCalibType; //Ë®³ß±ê¶¨ÀàĞÍ	0-±£Áô 1-×Ô±ê¶¨ 2-ÊÖ¶¯±ê¶¨ 3-Çã½Ç»ò´¹Ö±½Ç¶È±ê¶¨
+	VCA_GaugeInfoPoint  tPoint[MAX_GAUGEINFO_NUM];//åæ ‡å‚æ•°ä¸ºä¸‡åˆ†æ¯”
+	int    iGaugeValue; //æ°´å°ºè¯»æ•°	-10000000~10000000å•ä½mm
+	int    iGaugeLength;//æ°´å°ºé•¿åº¦ï¼ˆå•ä½mmï¼‰iGaugeType=5æ¡©å¼æ°´å°ºæ¨ªå‘æ¥åŠ›æ—¶æœ‰æ•ˆï¼Œæ³¨æ„è½¬æ¢ï¼Œç®—æ³•å•ä½m iGaugeType=8æ¡©å¼æ°´å°ºçºµå‘æ¥åŠ›æ—¶æœ‰æ•ˆï¼Œæ³¨æ„è½¬æ¢ï¼Œç®—æ³•å•ä½m 
+	int    iBlcEnable;//èƒŒå…‰è¡¥å¿ä½¿èƒ½	0-ä¿ç•™ï¼Œ1-å¼€å¯ï¼Œ2-å…³é—­
+	CommonRECT tRect;//æ°´å°ºçŸ©å½¢åŒºåŸŸå¯¹è§’çº¿åæ ‡,åæ ‡ä¸ºä¸‡åˆ†æ¯”
+	int	   iGaugeBaseValue; //æ°´å°ºåŸºå‡†æ°´å°ºè¯»æ•°	å½“å‰æ°´ä½å¯¹åº”æ­¤ç»„æ°´å°ºçš„çœŸå®è¯»æ•°ï¼ŒèŒƒå›´ï¼š-10000000~10000000, å•ä½ï¼šmmï¼ˆæ³¨æ„è½¬æ¢ï¼Œç®—æ³•å•ä½mï¼‰
+	int    iGaugeCalibNum; //æ°´å°ºæ ‡å®šé¢„ç½®ä½ä¸ªæ•°	æ”¯æŒæ°´å°ºæ ‡å®šé¢„ç½®ä½çš„ä¸ªæ•°ï¼ŒèŒƒå›´ï¼š1ï½20
+	int    iGaugeCalibType; //æ°´å°ºæ ‡å®šç±»å‹	0-ä¿ç•™ 1-è‡ªæ ‡å®š 2-æ‰‹åŠ¨æ ‡å®š 3-å€¾è§’æˆ–å‚ç›´è§’åº¦æ ‡å®š
 }GaugeInfo, *pGaugeInfo;
 
 typedef struct tagVcaGaugeCalib
 {
 	int						iSceneID;
 	int						iRuleID;
-	int						iGaugeGroupID;  //Ë®³ß×éºÅ	1~20 (ÓëVCA*GAUGEINFOĞ­ÒéµÄiGaugeId¶ÔÓ¦)
-	int						iGaugeCalibID;  //Ë®³ßÃ¿×é±ê¶¨Ô¤ÖÃÎ»µÄĞòºÅ	1~20
-	int						iGaugeValue;    //ÊÓÆµÖĞĞÄµãË®³ß¶ÁÊı	-10000000~10000000µ¥Î»mm
-	int						iReferNum;      //±ê¶¨µã¸öÊı	0~10
-	VCA_GaugeInfoPoint		tPoint[MAX_GAUGEINFO_NUM];//×ø±ê²ÎÊıÎªÍò·Ö±È
+	int						iGaugeGroupID;  //æ°´å°ºç»„å·	1~20 (ä¸VCA*GAUGEINFOåè®®çš„iGaugeIdå¯¹åº”)
+	int						iGaugeCalibID;  //æ°´å°ºæ¯ç»„æ ‡å®šé¢„ç½®ä½çš„åºå·	1~20
+	int						iGaugeValue;    //è§†é¢‘ä¸­å¿ƒç‚¹æ°´å°ºè¯»æ•°	-10000000~10000000å•ä½mm
+	int						iReferNum;      //æ ‡å®šç‚¹ä¸ªæ•°	0~10
+	VCA_GaugeInfoPoint		tPoint[MAX_GAUGEINFO_NUM];//åæ ‡å‚æ•°ä¸ºä¸‡åˆ†æ¯”
 }VcaGaugeCalib, *pVcaGaugeCalib;
 
 typedef struct tagGaugeCalibQuery
 {
 	int				iSceneID;
 	int				iRuleID;
-	int				iGaugeGroupID; //Ë®³ß×éºÅ	1~20 (ÓëVCA*GAUGEINFOĞ­ÒéµÄiGaugeId¶ÔÓ¦)
-	int				iGaugeCalibID; //Ë®³ßÃ¿×é±ê¶¨Ô¤ÖÃÎ»µÄĞòºÅ	0-¿ÉÒÔ²éÑ¯´Ë×éË®³ßËùÓĞ±ê¶¨²ÎÊı 1~20-²éÑ¯´Ë×éË®³ßµ±Ç°ĞòºÅµÄ±ê¶¨²ÎÊı
+	int				iGaugeGroupID; //æ°´å°ºç»„å·	1~20 (ä¸VCA*GAUGEINFOåè®®çš„iGaugeIdå¯¹åº”)
+	int				iGaugeCalibID; //æ°´å°ºæ¯ç»„æ ‡å®šé¢„ç½®ä½çš„åºå·	0-å¯ä»¥æŸ¥è¯¢æ­¤ç»„æ°´å°ºæ‰€æœ‰æ ‡å®šå‚æ•° 1~20-æŸ¥è¯¢æ­¤ç»„æ°´å°ºå½“å‰åºå·çš„æ ‡å®šå‚æ•°
 }GaugeCalibQuery, *pGaugeCalibQuery;
 
 
@@ -3660,10 +3660,10 @@ typedef struct tagGaugeCalibQueryResult
 	int						iRuleID;
 	int						iGaugeGroupID;
 	int						iGaugeCalibID;
-	int						iResult;				  //Ñ¯²Ù×÷½á¹û	0-ÎŞÊı¾İ >0Îª·µ»Ø²éÑ¯½á¹ûÌõÊı
-	int						iGaugeValue;			  //ÊÓÆµÖĞĞÄµãË®³ß¶ÁÊı	-10000000~10000000µ¥Î»mm
+	int						iResult;				  //è¯¢æ“ä½œç»“æœ	0-æ— æ•°æ® >0ä¸ºè¿”å›æŸ¥è¯¢ç»“æœæ¡æ•°
+	int						iGaugeValue;			  //è§†é¢‘ä¸­å¿ƒç‚¹æ°´å°ºè¯»æ•°	-10000000~10000000å•ä½mm
 	int						iReferNum;
-	VCA_GaugeInfoPoint		tPoint[MAX_GAUGEINFO_NUM];//×ø±ê²ÎÊıÎªÍò·Ö±È
+	VCA_GaugeInfoPoint		tPoint[MAX_GAUGEINFO_NUM];//åæ ‡å‚æ•°ä¸ºä¸‡åˆ†æ¯”
 }GaugeCalibQueryResult,*pGaugeCalibQueryResult;
 
 typedef struct tagVCASmartMove
@@ -3704,9 +3704,9 @@ typedef struct tagTrafficFillLight
 typedef struct tagDefaultTemplateList
 {
     int    iSize;
-    int    iType;           //Ëã·¨ÀàĞÍ
-    int    iDaytimeDef;     //Ä¬ÈÏÈÕ¼äÄ£°å
-    int    iEveningDef;     //Ä¬ÈÏÒ¹¼äÄ£°å
+    int    iType;           //ç®—æ³•ç±»å‹
+    int    iDaytimeDef;     //é»˜è®¤æ—¥é—´æ¨¡æ¿
+    int    iEveningDef;     //é»˜è®¤å¤œé—´æ¨¡æ¿
 }DefaultTemplateList, *pDefaultTemplateList;
 
 
@@ -3746,37 +3746,37 @@ typedef struct tagVerTiCallIne
 typedef struct tagVerTiCallIneGet
 {
 	int        iSize;
-	int        iSceneId;	//³¡¾°ID	0¡«31 Ô¤Áô
-	int        iPageNo;	    //Ò³Âë	iPageNo>=0
-	int        iPageSize;	//int	Ã¿Ò³ÌõÊı	iPageSize>=0 ×î´ó20
-	int        iVLineIdStart; //int	²éÑ¯´¹ÏßµÄ¿ªÊ¼ĞòºÅ	1¡«101
+	int        iSceneId;	//åœºæ™¯ID	0ï½31 é¢„ç•™
+	int        iPageNo;	    //é¡µç 	iPageNo>=0
+	int        iPageSize;	//int	æ¯é¡µæ¡æ•°	iPageSize>=0 æœ€å¤§20
+	int        iVLineIdStart; //int	æŸ¥è¯¢å‚çº¿çš„å¼€å§‹åºå·	1ï½101
 }VerTiCallIneGet, *pVerTiCallIneGet;
 
 typedef struct tagVerTiCallIneResult
 {
 	int        iSize;
-	int        iSceneId;	//int	³¡¾°ID	0¡«31 Ô¤Áô
-	int        iTotal;	//int	×ÜÌõÊı	iTotal>=0
-	int        iPageNo;	//int	Ò³Âë	iPageNo>=0
-	int        iPageSize;	//int	µ±Ç°Ò³ÌõÊı	iPageSize>=0
-	int        iIndex;	//int	Ò³ÂëÄÚĞòºÅ	iIndex>=0
-	int        iVLineId;	//int	´¹ÏßĞòºÅ	1~101
-	int        iStartDistance;	//int	´¹ÏßÆğµã¾à	·¶Î§:0¡«10000000,µ¥Î»:mm
-	int        iBottomAltitude;	//int	´¹ÏßºÓµ×¸ß³Ì	·¶Î§:-10000000¡«10000000,µ¥Î»:mm
-	int        iMeasuredTime;	//int	´¹ÏßÊµ²âÊ±¼ä	Ê±¼ä(utc)
-	int        iCoefNum;	//int	´¹ÏßÇøÓòÁ÷ËÙÏµÊı¸öÊı	1¡«20
+	int        iSceneId;	//int	åœºæ™¯ID	0ï½31 é¢„ç•™
+	int        iTotal;	//int	æ€»æ¡æ•°	iTotal>=0
+	int        iPageNo;	//int	é¡µç 	iPageNo>=0
+	int        iPageSize;	//int	å½“å‰é¡µæ¡æ•°	iPageSize>=0
+	int        iIndex;	//int	é¡µç å†…åºå·	iIndex>=0
+	int        iVLineId;	//int	å‚çº¿åºå·	1~101
+	int        iStartDistance;	//int	å‚çº¿èµ·ç‚¹è·	èŒƒå›´:0ï½10000000,å•ä½:mm
+	int        iBottomAltitude;	//int	å‚çº¿æ²³åº•é«˜ç¨‹	èŒƒå›´:-10000000ï½10000000,å•ä½:mm
+	int        iMeasuredTime;	//int	å‚çº¿å®æµ‹æ—¶é—´	æ—¶é—´(utc)
+	int        iCoefNum;	//int	å‚çº¿åŒºåŸŸæµé€Ÿç³»æ•°ä¸ªæ•°	1ï½20
 	CofeInfo   tInfo[MAX_COFE_NUM];
 }VerTiCallIneResult, *pVerTiCallIneResult;
 
 typedef struct tagVcaWaterFlow
 {
 	int   iSize;
-	int   iSceneId;	//int	³¡¾°±àºÅ	0¡«31  £¨Ä¬ÈÏÊ¹ÓÃ0¡«15£©
-	int   iFlowCoef;	//int	Á÷Á¿ÏµÊı	·¶Î§:0¡«10000£¬Èí¼şÈ¡Öµºó³ıÒÔ1000.0×ª»»³Éfloat
-	int   iFlowSource;  //Á÷Á¿À´Ô´	0-Ë®ÀûÇ°¶ËÉè±¸¼ÆËã(Ä¬ÈÏ) 1-²éÑ¯ÈË¹¤±íÊı¾İ 2-ÎÈ¶¨ºÓµÀ(¹«Ê½) 3-Ë®ÑßË®Á¿(¹«Ê½)
-	int   iWaterSlope;  //Ë®Ãæ±È½µÏµÊı	"iFlowSource=2ÎÈ¶¨ºÓµÀÊ±ÓĞĞ§,ÏµÊı³ËÒÔ10000
-	int   iRoughness;   //ºÓ´²²ÚÂÊÏµÊı	"iFlowSource=2ÎÈ¶¨ºÓµÀÊ±ÓĞĞ§,ÏµÊı³ËÒÔ10000
-	int   iWeirFlow;    //ÑßÁ÷ÏµÊıÏµÊı	"iFlowSource=3Ë®ÑßË®Á¿Ê±ÓĞĞ§,ÏµÊı³ËÒÔ10000
+	int   iSceneId;	//int	åœºæ™¯ç¼–å·	0ï½31  ï¼ˆé»˜è®¤ä½¿ç”¨0ï½15ï¼‰
+	int   iFlowCoef;	//int	æµé‡ç³»æ•°	èŒƒå›´:0ï½10000ï¼Œè½¯ä»¶å–å€¼åé™¤ä»¥1000.0è½¬æ¢æˆfloat
+	int   iFlowSource;  //æµé‡æ¥æº	0-æ°´åˆ©å‰ç«¯è®¾å¤‡è®¡ç®—(é»˜è®¤) 1-æŸ¥è¯¢äººå·¥è¡¨æ•°æ® 2-ç¨³å®šæ²³é“(å…¬å¼) 3-æ°´å °æ°´é‡(å…¬å¼)
+	int   iWaterSlope;  //æ°´é¢æ¯”é™ç³»æ•°	"iFlowSource=2ç¨³å®šæ²³é“æ—¶æœ‰æ•ˆ,ç³»æ•°ä¹˜ä»¥10000
+	int   iRoughness;   //æ²³åºŠç³™ç‡ç³»æ•°	"iFlowSource=2ç¨³å®šæ²³é“æ—¶æœ‰æ•ˆ,ç³»æ•°ä¹˜ä»¥10000
+	int   iWeirFlow;    //å °æµç³»æ•°ç³»æ•°	"iFlowSource=3æ°´å °æ°´é‡æ—¶æœ‰æ•ˆ,ç³»æ•°ä¹˜ä»¥10000
 }VcaWaterFlow, *pVcaWaterFlow;
 
 
@@ -3784,24 +3784,24 @@ typedef struct tagVcaWaterFlow
 typedef struct tagAliSecret
 {
 	int   iSize;
-	char  pcPK[LEN_64]; //Éè±¸pk
-	char  pcPS[LEN_64];	//Éè±ğps
-	char  pcDN[LEN_64];	//Éè±¸DN
-	char  pcDS[LEN_64];	//Éè±¸DS
+	char  pcPK[LEN_64]; //è®¾å¤‡pk
+	char  pcPS[LEN_64];	//è®¾åˆ«ps
+	char  pcDN[LEN_64];	//è®¾å¤‡DN
+	char  pcDS[LEN_64];	//è®¾å¤‡DS
 	int   iChannelNo;
 }AliSecret,*pAliSecret;
 
 typedef struct tagAliSecretResult
 {
 	int   iSize;
-	int   iResult;  //ÉèÖÃ½á¹û
+	int   iResult;  //è®¾ç½®ç»“æœ
 	int   iChannel;
 }AliSecretResult,*pAliSecretResult;
 
-//xmlĞ­ÒéÉèÖÃ¡¢»ñÈ¡²ÎÊıÊ¹ÓÃÒÔÏÂ½á¹¹Ìå
+//xmlåè®®è®¾ç½®ã€è·å–å‚æ•°ä½¿ç”¨ä»¥ä¸‹ç»“æ„ä½“
 typedef struct tagXmlResponseStatus
 {
-	int iStatusCode; //×´Ì¬Âë£º0=1-OK, 2-Device Busy, 3-Device Error, 4-Invalid Operation, 5-Invalid XML Format, 6-Invalid XML Content, 7-Reboot Required
+	int iStatusCode; //çŠ¶æ€ç ï¼š0=1-OK, 2-Device Busy, 3-Device Error, 4-Invalid Operation, 5-Invalid XML Format, 6-Invalid XML Content, 7-Reboot Required
 	char cStatusString[LEN_64];
 	char cSubStatusCode[LEN_64];
 } XmlResponseStatus,* pXmlResponseStatus;
@@ -3825,22 +3825,22 @@ typedef struct tagXmlRegistrationCenter
 #define TIMING_MODE_ONVIF			4
 typedef struct tagXmlDeviceSystemTime
 {
-	int						iTimingMode;			//0-±£Áô 1-NTPĞ£Ê± 2-GPSĞ£Ê± 3- ÊÖ¶¯ 4-ONVIFĞ­ÒéĞ£Ê±
+	int						iTimingMode;			//0-ä¿ç•™ 1-NTPæ ¡æ—¶ 2-GPSæ ¡æ—¶ 3- æ‰‹åŠ¨ 4-ONVIFåè®®æ ¡æ—¶
 	NVS_FILE_TIME			tLocalTime;
-	int						iTimeZoneDiffHour;		//Óë¹ú¼Ê±ê×¼Ê±¼äµÄÊ±²î£¨Ğ¡Ê±£©£¬-12 ... +13 
-	int						iTimeZoneDiffMinute;	//Óë¹ú¼Ê±ê×¼Ê±¼äµÄÊ±²î£¨·ÖÖÓ£©£¬0, 30, 45
-	int						iTimeZoneDiffSecond;	//Óë¹ú¼Ê±ê×¼Ê±¼äµÄÊ±²î£¨ÃëÊı£©£¬0, 30, 45 
+	int						iTimeZoneDiffHour;		//ä¸å›½é™…æ ‡å‡†æ—¶é—´çš„æ—¶å·®ï¼ˆå°æ—¶ï¼‰ï¼Œ-12 ... +13 
+	int						iTimeZoneDiffMinute;	//ä¸å›½é™…æ ‡å‡†æ—¶é—´çš„æ—¶å·®ï¼ˆåˆ†é’Ÿï¼‰ï¼Œ0, 30, 45
+	int						iTimeZoneDiffSecond;	//ä¸å›½é™…æ ‡å‡†æ—¶é—´çš„æ—¶å·®ï¼ˆç§’æ•°ï¼‰ï¼Œ0, 30, 45 
 	//Daylight Saving Time parameter
 	int						iDstEnable;				//DaylightSavingTime enable, 0-disable, 1-enable
-	int						iDstOffsetTime;			//DaylightSavingTime Offset time,0¡«120£¨unit£ºminute£©
+	int						iDstOffsetTime;			//DaylightSavingTime Offset time,0ï½120ï¼ˆunitï¼šminuteï¼‰
 	int						iDstStartMonth;			//Start daylight saving time: month
 	int						iDstStartWeek;			//Start daylight saving time: week of month, (0:last 1:first 2:second 3:third 4:forth)
 	int						iDstStartDay;			//Start daylight saving time: day Of week, sunday to saturday is 0-6
-	int						iDstStartHour;			//Start daylight saving time: hour of day [0¡«23]
+	int						iDstStartHour;			//Start daylight saving time: hour of day [0ï½23]
 	int						iDstStopMonth;			//Stop daylight saving time: month
 	int						iDstStopWeek;			//Stop daylight saving time: week of month, (0:last 1:first 2:second 3:third 4:forth)
 	int						iDstStopDay;			//Stop daylight saving time: day Of week, sunday to saturday is 0-6
-	int						iDstStopHour;			//Stop daylight saving time: hour of day [0¡«23]£©
+	int						iDstStopHour;			//Stop daylight saving time: hour of day [0ï½23]ï¼‰
 
 } XmlDeviceSystemTime, *pXmlDeviceSystemTime;
 
@@ -3849,7 +3849,7 @@ typedef struct tagXmlNtpServer
 {
 	char					cNtpServerIp[MAX_IPADDRESS_LEN];	//NTP Server IP, support ipv6
 	int						iNtpServerPort;						//NTP Server Port
-	int						iNtpInterval;						//ntpĞ£Ê±¼ä¸ôÊ±¼ä£¬ÒÔ·ÖÖÓÎªµ¥Î»
+	int						iNtpInterval;						//ntpæ ¡æ—¶é—´éš”æ—¶é—´ï¼Œä»¥åˆ†é’Ÿä¸ºå•ä½
 } XmlNtpServer, *pXmlNtpServer;
 
 
@@ -3865,9 +3865,9 @@ typedef struct tagWordOverLayPos
 typedef struct tagIrriServerInfo
 {
 	int  iSize;
-	char pcIrrigationIP[LEN_32]; //Ë®ÀûÆ½Ì¨·şÎñÆ÷IP
-	int  iIrrigationPort;       //Ë®ÀûÆ½Ì¨·şÎñÆ÷¶Ë¿Ú
-	char pcStationAddress[LEN_32];//Ë®ÀûÆ½Ì¨²âÕ¾µØÖ·
+	char pcIrrigationIP[LEN_32]; //æ°´åˆ©å¹³å°æœåŠ¡å™¨IP
+	int  iIrrigationPort;       //æ°´åˆ©å¹³å°æœåŠ¡å™¨ç«¯å£
+	char pcStationAddress[LEN_32];//æ°´åˆ©å¹³å°æµ‹ç«™åœ°å€
 }IrriServerInfo, *pIrriServerInfo;
 
 typedef struct tagIrrigationServerInfo
@@ -3879,13 +3879,13 @@ typedef struct tagIrrigationServerInfo
 typedef struct tagT4GParam
 {
 	int      iSize; 
-	int      i3GDeviceType;   //Éè±¸ÀàĞÍ	0,DTM-ÒÆ¶¯3G; 1,EVDO-µçĞÅ3G; 2,WCDMA-ÁªÍ¨3G£¬3£¬Î´Ê¶±ğ£»4-TDDÒÆ¶¯4G£»5-µçĞÅ4G£»6-ÁªÍ¨4G£»7-ÒÆ¶¯ÍøÂç
-	int      iStatus;         //ÔÚÏß×´Ì¬	0,Î´ÉÏÏß£»1£¬ÒÑÉÏÏß£»2£¬²¦ºÅÖĞ	
-	int      iIntensity;      //ĞÅºÅÇ¿¶È	Êı×Ö£¬¶ÔÓ¦º¬Òå´ı²â
-	char     pcIP[LEN_16];    //²¦ºÅip	ppp0µÄIPµØÖ·
-	char     pcStarttime[LEN_64];//³õÊ¼²¦ºÅÊ±¼ä	¿ªÊ¼²¦ºÅµÄÊ±¼ä´Á£¬¸ñÊ½Îª  "YYYY/MM/DD HH:MM:SS"
-	char     pcIMEI[LEN_32];  //GSMÄ£¿éµÄIMEI£¨¹ú¼ÊÒÆ¶¯Éè±¸±êÊ¶£©ĞòÁĞºÅ
-	char     pcICCID[LEN_32]; //SIM¿¨µÄICCID±êÊ¶
+	int      i3GDeviceType;   //è®¾å¤‡ç±»å‹	0,DTM-ç§»åŠ¨3G; 1,EVDO-ç”µä¿¡3G; 2,WCDMA-è”é€š3Gï¼Œ3ï¼Œæœªè¯†åˆ«ï¼›4-TDDç§»åŠ¨4Gï¼›5-ç”µä¿¡4Gï¼›6-è”é€š4Gï¼›7-ç§»åŠ¨ç½‘ç»œ
+	int      iStatus;         //åœ¨çº¿çŠ¶æ€	0,æœªä¸Šçº¿ï¼›1ï¼Œå·²ä¸Šçº¿ï¼›2ï¼Œæ‹¨å·ä¸­	
+	int      iIntensity;      //ä¿¡å·å¼ºåº¦	æ•°å­—ï¼Œå¯¹åº”å«ä¹‰å¾…æµ‹
+	char     pcIP[LEN_16];    //æ‹¨å·ip	ppp0çš„IPåœ°å€
+	char     pcStarttime[LEN_64];//åˆå§‹æ‹¨å·æ—¶é—´	å¼€å§‹æ‹¨å·çš„æ—¶é—´æˆ³ï¼Œæ ¼å¼ä¸º  "YYYY/MM/DD HH:MM:SS"
+	char     pcIMEI[LEN_32];  //GSMæ¨¡å—çš„IMEIï¼ˆå›½é™…ç§»åŠ¨è®¾å¤‡æ ‡è¯†ï¼‰åºåˆ—å·
+	char     pcICCID[LEN_32]; //SIMå¡çš„ICCIDæ ‡è¯†
 }T4GParam, *pT4GParam;	
 
 typedef struct tagPuInfo
@@ -3903,9 +3903,9 @@ typedef struct tagPuInfo
 typedef struct tagCpcAreaDisplay
 {
 	int                         iSize;
-	int    						iDevType;	//Éè±¸ÀàĞÍ0:IPC,1:NVR
-	int    						iDisplay;	//ÏÔÊ¾·½Ê½:1: ÏÔÊ¾¿ÍÁ÷Á¿Í³¼Æ½çÃæ 2: ÍË³ö¿ÍÁ÷Á¿Í³¼Æ½çÃæ
-	int    						iAreaNo ;	//µ±Ç°ÏÔÊ¾ÇøÓò0-19
+	int    						iDevType;	//è®¾å¤‡ç±»å‹0:IPC,1:NVR
+	int    						iDisplay;	//æ˜¾ç¤ºæ–¹å¼:1: æ˜¾ç¤ºå®¢æµé‡ç»Ÿè®¡ç•Œé¢ 2: é€€å‡ºå®¢æµé‡ç»Ÿè®¡ç•Œé¢
+	int    						iAreaNo ;	//å½“å‰æ˜¾ç¤ºåŒºåŸŸ0-19
 }CpcAreaDisplay, *pCpcAreaDisplay;
 
 typedef struct tagITSKfkCameraCount
@@ -3940,46 +3940,46 @@ typedef struct tagITSKafkaCfg
 typedef struct tagCpcAreaConfig
 {
 	int                         iSize;
-	int    						iAreaNo ;								 //µ±Ç°ÏÔÊ¾ÇøÓò0-19
-	int                         iMask[LEN_32];							 //Í¨µÀÑÚÂëÃ¿¸öbit±íÊ¾Óë¶ÔÓ¦Í¨µÀ¹ØÁª£¬0:²»¹ØÁª 1:¹ØÁª
-	int                         iMaskCount;                              //Í¨µÀÑÚÂëÓĞĞ§ÊıÁ¿
-	int							iEnable;								 //0: ½ûÄÜ 1: Ê¹ÄÜ
-	char						cName[LEN_64];							 //ÇøÓòÃû³Æ
-	int                         iCurPeople;							     //µ±Ç°ÈËÊı
-	int    						iMaxPeople;								 //×î´óÔÊĞíÈËÊı
-	int                         iClearMode;								 //ÇåÁã·½Ê½1: Ã¿Ìì 2: ´Ó²»
-	int							iHour;									 //ÇåÁãĞ¡Ê± 0-23
-	int							iMinute;								 //ÇåÁã·ÖÖÓ 0-59
+	int    						iAreaNo ;								 //å½“å‰æ˜¾ç¤ºåŒºåŸŸ0-19
+	int                         iMask[LEN_32];							 //é€šé“æ©ç æ¯ä¸ªbitè¡¨ç¤ºä¸å¯¹åº”é€šé“å…³è”ï¼Œ0:ä¸å…³è” 1:å…³è”
+	int                         iMaskCount;                              //é€šé“æ©ç æœ‰æ•ˆæ•°é‡
+	int							iEnable;								 //0: ç¦èƒ½ 1: ä½¿èƒ½
+	char						cName[LEN_64];							 //åŒºåŸŸåç§°
+	int                         iCurPeople;							     //å½“å‰äººæ•°
+	int    						iMaxPeople;								 //æœ€å¤§å…è®¸äººæ•°
+	int                         iClearMode;								 //æ¸…é›¶æ–¹å¼1: æ¯å¤© 2: ä»ä¸
+	int							iHour;									 //æ¸…é›¶å°æ—¶ 0-23
+	int							iMinute;								 //æ¸…é›¶åˆ†é’Ÿ 0-59
 
 }CpcAreaConfig, *pCpcAreaConfig;
 
 typedef struct tagCpcAreaStatus
 {
 	int        iSize;
-	int        iAreaNo;	//ÇøÓò±àºÅ	0¡«19 
+	int        iAreaNo;	//åŒºåŸŸç¼–å·	0ï½19 
 }CpcAreaStatus, *pCpcAreaStatus;
 
 typedef struct tagCpcAreaStatusResult
 {
 	int							iSize;
-	int							iAreaNo;								 //ÇøÓò±àºÅ	0¡«19 
-	char						cName[LEN_64];							 //ÇøÓòÃû³Æ
-	int                         iCurPeople;							     //µ±Ç°ÈËÊı
-	int    						iMaxPeople;								 //×î´óÔÊĞíÈËÊı
-	int                         iStartTime;								 //±¾´ÎÍ³¼Æ¿ªÊ¼Ê±¼ä,1970Äê1ÔÂ1ÈÕ0µãµ½±¾´Î¿ªÊ¼Í³¼ÆµÄÃëÊı
+	int							iAreaNo;								 //åŒºåŸŸç¼–å·	0ï½19 
+	char						cName[LEN_64];							 //åŒºåŸŸåç§°
+	int                         iCurPeople;							     //å½“å‰äººæ•°
+	int    						iMaxPeople;								 //æœ€å¤§å…è®¸äººæ•°
+	int                         iStartTime;								 //æœ¬æ¬¡ç»Ÿè®¡å¼€å§‹æ—¶é—´,1970å¹´1æœˆ1æ—¥0ç‚¹åˆ°æœ¬æ¬¡å¼€å§‹ç»Ÿè®¡çš„ç§’æ•°
 
 }CpcAreaStatusResult, *pCpcAreaStatusResult;
 
 typedef struct tagCpcAreaManualClear
 {
 	int			iSize;
-	int			iAreaNo;	//ÇøÓò±àºÅ	0¡«19 
+	int			iAreaNo;	//åŒºåŸŸç¼–å·	0ï½19 
 }CpcAreaManualClear, *pCpcAreaManualClear;
 
 typedef struct tagCpcAreaManualClearResult
 {
 	int			iSize; 
-	int			iResult;	//0: ³É¹¦ 1: Ê§°Ü
+	int			iResult;	//0: æˆåŠŸ 1: å¤±è´¥
 }CpcAreaManualClearResult, *pCpcAreaManualClearResult;
 
 #define MAX_BAN_TIME_COUNT		4
@@ -3987,7 +3987,7 @@ typedef struct tagVcaInquiryTimeout
 {
 	int					iSize; 
 	int					iDevType;											//0-IPC, 1-NVR
-	int					iRuleID;											//rule Id, 0¡«7
+	int					iRuleID;											//rule Id, 0ï½7
 	int					iSceneId;											//scene Id,0~15
 	int					iValid;
 	int					iDisplayRule;
@@ -4035,119 +4035,119 @@ typedef struct tagTrafficViolationPara
 
 typedef struct tagWstAbleUseMode
 {
-	int        iSize;         //½á¹¹Ìå´óĞ¡
-	int        iSceneId;      //int	³¡¾°ID	0¡«31 Ô¤Áô
-	int        iUseMode;      //Ê¹ÓÃÊ±µÄ¹¤×÷Ä£Ê½	0-×Ô¶¯ 1-ÊÖ¶¯¿ªÆô 2-ÊÖ¶¯¹Ø±Õ 3-¶¨Ê±
-	int        iStartHour;    //¶¨Ê±Ê¹ÓÃ¿ªÊ¼Ê±¼ä	µ¥Î»:Ğ¡Ê± ·¶Î§:0-23 iMode=3¶¨Ê±Ä£Ê½ÓĞĞ§
-	int        iStartMin;     //¶¨Ê±Ê¹ÓÃ¿ªÊ¼·ÖÖÓ	µ¥Î»:·ÖÖÓ ·¶Î§:0-59 iMode=3¶¨Ê±Ä£Ê½ÓĞĞ§
-	int        iStopHour;     //¶¨Ê±Ê¹ÓÃ½áÊøÊ±¼ä	µ¥Î»:Ğ¡Ê± ·¶Î§:0-23 iMode=3¶¨Ê±Ä£Ê½ÓĞĞ§
-	int        iStopMin;      //¶¨Ê±Ê¹ÓÃ½áÊø·ÖÖÓ	µ¥Î»:·ÖÖÓ ·¶Î§:0-59 iMode=3¶¨Ê±Ä£Ê½ÓĞĞ§
-	int        iDetectTimeOut;//¼ì²â³¬Ê±Ê±¼ä	µ¥Î»:Ãë ·¶Î§:1-7200 iMode=0×Ô¶¯Ä£Ê½ÓĞĞ§
-	int        iTableOption;  //Á÷ËÙ±íÀ´Ô´Ñ¡Ôñ	0-Ê¹ÓÃ×Ô¶¯Á÷ËÙ±í 1-Ê¹ÓÃÊÖ¶¯Á÷ËÙ±í
+	int        iSize;         //ç»“æ„ä½“å¤§å°
+	int        iSceneId;      //int	åœºæ™¯ID	0ï½31 é¢„ç•™
+	int        iUseMode;      //ä½¿ç”¨æ—¶çš„å·¥ä½œæ¨¡å¼	0-è‡ªåŠ¨ 1-æ‰‹åŠ¨å¼€å¯ 2-æ‰‹åŠ¨å…³é—­ 3-å®šæ—¶
+	int        iStartHour;    //å®šæ—¶ä½¿ç”¨å¼€å§‹æ—¶é—´	å•ä½:å°æ—¶ èŒƒå›´:0-23 iMode=3å®šæ—¶æ¨¡å¼æœ‰æ•ˆ
+	int        iStartMin;     //å®šæ—¶ä½¿ç”¨å¼€å§‹åˆ†é’Ÿ	å•ä½:åˆ†é’Ÿ èŒƒå›´:0-59 iMode=3å®šæ—¶æ¨¡å¼æœ‰æ•ˆ
+	int        iStopHour;     //å®šæ—¶ä½¿ç”¨ç»“æŸæ—¶é—´	å•ä½:å°æ—¶ èŒƒå›´:0-23 iMode=3å®šæ—¶æ¨¡å¼æœ‰æ•ˆ
+	int        iStopMin;      //å®šæ—¶ä½¿ç”¨ç»“æŸåˆ†é’Ÿ	å•ä½:åˆ†é’Ÿ èŒƒå›´:0-59 iMode=3å®šæ—¶æ¨¡å¼æœ‰æ•ˆ
+	int        iDetectTimeOut;//æ£€æµ‹è¶…æ—¶æ—¶é—´	å•ä½:ç§’ èŒƒå›´:1-7200 iMode=0è‡ªåŠ¨æ¨¡å¼æœ‰æ•ˆ
+	int        iTableOption;  //æµé€Ÿè¡¨æ¥æºé€‰æ‹©	0-ä½¿ç”¨è‡ªåŠ¨æµé€Ÿè¡¨ 1-ä½¿ç”¨æ‰‹åŠ¨æµé€Ÿè¡¨
 }WstAbleUseMode, *pWstAbleUseMode;
 
 typedef struct tagWsTableAutoGen
 {
 	int        iSize;
-	int        iSceneId;       //³¡¾°ID	0¡«31 Ô¤Áô
-	int        iAutoUpdate;    //×Ô¶¯¸üĞÂÁ÷ËÙ±í	0-Í£Ö¹¸üĞÂ  1-¿ªÆô¸üĞÂ
-	int        iWaterLevelMax; //Ë®Î»×î´óÖµ	·¶Î§:-10000000¡«10000000£¬µ¥Î»:ºÁÃ×(mm)
-	int        iWaterLevelMin; //Ë®Î»×îĞ¡Öµ	·¶Î§:-10000000¡«10000000£¬µ¥Î»:ºÁÃ×(mm)
-	int        iStartHour;    //Éú³É¿ªÊ¼Ê±¼ä	µ¥Î»:Ğ¡Ê± ·¶Î§:0-23
-	int        iStartMin;     //Éú³É¿ªÊ¼·ÖÖÓ	µ¥Î»:·ÖÖÓ ·¶Î§:0-59 
-	int        iStopHour;     //Éú³É½áÊøÊ±¼ä	µ¥Î»:Ğ¡Ê± ·¶Î§:0-23 
-	int        iStopMin;      //Éú³É½áÊø·ÖÖÓ	µ¥Î»:·ÖÖÓ ·¶Î§:0-59
+	int        iSceneId;       //åœºæ™¯ID	0ï½31 é¢„ç•™
+	int        iAutoUpdate;    //è‡ªåŠ¨æ›´æ–°æµé€Ÿè¡¨	0-åœæ­¢æ›´æ–°  1-å¼€å¯æ›´æ–°
+	int        iWaterLevelMax; //æ°´ä½æœ€å¤§å€¼	èŒƒå›´:-10000000ï½10000000ï¼Œå•ä½:æ¯«ç±³(mm)
+	int        iWaterLevelMin; //æ°´ä½æœ€å°å€¼	èŒƒå›´:-10000000ï½10000000ï¼Œå•ä½:æ¯«ç±³(mm)
+	int        iStartHour;    //ç”Ÿæˆå¼€å§‹æ—¶é—´	å•ä½:å°æ—¶ èŒƒå›´:0-23
+	int        iStartMin;     //ç”Ÿæˆå¼€å§‹åˆ†é’Ÿ	å•ä½:åˆ†é’Ÿ èŒƒå›´:0-59 
+	int        iStopHour;     //ç”Ÿæˆç»“æŸæ—¶é—´	å•ä½:å°æ—¶ èŒƒå›´:0-23 
+	int        iStopMin;      //ç”Ÿæˆç»“æŸåˆ†é’Ÿ	å•ä½:åˆ†é’Ÿ èŒƒå›´:0-59
 }WsTableAutoGen, *pWsTableAutoGen;
 
 typedef struct tagWsTableQuery
 {
 	int   iSize;
-	int   iSceneId;		//³¡¾°ID	0¡«31 Ô¤Áô
-	int   iPageNo;		//Ò³Âë	iPageNo>=0
-	int   iPageSize;	//Ã¿Ò³ÌõÊı	iPageSize>=0 ×î´ó20Ìõ
-	int   iVlineArea;	//´¹ÏßÇøÓòºÅ	0:´ú±íËùÓĞ´¹ÏßÇøÓò  1~100:´¹ÏßÇøÓòË÷Òı 
-	int   iWaterLevelStart;	//Ë®Î»Çø¼äÆğÊ¼Öµ	·¶Î§:-10000000~10000000£¬µ¥Î»:ºÁÃ×(mm)
-	int   iWaterLevelStop;	//Ë®Î»Çø¼ä½áÊøÖµ	·¶Î§:-10000000~10000000£¬µ¥Î»:ºÁÃ×(mm)
+	int   iSceneId;		//åœºæ™¯ID	0ï½31 é¢„ç•™
+	int   iPageNo;		//é¡µç 	iPageNo>=0
+	int   iPageSize;	//æ¯é¡µæ¡æ•°	iPageSize>=0 æœ€å¤§20æ¡
+	int   iVlineArea;	//å‚çº¿åŒºåŸŸå·	0:ä»£è¡¨æ‰€æœ‰å‚çº¿åŒºåŸŸ  1~100:å‚çº¿åŒºåŸŸç´¢å¼• 
+	int   iWaterLevelStart;	//æ°´ä½åŒºé—´èµ·å§‹å€¼	èŒƒå›´:-10000000~10000000ï¼Œå•ä½:æ¯«ç±³(mm)
+	int   iWaterLevelStop;	//æ°´ä½åŒºé—´ç»“æŸå€¼	èŒƒå›´:-10000000~10000000ï¼Œå•ä½:æ¯«ç±³(mm)
 }WsTableQuery, *pWsTableQuery;
 
 typedef struct tagWstableContent
 {
 	int      iSize;
-	int      iPageIndex;	//µ±Ç°Ò³ÄÚÊı¾İµÄĞòºÅ	iIndex>=0
-	int	     iNum;	        //µ±Ç°Ò³ÄÚÊı¾İµÄÎ¨Ò»Ë÷ÒıºÅ	1-50000
-	int	     iVlineArea;	//µ±Ç°Ò³ÄÚÊı¾İµÄ´¹ÏßÇøÓòºÅ	1~100:´¹ÏßÇøÓòË÷Òı 
-	int	     iWaterLevel;	//µ±Ç°Ò³ÄÚÊı¾İµÄË®Î»Öµ	-10000000~10000000£¬µ¥Î»ºÁÃ×(mm)
-	int	     iWaterSpeed;	//µ±Ç°Ò³ÄÚÊı¾İµÄË®Á÷ËÙÖµ	0~30000£¬µ¥Î»£ººÁÃ×/Ãë(mm/s)
-	int	     iWaterFlow;	//µ±Ç°Ò³ÄÚÊı¾İµÄË®Á÷Á¿Öµ	0~100000000£¬µ¥Î»Á¢·½·ÖÃ×/Ãë(dm?/s)
+	int      iPageIndex;	//å½“å‰é¡µå†…æ•°æ®çš„åºå·	iIndex>=0
+	int	     iNum;	        //å½“å‰é¡µå†…æ•°æ®çš„å”¯ä¸€ç´¢å¼•å·	1-50000
+	int	     iVlineArea;	//å½“å‰é¡µå†…æ•°æ®çš„å‚çº¿åŒºåŸŸå·	1~100:å‚çº¿åŒºåŸŸç´¢å¼• 
+	int	     iWaterLevel;	//å½“å‰é¡µå†…æ•°æ®çš„æ°´ä½å€¼	-10000000~10000000ï¼Œå•ä½æ¯«ç±³(mm)
+	int	     iWaterSpeed;	//å½“å‰é¡µå†…æ•°æ®çš„æ°´æµé€Ÿå€¼	0~30000ï¼Œå•ä½ï¼šæ¯«ç±³/ç§’(mm/s)
+	int	     iWaterFlow;	//å½“å‰é¡µå†…æ•°æ®çš„æ°´æµé‡å€¼	0~100000000ï¼Œå•ä½ç«‹æ–¹åˆ†ç±³/ç§’(dm?/s)
 }WstableContent, *pWstableContent;
 
 typedef struct tagWsTableQueryResult
 {
 	int      iSize;
-	int      iSceneId;		//³¡¾°ID	0¡«31 Ô¤Áô
-	int	     iTotal;		//×ÜÌõÊı	iTotal>=0
-	int	     iPageNo;		//Ò³Âë	iPageNo>=0
-	int	     iPageSize;		//µ±Ç°Ò³ÌõÊı	iPageSize>=0
-	int	     iPagePktNum;	//µ±Ç°Ò³±¾´Î°üµÄÊı¾İ¸öÊı	iPagePktNum >= 0
-	WstableContent  tWsTableContent[LEN_20];//Êı¾İÄÚÈİ ×î¶à20Ìõ£»
+	int      iSceneId;		//åœºæ™¯ID	0ï½31 é¢„ç•™
+	int	     iTotal;		//æ€»æ¡æ•°	iTotal>=0
+	int	     iPageNo;		//é¡µç 	iPageNo>=0
+	int	     iPageSize;		//å½“å‰é¡µæ¡æ•°	iPageSize>=0
+	int	     iPagePktNum;	//å½“å‰é¡µæœ¬æ¬¡åŒ…çš„æ•°æ®ä¸ªæ•°	iPagePktNum >= 0
+	WstableContent  tWsTableContent[LEN_20];//æ•°æ®å†…å®¹ æœ€å¤š20æ¡ï¼›
 }WsTableQueryResult, *pWsTableQueryResult;
 
 
 typedef struct tagWsTableOpt
 {
 	int      iSize;
-	int      iSceneId;		//³¡¾°ID	0¡«31 Ô¤Áô
-	int  	 iControl;		//²Ù×÷ÀàĞÍ	0±£Áô¡¢1Ìí¼Ó¡¢2±à¼­¡¢3É¾³ı
-	int  	 iNum;		//Î¨Ò»Ë÷ÒıºÅ	1-50000
-	int 	 iVlineArea;		//´¹ÏßÇøÓò	1~100:´¹ÏßÇøÓòË÷Òı 
-	int  	 iWaterLevel;		//Ë®Î»Öµ	-10000000~10000000£¬µ¥Î»ºÁÃ×(mm)
-	int      iWaterSpeed;		//Ë®Á÷ËÙ	0~30000£¬µ¥Î»£ººÁÃ×/Ãë(mm/s)
-	int  	 iWaterFlow;		//Ë®Á÷Á¿Öµ	0~100000000£¬µ¥Î»Á¢·½·ÖÃ×/Ãë(dm?/s)*/
+	int      iSceneId;		//åœºæ™¯ID	0ï½31 é¢„ç•™
+	int  	 iControl;		//æ“ä½œç±»å‹	0ä¿ç•™ã€1æ·»åŠ ã€2ç¼–è¾‘ã€3åˆ é™¤
+	int  	 iNum;		//å”¯ä¸€ç´¢å¼•å·	1-50000
+	int 	 iVlineArea;		//å‚çº¿åŒºåŸŸ	1~100:å‚çº¿åŒºåŸŸç´¢å¼• 
+	int  	 iWaterLevel;		//æ°´ä½å€¼	-10000000~10000000ï¼Œå•ä½æ¯«ç±³(mm)
+	int      iWaterSpeed;		//æ°´æµé€Ÿ	0~30000ï¼Œå•ä½ï¼šæ¯«ç±³/ç§’(mm/s)
+	int  	 iWaterFlow;		//æ°´æµé‡å€¼	0~100000000ï¼Œå•ä½ç«‹æ–¹åˆ†ç±³/ç§’(dm?/s)*/
 }WsTableOpt, *pWsTableOpt;
 
 
 typedef struct tagWsTableOptResult
 {
 	int      iSize;
-	int      iSceneId;		//³¡¾°ID	0¡«31 Ô¤Áô
-	int  	 iControl;		//²Ù×÷ÀàĞÍ	0±£Áô¡¢1Ìí¼Ó¡¢2±à¼­¡¢3É¾³ı
-	int  	 iNum;		//Î¨Ò»Ë÷ÒıºÅ	1-50000
-	int 	 iVlineArea;		//´¹ÏßÇøÓò	1~100:´¹ÏßÇøÓòË÷Òı 
-	int  	 iWaterLevel;		//Ë®Î»Öµ	-10000000~10000000£¬µ¥Î»ºÁÃ×(mm)
-	int      iWaterSpeed;		//Ë®Á÷ËÙ	0~30000£¬µ¥Î»£ººÁÃ×/Ãë(mm/s)
-	int  	 iWaterFlow;		//Ë®Á÷Á¿Öµ	0~100000000£¬µ¥Î»Á¢·½·ÖÃ×/Ãë(dm?/s)
-	int      iResult;		//²Ù×÷½á¹û	0-³É¹¦	1-³¬³ö×î´ó¸öÊıÏŞÖÆ´íÎó	2-ÉèÖÃ²ÎÊı³¬³ö·¶Î§´íÎó"
+	int      iSceneId;		//åœºæ™¯ID	0ï½31 é¢„ç•™
+	int  	 iControl;		//æ“ä½œç±»å‹	0ä¿ç•™ã€1æ·»åŠ ã€2ç¼–è¾‘ã€3åˆ é™¤
+	int  	 iNum;		//å”¯ä¸€ç´¢å¼•å·	1-50000
+	int 	 iVlineArea;		//å‚çº¿åŒºåŸŸ	1~100:å‚çº¿åŒºåŸŸç´¢å¼• 
+	int  	 iWaterLevel;		//æ°´ä½å€¼	-10000000~10000000ï¼Œå•ä½æ¯«ç±³(mm)
+	int      iWaterSpeed;		//æ°´æµé€Ÿ	0~30000ï¼Œå•ä½ï¼šæ¯«ç±³/ç§’(mm/s)
+	int  	 iWaterFlow;		//æ°´æµé‡å€¼	0~100000000ï¼Œå•ä½ç«‹æ–¹åˆ†ç±³/ç§’(dm?/s)
+	int      iResult;		//æ“ä½œç»“æœ	0-æˆåŠŸ	1-è¶…å‡ºæœ€å¤§ä¸ªæ•°é™åˆ¶é”™è¯¯	2-è®¾ç½®å‚æ•°è¶…å‡ºèŒƒå›´é”™è¯¯"
 }WsTableOptResult, *pWsTableOptResult;
 
 
 typedef struct tagWaterLevelFlowQuery
 {
 	int      iSize;
-	int      iSceneId;		//³¡¾°ID	0¡«31 Ô¤Áô
-	int   	 iPageNo;		//Ò³Âë	iPageNo>=0
-	int  	 iPageSize;		//Ã¿Ò³ÌõÊı	iPageSize>=0 ×î´ó20Ìõ
-	int  	 iWaterLevelStart;		//Ë®Î»Çø¼äÆğÊ¼Öµ	·¶Î§:-10000000~10000000£¬µ¥Î»:ºÁÃ×(mm)
-	int  	 iWaterLevelStop;		//Ë®Î»Çø¼ä½áÊøÖµ	·¶Î§:-10000000~10000000£¬µ¥Î»:ºÁÃ×(mm)*/
+	int      iSceneId;		//åœºæ™¯ID	0ï½31 é¢„ç•™
+	int   	 iPageNo;		//é¡µç 	iPageNo>=0
+	int  	 iPageSize;		//æ¯é¡µæ¡æ•°	iPageSize>=0 æœ€å¤§20æ¡
+	int  	 iWaterLevelStart;		//æ°´ä½åŒºé—´èµ·å§‹å€¼	èŒƒå›´:-10000000~10000000ï¼Œå•ä½:æ¯«ç±³(mm)
+	int  	 iWaterLevelStop;		//æ°´ä½åŒºé—´ç»“æŸå€¼	èŒƒå›´:-10000000~10000000ï¼Œå•ä½:æ¯«ç±³(mm)*/
 }WaterLevelFlowQuery, *pWaterLevelFlowQuery;
 
 typedef struct tagWaterFlowContent
 {
 	int      iSize;
-	int      iPageIndex;	//µ±Ç°Ò³ÄÚÊı¾İµÄĞòºÅ	iIndex>=0
-	int	     iNum;	        //µ±Ç°Ò³ÄÚÊı¾İµÄÎ¨Ò»Ë÷ÒıºÅ	1-1000
-	int	     iWaterLevel;	//µ±Ç°Ò³ÄÚÊı¾İµÄË®Î»Öµ -10000000~10000000£¬µ¥Î»ºÁÃ×(mm)
-	int	     iWaterSpeed;	//µ±Ç°Ò³ÄÚÊı¾İµÄÁ÷ËÙÖµ 0~30000£¬µ¥Î»£ººÁÃ×/Ãë(mm/s)
-	int	     iWaterFlow;	//µ±Ç°Ò³ÄÚÊı¾İµÄÁ÷Á¿Öµ 0~100000000£¬µ¥Î»Á¢·½·ÖÃ×/Ãë(dm?/s)
+	int      iPageIndex;	//å½“å‰é¡µå†…æ•°æ®çš„åºå·	iIndex>=0
+	int	     iNum;	        //å½“å‰é¡µå†…æ•°æ®çš„å”¯ä¸€ç´¢å¼•å·	1-1000
+	int	     iWaterLevel;	//å½“å‰é¡µå†…æ•°æ®çš„æ°´ä½å€¼ -10000000~10000000ï¼Œå•ä½æ¯«ç±³(mm)
+	int	     iWaterSpeed;	//å½“å‰é¡µå†…æ•°æ®çš„æµé€Ÿå€¼ 0~30000ï¼Œå•ä½ï¼šæ¯«ç±³/ç§’(mm/s)
+	int	     iWaterFlow;	//å½“å‰é¡µå†…æ•°æ®çš„æµé‡å€¼ 0~100000000ï¼Œå•ä½ç«‹æ–¹åˆ†ç±³/ç§’(dm?/s)
 }WaterFlowContent, *pWaterFlowContent;
 
 typedef struct tagWaterLevelFlowQueryResult
 {
 	int      iSize;
-	int      iSceneId;		//³¡¾°ID	0¡«31 Ô¤Áô
-	int	     iTotal;		//×ÜÌõÊı	iTotal>=0
-	int 	 iPageNo;		//Ò³Âë	iPageNo>=0
-	int 	 iPageSize;		//µ±Ç°Ò³ÌõÊı	iPageSize>=0
-	int 	 iPagePktNum;   //µ±Ç°Ò³±¾´Î°üµÄÊı¾İ¸öÊı(N)	iPagePktNum >= 0
+	int      iSceneId;		//åœºæ™¯ID	0ï½31 é¢„ç•™
+	int	     iTotal;		//æ€»æ¡æ•°	iTotal>=0
+	int 	 iPageNo;		//é¡µç 	iPageNo>=0
+	int 	 iPageSize;		//å½“å‰é¡µæ¡æ•°	iPageSize>=0
+	int 	 iPagePktNum;   //å½“å‰é¡µæœ¬æ¬¡åŒ…çš„æ•°æ®ä¸ªæ•°(N)	iPagePktNum >= 0
 	WaterFlowContent  tContent[LEN_20];
 }WaterLevelFlowQueryResult, *pWaterLevelFlowQueryResult;
 
@@ -4158,66 +4158,66 @@ typedef struct tagWaterLevelFlowQueryResult
 typedef struct tagIrriGationRecord
 {
 	int                  iSize;
-	int                  iType;		     //¼ÇÂ¼·ÖÀà	²Î¿¼Ë®ÀûÉÏ±¨ĞÅÏ¢ÀàĞÍ
-	unsigned long long   iSeqStart;		//²éÑ¯¿ªÊ¼ĞòºÅ	iSeqStart>0
-	unsigned long long 	 iSeqStop;		//²éÑ¯½áÊøĞòºÅ	iSeqStop>0
-	int 	             iPageNo;		//µ±Ç°Ò³ºÅ	iPageNo>=0
-	int 	             iPageSize;		//Ã¿Ò³ÌõÊı	iPageSize>=0 ×î´ó20Ìõ*/
-	int                  iQueryType;    //²éÑ¯Ìõ¼şÀàĞÍ	0-°´ĞòºÅ¶Î²éÑ¯ 1-°´Ê±¼ä¶Î²éÑ¯
-	NVS_FILE_TIME        tStartTime;    //¿ªÊ¼Ê±¼ä
-	NVS_FILE_TIME        tEndTime;		//½áÊøÊ±¼ä
+	int                  iType;		     //è®°å½•åˆ†ç±»	å‚è€ƒæ°´åˆ©ä¸ŠæŠ¥ä¿¡æ¯ç±»å‹
+	unsigned long long   iSeqStart;		//æŸ¥è¯¢å¼€å§‹åºå·	iSeqStart>0
+	unsigned long long 	 iSeqStop;		//æŸ¥è¯¢ç»“æŸåºå·	iSeqStop>0
+	int 	             iPageNo;		//å½“å‰é¡µå·	iPageNo>=0
+	int 	             iPageSize;		//æ¯é¡µæ¡æ•°	iPageSize>=0 æœ€å¤§20æ¡*/
+	int                  iQueryType;    //æŸ¥è¯¢æ¡ä»¶ç±»å‹	0-æŒ‰åºå·æ®µæŸ¥è¯¢ 1-æŒ‰æ—¶é—´æ®µæŸ¥è¯¢
+	NVS_FILE_TIME        tStartTime;    //å¼€å§‹æ—¶é—´
+	NVS_FILE_TIME        tEndTime;		//ç»“æŸæ—¶é—´
 }IrriGationRecord, *pIrriGationRecord;
 
 typedef struct tagIrriGationRecordEx
 {
 	int                  iSize;
-	int                  iType;		     //¼ÇÂ¼·ÖÀà	²Î¿¼Ë®ÀûÉÏ±¨ĞÅÏ¢ÀàĞÍ
-	unsigned long long   iSeqStart;		//²éÑ¯¿ªÊ¼ĞòºÅ	iSeqStart>0
-	unsigned long long 	 iSeqStop;		//²éÑ¯½áÊøĞòºÅ	iSeqStop>0
-	int 	             iPageNo;		//µ±Ç°Ò³ºÅ	iPageNo>=0
-	int 	             iPageSize;		//Ã¿Ò³ÌõÊı	iPageSize>=0 ×î´ó20Ìõ*/
-	int                  iQueryType;    //²éÑ¯Ìõ¼şÀàĞÍ	0-°´ĞòºÅ¶Î²éÑ¯ 1-°´Ê±¼ä¶Î²éÑ¯
-	int                  iStartTime;    //¿ªÊ¼Ê±¼ä
-	int                  iEndTime;		//½áÊøÊ±¼ä
+	int                  iType;		     //è®°å½•åˆ†ç±»	å‚è€ƒæ°´åˆ©ä¸ŠæŠ¥ä¿¡æ¯ç±»å‹
+	unsigned long long   iSeqStart;		//æŸ¥è¯¢å¼€å§‹åºå·	iSeqStart>0
+	unsigned long long 	 iSeqStop;		//æŸ¥è¯¢ç»“æŸåºå·	iSeqStop>0
+	int 	             iPageNo;		//å½“å‰é¡µå·	iPageNo>=0
+	int 	             iPageSize;		//æ¯é¡µæ¡æ•°	iPageSize>=0 æœ€å¤§20æ¡*/
+	int                  iQueryType;    //æŸ¥è¯¢æ¡ä»¶ç±»å‹	0-æŒ‰åºå·æ®µæŸ¥è¯¢ 1-æŒ‰æ—¶é—´æ®µæŸ¥è¯¢
+	int                  iStartTime;    //å¼€å§‹æ—¶é—´
+	int                  iEndTime;		//ç»“æŸæ—¶é—´
 }IrriGationRecordEx, *pIrriGationRecordEx;
 
 typedef struct tagIrriGationRecordResult
 {
 	int                  iSize;
-	int                  iType;		     //¼ÇÂ¼·ÖÀà	²Î¿¼Ë®ÀûÉÏ±¨ĞÅÏ¢ÀàĞÍ
-	unsigned long long   iSeqStart;		//²éÑ¯¿ªÊ¼ĞòºÅ	iSeqStart>0
-	unsigned long long 	 iSeqStop;		//²éÑ¯½áÊøĞòºÅ	iSeqStop>0
-	int 	             iPageNo;		//µ±Ç°Ò³ºÅ	iPageNo>=0
-	int 	             iPageSize;		//Ã¿Ò³ÌõÊı	iPageSize>=0 ×î´ó20Ìõ*/
-	unsigned long long   iTotal;	//×ÜÌõÊı	iTotal>=0
-	int                  iResult;	//²éÑ¯½á¹û	"0-³É¹¦ 1-³¬³ö×î´ó¸öÊıÏŞÖÆ´íÎó 2-¶ÁĞ´´íÎó	
-	int                  iMaxSeqNo;//´ËÀàĞÍ¼ÇÂ¼µÄ×î´óĞòºÅ
+	int                  iType;		     //è®°å½•åˆ†ç±»	å‚è€ƒæ°´åˆ©ä¸ŠæŠ¥ä¿¡æ¯ç±»å‹
+	unsigned long long   iSeqStart;		//æŸ¥è¯¢å¼€å§‹åºå·	iSeqStart>0
+	unsigned long long 	 iSeqStop;		//æŸ¥è¯¢ç»“æŸåºå·	iSeqStop>0
+	int 	             iPageNo;		//å½“å‰é¡µå·	iPageNo>=0
+	int 	             iPageSize;		//æ¯é¡µæ¡æ•°	iPageSize>=0 æœ€å¤§20æ¡*/
+	unsigned long long   iTotal;	//æ€»æ¡æ•°	iTotal>=0
+	int                  iResult;	//æŸ¥è¯¢ç»“æœ	"0-æˆåŠŸ 1-è¶…å‡ºæœ€å¤§ä¸ªæ•°é™åˆ¶é”™è¯¯ 2-è¯»å†™é”™è¯¯	
+	int                  iMaxSeqNo;//æ­¤ç±»å‹è®°å½•çš„æœ€å¤§åºå·
 }IrriGationRecordResult, *pIrriGationRecordResult;
 
-//Ô¶³ÌÖ´ĞĞcmdÃüÁî
+//è¿œç¨‹æ‰§è¡Œcmdå‘½ä»¤
 typedef struct tagRemoteCmdShell
 {
-	int       iSize;            //½á¹¹Ìå´óĞ¡
-	char      cCmdString[LEN_128];  //ÃüÁî×Ö·û´®
-	int       iRetLimit;        //	Ö´ĞĞ½á¹ûÌõÊıÏŞÖÆ
+	int       iSize;            //ç»“æ„ä½“å¤§å°
+	char      cCmdString[LEN_128];  //å‘½ä»¤å­—ç¬¦ä¸²
+	int       iRetLimit;        //	æ‰§è¡Œç»“æœæ¡æ•°é™åˆ¶
 }RemoteCmdShell, *pRemoteCmdShellCmdShell;
 
-//Ô¶³ÌÖ´ĞĞCmdÃüÁî½á¹û
+//è¿œç¨‹æ‰§è¡ŒCmdå‘½ä»¤ç»“æœ
 typedef struct tagRemoteCmdShellResult
 {
-	int      iSize;             //½á¹¹Ìå´óĞ¡
-	int      iIndex;            //»ØÖ´ĞòºÅ£»
-	char     cResultString[LEN_512];//»ØÖ´×Ö·û´®£¬×î´ó512
+	int      iSize;             //ç»“æ„ä½“å¤§å°
+	int      iIndex;            //å›æ‰§åºå·ï¼›
+	char     cResultString[LEN_512];//å›æ‰§å­—ç¬¦ä¸²ï¼Œæœ€å¤§512
 }RemoteCmdShellResult, *pRemoteCmdShellResult;
 
-//ÉèÖÃÌõĞÎÂë
+//è®¾ç½®æ¡å½¢ç 
 typedef struct tagBarCode
 {
-    char			cBarCode[LEN_64];			//ÌõĞÎÂë
-    char            cAliSn[LEN_64];             //°¢ÀïÔÆSN
+    char			cBarCode[LEN_64];			//æ¡å½¢ç 
+    char            cAliSn[LEN_64];             //é˜¿é‡Œäº‘SN
 } BarCode, *pBarCode;
 
-//httpÍÆÍ¼²ÎÊı/ÍÆÍ¼²âÊÔÃüÁî
+//httpæ¨å›¾å‚æ•°/æ¨å›¾æµ‹è¯•å‘½ä»¤
 typedef struct tagHttpPicStream
 {
 	int				iSize;
@@ -4228,7 +4228,7 @@ typedef struct tagHttpPicStream
 	int				iPort;
 }HttpPicStream,*pHttpPicStream;
 
-//httpÍÆÍ¼²ÎÊı/ÍÆÍ¼²âÊÔÃüÁî
+//httpæ¨å›¾å‚æ•°/æ¨å›¾æµ‹è¯•å‘½ä»¤
 typedef struct HttpPicStreamEx
 {
 	int				iSize;
@@ -4238,7 +4238,7 @@ typedef struct HttpPicStreamEx
 	char			cPassWord[64];
 	int				iPort;
 	int				iProtocalType; // 0:http,1:https
-}HttpPicStreamEx,*pHttpPicStreamEx; //ÒÔºóÍÆÍ¼²âÊÔĞ­ÒéÀ©Õ¹µÄ»°À©Õ¹Õâ¸ö
+}HttpPicStreamEx,*pHttpPicStreamEx; //ä»¥åæ¨å›¾æµ‹è¯•åè®®æ‰©å±•çš„è¯æ‰©å±•è¿™ä¸ª
 
 #define MAX_HTTP_SERVER_NUM 32
 
@@ -4249,19 +4249,19 @@ typedef struct tagHttpPicStreamParam
 	int				iProtocolType[MAX_HTTP_SERVER_NUM]; //0:http;1:https
 }HttpPicStreamParam,*pHttpPicStreamParam;
 
-//ÍÆÍ¼²âÊÔÃüÁî»Ø¸´
+//æ¨å›¾æµ‹è¯•å‘½ä»¤å›å¤
 typedef struct tagHttpPicTestResult
 {
-	int      iSize;				     //½á¹¹Ìå´óĞ¡
-	int      iResult;                //½á¹û
+	int      iSize;				     //ç»“æ„ä½“å¤§å°
+	int      iResult;                //ç»“æœ
 }HttpPicTestResult, *pHttpPicTestResult;
 
 #define MAX_CHECK_RULE_REGION_NUM 8
-//ÊÒÄÚµç¶¯³µ¼ì²â
+//å®¤å†…ç”µåŠ¨è½¦æ£€æµ‹
 typedef struct tagVCAIndoorEBike
 {
 	int                 iSize;
-	int					iDevType;								//0-IPC£¬1-NVR
+	int					iDevType;								//0-IPCï¼Œ1-NVR
 	VCARule				tRule;
 	int                 iDisplayRule;                           //0-hide 1-show
 	int					iDisplayTarget;                         //0-hide 1-show
@@ -4278,42 +4278,42 @@ typedef struct tagVCAIndoorEBike
 
 typedef struct tagGat1400StatusResult
 {
-    int		iSize;  //[IN]½á¹¹Ìå´óĞ¡
-    int     iResult; //[OUT] RET_GAT1400_STATUS_RESERVED£ºÔ¤ÁôRET_GAT1400_STATUS_ONLINE£ºÔÚÏß ÆäËû £ºÆäËû²»ÔÚÏß
+    int		iSize;  //[IN]ç»“æ„ä½“å¤§å°
+    int     iResult; //[OUT] RET_GAT1400_STATUS_RESERVEDï¼šé¢„ç•™RET_GAT1400_STATUS_ONLINEï¼šåœ¨çº¿ å…¶ä»– ï¼šå…¶ä»–ä¸åœ¨çº¿
 }Gat1400StatusResult, *pGat1400StatusResult;
 
 #define MAX_GAT1400_CHANNEL_COUNT 32
 typedef struct tagGat1400Para
 {
-    int        iSize;               //½á¹¹´óĞ¡
-    int        iChannelNo;          //Í¨µÀºÅ	Í¨µÀºÅ
-    int        iEnable;		        //ÊÇ·ñÊ¹ÄÜ	0²»Ê¹ÄÜ£¬Ê¹ÄÜ
-    char       cIpAddress[LEN_256];//ipµØÖ·	²»³¬¹ı×Ö½Ú
-    int        iPort;               //·şÎñÆ÷¶Ë¿Ú	1-65535
-    char       cDeviceID[LEN_256]; //	Éè±¸±àºÅ	²»³¬¹ı×Ö½Ú
-    char       cUserName[LEN_128]; //	ÕË»§Ãû	²»³¬¹ı×Ö½Ú
-    char       cPassWord[LEN_128]; //	ÃÜÂë	²»³¬¹ı×Ö½Ú
-    int        iHeartBeatInterval;  //		ĞÄÌø¼ä¸ôÊ±¼ä	µ¥Î»Ãë,·¶Î§~255Ãë
-    int        iHeartBeatTimes; 		    //ĞÄÌø´ÎÊı	·¶Î§~255
-    char       cPlaceCode[LEN_64]; //ĞĞÕş´úÂë	²»³¬¹ı×Ö½Ú
-    int        iLongitude;  		//¾­¶È	·¶Î§-36000 ¶ÔÓ¦-180~+180£¬¾«È·µ½.01   (-E +W)
-    int        iLatitude;           //Î³¶È	·¶Î§-18000 ¶ÔÓ¦-90~+90£¬¾«È·µ½.01     (-S +N)
-    int        iTimingEnable;		//ÆôÓÃĞ£Ê±	0Îª¹Ø±Õ£¬Îª¿ªÆô
-    int        iRetryTimes;         //		ÖØ·¢´ÎÊı	·¶Î§~3
-    int        iRetryInterval;      //	ÖØ·¢¼ä¸ô	µ¥Î»Ãë,·¶Î§~5Ãë
-    int        iTimingInterval;     //Ğ£Ê±Ê±¼ä¼ä¸ô	µ¥Î»Ãë£¬·¶Î§-3600
-    int        iConfFileNo;         //		ÅäÖÃÎÄ¼ş±àºÅ	·¶Î§-100
-    int        iChannelCount;       //		Í¨µÀ¸öÊı	ÉèÖÃÖ§³ÖÍ¨µÀ¸öÊın  n²»³¬¹ı32
-    int        iChannelNoArr[MAX_GAT1400_CHANNEL_COUNT]; //µÚÒ»¸öÍ¨µÀºÅ0   £¨Í¨µÀºÅÖµ0~n-1£©
-    char 	   cChannelNumberArr[MAX_GAT1400_CHANNEL_COUNT][LEN_64]; //Í¨µÀ±àºÅÊı×é
+    int        iSize;               //ç»“æ„å¤§å°
+    int        iChannelNo;          //é€šé“å·	é€šé“å·
+    int        iEnable;		        //æ˜¯å¦ä½¿èƒ½	0ä¸ä½¿èƒ½ï¼Œä½¿èƒ½
+    char       cIpAddress[LEN_256];//ipåœ°å€	ä¸è¶…è¿‡å­—èŠ‚
+    int        iPort;               //æœåŠ¡å™¨ç«¯å£	1-65535
+    char       cDeviceID[LEN_256]; //	è®¾å¤‡ç¼–å·	ä¸è¶…è¿‡å­—èŠ‚
+    char       cUserName[LEN_128]; //	è´¦æˆ·å	ä¸è¶…è¿‡å­—èŠ‚
+    char       cPassWord[LEN_128]; //	å¯†ç 	ä¸è¶…è¿‡å­—èŠ‚
+    int        iHeartBeatInterval;  //		å¿ƒè·³é—´éš”æ—¶é—´	å•ä½ç§’,èŒƒå›´~255ç§’
+    int        iHeartBeatTimes; 		    //å¿ƒè·³æ¬¡æ•°	èŒƒå›´~255
+    char       cPlaceCode[LEN_64]; //è¡Œæ”¿ä»£ç 	ä¸è¶…è¿‡å­—èŠ‚
+    int        iLongitude;  		//ç»åº¦	èŒƒå›´-36000 å¯¹åº”-180~+180ï¼Œç²¾ç¡®åˆ°.01   (-E +W)
+    int        iLatitude;           //çº¬åº¦	èŒƒå›´-18000 å¯¹åº”-90~+90ï¼Œç²¾ç¡®åˆ°.01     (-S +N)
+    int        iTimingEnable;		//å¯ç”¨æ ¡æ—¶	0ä¸ºå…³é—­ï¼Œä¸ºå¼€å¯
+    int        iRetryTimes;         //		é‡å‘æ¬¡æ•°	èŒƒå›´~3
+    int        iRetryInterval;      //	é‡å‘é—´éš”	å•ä½ç§’,èŒƒå›´~5ç§’
+    int        iTimingInterval;     //æ ¡æ—¶æ—¶é—´é—´éš”	å•ä½ç§’ï¼ŒèŒƒå›´-3600
+    int        iConfFileNo;         //		é…ç½®æ–‡ä»¶ç¼–å·	èŒƒå›´-100
+    int        iChannelCount;       //		é€šé“ä¸ªæ•°	è®¾ç½®æ”¯æŒé€šé“ä¸ªæ•°n  nä¸è¶…è¿‡32
+    int        iChannelNoArr[MAX_GAT1400_CHANNEL_COUNT]; //ç¬¬ä¸€ä¸ªé€šé“å·0   ï¼ˆé€šé“å·å€¼0~n-1ï¼‰
+    char 	   cChannelNumberArr[MAX_GAT1400_CHANNEL_COUNT][LEN_64]; //é€šé“ç¼–å·æ•°ç»„
 }Gat1400Para, *pGat1400Para;
 
 typedef struct tagDevRealTimeParam
 {
-	 int       iChannelNo;          //Í¨µÀºÅ
-	 int	   iVoltageValue;       //µçÑ¹ÖµÍøÂç´«ËÍÉè±¸µçÑ¹Öµ*10¡£Êµ¼ÊµçÑ¹Öµ=iVoltageValue/10£¬µ¥Î»ÊÇV£¨·üÌØ£©
-	 int       iQuantityper;        //µçÁ¿Ê£Óà°Ù·Ö±È£¬Êµ¼ÊÖµ³ıÒÔ10
-	 int       iDeviceStatus;       //Éè±¸¹¦ºÄ×´Ì¬ 0£ºÕı³£×´Ì¬£¬1£ºµÍ¹¦ºÄ×´Ì¬
+	 int       iChannelNo;          //é€šé“å·
+	 int	   iVoltageValue;       //ç”µå‹å€¼ç½‘ç»œä¼ é€è®¾å¤‡ç”µå‹å€¼*10ã€‚å®é™…ç”µå‹å€¼=iVoltageValue/10ï¼Œå•ä½æ˜¯Vï¼ˆä¼ç‰¹ï¼‰
+	 int       iQuantityper;        //ç”µé‡å‰©ä½™ç™¾åˆ†æ¯”ï¼Œå®é™…å€¼é™¤ä»¥10
+	 int       iDeviceStatus;       //è®¾å¤‡åŠŸè€—çŠ¶æ€ 0ï¼šæ­£å¸¸çŠ¶æ€ï¼Œ1ï¼šä½åŠŸè€—çŠ¶æ€
 }DevRealTimeParam, *pDevRealTimeParam;
 
 typedef struct tagVCALeaveDetectEx
@@ -4322,13 +4322,13 @@ typedef struct tagVCALeaveDetectEx
 	vca_TDisplayParam   tDisplayParam;
 	int					iLeaveAlarmTime;			// off-duty alarm time, 60 ~ 3600, in seconds, the default: 120S
 	int					iRuturnClearAlarmTime;		// back to the police alarm time, 10 to 300, in seconds Default: 15S
-	int					iDutyNum;					// [1,2] Ä¬ÈÏ1
-	int					iMinSize;					// [1, 50] Ä¬ÈÏ 3
-	int					iMaxSize;					// [5, 100] Ä¬ÈÏ 15
-	int					iSensitivity;				// [0, 5] Ä¬ÈÏ 2	
+	int					iDutyNum;					// [1,2] é»˜è®¤1
+	int					iMinSize;					// [1, 50] é»˜è®¤ 3
+	int					iMaxSize;					// [5, 100] é»˜è®¤ 15
+	int					iSensitivity;				// [0, 5] é»˜è®¤ 2	
 	int					iDisplayTarget;             // 0-hide 1-show
 	int					iAreaNum;					// Total number of rule fields, 1 ~ 4
-	vca_TPolygon		tPolygon[MAX_RULE_REGION_NUM];	//	2~8¡£Èç¹ûµãÊıµÈÓÚ2ÊÇ¾ØĞÎ 
+	vca_TPolygon		tPolygon[MAX_RULE_REGION_NUM];	//	2~8ã€‚å¦‚æœç‚¹æ•°ç­‰äº2æ˜¯çŸ©å½¢ 
 	
 }VCALeaveDetectEx, *pVCALeaveDetectEx;
 
@@ -4344,15 +4344,15 @@ typedef struct tagVcaRuleEvent15
 typedef struct tagCommonProgress
 {
 	int iSize;
-	int iType;/*16-µ÷ÓÃË®ÀûËã·¨¼ì²âÔ¤ÖÃÎ»*/
+	int iType;/*16-è°ƒç”¨æ°´åˆ©ç®—æ³•æ£€æµ‹é¢„ç½®ä½*/
 }CommonProgress, *pCommonProgress;
 
 typedef struct tagCommonProgressResult
 {
 	int iSize;
-	int iType;/*11-³¡¾°ÇĞ»»,16-µ÷ÓÃË®ÀûËã·¨¼ì²âÔ¤ÖÃÎ»*/
-	int iStatus;//½ø¶È×´Ì¬
-	int iPro;//½ø¶ÈÖµ
+	int iType;/*11-åœºæ™¯åˆ‡æ¢,16-è°ƒç”¨æ°´åˆ©ç®—æ³•æ£€æµ‹é¢„ç½®ä½*/
+	int iStatus;//è¿›åº¦çŠ¶æ€
+	int iPro;//è¿›åº¦å€¼
 }CommonProgressResult, *pCommonProgressResult;
 
 typedef struct
@@ -4378,34 +4378,34 @@ typedef struct
 typedef struct tagWIEGAND
 {
     int				iSize;
-    int             iChannelNo; //Í¨µÀºÅ
-    int				iType;       //²ÎÊıÀàĞÍ 0-±£Áô£¬1-ÊäÈë£¬2-Êä³ö
-    int				iParam;     //²ÎÊıµ±iType =1Ê±£º0-¹Ø±Õ£¬1-¿ªÆô   µ±iType =2Ê±£º0-¹Ø±Õ£¬1- Wiegand26£¬2-Wiegand34 
-    int             iOutData;   //Î¤¸ùÊä³öÊı¾İÄÚÈİ0-±£Áô£¬1-±àºÅ£¬2-¿¨ºÅ
+    int             iChannelNo; //é€šé“å·
+    int				iType;       //å‚æ•°ç±»å‹ 0-ä¿ç•™ï¼Œ1-è¾“å…¥ï¼Œ2-è¾“å‡º
+    int				iParam;     //å‚æ•°å½“iType =1æ—¶ï¼š0-å…³é—­ï¼Œ1-å¼€å¯   å½“iType =2æ—¶ï¼š0-å…³é—­ï¼Œ1- Wiegand26ï¼Œ2-Wiegand34 
+    int             iOutData;   //éŸ¦æ ¹è¾“å‡ºæ•°æ®å†…å®¹0-ä¿ç•™ï¼Œ1-ç¼–å·ï¼Œ2-å¡å·
 }WIEGAND, *pWIEGAND;
 
 typedef struct tagEntranceGuardInfo
 {
     int             iSize;
-    int             iChannelNo;             //Í¨µÀºÅ
-    int             iInfoType;              //ÉÏ±¨ĞÅÏ¢ÀàĞÍ:0-Ô¤Áô£¬1-ÃÅÅÆºÅ£¬2-ÒµÖ÷ÊÖ»úºÅ
-    char            cInfoData[LEN_64];      //ÉÏ±¨ĞÅÏ¢ÄÚÈİ
-    char            cDeviceSN[LEN_64];      //Éè±¸SNºÅ
+    int             iChannelNo;             //é€šé“å·
+    int             iInfoType;              //ä¸ŠæŠ¥ä¿¡æ¯ç±»å‹:0-é¢„ç•™ï¼Œ1-é—¨ç‰Œå·ï¼Œ2-ä¸šä¸»æ‰‹æœºå·
+    char            cInfoData[LEN_64];      //ä¸ŠæŠ¥ä¿¡æ¯å†…å®¹
+    char            cDeviceSN[LEN_64];      //è®¾å¤‡SNå·
 
 }EntranceGuardInfo, *pEntranceGuardInfo;
 
 typedef struct tagTalkRequest
 {
     int             iSize;
-    int             iChannelNo;             //Í¨µÀºÅ
-    char            cDeviceSN[LEN_64];      //Éè±¸SNºÅ
+    int             iChannelNo;             //é€šé“å·
+    char            cDeviceSN[LEN_64];      //è®¾å¤‡SNå·
 
 }TalkRequest, *pTalkRequest, TalkStop, *pTalkStop;
 
 typedef struct tagTalkCoder {
     int iSize;
-    int iAudioEncode;       //1 G711A£¬2 G711U£¬22 AAC
-    int iSampleRate;        //Êµ¼Ê²ÉÑùÂÊµÄÖµ£¬Èç8000,16000,32000
+    int iAudioEncode;       //1 G711Aï¼Œ2 G711Uï¼Œ22 AAC
+    int iSampleRate;        //å®é™…é‡‡æ ·ç‡çš„å€¼ï¼Œå¦‚8000,16000,32000
 } TalkCoder, *pTalkCoder;
 
 #define MAX_DEVLOWPOWER_DAYSCHEDULE_COUNT		4
@@ -4420,54 +4420,54 @@ typedef struct _tagDayScheduleTimeEx
 
 typedef struct tagDeviceLowPower{
 	int					iSize;
-	int					iEnable;					//0-Î´ÆôÓÃ£¬1-ÆôÓÃ
-	DayScheduleTimeEx	tDevLowPowerSchedule[MAX_WEEK_DAYS][MAX_DEVLOWPOWER_DAYSCHEDULE_COUNT];//0-6£ºMonday-Sunday
+	int					iEnable;					//0-æœªå¯ç”¨ï¼Œ1-å¯ç”¨
+	DayScheduleTimeEx	tDevLowPowerSchedule[MAX_WEEK_DAYS][MAX_DEVLOWPOWER_DAYSCHEDULE_COUNT];//0-6ï¼šMonday-Sunday
 }DeviceLowPower, *pDeviceLowPower;
 
 typedef struct tagLENPARA
 {
 	int				iSize;
-	int             iChannelNo; //Í¨µÀºÅ
-	int				iFocusOffsetValue; //¾Û½¹²¹³¥Öµ 1000~21000
+	int             iChannelNo; //é€šé“å·
+	int				iFocusOffsetValue; //èšç„¦è¡¥å¿å€¼ 1000~21000
 }LENPARA, *pLENPARA;
 
 typedef struct tagItsChnLaneExParam
 {
-	int             iChannelNo;				//[in]Í¨µÀºÅ
-	int				iSceneID;				//[in]³¡¾°ID 0-15
-	int				iLaneNumber;			//[in]³µµÀ±àºÅ0-3
-	int             iChannelSnapDirection;	//[out]³µµÀ×¥ÅÄ·½Ïò0-Ë«Ïò£¬1-ÉÏĞĞ£¬2-ÏÂĞĞ
+	int             iChannelNo;				//[in]é€šé“å·
+	int				iSceneID;				//[in]åœºæ™¯ID 0-15
+	int				iLaneNumber;			//[in]è½¦é“ç¼–å·0-3
+	int             iChannelSnapDirection;	//[out]è½¦é“æŠ“æ‹æ–¹å‘0-åŒå‘ï¼Œ1-ä¸Šè¡Œï¼Œ2-ä¸‹è¡Œ
 }ItsChnLaneExParam, *pItsChnLaneExParam;
 
 
 typedef struct tagNasTest
 {
-	int			iDiskNo;			//´ÅÅÌ±àºÅ
-	int			iNasType;			//ÍøÂç¸½Êô´æ´¢ÀàĞÍ 1£ºNFS¡¢2£ºCIFS¡¢3£ºFTP¡¢4£ºHTTP
-	char		pcIP[LEN_256];		//ipµØÖ·
-	int			iPort;				//¶Ë¿Ú
-	char		pcMapPath[LEN_256];	//Ó³ÉäÂ·¾¶
-	char		pcUserName[LEN_128];//ÓÃ»§Ãû
-	char		pcPassWord[LEN_128];//ÃÜÂë
+	int			iDiskNo;			//ç£ç›˜ç¼–å·
+	int			iNasType;			//ç½‘ç»œé™„å±å­˜å‚¨ç±»å‹ 1ï¼šNFSã€2ï¼šCIFSã€3ï¼šFTPã€4ï¼šHTTP
+	char		pcIP[LEN_256];		//ipåœ°å€
+	int			iPort;				//ç«¯å£
+	char		pcMapPath[LEN_256];	//æ˜ å°„è·¯å¾„
+	char		pcUserName[LEN_128];//ç”¨æˆ·å
+	char		pcPassWord[LEN_128];//å¯†ç 
 }NasTest, *pNasTest;
 
 
 typedef struct tagNasTestResult
 {
-	int			iDiskNo;		//´ÅÅÌ±àºÅ
-	int			iNasType;		//ÍøÂç¸½Êô´æ´¢ÀàĞÍ 1£ºNFS¡¢2£ºCIFS¡¢3£ºFTP¡¢4£ºHTTP
-	int			iResult;		//²âÊÔ½á¹û 0³É¹¦£»ÆäËûÊ§°Ü
+	int			iDiskNo;		//ç£ç›˜ç¼–å·
+	int			iNasType;		//ç½‘ç»œé™„å±å­˜å‚¨ç±»å‹ 1ï¼šNFSã€2ï¼šCIFSã€3ï¼šFTPã€4ï¼šHTTP
+	int			iResult;		//æµ‹è¯•ç»“æœ 0æˆåŠŸï¼›å…¶ä»–å¤±è´¥
 }NasTestResult, *pNasTestResult;
 
 typedef struct tagItsDriveaWayLinkLight
 {
 	int				iChannelNo;
-	int				iSceneId;				//³¡¾°ID£º0-15
-	int				iLinkType;				//Áª¶¯ÀàĞÍ£º0£º¼¤¹â,1:°×¹â
-	int				iLinkEnable;			//0£ºÊ¹ÄÜ£¬1£º²»Ê¹ÄÜ
-	int				iPlayType;				//ÁÁµÆ·½Ê½	0£º³£ÁÁ  1£ºÉÁË¸
-	int				iPlayFrequency;			//ÁÁµÆÆµÂÊ ÁÁµÆ·½Ê½ÎªÉÁË¸Ê±´ú±íÉÁË¸ÆµÂÊ 1~5s ¿ÉÑ¡ ÆäËûÎŞÒâÒå
-	int				iContinuedTime;			//³ÖĞøÊ±¼ä  10S-300S
+	int				iSceneId;				//åœºæ™¯IDï¼š0-15
+	int				iLinkType;				//è”åŠ¨ç±»å‹ï¼š0ï¼šæ¿€å…‰,1:ç™½å…‰
+	int				iLinkEnable;			//0ï¼šä½¿èƒ½ï¼Œ1ï¼šä¸ä½¿èƒ½
+	int				iPlayType;				//äº®ç¯æ–¹å¼	0ï¼šå¸¸äº®  1ï¼šé—ªçƒ
+	int				iPlayFrequency;			//äº®ç¯é¢‘ç‡ äº®ç¯æ–¹å¼ä¸ºé—ªçƒæ—¶ä»£è¡¨é—ªçƒé¢‘ç‡ 1~5s å¯é€‰ å…¶ä»–æ— æ„ä¹‰
+	int				iContinuedTime;			//æŒç»­æ—¶é—´  10S-300S
 }ItsDriWayLinLight,*pItsDriWayLinLight;
 
 typedef struct tagAudioChannel
@@ -4477,43 +4477,43 @@ typedef struct tagAudioChannel
 
 typedef struct tagRtpServerInfo
 {
-	int		iStreamTyp;			//ÂëÁ÷ÀàĞÍ 1- Ö÷ÂëÁ÷£»2- ¸±ÂëÁ÷£»3- ÈıÂëÁ÷					
-	int		iEnable;			//ÊÇ·ñÊ¹ÄÜ	1-Ê¹ÄÜ 0-²»Ê¹ÄÜ£»Ã¿Ò»Â·ÂëÁ÷ÀàĞÍ¶¼¶ÔÓ¦Ò»¸öÊ¹ÄÜ¿ØÖÆ					
-	char	pcVideoAddress[LEN_64];		//ÊÓÆµ·şÎñÆ÷µØÖ·	×î´ó³¤¶ÈÎª64×Ö½Ú£¨Ö§³Öipv6£©£¬²»°üº¬\0					
-	int		iVideoPort;					//int	ÊÓÆµ·şÎñÆ÷¶Ë¿Ú	70-65535					
-	int		iVideoTTL;			//int	ÊÓÆµ±£»îÊ±¼ä	È¡Öµ·¶Î§ 1--128					
-	char	pcAudioAddress[LEN_64];		//ÒôÆµ·şÎñÆ÷µØÖ·	×î´ó³¤¶ÈÎª64×Ö½Ú£¨Ö§³Öipv6£©£¬²»°üº¬\0					
-	int		iAudioPort;			//ÒôÆµ·şÎñÆ÷¶Ë¿Ú	70-65535					
-	int		iAudioTTL;			//ÒôÆµ±£»îÊ±¼ä	È¡Öµ·¶Î§ 1--128					
-	char	pcMetadataAddress[LEN_64];	 //Medatdata·şÎñÆ÷µØÖ·	×î´ó³¤¶ÈÎª64×Ö½Ú£¨Ö§³Öipv6£©£¬²»°üº¬\0					
-	int		iMetadataPort;	//Medatdata·şÎñÆ÷¶Ë¿Ú	70-65535					
-	int		iMetadataTTL;	//Medatdata±£»îÊ±¼ä	È¡Öµ·¶Î§ 1--128					
+	int		iStreamTyp;			//ç æµç±»å‹ 1- ä¸»ç æµï¼›2- å‰¯ç æµï¼›3- ä¸‰ç æµ					
+	int		iEnable;			//æ˜¯å¦ä½¿èƒ½	1-ä½¿èƒ½ 0-ä¸ä½¿èƒ½ï¼›æ¯ä¸€è·¯ç æµç±»å‹éƒ½å¯¹åº”ä¸€ä¸ªä½¿èƒ½æ§åˆ¶					
+	char	pcVideoAddress[LEN_64];		//è§†é¢‘æœåŠ¡å™¨åœ°å€	æœ€å¤§é•¿åº¦ä¸º64å­—èŠ‚ï¼ˆæ”¯æŒipv6ï¼‰ï¼Œä¸åŒ…å«\0					
+	int		iVideoPort;					//int	è§†é¢‘æœåŠ¡å™¨ç«¯å£	70-65535					
+	int		iVideoTTL;			//int	è§†é¢‘ä¿æ´»æ—¶é—´	å–å€¼èŒƒå›´ 1--128					
+	char	pcAudioAddress[LEN_64];		//éŸ³é¢‘æœåŠ¡å™¨åœ°å€	æœ€å¤§é•¿åº¦ä¸º64å­—èŠ‚ï¼ˆæ”¯æŒipv6ï¼‰ï¼Œä¸åŒ…å«\0					
+	int		iAudioPort;			//éŸ³é¢‘æœåŠ¡å™¨ç«¯å£	70-65535					
+	int		iAudioTTL;			//éŸ³é¢‘ä¿æ´»æ—¶é—´	å–å€¼èŒƒå›´ 1--128					
+	char	pcMetadataAddress[LEN_64];	 //MedatdataæœåŠ¡å™¨åœ°å€	æœ€å¤§é•¿åº¦ä¸º64å­—èŠ‚ï¼ˆæ”¯æŒipv6ï¼‰ï¼Œä¸åŒ…å«\0					
+	int		iMetadataPort;	//MedatdataæœåŠ¡å™¨ç«¯å£	70-65535					
+	int		iMetadataTTL;	//Medatdataä¿æ´»æ—¶é—´	å–å€¼èŒƒå›´ 1--128					
 }RtpServerInfo, *pRtpServerInfo;
 
 
 typedef struct tagWaterDetectPos
 {
-	int			iSceneID;			//³¡¾°ID	0~31  £¨Ä¬ÈÏÊ¹ÓÃ0~15£©
-	int			iRuleID;			//¹æÔòID(Ô¤Áô)	0~15  £¨Ä¬ÈÏÊ¹ÓÃ 0£©
-	int			iPosType;			//¼ì²âÇøÓòÀàĞÍ	0-Ë®Î»¼ì²â
-	int			iOperationType;		//²Ù×÷ÀàĞÍ	1-ÉèÖÃ¼ì²âÇøÓò 2-µ÷ÓÃ¼ì²âÇøÓò 3-É¾³ı¼ì²âÇøÓò
-	int			iGroundID;			//¼ì²âÇøÓò×éºÅ	0-±£Áô 1¡«20Îª×éºÅ
-	int			iPosID;				//¼ì²âÔ¤ÖÃÎ»±àºÅ	"·¶Î§£º0¡«32
+	int			iSceneID;			//åœºæ™¯ID	0~31  ï¼ˆé»˜è®¤ä½¿ç”¨0~15ï¼‰
+	int			iRuleID;			//è§„åˆ™ID(é¢„ç•™)	0~15  ï¼ˆé»˜è®¤ä½¿ç”¨ 0ï¼‰
+	int			iPosType;			//æ£€æµ‹åŒºåŸŸç±»å‹	0-æ°´ä½æ£€æµ‹
+	int			iOperationType;		//æ“ä½œç±»å‹	1-è®¾ç½®æ£€æµ‹åŒºåŸŸ 2-è°ƒç”¨æ£€æµ‹åŒºåŸŸ 3-åˆ é™¤æ£€æµ‹åŒºåŸŸ
+	int			iGroundID;			//æ£€æµ‹åŒºåŸŸç»„å·	0-ä¿ç•™ 1ï½20ä¸ºç»„å·
+	int			iPosID;				//æ£€æµ‹é¢„ç½®ä½ç¼–å·	"èŒƒå›´ï¼š0ï½32
 }WaterDetectPos, *pWaterDetectPos;
 
 typedef struct tagWaterDetectPosResult
 {
-	int			iSceneID;			//³¡¾°ID	0~31  £¨Ä¬ÈÏÊ¹ÓÃ0~15£©
-	int			iRuleID;			//¹æÔòID(Ô¤Áô)	0~15  £¨Ä¬ÈÏÊ¹ÓÃ 0£©
-	int			iPosType;			//¼ì²âÇøÓòÀàĞÍ	0-Ë®Î»¼ì²â
-	int			iOperationType;		//²Ù×÷ÀàĞÍ	1-ÉèÖÃ¼ì²âÇøÓò 2-µ÷ÓÃ¼ì²âÇøÓò 3-É¾³ı¼ì²âÇøÓò
-	int			iGroundID;			//¼ì²âÇøÓò×éºÅ	0-±£Áô 1¡«20Îª×éºÅ
-	int			iPosID;				//¼ì²âÔ¤ÖÃÎ»±àºÅ	"·¶Î§£º0¡«32
-	int			iResult;			//ÉèÖÃ½á¹û	"0-³É¹¦£¬·Ç0±íÊ¾Ê§°Ü 1-PTZ»ñÈ¡Ê§°Ü2-ÉèÖÃ¼ì²âÇøÓòµ±Ç°½Ç¶È²»ºÏÀí 3-±íÊ¾µ÷ÓÃ¼ì²âÇøÓòÊ§°Ü 4-±íÊ¾É¾³ı¼ì²âÇøÓòÊ§°Ü 5-±íÊ¾»ñÈ¡Çã½ÇÒÇ½Ç¶ÈÊ§°Ü"
-	int			iPtzP;				//Çò»úË®Æ½½Ç¶È	p*1000
-	int			iPtzT;				//Çò»ú´¹Ö±½Ç¶È	t*1000
-	int			iPtzZ;				//¾µÍ·±ä±¶±¶ÂÊ	z*1000
-	int			iAngleValue;		//Çã½ÇÒÇ½Ç¶È, Çã½ÇÒÇ½Ç¶È³ËÒÔ10000£¬µ¥Î»ÊÇ¶È£¬Êµ¼Ê·¶Î§0-360
+	int			iSceneID;			//åœºæ™¯ID	0~31  ï¼ˆé»˜è®¤ä½¿ç”¨0~15ï¼‰
+	int			iRuleID;			//è§„åˆ™ID(é¢„ç•™)	0~15  ï¼ˆé»˜è®¤ä½¿ç”¨ 0ï¼‰
+	int			iPosType;			//æ£€æµ‹åŒºåŸŸç±»å‹	0-æ°´ä½æ£€æµ‹
+	int			iOperationType;		//æ“ä½œç±»å‹	1-è®¾ç½®æ£€æµ‹åŒºåŸŸ 2-è°ƒç”¨æ£€æµ‹åŒºåŸŸ 3-åˆ é™¤æ£€æµ‹åŒºåŸŸ
+	int			iGroundID;			//æ£€æµ‹åŒºåŸŸç»„å·	0-ä¿ç•™ 1ï½20ä¸ºç»„å·
+	int			iPosID;				//æ£€æµ‹é¢„ç½®ä½ç¼–å·	"èŒƒå›´ï¼š0ï½32
+	int			iResult;			//è®¾ç½®ç»“æœ	"0-æˆåŠŸï¼Œé0è¡¨ç¤ºå¤±è´¥ 1-PTZè·å–å¤±è´¥2-è®¾ç½®æ£€æµ‹åŒºåŸŸå½“å‰è§’åº¦ä¸åˆç† 3-è¡¨ç¤ºè°ƒç”¨æ£€æµ‹åŒºåŸŸå¤±è´¥ 4-è¡¨ç¤ºåˆ é™¤æ£€æµ‹åŒºåŸŸå¤±è´¥ 5-è¡¨ç¤ºè·å–å€¾è§’ä»ªè§’åº¦å¤±è´¥"
+	int			iPtzP;				//çƒæœºæ°´å¹³è§’åº¦	p*1000
+	int			iPtzT;				//çƒæœºå‚ç›´è§’åº¦	t*1000
+	int			iPtzZ;				//é•œå¤´å˜å€å€ç‡	z*1000
+	int			iAngleValue;		//å€¾è§’ä»ªè§’åº¦, å€¾è§’ä»ªè§’åº¦ä¹˜ä»¥10000ï¼Œå•ä½æ˜¯åº¦ï¼Œå®é™…èŒƒå›´0-360
 }WaterDetectPosResult, *pWaterDetectPosResult;
 
 
@@ -4525,100 +4525,100 @@ typedef struct tagWaterDetectPosResult
 
 typedef struct tagIrriServerInfoEx
 {
-	int				iSerType;					//¶Ô½ÓÆ½Ì¨·şÎñÆ÷ÀàĞÍ	0-±£Áô 1-¹æÔ¼SL651 2-ËÄ´¨Ë®ÎÄ
-	int				iSerNum;					//¶Ô½ÓÆ½Ì¨·şÎñÆ÷×ÜÊı	Ö§³ÖË®Àû¶Ô½ÓÆ½Ì¨µÄÊıÁ¿, ×î¶à4¸ö
-	int				iSerIndex;					//¶Ô½ÓÆ½Ì¨·şÎñÆ÷±àºÅ	0¡«3
-	char			pcServerIP[LEN_128];		//¶Ô½ÓÆ½Ì¨·şÎñÆ÷µÄIP	²»³¬¹ı128×Ö½Ú
-	int				iServerPort;				//¶Ô½ÓÆ½Ì¨·şÎñÆ÷µÄ¶Ë¿Ú	·¶Î§1-65535
-	char			pcStationCode[LEN_16];		//¶Ô½ÓÆ½Ì¨·şÎñÆ÷µÄÒ£²âÕ¾Âë	Ğ¡ÓÚ16×Ö½Ú
-	char			pcCenterAddr[LEN_16];		//¶Ô½ÓÆ½Ì¨·şÎñÆ÷µÄÖĞĞÄÕ¾µØÖ·	Ğ¡ÓÚ16×Ö½Ú,µ±iSerType=1Ê±ÓĞĞ§
-	char			pcCenterPassword[LEN_16];	//¶Ô½ÓÆ½Ì¨·şÎñÆ÷µÄÖĞĞÄÕ¾ÃÜÂë	Ğ¡ÓÚ16×Ö½Ú,µ±iSerType=1Ê±ÓĞĞ§
+	int				iSerType;					//å¯¹æ¥å¹³å°æœåŠ¡å™¨ç±»å‹	0-ä¿ç•™ 1-è§„çº¦SL651 2-å››å·æ°´æ–‡
+	int				iSerNum;					//å¯¹æ¥å¹³å°æœåŠ¡å™¨æ€»æ•°	æ”¯æŒæ°´åˆ©å¯¹æ¥å¹³å°çš„æ•°é‡, æœ€å¤š4ä¸ª
+	int				iSerIndex;					//å¯¹æ¥å¹³å°æœåŠ¡å™¨ç¼–å·	0ï½3
+	char			pcServerIP[LEN_128];		//å¯¹æ¥å¹³å°æœåŠ¡å™¨çš„IP	ä¸è¶…è¿‡128å­—èŠ‚
+	int				iServerPort;				//å¯¹æ¥å¹³å°æœåŠ¡å™¨çš„ç«¯å£	èŒƒå›´1-65535
+	char			pcStationCode[LEN_16];		//å¯¹æ¥å¹³å°æœåŠ¡å™¨çš„é¥æµ‹ç«™ç 	å°äº16å­—èŠ‚
+	char			pcCenterAddr[LEN_16];		//å¯¹æ¥å¹³å°æœåŠ¡å™¨çš„ä¸­å¿ƒç«™åœ°å€	å°äº16å­—èŠ‚,å½“iSerType=1æ—¶æœ‰æ•ˆ
+	char			pcCenterPassword[LEN_16];	//å¯¹æ¥å¹³å°æœåŠ¡å™¨çš„ä¸­å¿ƒç«™å¯†ç 	å°äº16å­—èŠ‚,å½“iSerType=1æ—¶æœ‰æ•ˆ
 }IrriServerInfoEx, *pIrriServerInfoEx;
 				
 typedef struct tagIrriUpLoadParam
 {
-	int			iPlatFormType;		//Ë®Àû¶Ô½ÓÆ½Ì¨ÀàĞÍ	0-¹æÔ¼SZY206 1-¹æÔ¼SL651 2-ËÄ´¨Ë®ÎÄ
-	int			iMajorType;			//Ë®ÀûĞÅÏ¢ÉÏ±¨Ö÷ÀàĞÍ
-	int			iMinorType;			//Ë®ÀûĞÅÏ¢ÉÏ±¨×ÓÀàĞÍ
-	int			iEnable;			//ÉÏ±¨Êı¾İÊ¹ÄÜ	0£ºÎ´Ê¹ÄÜ 1£ºÊ¹ÄÜ
-	int			iInterval;			//ÉÏ±¨Êı¾İÊ±¼ä¼ä¸ô	60-86400Ãë
+	int			iPlatFormType;		//æ°´åˆ©å¯¹æ¥å¹³å°ç±»å‹	0-è§„çº¦SZY206 1-è§„çº¦SL651 2-å››å·æ°´æ–‡
+	int			iMajorType;			//æ°´åˆ©ä¿¡æ¯ä¸ŠæŠ¥ä¸»ç±»å‹
+	int			iMinorType;			//æ°´åˆ©ä¿¡æ¯ä¸ŠæŠ¥å­ç±»å‹
+	int			iEnable;			//ä¸ŠæŠ¥æ•°æ®ä½¿èƒ½	0ï¼šæœªä½¿èƒ½ 1ï¼šä½¿èƒ½
+	int			iInterval;			//ä¸ŠæŠ¥æ•°æ®æ—¶é—´é—´éš”	60-86400ç§’
 }IrriUpLoadParam, *pIrriUpLoadParam;
 
 typedef struct tagIrriClientQuery
 {		
-	int					iType;				//¼ÇÂ¼·ÖÀà	²Î¿¼Ë®ÀûÉÏ±¨ĞÅÏ¢ÀàĞÍ
-	int					iQueryType;			//²éÑ¯Ìõ¼şÀàĞÍ	0-°´ĞòºÅ¶Î²éÑ¯ 1-°´Ê±¼ä¶Î²éÑ¯
-	unsigned long long	iSeqStart;			//²éÑ¯¿ªÊ¼ĞòºÅ	iSeqStart>0£¬iQueryType=0Ê±ÓĞĞ§
-	unsigned long long	iSeqStop;			//²éÑ¯½áÊøĞòºÅ	iSeqStop>0£¬iQueryType=0Ê±ÓĞĞ§
-	NVS_FILE_TIME		tStartTime;			//²éÑ¯¿ªÊ¼Ê±¼ä	utcÊ±¼ä£¬iQueryType=1Ê±ÓĞĞ§
-	NVS_FILE_TIME		tEndTime;			//²éÑ¯½ØÖ¹Ê±¼ä	utcÊ±¼ä£¬iQueryType=1Ê±ÓĞĞ§
-	unsigned long long  iPageNo;			//µ±Ç°Ò³ºÅ	iPageNo>=0
-	int					iPage;				//Ã¿Ò³ÌõÊı	iPageSize>=0 ×î´ó20Ìõ
+	int					iType;				//è®°å½•åˆ†ç±»	å‚è€ƒæ°´åˆ©ä¸ŠæŠ¥ä¿¡æ¯ç±»å‹
+	int					iQueryType;			//æŸ¥è¯¢æ¡ä»¶ç±»å‹	0-æŒ‰åºå·æ®µæŸ¥è¯¢ 1-æŒ‰æ—¶é—´æ®µæŸ¥è¯¢
+	unsigned long long	iSeqStart;			//æŸ¥è¯¢å¼€å§‹åºå·	iSeqStart>0ï¼ŒiQueryType=0æ—¶æœ‰æ•ˆ
+	unsigned long long	iSeqStop;			//æŸ¥è¯¢ç»“æŸåºå·	iSeqStop>0ï¼ŒiQueryType=0æ—¶æœ‰æ•ˆ
+	NVS_FILE_TIME		tStartTime;			//æŸ¥è¯¢å¼€å§‹æ—¶é—´	utcæ—¶é—´ï¼ŒiQueryType=1æ—¶æœ‰æ•ˆ
+	NVS_FILE_TIME		tEndTime;			//æŸ¥è¯¢æˆªæ­¢æ—¶é—´	utcæ—¶é—´ï¼ŒiQueryType=1æ—¶æœ‰æ•ˆ
+	unsigned long long  iPageNo;			//å½“å‰é¡µå·	iPageNo>=0
+	int					iPage;				//æ¯é¡µæ¡æ•°	iPageSize>=0 æœ€å¤§20æ¡
 }IrriClientQuery, *pIrriClientQuery;
 
 typedef struct tagIrriClientQueryEx
 {		
-	int					iType;				//¼ÇÂ¼·ÖÀà	²Î¿¼Ë®ÀûÉÏ±¨ĞÅÏ¢ÀàĞÍ
-	int					iQueryType;			//²éÑ¯Ìõ¼şÀàĞÍ	0-°´ĞòºÅ¶Î²éÑ¯ 1-°´Ê±¼ä¶Î²éÑ¯
-	unsigned long long	iSeqStart;			//²éÑ¯¿ªÊ¼ĞòºÅ	iSeqStart>0£¬iQueryType=0Ê±ÓĞĞ§
-	unsigned long long	iSeqStop;			//²éÑ¯½áÊøĞòºÅ	iSeqStop>0£¬iQueryType=0Ê±ÓĞĞ§
-	int					iStartTime;			//²éÑ¯¿ªÊ¼Ê±¼ä	utcÊ±¼ä£¬iQueryType=1Ê±ÓĞĞ§
-	int					iEndTime;			//²éÑ¯½ØÖ¹Ê±¼ä	utcÊ±¼ä£¬iQueryType=1Ê±ÓĞĞ§
-	unsigned long long  iPageNo;			//µ±Ç°Ò³ºÅ	iPageNo>=0
-	int					iPage;				//Ã¿Ò³ÌõÊı	iPageSize>=0 ×î´ó20Ìõ
-}IrriClientQueryEx, *pIrriClientQueryEx; //¸Ã½á¹¹ÌåÖ»ÓÃÓÚÇ¶ÈëÊ½Ê¹ÓÃ£¬Ê±¼äÖ±½Ó´«int
+	int					iType;				//è®°å½•åˆ†ç±»	å‚è€ƒæ°´åˆ©ä¸ŠæŠ¥ä¿¡æ¯ç±»å‹
+	int					iQueryType;			//æŸ¥è¯¢æ¡ä»¶ç±»å‹	0-æŒ‰åºå·æ®µæŸ¥è¯¢ 1-æŒ‰æ—¶é—´æ®µæŸ¥è¯¢
+	unsigned long long	iSeqStart;			//æŸ¥è¯¢å¼€å§‹åºå·	iSeqStart>0ï¼ŒiQueryType=0æ—¶æœ‰æ•ˆ
+	unsigned long long	iSeqStop;			//æŸ¥è¯¢ç»“æŸåºå·	iSeqStop>0ï¼ŒiQueryType=0æ—¶æœ‰æ•ˆ
+	int					iStartTime;			//æŸ¥è¯¢å¼€å§‹æ—¶é—´	utcæ—¶é—´ï¼ŒiQueryType=1æ—¶æœ‰æ•ˆ
+	int					iEndTime;			//æŸ¥è¯¢æˆªæ­¢æ—¶é—´	utcæ—¶é—´ï¼ŒiQueryType=1æ—¶æœ‰æ•ˆ
+	unsigned long long  iPageNo;			//å½“å‰é¡µå·	iPageNo>=0
+	int					iPage;				//æ¯é¡µæ¡æ•°	iPageSize>=0 æœ€å¤§20æ¡
+}IrriClientQueryEx, *pIrriClientQueryEx; //è¯¥ç»“æ„ä½“åªç”¨äºåµŒå…¥å¼ä½¿ç”¨ï¼Œæ—¶é—´ç›´æ¥ä¼ int
 
 typedef struct tagIrriClientQueryResult
 {
 	int								iSize;
-	int								iType;		//ÉÏ±¨ĞÅÏ¢ÀàĞÍ	Ïê¼û¡¾Ë®ÀûĞÅÏ¢ÉÏ±¨ÀàĞÍ¡¿Ò³ÃæµÄË®ÀûÉÏ±¨ĞÅÏ¢ÀàĞÍ
-	int								iQueryType;	//²éÑ¯Ìõ¼şÀàĞÍ	0-°´ĞòºÅ¶Î²éÑ¯ 1-°´Ê±¼ä¶Î²éÑ¯
-	unsigned long long				uSeqStart;	//²éÑ¯¿ªÊ¼ĞòºÅ	iSeqStart>0£¬iQueryType=0Ê±ÓĞĞ§
-	unsigned long long				uSeqStop;	//²éÑ¯½áÊøĞòºÅ	iSeqStop>0£¬iQueryType=0Ê±ÓĞĞ§
-	NVS_FILE_TIME					tStartTime;	//²éÑ¯¿ªÊ¼Ê±¼ä	utcÊ±¼ä£¬iQueryType=1Ê±ÓĞĞ§
-	NVS_FILE_TIME					tStopTime;	//²éÑ¯½ØÖ¹Ê±¼ä	utcÊ±¼ä£¬iQueryType=1Ê±ÓĞĞ§
-	unsigned long long				uPageNo;	//µ±Ç°Ò³ºÅ	iPageNo>=0
-	int								iPageSize;	//Ã¿Ò³ÌõÊı	iPageSize>=0 ×î´ó20Ìõ
-	int								iResult;	//²éÑ¯½á¹û	"0-³É¹¦ 1-³¬³ö×î´ó¸öÊıÏŞÖÆ´íÎó 2-¶ÁĞ´´íÎó"
-	unsigned long long				uMaxSeqNo;	//´ËÀàĞÍ¼ÇÂ¼µÄ×î´óĞòºÅ	iMaxSeqNo>=0
-	unsigned long long				iTotal;		//×ÜÌõÊı	iTotal>=0
-	int								iPageTotal;	//int	µ±Ç°Ò³Êı¾İ×ÜÌõÊı	<=20
-	int								iPageIndex;	//int	µ±Ç°Ò³Êı¾İĞòºÅ	0-19
-	IrrigationPara					tIrrigationPara; //ÉÏ±¨¾ßÌåÄÚÈİ
+	int								iType;		//ä¸ŠæŠ¥ä¿¡æ¯ç±»å‹	è¯¦è§ã€æ°´åˆ©ä¿¡æ¯ä¸ŠæŠ¥ç±»å‹ã€‘é¡µé¢çš„æ°´åˆ©ä¸ŠæŠ¥ä¿¡æ¯ç±»å‹
+	int								iQueryType;	//æŸ¥è¯¢æ¡ä»¶ç±»å‹	0-æŒ‰åºå·æ®µæŸ¥è¯¢ 1-æŒ‰æ—¶é—´æ®µæŸ¥è¯¢
+	unsigned long long				uSeqStart;	//æŸ¥è¯¢å¼€å§‹åºå·	iSeqStart>0ï¼ŒiQueryType=0æ—¶æœ‰æ•ˆ
+	unsigned long long				uSeqStop;	//æŸ¥è¯¢ç»“æŸåºå·	iSeqStop>0ï¼ŒiQueryType=0æ—¶æœ‰æ•ˆ
+	NVS_FILE_TIME					tStartTime;	//æŸ¥è¯¢å¼€å§‹æ—¶é—´	utcæ—¶é—´ï¼ŒiQueryType=1æ—¶æœ‰æ•ˆ
+	NVS_FILE_TIME					tStopTime;	//æŸ¥è¯¢æˆªæ­¢æ—¶é—´	utcæ—¶é—´ï¼ŒiQueryType=1æ—¶æœ‰æ•ˆ
+	unsigned long long				uPageNo;	//å½“å‰é¡µå·	iPageNo>=0
+	int								iPageSize;	//æ¯é¡µæ¡æ•°	iPageSize>=0 æœ€å¤§20æ¡
+	int								iResult;	//æŸ¥è¯¢ç»“æœ	"0-æˆåŠŸ 1-è¶…å‡ºæœ€å¤§ä¸ªæ•°é™åˆ¶é”™è¯¯ 2-è¯»å†™é”™è¯¯"
+	unsigned long long				uMaxSeqNo;	//æ­¤ç±»å‹è®°å½•çš„æœ€å¤§åºå·	iMaxSeqNo>=0
+	unsigned long long				iTotal;		//æ€»æ¡æ•°	iTotal>=0
+	int								iPageTotal;	//int	å½“å‰é¡µæ•°æ®æ€»æ¡æ•°	<=20
+	int								iPageIndex;	//int	å½“å‰é¡µæ•°æ®åºå·	0-19
+	IrrigationPara					tIrrigationPara; //ä¸ŠæŠ¥å…·ä½“å†…å®¹
 }IrriClientQueryResult, *pIrriClientQueryResult;//
 
 typedef struct tagIrriClientQueryResultEx
 {
 	int								iSize;
-	int								iType;		//ÉÏ±¨ĞÅÏ¢ÀàĞÍ	Ïê¼û¡¾Ë®ÀûĞÅÏ¢ÉÏ±¨ÀàĞÍ¡¿Ò³ÃæµÄË®ÀûÉÏ±¨ĞÅÏ¢ÀàĞÍ
-	int								iQueryType;	//²éÑ¯Ìõ¼şÀàĞÍ	0-°´ĞòºÅ¶Î²éÑ¯ 1-°´Ê±¼ä¶Î²éÑ¯
-	unsigned long long				uSeqStart;	//²éÑ¯¿ªÊ¼ĞòºÅ	iSeqStart>0£¬iQueryType=0Ê±ÓĞĞ§
-	unsigned long long				uSeqStop;	//²éÑ¯½áÊøĞòºÅ	iSeqStop>0£¬iQueryType=0Ê±ÓĞĞ§
-	int								iStartTime;	//²éÑ¯¿ªÊ¼Ê±¼ä	utcÊ±¼ä£¬iQueryType=1Ê±ÓĞĞ§
-	int								iStopTime;	//²éÑ¯½ØÖ¹Ê±¼ä	utcÊ±¼ä£¬iQueryType=1Ê±ÓĞĞ§
-	unsigned long long				uPageNo;	//µ±Ç°Ò³ºÅ	iPageNo>=0
-	int								iPageSize;	//Ã¿Ò³ÌõÊı	iPageSize>=0 ×î´ó20Ìõ
-	int								iResult;	//²éÑ¯½á¹û	"0-³É¹¦ 1-³¬³ö×î´ó¸öÊıÏŞÖÆ´íÎó 2-¶ÁĞ´´íÎó"
-	unsigned long long				uMaxSeqNo;	//´ËÀàĞÍ¼ÇÂ¼µÄ×î´óĞòºÅ	iMaxSeqNo>=0
-	unsigned long long				iTotal;		//×ÜÌõÊı	iTotal>=0
-	int								iPageTotal;	//int	µ±Ç°Ò³Êı¾İ×ÜÌõÊı	<=20
-	int								iPageIndex;	//int	µ±Ç°Ò³Êı¾İĞòºÅ	0-19
-	IrrigationPara					tIrrigationPara; //ÉÏ±¨¾ßÌåÄÚÈİ
-}IrriClientQueryResultEx, *pIrriClientQueryResultEx;//¸Ã½á¹¹ÌåÖ»ÓÃÓÚÇ¶ÈëÊ½Ê¹ÓÃ£¬Ê±¼äÖ±½Ó´«int
+	int								iType;		//ä¸ŠæŠ¥ä¿¡æ¯ç±»å‹	è¯¦è§ã€æ°´åˆ©ä¿¡æ¯ä¸ŠæŠ¥ç±»å‹ã€‘é¡µé¢çš„æ°´åˆ©ä¸ŠæŠ¥ä¿¡æ¯ç±»å‹
+	int								iQueryType;	//æŸ¥è¯¢æ¡ä»¶ç±»å‹	0-æŒ‰åºå·æ®µæŸ¥è¯¢ 1-æŒ‰æ—¶é—´æ®µæŸ¥è¯¢
+	unsigned long long				uSeqStart;	//æŸ¥è¯¢å¼€å§‹åºå·	iSeqStart>0ï¼ŒiQueryType=0æ—¶æœ‰æ•ˆ
+	unsigned long long				uSeqStop;	//æŸ¥è¯¢ç»“æŸåºå·	iSeqStop>0ï¼ŒiQueryType=0æ—¶æœ‰æ•ˆ
+	int								iStartTime;	//æŸ¥è¯¢å¼€å§‹æ—¶é—´	utcæ—¶é—´ï¼ŒiQueryType=1æ—¶æœ‰æ•ˆ
+	int								iStopTime;	//æŸ¥è¯¢æˆªæ­¢æ—¶é—´	utcæ—¶é—´ï¼ŒiQueryType=1æ—¶æœ‰æ•ˆ
+	unsigned long long				uPageNo;	//å½“å‰é¡µå·	iPageNo>=0
+	int								iPageSize;	//æ¯é¡µæ¡æ•°	iPageSize>=0 æœ€å¤§20æ¡
+	int								iResult;	//æŸ¥è¯¢ç»“æœ	"0-æˆåŠŸ 1-è¶…å‡ºæœ€å¤§ä¸ªæ•°é™åˆ¶é”™è¯¯ 2-è¯»å†™é”™è¯¯"
+	unsigned long long				uMaxSeqNo;	//æ­¤ç±»å‹è®°å½•çš„æœ€å¤§åºå·	iMaxSeqNo>=0
+	unsigned long long				iTotal;		//æ€»æ¡æ•°	iTotal>=0
+	int								iPageTotal;	//int	å½“å‰é¡µæ•°æ®æ€»æ¡æ•°	<=20
+	int								iPageIndex;	//int	å½“å‰é¡µæ•°æ®åºå·	0-19
+	IrrigationPara					tIrrigationPara; //ä¸ŠæŠ¥å…·ä½“å†…å®¹
+}IrriClientQueryResultEx, *pIrriClientQueryResultEx;//è¯¥ç»“æ„ä½“åªç”¨äºåµŒå…¥å¼ä½¿ç”¨ï¼Œæ—¶é—´ç›´æ¥ä¼ int
 
 typedef struct tagWaterDetectPosParam
 {
-	int			iSceneID;			//³¡¾°ID	0~31  £¨Ä¬ÈÏÊ¹ÓÃ0~15£©
-	int			iRuleID;			//¹æÔòID(Ô¤Áô)	0~15  £¨Ä¬ÈÏÊ¹ÓÃ 0£©
-	int			iPosType;			//¼ì²âÇøÓòÀàĞÍ	0-Ë®Î»¼ì²â
-	int			iOperationType;		//²Ù×÷ÀàĞÍ	1-ÉèÖÃ¼ì²âÇøÓò 2-µ÷ÓÃ¼ì²âÇøÓò 3-É¾³ı¼ì²âÇøÓò
-	int			iGroundID;			//¼ì²âÇøÓò×éºÅ	0-±£Áô 1¡«20Îª×éºÅ
-	int			iPosID;				//¼ì²âÔ¤ÖÃÎ»±àºÅ	"·¶Î§£º0¡«32
-	int			iStatus;			//0-Î´ÉèÖÃ 1-ÒÑÉèÖÃ
-	int			iPtzP;				//Çò»úË®Æ½½Ç¶È	p*1000
-	int			iPtzT;				//Çò»ú´¹Ö±½Ç¶È	t*1000
-	int			iPtzZ;				//¾µÍ·±ä±¶±¶ÂÊ	z*1000
-	int			iAngleValue;		//Çã½ÇÒÇ½Ç¶È, Çã½ÇÒÇ½Ç¶È³ËÒÔ10000£¬µ¥Î»ÊÇ¶È£¬Êµ¼Ê·¶Î§0-360
+	int			iSceneID;			//åœºæ™¯ID	0~31  ï¼ˆé»˜è®¤ä½¿ç”¨0~15ï¼‰
+	int			iRuleID;			//è§„åˆ™ID(é¢„ç•™)	0~15  ï¼ˆé»˜è®¤ä½¿ç”¨ 0ï¼‰
+	int			iPosType;			//æ£€æµ‹åŒºåŸŸç±»å‹	0-æ°´ä½æ£€æµ‹
+	int			iOperationType;		//æ“ä½œç±»å‹	1-è®¾ç½®æ£€æµ‹åŒºåŸŸ 2-è°ƒç”¨æ£€æµ‹åŒºåŸŸ 3-åˆ é™¤æ£€æµ‹åŒºåŸŸ
+	int			iGroundID;			//æ£€æµ‹åŒºåŸŸç»„å·	0-ä¿ç•™ 1ï½20ä¸ºç»„å·
+	int			iPosID;				//æ£€æµ‹é¢„ç½®ä½ç¼–å·	"èŒƒå›´ï¼š0ï½32
+	int			iStatus;			//0-æœªè®¾ç½® 1-å·²è®¾ç½®
+	int			iPtzP;				//çƒæœºæ°´å¹³è§’åº¦	p*1000
+	int			iPtzT;				//çƒæœºå‚ç›´è§’åº¦	t*1000
+	int			iPtzZ;				//é•œå¤´å˜å€å€ç‡	z*1000
+	int			iAngleValue;		//å€¾è§’ä»ªè§’åº¦, å€¾è§’ä»ªè§’åº¦ä¹˜ä»¥10000ï¼Œå•ä½æ˜¯åº¦ï¼Œå®é™…èŒƒå›´0-360
 }WaterDetectPosParam, *pWaterDetectPosParam;
 
 typedef struct tagAdjustVersionEx
@@ -4647,58 +4647,58 @@ typedef struct tagRtuParam
 typedef struct tagWaterDetectQuery
 {
 	int			iSize;
-	int			iSceneID;		//0~31  £¨Ä¬ÈÏÊ¹ÓÃ0~15£©
-	int			iRuleID;		//0~15  £¨Ä¬ÈÏÊ¹ÓÃ 0£©
-	int			iPosType;		//0-Ë®Î»¼ì²â
-	int			iGroupID;		//iPosTypeÎª0Ê±£¬1~20-²éÑ¯´Ë×éË®³ßµ±Ç°ĞòºÅµÄ±ê¶¨²ÎÊı
-	int			iTotalPosID;	//·¶Î§£º0¡«32
-	int			iPosID;			//µ±iPosType=0Ë®Î»¼ì²âÊ±:0-±£Áô 1-Ë®Î»¼ì²âÔ¤ÖÃÎ» 2-ÉÏÇĞÔ¤ÖÃÎ» 3-ÏÂÇĞÔ¤ÖÃÎ»£¬10-32Îª±ê¶¨Ô¤ÖÃÎ»
-	int			iState;			//0-Î´ÉèÖÃ 1-ÒÑÉèÖÃ
+	int			iSceneID;		//0~31  ï¼ˆé»˜è®¤ä½¿ç”¨0~15ï¼‰
+	int			iRuleID;		//0~15  ï¼ˆé»˜è®¤ä½¿ç”¨ 0ï¼‰
+	int			iPosType;		//0-æ°´ä½æ£€æµ‹
+	int			iGroupID;		//iPosTypeä¸º0æ—¶ï¼Œ1~20-æŸ¥è¯¢æ­¤ç»„æ°´å°ºå½“å‰åºå·çš„æ ‡å®šå‚æ•°
+	int			iTotalPosID;	//èŒƒå›´ï¼š0ï½32
+	int			iPosID;			//å½“iPosType=0æ°´ä½æ£€æµ‹æ—¶:0-ä¿ç•™ 1-æ°´ä½æ£€æµ‹é¢„ç½®ä½ 2-ä¸Šåˆ‡é¢„ç½®ä½ 3-ä¸‹åˆ‡é¢„ç½®ä½ï¼Œ10-32ä¸ºæ ‡å®šé¢„ç½®ä½
+	int			iState;			//0-æœªè®¾ç½® 1-å·²è®¾ç½®
 	int			iPtzP;			//p*1000
 	int			iPtzT;			//t*1000
 	int			iPtzZ;			//z*1000
-	int			iAngleValue;	//Çã½ÇÒÇ½Ç¶È³ËÒÔ10000£¬µ¥Î»ÊÇ¶È£¬Êµ¼Ê·¶Î§0-360 Èí¼şÈ¡Öµºó³ıÒÔ10000.0×ª»»³Éfloat
-	int			iResult;		//0-²éÑ¯³É¹¦£¬·Ç0Ê§°Ü 
+	int			iAngleValue;	//å€¾è§’ä»ªè§’åº¦ä¹˜ä»¥10000ï¼Œå•ä½æ˜¯åº¦ï¼Œå®é™…èŒƒå›´0-360 è½¯ä»¶å–å€¼åé™¤ä»¥10000.0è½¬æ¢æˆfloat
+	int			iResult;		//0-æŸ¥è¯¢æˆåŠŸï¼Œé0å¤±è´¥ 
 }WaterDetectQuery, *pWaterDetectQuery;
 
 typedef struct tagWaterDetectCmd
 {
-	int			iSceneID;		//0~31  £¨Ä¬ÈÏÊ¹ÓÃ0~15£©
-	int			iRuleID;		//0~15  £¨Ä¬ÈÏÊ¹ÓÃ 0£©
-	int			iPosType;		//0-Ë®Î»¼ì²â
-	int			iGroupID;		//iPosTypeÎª0Ê±£¬1~20-²éÑ¯´Ë×éË®³ßµ±Ç°ĞòºÅµÄ±ê¶¨²ÎÊı
+	int			iSceneID;		//0~31  ï¼ˆé»˜è®¤ä½¿ç”¨0~15ï¼‰
+	int			iRuleID;		//0~15  ï¼ˆé»˜è®¤ä½¿ç”¨ 0ï¼‰
+	int			iPosType;		//0-æ°´ä½æ£€æµ‹
+	int			iGroupID;		//iPosTypeä¸º0æ—¶ï¼Œ1~20-æŸ¥è¯¢æ­¤ç»„æ°´å°ºå½“å‰åºå·çš„æ ‡å®šå‚æ•°
 }WaterDetectCmd, *pWaterDetectCmd;
 
 typedef struct tagNewCommonEnable
 {
-	int		iEnable; //ÇáÁ¿¼¶»ñÈ¡Í¨ÓÃÊ¹ÄÜºÅ
+	int		iEnable; //è½»é‡çº§è·å–é€šç”¨ä½¿èƒ½å·
 }NewCommonEnable,*pNewCommonEnable;
 
 typedef struct tagNewCommonEnableResult
 {
-	int		iEnable; //ÇáÁ¿¼¶»ñÈ¡Í¨ÓÃÊ¹ÄÜºÅ
+	int		iEnable; //è½»é‡çº§è·å–é€šç”¨ä½¿èƒ½å·
 	int		iEnableValue;
 }NewCommonEnableResult,*pNewCommonEnableResult;
 
 #define MAX_SERVICE_TYPE		2
 typedef struct tagNetServicePara
 {
-	int			iServiceType;					//1´ú±íHTTPS£¬2´ú±íSRTP
-	char		pcServerCertificateID[LEN_128]; //Ö¤ÊéID	×î³¤128×Ö½Ú
-	int			iEncryptionAlgo;				//¼ÓÃÜËã·¨	1´ú±íAES128£¬2´ú±íAES256
-	int			iPort;							//¶Ë¿Ú	70-65535
+	int			iServiceType;					//1ä»£è¡¨HTTPSï¼Œ2ä»£è¡¨SRTP
+	char		pcServerCertificateID[LEN_128]; //è¯ä¹¦ID	æœ€é•¿128å­—èŠ‚
+	int			iEncryptionAlgo;				//åŠ å¯†ç®—æ³•	1ä»£è¡¨AES128ï¼Œ2ä»£è¡¨AES256
+	int			iPort;							//ç«¯å£	70-65535
 }NetServicePara, *pNetServicePara;
 
 #define MAX_CERTIFICATE_NUM 16
 typedef struct tagCertificate
 {
-	int			iCount;							//Ö¤Êé×ÜÊı:1-16
-	int			iNum;							//Ö¤ÊéĞòºÅ
-	char		pcServerCertificateID[LEN_128];	//Ö¤ÊéID
-	char		pcStartTime[LEN_32];			//Ö¤ÊéÓĞĞ§ÆÚ¿ªÊ¼Ê±¼ä
-	char		pcEndTime[LEN_32];				//Ö¤ÊéÓĞĞ§ÆÚ½áÊøÊ±¼ä
-	int			iState;							//¼ÓÃÜËã·¨£º1-Aes128 2-Aes256
-	int			iUser;							//Ê¹ÓÃÕß:°´Î»bit0:http  bit1:SRTP
+	int			iCount;							//è¯ä¹¦æ€»æ•°:1-16
+	int			iNum;							//è¯ä¹¦åºå·
+	char		pcServerCertificateID[LEN_128];	//è¯ä¹¦ID
+	char		pcStartTime[LEN_32];			//è¯ä¹¦æœ‰æ•ˆæœŸå¼€å§‹æ—¶é—´
+	char		pcEndTime[LEN_32];				//è¯ä¹¦æœ‰æ•ˆæœŸç»“æŸæ—¶é—´
+	int			iState;							//åŠ å¯†ç®—æ³•ï¼š1-Aes128 2-Aes256
+	int			iUser;							//ä½¿ç”¨è€…:æŒ‰ä½bit0:http  bit1:SRTP
 }Certificate, *pCertificate;
 
 

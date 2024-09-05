@@ -49,7 +49,7 @@
 #endif
 
 /**    
-    @name	Í¨ÓÃ»ù±¾Êı¾İÀàĞÍ
+    @name	é€šç”¨åŸºæœ¬æ•°æ®ç±»å‹
     @{
 */
 //typedef int BOOL;		/**<  */
@@ -67,54 +67,54 @@ typedef unsigned long long uint64;		/**<  */
 */
 
 /**
-    @name Ä£¿éID
+    @name æ¨¡å—ID
     @{
 */
-#define MODULE_MS			0x80	/**< msÄ£¿éID */
-#define MODULE_VS			0x01	/**< vsÄ£¿éID */
-#define MODULE_CLIENT_SDK	0x82	/**< clientsdkÄ£¿éID */
-#define MODULE_VOD			0x83	/**< vodÄ£¿éID */
-#define MODULE_REC			0x84	/**< ´æ´¢Ä£¿éID (Â¼Ïñ²éÑ¯)*/
-#define MODULE_DECODER      	0x85	/**< ½âÂë·şÎñÆ÷Ä£¿éID */
-#define MODULE_TV       		0x86    	/**< µçÊÓÇ½·şÎñÆ÷Ä£¿éID */
-#define MODULE_CONFIG		0x87	/**< ÉèÖÃ·şÎñÆ÷Ä£¿éID */
-#define MODULE_NVR			0x88	/**< ÉèÖÃNVRÄ£¿éID (Â¼Ïñ¿ØÖÆ)*/
-#define MODULE_GPS			0x02	/**< gps Ä£¿éID   --²ÎÕÕvs*/
-#define MODULE_IAS          0x89    /**< ÖÇÄÜ·ÖÎöÄ£¿éID */       
-#define MODULE_CLOUD         0x90    /**<»ù´¡·şÎñÔÆµ÷¶ÈÄ£¿éID*/
+#define MODULE_MS			0x80	/**< msæ¨¡å—ID */
+#define MODULE_VS			0x01	/**< vsæ¨¡å—ID */
+#define MODULE_CLIENT_SDK	0x82	/**< clientsdkæ¨¡å—ID */
+#define MODULE_VOD			0x83	/**< vodæ¨¡å—ID */
+#define MODULE_REC			0x84	/**< å­˜å‚¨æ¨¡å—ID (å½•åƒæŸ¥è¯¢)*/
+#define MODULE_DECODER      	0x85	/**< è§£ç æœåŠ¡å™¨æ¨¡å—ID */
+#define MODULE_TV       		0x86    	/**< ç”µè§†å¢™æœåŠ¡å™¨æ¨¡å—ID */
+#define MODULE_CONFIG		0x87	/**< è®¾ç½®æœåŠ¡å™¨æ¨¡å—ID */
+#define MODULE_NVR			0x88	/**< è®¾ç½®NVRæ¨¡å—ID (å½•åƒæ§åˆ¶)*/
+#define MODULE_GPS			0x02	/**< gps æ¨¡å—ID   --å‚ç…§vs*/
+#define MODULE_IAS          0x89    /**< æ™ºèƒ½åˆ†ææ¨¡å—ID */       
+#define MODULE_CLOUD         0x90    /**<åŸºç¡€æœåŠ¡äº‘è°ƒåº¦æ¨¡å—ID*/
 
-#define MS_NORMAL_SERVER 0   //ÆÕÍ¨ÖĞ¼ä¼ş
-#define MS_CLOUD_DEV 1        //ÔÆ½Úµã
-#define MS_CLOUD_SERVER   2   //ÔÆ·şÎñÆ÷Æ÷
+#define MS_NORMAL_SERVER 0   //æ™®é€šä¸­é—´ä»¶
+#define MS_CLOUD_DEV 1        //äº‘èŠ‚ç‚¹
+#define MS_CLOUD_SERVER   2   //äº‘æœåŠ¡å™¨å™¨
 
 /**
     @}
 */
 
 /**
-    @name ×ÊÔ´ÀàĞÍ
+    @name èµ„æºç±»å‹
     @{
 */
-#define VIDEO_RES_TYPE			0		/**< ÊÓÆµÁ¬½ÓµÄ×ÊÔ´ÀàĞÍ */
-#define LOGIN_RES_TYPE			1		/**< Ö÷»úµÇÂ¼µÄ×ÊÔ´ÀàĞÍ */
-#define PLAY_RES_TYPE			0x8001	/**< »Ø·ÅµÄ×ÊÔ´ÀàĞÍ */
-#define DOWN_RES_TYPE			0x8002	/**< ÏÂÔØµÄ×ÊÔ´ÀàĞÍ */
-#define STATE_RES_TYPE			0x8003	/**< ²éÑ¯ÏµÍ³×ÊÔ´ */
-#define TALK_RES_TYPE			0x8004	/**< ÍøÂç¶Ô½²×ÊÔ´ */
-#define UP_RES_TYPE				0x8005	/**< ÉÏ´«µÄ×ÊÔ´ÀàĞÍ */  
-#define LOGIN_MS_RES_TYPE		0x8002	/**< MSµÇÂ¼×ÊÔ´ */
-#define LOGIN_VS_RES_TYPE		0x8003	/**< VSµÇÂ¼×ÊÔ´ */
-#define LOGIN_SDK_RES_TYPE		0x8004	/**< SDKµÇÂ¼×ÊÔ´ */
-#define LOGIN_VOD_RES_TYPE		0x8005	/**< VODµÇÂ¼×ÊÔ´ */
-#define LOGIN_REC_RES_TYPE		0x8006	/**< RECµÇÂ¼×ÊÔ´ */
-#define LOGIN_DECODER_RES_TYPE	0x8007	/**< DECODERµÇÂ¼×ÊÔ´ */
-#define LOGIN_TV_RES_TYPE		0x8008	/**< TVµÇÂ¼×ÊÔ´ */
-#define LOGIN_CONFIG_RES_TYPE	0x8009	/**< CONFIGµÇÂ¼×ÊÔ´ */
-#define LOGIN_NVR_RES_TYPE		0x800A	/**< NVRµÇÂ¼×ÊÔ´ */
-#define LOGIN_GPS_RES_TYPE		0x800B	/**< GPSµÇÂ¼×ÊÔ´ */
-#define LOGIN_IAS_RES_TYPE      0x800C   /**< IAS µÇÂ½×ÊÔ´ */
-#define LOGIN_CLOUD_RES_TYPE	0x800D  /**< ClOUDµÇÂ¼×ÊÔ´*/
-#define LOGIN_CLOUD_CFG_RES_TYPE	0x800E  /**< ClOUDµÇÂ¼cfg×ÊÔ´*/
+#define VIDEO_RES_TYPE			0		/**< è§†é¢‘è¿æ¥çš„èµ„æºç±»å‹ */
+#define LOGIN_RES_TYPE			1		/**< ä¸»æœºç™»å½•çš„èµ„æºç±»å‹ */
+#define PLAY_RES_TYPE			0x8001	/**< å›æ”¾çš„èµ„æºç±»å‹ */
+#define DOWN_RES_TYPE			0x8002	/**< ä¸‹è½½çš„èµ„æºç±»å‹ */
+#define STATE_RES_TYPE			0x8003	/**< æŸ¥è¯¢ç³»ç»Ÿèµ„æº */
+#define TALK_RES_TYPE			0x8004	/**< ç½‘ç»œå¯¹è®²èµ„æº */
+#define UP_RES_TYPE				0x8005	/**< ä¸Šä¼ çš„èµ„æºç±»å‹ */  
+#define LOGIN_MS_RES_TYPE		0x8002	/**< MSç™»å½•èµ„æº */
+#define LOGIN_VS_RES_TYPE		0x8003	/**< VSç™»å½•èµ„æº */
+#define LOGIN_SDK_RES_TYPE		0x8004	/**< SDKç™»å½•èµ„æº */
+#define LOGIN_VOD_RES_TYPE		0x8005	/**< VODç™»å½•èµ„æº */
+#define LOGIN_REC_RES_TYPE		0x8006	/**< RECç™»å½•èµ„æº */
+#define LOGIN_DECODER_RES_TYPE	0x8007	/**< DECODERç™»å½•èµ„æº */
+#define LOGIN_TV_RES_TYPE		0x8008	/**< TVç™»å½•èµ„æº */
+#define LOGIN_CONFIG_RES_TYPE	0x8009	/**< CONFIGç™»å½•èµ„æº */
+#define LOGIN_NVR_RES_TYPE		0x800A	/**< NVRç™»å½•èµ„æº */
+#define LOGIN_GPS_RES_TYPE		0x800B	/**< GPSç™»å½•èµ„æº */
+#define LOGIN_IAS_RES_TYPE      0x800C   /**< IAS ç™»é™†èµ„æº */
+#define LOGIN_CLOUD_RES_TYPE	0x800D  /**< ClOUDç™»å½•èµ„æº*/
+#define LOGIN_CLOUD_CFG_RES_TYPE	0x800E  /**< ClOUDç™»å½•cfgèµ„æº*/
 
 #define VIDEO_TALK_RES_TYPE		6
 #define NET_TYPE_VIDEO_TALK		7
@@ -123,27 +123,27 @@ typedef unsigned long long uint64;		/**<  */
     @}
 */
 
-#define TRY_AGIAN_NUM	30	/**< ·¢ËÍÖØ·¢´ÎÊı */
+#define TRY_AGIAN_NUM	30	/**< å‘é€é‡å‘æ¬¡æ•° */
 
 
-#define MAX_IP_LEN 16	/**< ×î´óIPµØÖ·³¤¶È */
+#define MAX_IP_LEN 16	/**< æœ€å¤§IPåœ°å€é•¿åº¦ */
 //add by shiweiqi 2011-1-28
-#define MAX_MAC_LEN 60	/**< ×î´óMACµØÖ·³¤¶È */
+#define MAX_MAC_LEN 60	/**< æœ€å¤§MACåœ°å€é•¿åº¦ */
 //end add
-#define MAX_USERNAME_LEN 60	/**< ×î´óÓÃ»§Ãû³¤¶È */
-#define MAX_PASSWORD_LEN 60	/**< ×î´óÃÜÂë³¤¶È */
+#define MAX_USERNAME_LEN 60	/**< æœ€å¤§ç”¨æˆ·åé•¿åº¦ */
+#define MAX_PASSWORD_LEN 60	/**< æœ€å¤§å¯†ç é•¿åº¦ */
 
-#define MAX_REC_TEMPLATE_TIME_NUM 10	/**< ×î´óÂ¼ÏñÄ£°åÊ±¼ä¶ÎÊı */
-#define MAX_REC_TEMPLATE_NUM 64	/**< ×î´óÂ¼ÏñÄ£°åÊı */
-#define MAX_REC_TEMPLATE_NAME_LEN	100	/**< ×î´óÂ¼ÏñÄ£°åÃû³Æ³¤¶È */
-#define MAX_MONTH 12	/**< ×î´óÔÂ·İ³¤¶È */
-#define MAX_WEEKDAY 7	/**< ×î´óĞÇÆÚ³¤¶È */
-#define MAX_TIME_STRING_LEN 8	/**< ×î´óÊ±¼ä´®³¤¶È */
+#define MAX_REC_TEMPLATE_TIME_NUM 10	/**< æœ€å¤§å½•åƒæ¨¡æ¿æ—¶é—´æ®µæ•° */
+#define MAX_REC_TEMPLATE_NUM 64	/**< æœ€å¤§å½•åƒæ¨¡æ¿æ•° */
+#define MAX_REC_TEMPLATE_NAME_LEN	100	/**< æœ€å¤§å½•åƒæ¨¡æ¿åç§°é•¿åº¦ */
+#define MAX_MONTH 12	/**< æœ€å¤§æœˆä»½é•¿åº¦ */
+#define MAX_WEEKDAY 7	/**< æœ€å¤§æ˜ŸæœŸé•¿åº¦ */
+#define MAX_TIME_STRING_LEN 8	/**< æœ€å¤§æ—¶é—´ä¸²é•¿åº¦ */
 
-#define ATM_DVR_REC  3	/**< ATM_DVRÂ¼Ïñ²éÑ¯ÀàĞÍ */
+#define ATM_DVR_REC  3	/**< ATM_DVRå½•åƒæŸ¥è¯¢ç±»å‹ */
 
 #ifndef MAX_PATH
-#define MAX_PATH 260	/**< ×î´óÂ·¾¶³¤¶È */
+#define MAX_PATH 260	/**< æœ€å¤§è·¯å¾„é•¿åº¦ */
 
 
 #endif

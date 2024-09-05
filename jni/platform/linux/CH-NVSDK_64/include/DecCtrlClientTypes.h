@@ -15,7 +15,7 @@
 #endif
 
 typedef void (__stdcall *DEC_COMRECV_NOTIFY)(long _ulID, char *_cBuf, int _iLength);
-//ÏûÏ¢»Øµ÷º¯Êı
+//æ¶ˆæ¯å›è°ƒå‡½æ•°
 typedef int (*pTDPostMessage)(void *_hWnd, unsigned int _uiMsg, unsigned int _wParam, int _lParam);
 typedef int (*pTDPostMessageEx)(void *_hWnd, unsigned int _uiMsg, unsigned int _wParam, int _lParam, void* _lpUserData);
 
@@ -30,20 +30,20 @@ typedef int (*pTDPostMessageEx)(void *_hWnd, unsigned int _uiMsg, unsigned int _
 #define DEC_LEN_128		128
 #define DEC_LEN_256		256
 #define DEC_LEN_512		512
-#define DEC_MAX_CHANNELID_LEN   32             //×î´óÍ¨µÀID³¤¶È
+#define DEC_MAX_CHANNELID_LEN   32             //æœ€å¤§é€šé“IDé•¿åº¦
 
 /**********************************************abandon************************************************/
-#define	DEC_MAX_CHANNEL_NUM				8     //Ã¿¸ö½âÂëÆ÷×î¶àÍ¨µÀÊı
-#define	DEC_MAX_CHANNEL_NUM_NEW			16     //Ã¿¸ö½âÂëÆ÷×î¶àÍ¨µÀÊı£¬¶àÂ·½âÂëÆ÷À©Õ¹ÖÁ16¸ö£¬ÊôÓÚÎïÀíÍ¨µÀ
-#define	DEC_MAX_VIRTUAL_CHANNEL_NUM		8      //Ã¿¸ö½âÂëÆ÷×î¶àĞéÄâÍ¨µÀÊı£¬´óÆÁÉèÖÃÊ¹ÓÃ,ĞéÄâÍ¨µÀºÅ´Ó16¿ªÊ¼
-#define DEC_MAX_SPLIT_SCREEN_NUM		16		//´óÆÁ×î´óµÄ·ÖÆÁ¸öÊı
+#define	DEC_MAX_CHANNEL_NUM				8     //æ¯ä¸ªè§£ç å™¨æœ€å¤šé€šé“æ•°
+#define	DEC_MAX_CHANNEL_NUM_NEW			16     //æ¯ä¸ªè§£ç å™¨æœ€å¤šé€šé“æ•°ï¼Œå¤šè·¯è§£ç å™¨æ‰©å±•è‡³16ä¸ªï¼Œå±äºç‰©ç†é€šé“
+#define	DEC_MAX_VIRTUAL_CHANNEL_NUM		8      //æ¯ä¸ªè§£ç å™¨æœ€å¤šè™šæ‹Ÿé€šé“æ•°ï¼Œå¤§å±è®¾ç½®ä½¿ç”¨,è™šæ‹Ÿé€šé“å·ä»16å¼€å§‹
+#define DEC_MAX_SPLIT_SCREEN_NUM		16		//å¤§å±æœ€å¤§çš„åˆ†å±ä¸ªæ•°
 
 #define DEC_MAX_FLOAT_WINDOW_NUM 16
-#define DEC_MAX_PICTURE_NUM		100             //Ã¿¸ö½âÂëÍ¨µÀ×î¶à»­ÃæÊıÀ©Õ¹ÖÁ100¸ö
+#define DEC_MAX_PICTURE_NUM		100             //æ¯ä¸ªè§£ç é€šé“æœ€å¤šç”»é¢æ•°æ‰©å±•è‡³100ä¸ª
 #define DEC_MAX_WINDOW_TOTAL_NUM        (DEC_MAX_PICTURE_NUM + DEC_MAX_FLOAT_WINDOW_NUM)
 
-#define	DEC_MAX_PHYSICAL_CHANNEL_NUM 	96  //×î´óÎïÀíÍ¨µÀÊı
-#define DEC_MAX_SPLIT_CHANNEL_NUM       48  //×î´óÆ´½ÓÍ¨µÀÊı
+#define	DEC_MAX_PHYSICAL_CHANNEL_NUM 	96  //æœ€å¤§ç‰©ç†é€šé“æ•°
+#define DEC_MAX_SPLIT_CHANNEL_NUM       48  //æœ€å¤§æ‹¼æ¥é€šé“æ•°
 
 #define DEC_MAX_CHANNEL_TOTAL_NUM       (DEC_MAX_PHYSICAL_CHANNEL_NUM + DEC_MAX_SPLIT_CHANNEL_NUM)
 
@@ -59,12 +59,12 @@ typedef struct tagGetSipVideoChannel_Ex
 	int 	m_iPtzTime[DEC_MAX_CHANNEL_NUM_NEW];
 }GetSipVideoChannel_Ex, *pGetSipVideoChannel_Ex;
 
-//»ñÈ¡Í¨µÀÊıºÍÃ¿¸öÍ¨µÀµÄ»­ÃæÊı
+//è·å–é€šé“æ•°å’Œæ¯ä¸ªé€šé“çš„ç”»é¢æ•°
 typedef struct tagChnNumAndMode
 {
-	int			iBufSize;				//½á¹¹Ìå´óĞ¡
-	int			iLocalChnNum;			//±¾µØÍ¨µÀÊı
-	int			iVOChnNum;				//Æ´¿ØÍ¨µÀÊı
+	int			iBufSize;				//ç»“æ„ä½“å¤§å°
+	int			iLocalChnNum;			//æœ¬åœ°é€šé“æ•°
+	int			iVOChnNum;				//æ‹¼æ§é€šé“æ•°
 	int			iLocalChnMode[DEC_MAX_CHANNEL_NUM_NEW];
 	int			iVOChnMode[DEC_MAX_VIRTUAL_CHANNEL_NUM];
 }ChnNumAndMode, *pChnNumAndMode;
@@ -80,55 +80,55 @@ typedef struct tagDecScreenDisplay
 }DecScreenDisplay, *PDecScreenDisplay;
 /*****************************************************************************************************/
 
-#define DEC_MAX_NVSITEM_NUM     256             //Ã¿¸ö»­Ãæ×î¶àNVSÊıÁ¿
-#define DEC_MAX_DECODER         128				//×î¶àÁ¬½Ó½âÂëÆ÷Êı
-#define DEC_MAX_COM_NUM			2				//×î´ó´®¿ÚÊı
-#define DEC_MAX_COM_NUM_NEW		8				//×î´ó´®¿ÚÊı(ĞÂ)
-#define DEC_MAX_USER_NUM		32				//×î´óÓÃ»§ÊıÁ¿
+#define DEC_MAX_NVSITEM_NUM     256             //æ¯ä¸ªç”»é¢æœ€å¤šNVSæ•°é‡
+#define DEC_MAX_DECODER         128				//æœ€å¤šè¿æ¥è§£ç å™¨æ•°
+#define DEC_MAX_COM_NUM			2				//æœ€å¤§ä¸²å£æ•°
+#define DEC_MAX_COM_NUM_NEW		8				//æœ€å¤§ä¸²å£æ•°(æ–°)
+#define DEC_MAX_USER_NUM		32				//æœ€å¤§ç”¨æˆ·æ•°é‡
 
 #define DEC_MAX_ALARM_OUT 7
 #define DEC_MAX_ALARMMODE 1
 #define DEC_MAX_IS_PAL	  1
 #define DEC_MAX_LANGUAGE  1
 
-#define NVS_MAX_CHANNEL_NUM		320				//Éè±¸µÄ×î´óÍ¨µÀÊıÀ©Õ¹ÖÁ64£¬¼æÈİ´óÂ·Êınvr
+#define NVS_MAX_CHANNEL_NUM		320				//è®¾å¤‡çš„æœ€å¤§é€šé“æ•°æ‰©å±•è‡³64ï¼Œå…¼å®¹å¤§è·¯æ•°nvr
 
-//ÏûÏ¢¶¨Òå
-#define DEC_WCM_DEC_LOGON         1   //µÇÂ¼×´Ì¬ÏûÏ¢
-#define DEC_WCM_NVS_STARTVIEW     2   //Á¬½ÓNVSÏûÏ¢
-#define DEC_WCM_DEC_TALK          3   //¶Ô½²ÏûÏ¢
+//æ¶ˆæ¯å®šä¹‰
+#define DEC_WCM_DEC_LOGON         1   //ç™»å½•çŠ¶æ€æ¶ˆæ¯
+#define DEC_WCM_NVS_STARTVIEW     2   //è¿æ¥NVSæ¶ˆæ¯
+#define DEC_WCM_DEC_TALK          3   //å¯¹è®²æ¶ˆæ¯
 
-#define DEC_WCM_DEC_UPGRADE       4   //Éı¼¶½âÂëÆ÷ÏûÏ¢
-#define DEC_WCM_DEC_UPGRADELOGO   5   //Éı¼¶LogoÏûÏ¢
-#define DEC_WCM_DEC_UPGRADEP      6   //Éı¼¶¿ØÖÆĞ­ÒéÏûÏ¢
+#define DEC_WCM_DEC_UPGRADE       4   //å‡çº§è§£ç å™¨æ¶ˆæ¯
+#define DEC_WCM_DEC_UPGRADELOGO   5   //å‡çº§Logoæ¶ˆæ¯
+#define DEC_WCM_DEC_UPGRADEP      6   //å‡çº§æ§åˆ¶åè®®æ¶ˆæ¯
 
-#define DEC_WCM_ERR_ORDER         7   //ÃüÁî²ã·¢Éú´íÎó
-#define DEC_WCM_NVS_STOPVIEW      8   //¶Ï¿ªNVSÏûÏ¢
-#define DEC_WCM_DEC_PARASET       9   //²ÎÊı¸Ä±äÏûÏ¢
+#define DEC_WCM_ERR_ORDER         7   //å‘½ä»¤å±‚å‘ç”Ÿé”™è¯¯
+#define DEC_WCM_NVS_STOPVIEW      8   //æ–­å¼€NVSæ¶ˆæ¯
+#define DEC_WCM_DEC_PARASET       9   //å‚æ•°æ”¹å˜æ¶ˆæ¯
 
-#define DEC_WCM_DEC_UPGRADEWEB      10  //Éı¼¶ÍøÒ³ÏûÏ¢
-#define DEC_WCM_DEC_UPGRADEPROCESS  11  //½âÂëÆ÷Éı¼¶½ø¶È
-#define DEC_WCM_DEC_AUDIOSTATUS     12  //ÒôÆµ×´Ì¬ÏûÏ¢
-#define DEC_WCM_DEC_TALK_FAILED     13  //add by lpy for ¶Ô½²Ê§°Ü
-#define DEC_WCM_DEC_AUDIO_FAILED    14  //add by lpy for ÒôÆµÊ§°Ü[2/5/2010 Administrator]
+#define DEC_WCM_DEC_UPGRADEWEB      10  //å‡çº§ç½‘é¡µæ¶ˆæ¯
+#define DEC_WCM_DEC_UPGRADEPROCESS  11  //è§£ç å™¨å‡çº§è¿›åº¦
+#define DEC_WCM_DEC_AUDIOSTATUS     12  //éŸ³é¢‘çŠ¶æ€æ¶ˆæ¯
+#define DEC_WCM_DEC_TALK_FAILED     13  //add by lpy for å¯¹è®²å¤±è´¥
+#define DEC_WCM_DEC_AUDIO_FAILED    14  //add by lpy for éŸ³é¢‘å¤±è´¥[2/5/2010 Administrator]
 
-#define DEC_WCM_DEC_PUSHSTREAM		20	//Push stream ½á¹û
-#define DEC_WCM_ERR_PUSHSTREAM		21	//Push stream Á¬½ÓÒâÍâ¶Ï¿ª
-#define DEC_WCM_ERR_DATANET         22  //Êı¾İÍ¨µÀ·¢ÉúÍøÂçÒì³£
+#define DEC_WCM_DEC_PUSHSTREAM		20	//Push stream ç»“æœ
+#define DEC_WCM_ERR_PUSHSTREAM		21	//Push stream è¿æ¥æ„å¤–æ–­å¼€
+#define DEC_WCM_ERR_DATANET         22  //æ•°æ®é€šé“å‘ç”Ÿç½‘ç»œå¼‚å¸¸
 
-#define DEC_WCM_ERR_USERPASS		25	//ĞŞ¸ÄÃÜÂë½á¹û
-#define DEC_WCM_DETECT_CHANN_STATE	26	//½âÂëÆ÷¸÷¸öÍ¨µÀµÄ×´Ì¬
-#define DEC_WCM_ALARM_NOTIFY		27	//·¢ËÍÉÏ±¨¾¯Çé
-#define DEC_WCM_PARASET_CREATEVVO	28  //´´½¨Æ´¿ØÊä³öÍ¨µÀÏûÏ¢
+#define DEC_WCM_ERR_USERPASS		25	//ä¿®æ”¹å¯†ç ç»“æœ
+#define DEC_WCM_DETECT_CHANN_STATE	26	//è§£ç å™¨å„ä¸ªé€šé“çš„çŠ¶æ€
+#define DEC_WCM_ALARM_NOTIFY		27	//å‘é€ä¸ŠæŠ¥è­¦æƒ…
+#define DEC_WCM_PARASET_CREATEVVO	28  //åˆ›å»ºæ‹¼æ§è¾“å‡ºé€šé“æ¶ˆæ¯
 
-#define DEC_WCM_AUTOTEST_INFO		29  //×Ô¶¯»¯µ÷ÊÔ 
+#define DEC_WCM_AUTOTEST_INFO		29  //è‡ªåŠ¨åŒ–è°ƒè¯• 
 
-#define DEC_WCM_QUERY_LOG_FINISH	30  //ÈÕÖ¾²éÑ¯
+#define DEC_WCM_QUERY_LOG_FINISH	30  //æ—¥å¿—æŸ¥è¯¢
 
-#define DEC_WCM_NVS_STARTVIEW_FAILED      31   //Á¬½ÓNVSÊ§°ÜÏûÏ¢
+#define DEC_WCM_NVS_STARTVIEW_FAILED      31   //è¿æ¥NVSå¤±è´¥æ¶ˆæ¯
 
-#define DEC_WCM_SEARCH_IPC			32   //ËÑË÷·¢ÏÖIPC
-#define DEC_WCM_SEARCH_NVD			33   //ËÑË÷·¢ÏÖ½âÂëÆ÷
+#define DEC_WCM_SEARCH_IPC			32   //æœç´¢å‘ç°IPC
+#define DEC_WCM_SEARCH_NVD			33   //æœç´¢å‘ç°è§£ç å™¨
 
 #define DEC_WCM_CLUSTER_STATE 					34  
 #define DEC_WCM_CLUSTER_CONTROL_CARD_STATE 		35
@@ -148,15 +148,15 @@ typedef struct tagDecScreenDisplay
 #define DEC_WCM_DEC_VIDEO_PLAYSET				49
 
 
-//encodemode: ±àÂëÀàĞÍ
-//0£¬H.264£»1£¬MJPEG£¬ 23:H265, 31:MPEG4 100£ºPSÁ÷
+//encodemode: ç¼–ç ç±»å‹
+//0ï¼ŒH.264ï¼›1ï¼ŒMJPEGï¼Œ 23:H265, 31:MPEG4 100ï¼šPSæµ
 #define ENCODE_H264			0
 #define ENCODE_MJPEG		1
 #define ENCODE_H265			23
 #define ENCODE_MPEG4		31
 #define ENCODE_PS			100
 
-//videosize: ÊÓÆµ´óĞ¡
+//videosize: è§†é¢‘å¤§å°
 enum
 {
 	VIDEO_QCIF		= 0,			//Quarter Cif 	172*144, 
@@ -176,7 +176,7 @@ enum
 	VZ_4M           = 0x0210,		//400W		2560*1440
 	VZ_4MB			= 0x0220,		//400WB		2592*1520
 	VZ_QSXGA		= 0x500,		//500W(3)	2560*2048
-	//×ßÀÈÄ£Ê½
+	//èµ°å»Šæ¨¡å¼
 	F720P_9_16		= 0x100009,		//720x 1280
 	F1080P_9_16		= 0x10000C,		//1080x 1920
 	F4M_9_16		= 0x100210,		//1440x2560
@@ -189,7 +189,7 @@ enum
 
 
 #ifndef EMBEDED_USE
-//VGA·Ö±æÂÊ
+//VGAåˆ†è¾¨ç‡
 enum
 {
 	VGA_800X600		= 1,	//800*600 60HZ
@@ -215,7 +215,7 @@ enum
 #define VGA_BUTT	13
 #endif
 
-//µÇÂ¼×´Ì¬
+//ç™»å½•çŠ¶æ€
 enum
 {
     DEC_LOGON_RETRY         = 2,
@@ -235,7 +235,7 @@ enum
 #define DEC_ILLEGAL_PLATFORM        5
 
 /************************************************************************
-* SIPĞ­ÒéÏà¹Ø                                                                     
+* SIPåè®®ç›¸å…³                                                                     
 ************************************************************************/
 
 
@@ -264,52 +264,52 @@ typedef struct tagSipVideoChannel
 	int     iPtzTime;
 }SipVideoChannel, *PSipVideoChannel;
 
-#define DEC_MAX_LAN_NUM 2   //×î´óÍø¿¨ÊıÁ¿
+#define DEC_MAX_LAN_NUM 2   //æœ€å¤§ç½‘å¡æ•°é‡
 typedef struct tagIPAddress
 {
-	char			ip[16];			//½âÂëÆ÷IPµØÖ·
-	char			submask[16];		//½âÂëÆ÷×ÓÍøÑÚÂë
-	char			gateway[16];		//½âÂëÆ÷µÄÍø¹ØµØÖ·
-	char			dns[16];			//DNSµØÖ·
+	char			ip[16];			//è§£ç å™¨IPåœ°å€
+	char			submask[16];		//è§£ç å™¨å­ç½‘æ©ç 
+	char			gateway[16];		//è§£ç å™¨çš„ç½‘å…³åœ°å€
+	char			dns[16];			//DNSåœ°å€
 }IPAddress, *pIPAddress;
 
 typedef struct tagMacAddress
 {
-	char			cMac[18];			//ÎïÀíµØÖ·
+	char			cMac[18];			//ç‰©ç†åœ°å€
 }MacAddress, *pMacAddress;
 
-/*½âÂëÆ÷²ÎÊı¶¨Òå=======================================*/
+/*è§£ç å™¨å‚æ•°å®šä¹‰=======================================*/
 typedef struct
 {
-	char			m_ip[16];			//½âÂëÆ÷IPµØÖ·
-	char			m_submask[16];		//½âÂëÆ÷×ÓÍøÑÚÂë
-	char			m_gateway[16];		//½âÂëÆ÷µÄÍø¹ØµØÖ·
-	char			m_dns[16];			//DNSµØÖ·
+	char			m_ip[16];			//è§£ç å™¨IPåœ°å€
+	char			m_submask[16];		//è§£ç å™¨å­ç½‘æ©ç 
+	char			m_gateway[16];		//è§£ç å™¨çš„ç½‘å…³åœ°å€
+	char			m_dns[16];			//DNSåœ°å€
 
-	MacAddress		m_tMacAddress[DEC_MAX_LAN_NUM];			//ÎïÀíµØÖ·
+	MacAddress		m_tMacAddress[DEC_MAX_LAN_NUM];			//ç‰©ç†åœ°å€
 
-	char			m_ddnsIP[16];		//½âÎö·şÎñÆ÷IPµØÖ·
-	char			m_ddnsUser[16];		//½âÎö·şÎñÆ÷ÓÃ»§Ãû
-	char			m_ddnsPass[16];		//½âÎö·şÎñÆ÷ÃÜÂë
-	unsigned short	m_ddnsPort;			//½âÎö·şÎñÆ÷¶Ë¿Ú
-	unsigned char	m_ispal;			//0:PAL£»1:NTSC
-	unsigned char	m_language;			//0:ÖĞÎÄ£»1:Ó¢ÎÄ
+	char			m_ddnsIP[16];		//è§£ææœåŠ¡å™¨IPåœ°å€
+	char			m_ddnsUser[16];		//è§£ææœåŠ¡å™¨ç”¨æˆ·å
+	char			m_ddnsPass[16];		//è§£ææœåŠ¡å™¨å¯†ç 
+	unsigned short	m_ddnsPort;			//è§£ææœåŠ¡å™¨ç«¯å£
+	unsigned char	m_ispal;			//0:PALï¼›1:NTSC
+	unsigned char	m_language;			//0:ä¸­æ–‡ï¼›1:è‹±æ–‡
 
-	unsigned char	m_rs485type[DEC_MAX_COM_NUM];			//485Ğ­ÒéID£¬0£ºÍ¸Ã÷Í¨µÀ£¬1:Pelco-P£¬...
-	unsigned char	m_rs485address[DEC_MAX_COM_NUM];		//485µØÖ·£¨È¡Öµ·¶Î§£º0-255£©
-	int				m_rs485baudrate[DEC_MAX_COM_NUM];		//485²¨ÌØÂÊ2400£¬4800£¬9600
-	unsigned char	m_rs485databit[DEC_MAX_COM_NUM];   		//485Êı¾İÎ»£¬Ä¬ÈÏÎª8
-	unsigned char	m_rs485stopbit[DEC_MAX_COM_NUM];		//485Í£Ö¹Î»£¬Ä¬ÈÏÎª1
-	unsigned char	m_rs485checkbit[DEC_MAX_COM_NUM]; 		//485Ğ£ÑéÎ»£¬ËÄÖÖ¿ÉÑ¡£¬0£ºÎŞĞ£Ñé£»1£ºÆæĞ£Ñé£»2£ºÅ¼Ğ£Ñé£»3£º¹Ì¶¨Îª1£»4£º¹Ì¶¨Îª0
-	unsigned char	m_rs485flowcontrol[DEC_MAX_COM_NUM];	//485Á÷¿Ø£¬Ä¬ÈÏÎªÎŞÁ÷¿Ø£¬ÉèÖÃÎŞĞ§
+	unsigned char	m_rs485type[DEC_MAX_COM_NUM];			//485åè®®IDï¼Œ0ï¼šé€æ˜é€šé“ï¼Œ1:Pelco-Pï¼Œ...
+	unsigned char	m_rs485address[DEC_MAX_COM_NUM];		//485åœ°å€ï¼ˆå–å€¼èŒƒå›´ï¼š0-255ï¼‰
+	int				m_rs485baudrate[DEC_MAX_COM_NUM];		//485æ³¢ç‰¹ç‡2400ï¼Œ4800ï¼Œ9600
+	unsigned char	m_rs485databit[DEC_MAX_COM_NUM];   		//485æ•°æ®ä½ï¼Œé»˜è®¤ä¸º8
+	unsigned char	m_rs485stopbit[DEC_MAX_COM_NUM];		//485åœæ­¢ä½ï¼Œé»˜è®¤ä¸º1
+	unsigned char	m_rs485checkbit[DEC_MAX_COM_NUM]; 		//485æ ¡éªŒä½ï¼Œå››ç§å¯é€‰ï¼Œ0ï¼šæ— æ ¡éªŒï¼›1ï¼šå¥‡æ ¡éªŒï¼›2ï¼šå¶æ ¡éªŒï¼›3ï¼šå›ºå®šä¸º1ï¼›4ï¼šå›ºå®šä¸º0
+	unsigned char	m_rs485flowcontrol[DEC_MAX_COM_NUM];	//485æµæ§ï¼Œé»˜è®¤ä¸ºæ— æµæ§ï¼Œè®¾ç½®æ— æ•ˆ
 
-	int				m_Alarmout;								//±¨¾¯Êä³öÁª¶¯¹ØÏµ£¬&0x01:¶Ë¿Ú±¨¾¯£¬&0x02:¶ªÊ§±¨¾¯£¬&0x04:ÒÆ¶¯±¨¾¯£¬1±íÊ¾Áª¶¯Êä³ö£¬0±íÊ¾²»Áª¶¯Êä³ö¡£
-    int			    m_AlarmMode;							//±¨¾¯Êä³öÄ£Ê½£º0£ºµÍµçÆ½´¥·¢£»1£º¸ßµçÆ½´¥·¢
-	int				m_iChannel;								//½âÂëÍ¨µÀÊı£¬0-8
-	int				m_iComNumber;							//´®¿ÚÊı£¬0-1
-	unsigned char	m_nChanMode[DEC_MAX_CHANNEL_NUM];		//Ã¿¸öÍ¨µÀµÄ¹¤×÷Ä£Ê½£¨1£ºµ¥»­Ãæ£»4£ºËÄ»­Ãæ£©
+	int				m_Alarmout;								//æŠ¥è­¦è¾“å‡ºè”åŠ¨å…³ç³»ï¼Œ&0x01:ç«¯å£æŠ¥è­¦ï¼Œ&0x02:ä¸¢å¤±æŠ¥è­¦ï¼Œ&0x04:ç§»åŠ¨æŠ¥è­¦ï¼Œ1è¡¨ç¤ºè”åŠ¨è¾“å‡ºï¼Œ0è¡¨ç¤ºä¸è”åŠ¨è¾“å‡ºã€‚
+    int			    m_AlarmMode;							//æŠ¥è­¦è¾“å‡ºæ¨¡å¼ï¼š0ï¼šä½ç”µå¹³è§¦å‘ï¼›1ï¼šé«˜ç”µå¹³è§¦å‘
+	int				m_iChannel;								//è§£ç é€šé“æ•°ï¼Œ0-8
+	int				m_iComNumber;							//ä¸²å£æ•°ï¼Œ0-1
+	unsigned char	m_nChanMode[DEC_MAX_CHANNEL_NUM];		//æ¯ä¸ªé€šé“çš„å·¥ä½œæ¨¡å¼ï¼ˆ1ï¼šå•ç”»é¢ï¼›4ï¼šå››ç”»é¢ï¼‰
 
-	int             m_iVGASize[DEC_MAX_CHANNEL_NUM];		//Ã¿¸öÍ¨µÀµÄVGA·Ö±æÂÊ£¬1£¨800*600 60Hz£©¡¢2£¨1024*768 60Hz£©¡¢3£¨1280*1024 60Hz£©£¬ÈôÎªBNCÍ¨µÀ£¬Ôò¸Ã²ÎÊıÎŞĞ§
+	int             m_iVGASize[DEC_MAX_CHANNEL_NUM];		//æ¯ä¸ªé€šé“çš„VGAåˆ†è¾¨ç‡ï¼Œ1ï¼ˆ800*600 60Hzï¼‰ã€2ï¼ˆ1024*768 60Hzï¼‰ã€3ï¼ˆ1280*1024 60Hzï¼‰ï¼Œè‹¥ä¸ºBNCé€šé“ï¼Œåˆ™è¯¥å‚æ•°æ— æ•ˆ
 #ifdef __WIN__
 	char			m_cRegSvrIP[32];
 	int				m_iRegSvrPort;
@@ -320,13 +320,13 @@ typedef struct
 
 
 
-	int				m_iVolume;				//	ÒôÁ¿
+	int				m_iVolume;				//	éŸ³é‡
 
-	int				m_iSelPic[2];			//	»­ÃæÑ¡Ôñ                           
+	int				m_iSelPic[2];			//	ç”»é¢é€‰æ‹©                           
 //.................SIP.....@cmz..110223
 	DZ_INFO_PARAM	m_dzInfoParam;
 	TGetSipVideoChannel m_SipVideoChannel;
-	//................ÊÓÆµ²ÎÊıÉèÖÃ.....
+	//................è§†é¢‘å‚æ•°è®¾ç½®.....
 	STR_VideoParam  m_VideoParam[DEC_MAX_CHANNEL_NUM];
 	int				m_iRegChannelNum[2];
 	char			m_cRegChannelPUID[2][DEC_LEN_32+1];
@@ -334,55 +334,55 @@ typedef struct
 }TDECPARAM;
 
 #define RTSP_URL_LEN	81
-/*ÊÓÆµÍ¨µÀ²ÎÊı¶¨Òå======================================*/
+/*è§†é¢‘é€šé“å‚æ•°å®šä¹‰======================================*/
 typedef struct
 {
 	union
 	{
-		char				m_cRTSPUrl[RTSP_URL_LEN+1];		//RTSPµØÖ·
+		char				m_cRTSPUrl[RTSP_URL_LEN+1];		//RTSPåœ°å€
 		struct  
 		{
-			char 			m_serName[33];		//·şÎñÆ÷Ãû³Æ(ÔİÊ±±£Áô)
-			char 			m_serIP[33];		//·şÎñÆ÷µØÖ·£¬¿ÉÒÔÊÇIPµØÖ·£¬Ò²¿ÉÒÔÊÇÓòÃû£»       zyp modified 0506
-			char			m_serProxy[16];		//·şÎñÆ÷ÉÏ¼¶´úÀí
+			char 			m_serName[33];		//æœåŠ¡å™¨åç§°(æš‚æ—¶ä¿ç•™)
+			char 			m_serIP[33];		//æœåŠ¡å™¨åœ°å€ï¼Œå¯ä»¥æ˜¯IPåœ°å€ï¼Œä¹Ÿå¯ä»¥æ˜¯åŸŸåï¼›       zyp modified 0506
+			char			m_serProxy[16];		//æœåŠ¡å™¨ä¸Šçº§ä»£ç†
 		};		
 	};
 	
-	unsigned char	m_serChan;			//·şÎñÆ÷Í¨µÀ
-	unsigned char	m_serStream;		//·şÎñÆ÷ÂëÁ÷ÀàĞÍ
-	unsigned char	m_serNetmode;		//´«ÊäĞ­Òé1£ºTCP£¬2£ºUDP£¬3£º¶à²¥£»
-	unsigned char	m_bUseddns;			//Í¨¹ı½âÎö·şÎñÆ÷Á¬½Ó
-	unsigned short	m_serPort;			//·şÎñÆ÷¶Ë¿Ú
-	int				m_bisView;			//µ±Ç°ÊÇ·ñÔÚÁ¬½Ó×´Ì¬£¬1£ºÁ¬½Ó×´Ì¬£¬0£ºÎ´Á¬½Ó×´Ì¬(ÔİÊ±²»Ê¹ÓÃ)
-	char		   	m_username[20];		//ÓÃ»§Ãû
-	char	       	m_password[20];		//ÃÜÂë
-	int         	m_holdtime;			//±£³ÖÊ±¼ä£¬È¡Öµ·¶Î§£º5¨D¨D1000Ãë
-    char            m_deviceType[16];   //Éè±¸¿ØÖÆĞ­Òé£¨ĞèÒª·­Òëµ½µÄĞ­Òé£©
-    unsigned char   m_iAddress;         //NVSÉè±¸µØÖ·£¨È¡Öµ·¶Î§£º0-255£©
+	unsigned char	m_serChan;			//æœåŠ¡å™¨é€šé“
+	unsigned char	m_serStream;		//æœåŠ¡å™¨ç æµç±»å‹
+	unsigned char	m_serNetmode;		//ä¼ è¾“åè®®1ï¼šTCPï¼Œ2ï¼šUDPï¼Œ3ï¼šå¤šæ’­ï¼›
+	unsigned char	m_bUseddns;			//é€šè¿‡è§£ææœåŠ¡å™¨è¿æ¥
+	unsigned short	m_serPort;			//æœåŠ¡å™¨ç«¯å£
+	int				m_bisView;			//å½“å‰æ˜¯å¦åœ¨è¿æ¥çŠ¶æ€ï¼Œ1ï¼šè¿æ¥çŠ¶æ€ï¼Œ0ï¼šæœªè¿æ¥çŠ¶æ€(æš‚æ—¶ä¸ä½¿ç”¨)
+	char		   	m_username[20];		//ç”¨æˆ·å
+	char	       	m_password[20];		//å¯†ç 
+	int         	m_holdtime;			//ä¿æŒæ—¶é—´ï¼Œå–å€¼èŒƒå›´ï¼š5â€•â€•1000ç§’
+    char            m_deviceType[16];   //è®¾å¤‡æ§åˆ¶åè®®ï¼ˆéœ€è¦ç¿»è¯‘åˆ°çš„åè®®ï¼‰
+    unsigned char   m_iAddress;         //NVSè®¾å¤‡åœ°å€ï¼ˆå–å€¼èŒƒå›´ï¼š0-255ï¼‰
 } TNVSITEM;
 
-//ÊÓÆµÍ¨µÀ²ÎÊıÀ©Õ¹¶¨Òå
+//è§†é¢‘é€šé“å‚æ•°æ‰©å±•å®šä¹‰
 #define MAX_ENCYPTPWD_LEN	16
 typedef struct __tagTNVSITEMEX
 {
-	int				m_iStructLen;							//Èç¹ûÒÔºóÒªÀ©Õ¹£¬¿ÉÒÔ¸ù¾İÕâ¸ö³¤¶ÈÀ´ÅĞ¶ÏÀ©Õ¹×Ö¶ÎµÄÄÚÈİ
+	int				m_iStructLen;							//å¦‚æœä»¥åè¦æ‰©å±•ï¼Œå¯ä»¥æ ¹æ®è¿™ä¸ªé•¿åº¦æ¥åˆ¤æ–­æ‰©å±•å­—æ®µçš„å†…å®¹
 	TNVSITEM		m_stOldItem;
-	char			m_cEncyptPWD[MAX_ENCYPTPWD_LEN + 1];	//¼ÓÃÜÃÜÂë
-	int				m_iDevPlatType;							//Éè±¸Æ½Ì¨ÀàĞÍ£¬0-ÆÕÍ¨£¬1-Onvif 2-pushÁ÷ 3-RTSPÁ÷
-	void*			m_pvReserved;							//ÎªÁË±ãÓÚÀ©Õ¹
-	char			m_cMultIP[33];							//×é²¥µØÖ·Ğ­Òé
-	int				m_iMultPort;							//×é²¥¶Ë¿ÚºÅ
-	int             m_isavecfg;                             //±£´æÅäÖÃ±êÖ¾
+	char			m_cEncyptPWD[MAX_ENCYPTPWD_LEN + 1];	//åŠ å¯†å¯†ç 
+	int				m_iDevPlatType;							//è®¾å¤‡å¹³å°ç±»å‹ï¼Œ0-æ™®é€šï¼Œ1-Onvif 2-pushæµ 3-RTSPæµ
+	void*			m_pvReserved;							//ä¸ºäº†ä¾¿äºæ‰©å±•
+	char			m_cMultIP[33];							//ç»„æ’­åœ°å€åè®®
+	int				m_iMultPort;							//ç»„æ’­ç«¯å£å·
+	int             m_isavecfg;                             //ä¿å­˜é…ç½®æ ‡å¿—
 }TNVSITEMEX, *LPTNVSITEMEX;
 
-/*·şÎñÆ÷Ö§³ÖµÄĞ­ÒéÁĞ±í¶¨Òå===============================*/
+/*æœåŠ¡å™¨æ”¯æŒçš„åè®®åˆ—è¡¨å®šä¹‰===============================*/
 typedef struct
 {
-	int		m_iCount;					//·şÎñÆ÷Ö§³ÖµÄĞ­ÒéÀàĞÍÊı
-	char 	m_cProtocol[LEN_128][LEN_16];		//¸÷Ğ­ÒéÃû³Æ£¬×î¶àÖ§³Ö128¸öĞ­Òé£¬Ã¿ÌõĞ­ÒéÃû³Æ×î³¤15×Ö½Ú£»
+	int		m_iCount;					//æœåŠ¡å™¨æ”¯æŒçš„åè®®ç±»å‹æ•°
+	char 	m_cProtocol[LEN_128][LEN_16];		//å„åè®®åç§°ï¼Œæœ€å¤šæ”¯æŒ128ä¸ªåè®®ï¼Œæ¯æ¡åè®®åç§°æœ€é•¿15å­—èŠ‚ï¼›
 } TDECPROTOCOL;
 
-/*SDK°æ±¾ºÅ¶¨Òå==========================================*/
+/*SDKç‰ˆæœ¬å·å®šä¹‰==========================================*/
 typedef struct
 {
 	unsigned short	m_ulMajorVersion;
@@ -391,43 +391,43 @@ typedef struct
 	char*			m_cVerInfo;
 }NVDSDK_VERSION;
 
-/*OSDµş¼ÓLogoÊôĞÔ¶¨Òå====================================*/
+/*OSDå åŠ Logoå±æ€§å®šä¹‰====================================*/
 typedef struct
 {
-    unsigned char m_enable;           //ÊÇ·ñµş¼ÓLogo
-    int           m_iPosX;            //µş¼ÓLogoºá×ø±ê
-    int           m_iPosY;            //µş¼ÓLogo×İ×ø±ê
-    unsigned char m_iAlpha;           //Í¸Ã÷¶È(0~100)£¬100ÎªÍêÈ«²»Í¸Ã÷
-    int           m_iTransparentColor;//±³¾°É«£¬RGB¸ñÊ½(0x00000000~0x00ffffff)
+    unsigned char m_enable;           //æ˜¯å¦å åŠ Logo
+    int           m_iPosX;            //å åŠ Logoæ¨ªåæ ‡
+    int           m_iPosY;            //å åŠ Logoçºµåæ ‡
+    unsigned char m_iAlpha;           //é€æ˜åº¦(0~100)ï¼Œ100ä¸ºå®Œå…¨ä¸é€æ˜
+    int           m_iTransparentColor;//èƒŒæ™¯è‰²ï¼ŒRGBæ ¼å¼(0x00000000~0x00ffffff)
 }TLOGOPARAM;
 
 
-/*Éè±¸Ö§³ÖÆ½Ì¨ĞÅÏ¢¶¨Òå====================================*/
+/*è®¾å¤‡æ”¯æŒå¹³å°ä¿¡æ¯å®šä¹‰====================================*/
 typedef struct  
 {
-	int     m_iCount;                 //Ö§³ÖµÄÆ½Ì¨ÊıÄ¿
-	char    m_cPlatformName[10][32];  //¸÷¸öÆ½Ì¨µÄÃû³Æ       
+	int     m_iCount;                 //æ”¯æŒçš„å¹³å°æ•°ç›®
+	char    m_cPlatformName[10][32];  //å„ä¸ªå¹³å°çš„åç§°       
 }TPLATFORMINFO;
 
-/*´íÎóÂë¶¨Òå=============================================*/
-#define ERR_SUCCESS					0		//³É¹¦
-#define ERR_ISVIEW					1       //´æÔÚÕıÔÚÁ¬½ÓµÄNVS
-#define ERR_INVALIDID				-1		//Ö¸¶¨µÄ½âÂëÆ÷²»´æÔÚ
-#define ERR_UNINIT					-2		//¿ª·¢°üÉĞÎ´³õÊ¼»¯/³õÊ¼»¯Ê§°Ü
-#define ERR_INVALIDPARA				-3		//´«Èë·Ç·¨²ÎÊı
-#define ERR_INVALIDFILE				-7		//ÎÄ¼ş¸ñÊ½·Ç·¨
-#define ERR_NOTLOGON				-8      //Ã»ÓĞµÇÂ¼
-#define ERR_MAXDEC					-10     //´ïµ½×î´óÁ¬½ÓÊı
-#define ERR_FORBID					-12     //²»ÔÊĞí²Ù×÷
-#define ERR_RELOOPITEM				-13     //ÏòÑ­»·ÁĞ±íÖĞÌí¼ÓÖØ¸´µÄÁ¬½Ó
-#define ERR_NOCONNECTED				-16		//»¹Ã»ÓĞ½¨Á¢Á¬½Ó
-#define ERR_POS_X_Y					-17		//×ø±ê·Ç·¨
+/*é”™è¯¯ç å®šä¹‰=============================================*/
+#define ERR_SUCCESS					0		//æˆåŠŸ
+#define ERR_ISVIEW					1       //å­˜åœ¨æ­£åœ¨è¿æ¥çš„NVS
+#define ERR_INVALIDID				-1		//æŒ‡å®šçš„è§£ç å™¨ä¸å­˜åœ¨
+#define ERR_UNINIT					-2		//å¼€å‘åŒ…å°šæœªåˆå§‹åŒ–/åˆå§‹åŒ–å¤±è´¥
+#define ERR_INVALIDPARA				-3		//ä¼ å…¥éæ³•å‚æ•°
+#define ERR_INVALIDFILE				-7		//æ–‡ä»¶æ ¼å¼éæ³•
+#define ERR_NOTLOGON				-8      //æ²¡æœ‰ç™»å½•
+#define ERR_MAXDEC					-10     //è¾¾åˆ°æœ€å¤§è¿æ¥æ•°
+#define ERR_FORBID					-12     //ä¸å…è®¸æ“ä½œ
+#define ERR_RELOOPITEM				-13     //å‘å¾ªç¯åˆ—è¡¨ä¸­æ·»åŠ é‡å¤çš„è¿æ¥
+#define ERR_NOCONNECTED				-16		//è¿˜æ²¡æœ‰å»ºç«‹è¿æ¥
+#define ERR_POS_X_Y					-17		//åæ ‡éæ³•
 #define ERR_NULL_PTR				-18		// null pointer
 #define ERR_UNDEFINED_BEHAVIOR		-19		// undefined behavior
-#define ERR_INVALID_BUFF_SIZE		-20		//²»ºÏ·¨µÄ»º³åÇø´óĞ¡
-#define ERR_INVALID_ARRAY_INDEX		-21		//²»ºÏ·¨µÄÊı×éÏÂ±ê
-#define ERROR_INVALID_PARAM			-22		//²ÎÊı²»ºÏ·¨
-#define ERR_REPEAT_SET				-23		//ÖØ¸´ÉèÖÃ
+#define ERR_INVALID_BUFF_SIZE		-20		//ä¸åˆæ³•çš„ç¼“å†²åŒºå¤§å°
+#define ERR_INVALID_ARRAY_INDEX		-21		//ä¸åˆæ³•çš„æ•°ç»„ä¸‹æ ‡
+#define ERROR_INVALID_PARAM			-22		//å‚æ•°ä¸åˆæ³•
+#define ERR_REPEAT_SET				-23		//é‡å¤è®¾ç½®
 #define ERR_BUILD_PROTOCOL			-24		//build protocol error
 #define ERR_SEND_PROTOCOL			-25		//send protocol error
 #define ERR_NO_IDLE_ITEM			-26		//no idle item
@@ -435,7 +435,7 @@ typedef struct
 #define ERR_LIGHTMODE_NOTSUPPORT	-28		//sdk light mode not support
 #define ERR_OUT_OF_MEMERY			-29		//sdk out of memery
 
-/*¼üÅÌÂë¶¨Òå=============================================*/
+/*é”®ç›˜ç å®šä¹‰=============================================*/
 #define DECKEYCODE_NUM1     0X01
 #define DECKEYCODE_NUM2		0X02
 #define DECKEYCODE_NUM3		0X03
@@ -447,26 +447,26 @@ typedef struct
 #define DECKEYCODE_NUM9		0X09
 #define DECKEYCODE_NUM0		0X0A
 
-#define DECKEYCODE_UP		0X0D    //ÉÏ
-#define DECKEYCODE_DOWN		0X0E    //ÏÂ
-#define DECKEYCODE_LEFT		0X0F    //×ó
-#define DECKEYCODE_RIGHT	0X10    //ÓÒ
-#define DECKEYCODE_PAGEUP	0X11    //ÉÏ·­Ò³
-#define DECKEYCODE_PAGEDOWN	0X12    //ÏÂ·­Ò³
-#define DECKEYCODE_EDIT		0X13    //±à¼­
-#define DECKEYCODE_ESC		0X14    //È¡Ïû
-#define DECKEYCODE_RETURN	0X15    //È·¶¨
-#define DECKEYCODE_ABC		0X16    //ÊäÈë·¨ÇĞ»»
+#define DECKEYCODE_UP		0X0D    //ä¸Š
+#define DECKEYCODE_DOWN		0X0E    //ä¸‹
+#define DECKEYCODE_LEFT		0X0F    //å·¦
+#define DECKEYCODE_RIGHT	0X10    //å³
+#define DECKEYCODE_PAGEUP	0X11    //ä¸Šç¿»é¡µ
+#define DECKEYCODE_PAGEDOWN	0X12    //ä¸‹ç¿»é¡µ
+#define DECKEYCODE_EDIT		0X13    //ç¼–è¾‘
+#define DECKEYCODE_ESC		0X14    //å–æ¶ˆ
+#define DECKEYCODE_RETURN	0X15    //ç¡®å®š
+#define DECKEYCODE_ABC		0X16    //è¾“å…¥æ³•åˆ‡æ¢
 #define DECKEYCODE_DEV		0X17    //DEV
 #define DECKEYCODE_F1		0X18    //F1  
 #define DECKEYCODE_F2		0X19    //F2
 
-#define DECKEYCODE_MENU		0X20    //²Ëµ¥
+#define DECKEYCODE_MENU		0X20    //èœå•
 
-#define DECKEYCODE_STOP		0X52	//Í£Ö¹(°´¼ü·½¿ªÊ±·¢ËÍ)
+#define DECKEYCODE_STOP		0X52	//åœæ­¢(æŒ‰é”®æ–¹å¼€æ—¶å‘é€)
 
 #ifndef EMBEDED_USE
-/*ÔÆÌ¨¿ØÖÆÂë¶¨Òå===========================================*/
+/*äº‘å°æ§åˆ¶ç å®šä¹‰===========================================*/
 #define PTZ_LEFT			0	//left
 #define PTZ_RIGHT			1
 #define PTZ_UP				2
@@ -503,7 +503,7 @@ typedef struct
 #define PTZ_CLEARPOINT		33
 #endif
 
-//	ĞÂÔöÉè±¸Æ½Ì¨ÀàĞÍ
+//	æ–°å¢è®¾å¤‡å¹³å°ç±»å‹
 #define	DEVTYPE_NORMAL			0
 #define	DEVTYPE_ONVIF			1
 #define	DEVTYPE_PUSH			2
@@ -513,104 +513,104 @@ typedef struct
 #define DEVTYPE_LG				1001
 #define DEVTYPE_PANASONIC		1002
 
-//	ĞÂÔöÍ¨ÓÃÒµÎñÀàĞÍ
+//	æ–°å¢é€šç”¨ä¸šåŠ¡ç±»å‹
 #define COMMONID_NETCUT_HOLD_LASTFRAME	0x13001
 #define COMMONID_PREVIEW_PREFERENCE		0x13002
 #define COMMONID_HD_DISPLAY				0x13003
-#define COMMONID_TELNET					0x13004 //Ê¹ÄÜtelnet
+#define COMMONID_TELNET					0x13004 //ä½¿èƒ½telnet
 
-//Á÷¿ØÀàĞÍ
+//æµæ§ç±»å‹
 #define PUSH_STREAM_CMD_TYPE	0
 #define PUSH_STREAM_CMD_PAUSE	0
 #define PUSH_STREAM_CMD_FAST	1
 #define PUSH_STREAM_CMD_SLOW	2
 
-//pushÁ÷¿ØÖÆÔİÍ£×´Ì¬
-#define PUSH_REAL_TIME_STREAM_STATE		0x100	//ÊµÊ±Á÷
-#define PUSH_PLAYBACK_STREAM_PLAY		0		//»Ø·ÅÁ÷²¥·Å
-#define PUSH_PLAYBACK_STREAM_PAUSE		1		//»Ø·ÅÁ÷ÔİÍ£
+//pushæµæ§åˆ¶æš‚åœçŠ¶æ€
+#define PUSH_REAL_TIME_STREAM_STATE		0x100	//å®æ—¶æµ
+#define PUSH_PLAYBACK_STREAM_PLAY		0		//å›æ”¾æµæ’­æ”¾
+#define PUSH_PLAYBACK_STREAM_PAUSE		1		//å›æ”¾æµæš‚åœ
 
-//»º³åÇø×´Ì¬
-#define		RET_BUFFER_IS_ALREADY_FULL		(-10)		//	»º³åÇøÒÑ¾­ÂúÁË£¬Êı¾İÃ»ÓĞ·ÅÈë»º³åÇø£¬Êı¾İĞèÒªÖØĞÂ·¢ËÍ
-#define		RET_BUFFER_IS_EMPTY				(-21)		//	»º³åÇø¿Õ
-#define		RET_PAUSE_STATE					(-30)		//	ÔİÍ£×´Ì¬
+//ç¼“å†²åŒºçŠ¶æ€
+#define		RET_BUFFER_IS_ALREADY_FULL		(-10)		//	ç¼“å†²åŒºå·²ç»æ»¡äº†ï¼Œæ•°æ®æ²¡æœ‰æ”¾å…¥ç¼“å†²åŒºï¼Œæ•°æ®éœ€è¦é‡æ–°å‘é€
+#define		RET_BUFFER_IS_EMPTY				(-21)		//	ç¼“å†²åŒºç©º
+#define		RET_PAUSE_STATE					(-30)		//	æš‚åœçŠ¶æ€
 
-//pushÁ÷ËÙ¶ÈÀàĞÍ
+//pushæµé€Ÿåº¦ç±»å‹
 #define		PUSH_SLOW_SPEED		0
 #define		PUSH_NORMAL_SPEED	1
 #define		PUSH_FAST_SPEED		2
 
-//pushÁ÷Ìí¼ÓStartPush½á¹¹Ìå
+//pushæµæ·»åŠ StartPushç»“æ„ä½“
 #define 	MAX_ENCRYPT_KEY			16
 #define		VIDEO_HEADER_SIZE		88
 typedef struct
 {
-	int		m_iSize;							//½á¹¹Ìå´óĞ¡
-	char 	m_cFileHeader[VIDEO_HEADER_SIZE];	//ÊÓÆµÍ·
-	char	m_cEncryptKey[MAX_ENCRYPT_KEY + 4];	//Ç°¶ËÉè±¸ÊÓÆµ½âÃÜÃÜÂë£¬Îª¿ÕÔò±íÊ¾²»¼ÓÃÜ£¬
-												//ÖÁ¶à16¸ö×Ö·ûÇÒ±£Ö¤ËÄ×Ö½Ú
+	int		m_iSize;							//ç»“æ„ä½“å¤§å°
+	char 	m_cFileHeader[VIDEO_HEADER_SIZE];	//è§†é¢‘å¤´
+	char	m_cEncryptKey[MAX_ENCRYPT_KEY + 4];	//å‰ç«¯è®¾å¤‡è§†é¢‘è§£å¯†å¯†ç ï¼Œä¸ºç©ºåˆ™è¡¨ç¤ºä¸åŠ å¯†ï¼Œ
+												//è‡³å¤š16ä¸ªå­—ç¬¦ä¸”ä¿è¯å››å­—èŠ‚
 }START_PUSH_PARAM;
 
-//ÅäÖÃÂëÁ÷ĞÅÏ¢
+//é…ç½®ç æµä¿¡æ¯
 #define		MIN_CONF_CMD					0
 #define		CONF_CMD_VIDEOHEAD				MIN_CONF_CMD + 1
 #define		CONF_CMD_AUDIOVIDEO				MIN_CONF_CMD + 2
 #define		MAX_CONF_CMD					MIN_CONF_CMD + 2
 
-//Éı¼¶ÎÄ¼ş½á¹û×´Ì¬
+//å‡çº§æ–‡ä»¶ç»“æœçŠ¶æ€
 #define  RET_UPGRADE_FINISH		0
 #define  RET_UPGRADE_FAILED		-1
 #define  RET_UPGRADE_ERROR		2
 
-//ÖÃ¶¥ÖÃµ×
+//ç½®é¡¶ç½®åº•
 #define SET_TOP		1
 #define SET_DOWN	0
 
-//Éè±¸²ÎÊıÃüÁîÂë
+//è®¾å¤‡å‚æ•°å‘½ä»¤ç 
 #define CMD_MIN_DEV_CONFIG	0
-#define CMD_DEC_CFG_PROTOCOL						CMD_MIN_DEV_CONFIG + 0		//PTZ¿ØÖÆĞ­Òé
-#define CMD_DEC_CFG_ALARM_LINK_SWITCH				CMD_MIN_DEV_CONFIG + 1		//±¨¾¯Áª¶¯ÇĞ»»
-#define CMD_DEC_CFG_CREATE_VVO						CMD_MIN_DEV_CONFIG + 2		//´´½¨Æ´¿ØÊä³öÍ¨µÀVVO
-#define CMD_DEC_CFG_SPLIT_SCREEN					CMD_MIN_DEV_CONFIG + 3		//×Ô¶¨Òå»­Ãæ·Ö¸î·½Ê½
-#define CMD_DEC_CFG_CHANN_STATE						CMD_MIN_DEV_CONFIG + 4		//»ñÈ¡½âÂëÆ÷¸÷¸öÍ¨µÀµÄ×´Ì¬
-#define CMD_DEC_CFG_DISP_VONUM						CMD_MIN_DEV_CONFIG + 5		//¿ØÖÆÊä³öÉè±¸ÏÔÊ¾ÎïÀí±àºÅ
-#define CMD_DEC_CFG_CHANN_NUM						CMD_MIN_DEV_CONFIG + 6		//»ñÈ¡½âÂëÆ÷±¾µØÍ¨µÀÊıºÍĞéÄâÍ¨µÀÊı
-#define CMD_DEC_CFG_ALARM_SCHEDULE					CMD_MIN_DEV_CONFIG + 7		//ÉèÖÃÖÇÄÜ·ÖÎö±¨¾¯²¼·ÀÄ£°å
-#define CMD_DEC_CFG_ALARM_LINK						CMD_MIN_DEV_CONFIG + 8		//ÉèÖÃÖÇÄÜ·ÖÎöÁª¶¯
-#define CMD_DEC_CFG_ALARM_NOTIFY					CMD_MIN_DEV_CONFIG + 9		//·¢ËÍ¾¯Çé
-#define CMD_DEC_CFG_ALARM_IN_OUT					CMD_MIN_DEV_CONFIG + 10		//ÉèÖÃ±¨¾¯ÊäÈëÊä³ö
-#define CMD_DEC_CFG_SCHEDULE_ENABLE					CMD_MIN_DEV_CONFIG + 11		//ÉèÖÃÖÇÄÜ·ÖÎö²¼·ÀÊ¹ÄÜ
-#define CMD_DEC_CFG_VGA_SIZE						CMD_MIN_DEV_CONFIG + 12		//»ñÈ¡VGA´óĞ¡
-#define CMD_DEC_CFG_SIP_VIDEO_CHANNEL				CMD_MIN_DEV_CONFIG + 13		//»ñÈ¡SIPÏà¹Ø²ÎÊı
-#define CMD_DEC_CFG_VIDEO_PARAM						CMD_MIN_DEV_CONFIG + 14		//»ñÈ¡ÊÓÆµ²ÎÊı
-#define CMD_DEC_CFG_SYSTEM_TIME						CMD_MIN_DEV_CONFIG + 15		//ÉèÖÃÏµÍ³Ê±¼ä
-#define CMD_DEC_CFG_DEV_INFO						CMD_MIN_DEV_CONFIG + 16		//»ñÈ¡Éè±¸ĞÅÏ¢	
-#define CMD_DEC_CFG_TIMEZONE						CMD_MIN_DEV_CONFIG + 17		//Ê±Çø
-#define CMD_DEC_CFG_CHANNEL_REGINFO					CMD_MIN_DEV_CONFIG + 18		//Í¨µÀ×¢²áĞÅÏ¢
-#define CMD_DEC_CFG_SCREEN_DISPLAY					CMD_MIN_DEV_CONFIG + 19		//»­ÃæÏÔÊ¾/Òş²Ø
-#define CMD_DEC_CFG_SCREEN_CHANGEAREA				CMD_MIN_DEV_CONFIG + 20		//»­Ãæ×Ô¶¨Òå´óĞ¡/ÇøÓò
+#define CMD_DEC_CFG_PROTOCOL						CMD_MIN_DEV_CONFIG + 0		//PTZæ§åˆ¶åè®®
+#define CMD_DEC_CFG_ALARM_LINK_SWITCH				CMD_MIN_DEV_CONFIG + 1		//æŠ¥è­¦è”åŠ¨åˆ‡æ¢
+#define CMD_DEC_CFG_CREATE_VVO						CMD_MIN_DEV_CONFIG + 2		//åˆ›å»ºæ‹¼æ§è¾“å‡ºé€šé“VVO
+#define CMD_DEC_CFG_SPLIT_SCREEN					CMD_MIN_DEV_CONFIG + 3		//è‡ªå®šä¹‰ç”»é¢åˆ†å‰²æ–¹å¼
+#define CMD_DEC_CFG_CHANN_STATE						CMD_MIN_DEV_CONFIG + 4		//è·å–è§£ç å™¨å„ä¸ªé€šé“çš„çŠ¶æ€
+#define CMD_DEC_CFG_DISP_VONUM						CMD_MIN_DEV_CONFIG + 5		//æ§åˆ¶è¾“å‡ºè®¾å¤‡æ˜¾ç¤ºç‰©ç†ç¼–å·
+#define CMD_DEC_CFG_CHANN_NUM						CMD_MIN_DEV_CONFIG + 6		//è·å–è§£ç å™¨æœ¬åœ°é€šé“æ•°å’Œè™šæ‹Ÿé€šé“æ•°
+#define CMD_DEC_CFG_ALARM_SCHEDULE					CMD_MIN_DEV_CONFIG + 7		//è®¾ç½®æ™ºèƒ½åˆ†ææŠ¥è­¦å¸ƒé˜²æ¨¡æ¿
+#define CMD_DEC_CFG_ALARM_LINK						CMD_MIN_DEV_CONFIG + 8		//è®¾ç½®æ™ºèƒ½åˆ†æè”åŠ¨
+#define CMD_DEC_CFG_ALARM_NOTIFY					CMD_MIN_DEV_CONFIG + 9		//å‘é€è­¦æƒ…
+#define CMD_DEC_CFG_ALARM_IN_OUT					CMD_MIN_DEV_CONFIG + 10		//è®¾ç½®æŠ¥è­¦è¾“å…¥è¾“å‡º
+#define CMD_DEC_CFG_SCHEDULE_ENABLE					CMD_MIN_DEV_CONFIG + 11		//è®¾ç½®æ™ºèƒ½åˆ†æå¸ƒé˜²ä½¿èƒ½
+#define CMD_DEC_CFG_VGA_SIZE						CMD_MIN_DEV_CONFIG + 12		//è·å–VGAå¤§å°
+#define CMD_DEC_CFG_SIP_VIDEO_CHANNEL				CMD_MIN_DEV_CONFIG + 13		//è·å–SIPç›¸å…³å‚æ•°
+#define CMD_DEC_CFG_VIDEO_PARAM						CMD_MIN_DEV_CONFIG + 14		//è·å–è§†é¢‘å‚æ•°
+#define CMD_DEC_CFG_SYSTEM_TIME						CMD_MIN_DEV_CONFIG + 15		//è®¾ç½®ç³»ç»Ÿæ—¶é—´
+#define CMD_DEC_CFG_DEV_INFO						CMD_MIN_DEV_CONFIG + 16		//è·å–è®¾å¤‡ä¿¡æ¯	
+#define CMD_DEC_CFG_TIMEZONE						CMD_MIN_DEV_CONFIG + 17		//æ—¶åŒº
+#define CMD_DEC_CFG_CHANNEL_REGINFO					CMD_MIN_DEV_CONFIG + 18		//é€šé“æ³¨å†Œä¿¡æ¯
+#define CMD_DEC_CFG_SCREEN_DISPLAY					CMD_MIN_DEV_CONFIG + 19		//ç”»é¢æ˜¾ç¤º/éšè—
+#define CMD_DEC_CFG_SCREEN_CHANGEAREA				CMD_MIN_DEV_CONFIG + 20		//ç”»é¢è‡ªå®šä¹‰å¤§å°/åŒºåŸŸ
 #define CMD_DEC_CFG_GET_ABILITY_LEVEL				CMD_MIN_DEV_CONFIG + 21		//get function ability level
-#define CMD_DEC_CFG_FLOAT_WINDOW					CMD_MIN_DEV_CONFIG + 22		//¿ª´°
-#define CMD_DEC_CFG_SAVE_PLAN						CMD_MIN_DEV_CONFIG + 23		//ÉèÖÃÔ¤°¸
-#define CMD_DEC_CFG_APPLY_PLAN						CMD_MIN_DEV_CONFIG + 24		//Ó¦ÓÃÔ¤°¸
-#define CMD_DEC_CFG_PLANALIAS						CMD_MIN_DEV_CONFIG + 25		//Ô¤°¸±ğÃû
-#define CMD_DEC_CFG_BASE_OFFSET						CMD_MIN_DEV_CONFIG + 26		//ÆğÊ¼±àºÅ
+#define CMD_DEC_CFG_FLOAT_WINDOW					CMD_MIN_DEV_CONFIG + 22		//å¼€çª—
+#define CMD_DEC_CFG_SAVE_PLAN						CMD_MIN_DEV_CONFIG + 23		//è®¾ç½®é¢„æ¡ˆ
+#define CMD_DEC_CFG_APPLY_PLAN						CMD_MIN_DEV_CONFIG + 24		//åº”ç”¨é¢„æ¡ˆ
+#define CMD_DEC_CFG_PLANALIAS						CMD_MIN_DEV_CONFIG + 25		//é¢„æ¡ˆåˆ«å
+#define CMD_DEC_CFG_BASE_OFFSET						CMD_MIN_DEV_CONFIG + 26		//èµ·å§‹ç¼–å·
 #define CMD_DEC_CFG_LOGOPARAM						CMD_MIN_DEV_CONFIG + 27		//logo
-#define CMD_DEC_CFG_DECOSD							CMD_MIN_DEV_CONFIG + 28		//OSDµş¼Ó²Ù×÷
-#define CMD_DEC_CFG_PICNUM							CMD_MIN_DEV_CONFIG + 29		//»­ÃæÊıÁ¿
-#define CMD_DEC_CFG_WINDOW_SEQUENCE					CMD_MIN_DEV_CONFIG + 30		//´°¿Ú´ÎĞò
+#define CMD_DEC_CFG_DECOSD							CMD_MIN_DEV_CONFIG + 28		//OSDå åŠ æ“ä½œ
+#define CMD_DEC_CFG_PICNUM							CMD_MIN_DEV_CONFIG + 29		//ç”»é¢æ•°é‡
+#define CMD_DEC_CFG_WINDOW_SEQUENCE					CMD_MIN_DEV_CONFIG + 30		//çª—å£æ¬¡åº
 #define CMD_DEC_CFG_REGSERVER						CMD_MIN_DEV_CONFIG + 31		//
 #define CMD_DEC_CFG_PUPARAM							CMD_MIN_DEV_CONFIG + 32		//
 #define CMD_DEC_CFG_DZ_INFO							CMD_MIN_DEV_CONFIG + 33		//
 #define CMD_DEC_CFG_SELECT_PIC						CMD_MIN_DEV_CONFIG + 34		//
 #define CMD_DEC_CFG_CHANNEL_REGINFO_EX				CMD_MIN_DEV_CONFIG + 35		//
 #define CMD_DEC_CFG_SIP_VIDEO_CHANNEL_EX			CMD_MIN_DEV_CONFIG + 36		//
-#define CMD_DEC_CFG_DEVCOMMONNAME					CMD_MIN_DEV_CONFIG + 37		//Í¨µÀ±ğÃû
+#define CMD_DEC_CFG_DEVCOMMONNAME					CMD_MIN_DEV_CONFIG + 37		//é€šé“åˆ«å
 #define CMD_DEC_CFG_EXPORT_CONFIG					CMD_MIN_DEV_CONFIG + 38	    // export config
-#define CMD_DEC_CFG_SHOW_OFFLINE_CHAN				CMD_MIN_DEV_CONFIG + 39	    // ÊÇ·ñÏÔÊ¾²»ÔÚÏßÍ¨µÀ
-#define CMD_DEC_CFG_PLATFORM_LIST					CMD_MIN_DEV_CONFIG + 40		//Æ½Ì¨ÁĞ±í
+#define CMD_DEC_CFG_SHOW_OFFLINE_CHAN				CMD_MIN_DEV_CONFIG + 39	    // æ˜¯å¦æ˜¾ç¤ºä¸åœ¨çº¿é€šé“
+#define CMD_DEC_CFG_PLATFORM_LIST					CMD_MIN_DEV_CONFIG + 40		//å¹³å°åˆ—è¡¨
 #define CMD_DEC_CFG_COM_PARAM						CMD_MIN_DEV_CONFIG + 41	
-#define CMD_DEC_CFG_SINGLEPIC						CMD_MIN_DEV_CONFIG + 42		//Ë«»÷·Å´ó/ËõĞ¡¿ØÖÆ
+#define CMD_DEC_CFG_SINGLEPIC						CMD_MIN_DEV_CONFIG + 42		//åŒå‡»æ”¾å¤§/ç¼©å°æ§åˆ¶
 #define CMD_DEC_CFG_AUTOTEST_SYSTEMTYPE				CMD_MIN_DEV_CONFIG + 43
 #define CMD_DEC_CFG_AUTOTEST_DEVICEPRODUCTER		CMD_MIN_DEV_CONFIG + 44
 #define CMD_DEC_CFG_SCREEN_REGION					CMD_MIN_DEV_CONFIG + 45
@@ -647,13 +647,13 @@ typedef struct
 #define CMD_MAX_DEV_CONFIG							CMD_MIN_DEV_CONFIG + 76	
 
 
-#define MAX_PROTOCOL_NUM				128		//DEC×î¶àÖ§³Ö128¸öĞ­Òé
-#define MAX_PROTOCOL_NAME_LEN32			32		//Éè±¸Ö§³ÖµÄĞ­ÒéÃû³ÆµÄ×î´ó³¤¶È
+#define MAX_PROTOCOL_NUM				128		//DECæœ€å¤šæ”¯æŒ128ä¸ªåè®®
+#define MAX_PROTOCOL_NAME_LEN32			32		//è®¾å¤‡æ”¯æŒçš„åè®®åç§°çš„æœ€å¤§é•¿åº¦
 typedef struct
 {
-	int		m_iCount;					//Ğ­Òé¸öÊı
+	int		m_iCount;					//åè®®ä¸ªæ•°
 	char 	m_cProtocol[MAX_PROTOCOL_NUM][MAX_PROTOCOL_NAME_LEN32];		
-							//¸÷Ğ­ÒéÃû³Æ£¬×î¶àÖ§³Ö128¸öĞ­Òé£¬Ã¿ÌõĞ­ÒéÃû³Æ×î³¤31×Ö½Ú£»
+							//å„åè®®åç§°ï¼Œæœ€å¤šæ”¯æŒ128ä¸ªåè®®ï¼Œæ¯æ¡åè®®åç§°æœ€é•¿31å­—èŠ‚ï¼›
 } TDECPROTOCOL_EX;
 
 #define DEC_ALARM_TYPE_BASE			128
@@ -666,48 +666,48 @@ typedef struct
 
 #define ALARM_LINK_SWITCH_ENBALE		1
 #define ALARM_LINK_SWITCH_DISENBALE		0
-//±¨¾¯Áª¶¯ÇĞ»»
+//æŠ¥è­¦è”åŠ¨åˆ‡æ¢
 typedef struct tagAlarmLinkSwitch
 {
-	int  iBufSize;		//½á¹¹Ìå´óĞ¡
-	int  iAlarmType;	//±¨¾¯ÀàĞÍ	"0£¬ÊÓÆµ¶ªÊ§£»1£¬¶Ë¿Ú±¨¾¯£»2£¬ÒÆ¶¯Õì²â£»3£¬ÊÓÆµÕÚµ²£»4£¬ÖÇÄÜ·ÖÎö£»5£¬ÒôÆµ¶ªÊ§£»6,ÎÂÊª¶È±¨¾¯£»
-						//128Ö®ºó½âÂëÆ÷Ê¹ÓÃ£¬Ä£Ê½=128 + iType£¨ÉÏÒ»ĞĞ±íÊ¾µÄÊıÖµ£©
-						//128£¬ÊÓÆµ¶ªÊ§£»
-						//129£¬ÍøÂç¶Ë¿Ú±¨¾¯£»
-						//130£¬ÒÆ¶¯Õì²â£»
-						//131¡«159£¬Ô¤Áô
-						//160£¬±¾µØ¶Ë¿Ú±¨¾¯£»"					
-	int  iPortNo;					//¶Ë¿ÚºÅ	½öµ±±¨¾¯ÀàĞÍÎª±¾µØ¶Ë¿Ú±¨¾¯Ê±£¬¸Ã×Ö¶ÎÓĞĞ§					
-	int  iChannelNo;				//Í¨µÀºÅ						
-	int  iPos;						//»­ÃæºÅ						
-	char cSerName[DEC_LEN_32];		//Ç°¶ËÉè±¸Ãû³Æ						
-	char cSerIP[DEC_LEN_16];		//Ç°¶ËÉè±¸IPµØÖ·						
-	char cSerProxy[DEC_LEN_16];		//Ç°¶ËÉè±¸´úÀíIP						
-	int  iSerChan;					//Ç°¶ËÉè±¸Í¨µÀºÅ	serTypeÎª4Ê±£¬serChanÎª±àÂëÍ¨µÀºÅserTypeÎª5Ê±£¬serChanÎª±¾µØÊäÈëÍ¨µÀºÅ					
-	int  iSerStreamNo;				//Ö÷¸±ÂëÁ÷	0,Ö÷ÂëÁ÷£»1£¬¸±ÂëÁ÷					
-	int  iSerNetmode;				//·şÎñÆ÷ÍøÂçÄ£Ê½	1£¬TCP£»2£¬UDP£»3£¬¶à²¥					
-	int	 iUseddns;					//ÊÇ·ñÊ¹ÓÃddns	0£¬IP£»1£¬ÓòÃû£»3£¬Ö÷¶¯Ä£Ê½					
-	int  iSerPort;					//·şÎñÆ÷¶Ë¿ÚºÅ						
-	char cUserName[DEC_LEN_32];		//Ç°¶ËÉè±¸µÇÂ¼ÓÃ»§Ãû						
-	char cPassword[DEC_LEN_32];		//Ç°¶ËÉè±¸µÇÂ¼ÃÜÂë						
-	int  iHoldTime;					//Í£ÁôÊ±¼ä	10-999					
-	char cEncrypt[DEC_LEN_32];		//Ç°¶ËÉè±¸ÊÓÆµ½âÃÜÃÜÂë						
-	int  iSerType;					//Ç°¶ËÉè±¸ÀàĞÍ	0£¬Tiandy£»1£¬Onvif£»2£¬pushÁ÷	3£¬rtsp£»4£¬½âÂëÆ÷ÄÚ²¿±àÂëÍ¨µÀ£»5£¬±¾µØÊäÈëÍ¨µÀ1000¿ªÊ¼ÊÇ³§¼Ò¶Ô½ÓÌØÊâÀàĞÍ  1001£¬LG£» 1002£¬ËÉÏÂ
+	int  iBufSize;		//ç»“æ„ä½“å¤§å°
+	int  iAlarmType;	//æŠ¥è­¦ç±»å‹	"0ï¼Œè§†é¢‘ä¸¢å¤±ï¼›1ï¼Œç«¯å£æŠ¥è­¦ï¼›2ï¼Œç§»åŠ¨ä¾¦æµ‹ï¼›3ï¼Œè§†é¢‘é®æŒ¡ï¼›4ï¼Œæ™ºèƒ½åˆ†æï¼›5ï¼ŒéŸ³é¢‘ä¸¢å¤±ï¼›6,æ¸©æ¹¿åº¦æŠ¥è­¦ï¼›
+						//128ä¹‹åè§£ç å™¨ä½¿ç”¨ï¼Œæ¨¡å¼=128 + iTypeï¼ˆä¸Šä¸€è¡Œè¡¨ç¤ºçš„æ•°å€¼ï¼‰
+						//128ï¼Œè§†é¢‘ä¸¢å¤±ï¼›
+						//129ï¼Œç½‘ç»œç«¯å£æŠ¥è­¦ï¼›
+						//130ï¼Œç§»åŠ¨ä¾¦æµ‹ï¼›
+						//131ï½159ï¼Œé¢„ç•™
+						//160ï¼Œæœ¬åœ°ç«¯å£æŠ¥è­¦ï¼›"					
+	int  iPortNo;					//ç«¯å£å·	ä»…å½“æŠ¥è­¦ç±»å‹ä¸ºæœ¬åœ°ç«¯å£æŠ¥è­¦æ—¶ï¼Œè¯¥å­—æ®µæœ‰æ•ˆ					
+	int  iChannelNo;				//é€šé“å·						
+	int  iPos;						//ç”»é¢å·						
+	char cSerName[DEC_LEN_32];		//å‰ç«¯è®¾å¤‡åç§°						
+	char cSerIP[DEC_LEN_16];		//å‰ç«¯è®¾å¤‡IPåœ°å€						
+	char cSerProxy[DEC_LEN_16];		//å‰ç«¯è®¾å¤‡ä»£ç†IP						
+	int  iSerChan;					//å‰ç«¯è®¾å¤‡é€šé“å·	serTypeä¸º4æ—¶ï¼ŒserChanä¸ºç¼–ç é€šé“å·serTypeä¸º5æ—¶ï¼ŒserChanä¸ºæœ¬åœ°è¾“å…¥é€šé“å·					
+	int  iSerStreamNo;				//ä¸»å‰¯ç æµ	0,ä¸»ç æµï¼›1ï¼Œå‰¯ç æµ					
+	int  iSerNetmode;				//æœåŠ¡å™¨ç½‘ç»œæ¨¡å¼	1ï¼ŒTCPï¼›2ï¼ŒUDPï¼›3ï¼Œå¤šæ’­					
+	int	 iUseddns;					//æ˜¯å¦ä½¿ç”¨ddns	0ï¼ŒIPï¼›1ï¼ŒåŸŸåï¼›3ï¼Œä¸»åŠ¨æ¨¡å¼					
+	int  iSerPort;					//æœåŠ¡å™¨ç«¯å£å·						
+	char cUserName[DEC_LEN_32];		//å‰ç«¯è®¾å¤‡ç™»å½•ç”¨æˆ·å						
+	char cPassword[DEC_LEN_32];		//å‰ç«¯è®¾å¤‡ç™»å½•å¯†ç 						
+	int  iHoldTime;					//åœç•™æ—¶é—´	10-999					
+	char cEncrypt[DEC_LEN_32];		//å‰ç«¯è®¾å¤‡è§†é¢‘è§£å¯†å¯†ç 						
+	int  iSerType;					//å‰ç«¯è®¾å¤‡ç±»å‹	0ï¼ŒTiandyï¼›1ï¼ŒOnvifï¼›2ï¼Œpushæµ	3ï¼Œrtspï¼›4ï¼Œè§£ç å™¨å†…éƒ¨ç¼–ç é€šé“ï¼›5ï¼Œæœ¬åœ°è¾“å…¥é€šé“1000å¼€å§‹æ˜¯å‚å®¶å¯¹æ¥ç‰¹æ®Šç±»å‹  1001ï¼ŒLGï¼› 1002ï¼Œæ¾ä¸‹
 	char cRtspUrl[DEC_LEN_256];
 	int  iLinkSwitchEnable;
 }AlarmLinkSwitch, *pAlarmLinkSwitch;
 
-//»­Ãæ·Ö¸î²ÎÊı£¬Ê¹ÓÃÍò·Ö±È±íÊ¾
+//ç”»é¢åˆ†å‰²å‚æ•°ï¼Œä½¿ç”¨ä¸‡åˆ†æ¯”è¡¨ç¤º
 typedef struct tagScreenPara
 {
-	int iBufSize;		//½á¹¹Ìå´óĞ¡
-	int iX;				//ÆğÊ¼µãºá×ø±ê
-	int	iY;				//ÆğÊ¼µã×İ×ø±ê
-	int	iWidth;			//»­Ãæ¿í
-	int	iHeight;		//»­Ãæ¸ß
+	int iBufSize;		//ç»“æ„ä½“å¤§å°
+	int iX;				//èµ·å§‹ç‚¹æ¨ªåæ ‡
+	int	iY;				//èµ·å§‹ç‚¹çºµåæ ‡
+	int	iWidth;			//ç”»é¢å®½
+	int	iHeight;		//ç”»é¢é«˜
 }ScreenPara, *pScreenPara;
 
-//´´½¨Æ´¿ØÊä³öÍ¨µÀVVO
+//åˆ›å»ºæ‹¼æ§è¾“å‡ºé€šé“VVO
 typedef struct tagInputChannelParam
 {
 	int		   iMode;
@@ -716,27 +716,27 @@ typedef struct tagInputChannelParam
 
 typedef struct tagCreateVVOInfo
 {
-	int					iBufSize;									//½á¹¹Ìå´óĞ¡
-	int					iVVOChannelNo;								//Æ´¿ØÍ¨µÀºÅ
-	int					iRows;										//Æ´¿ØÆÁĞĞÊı
-	int					iCols;										//Æ´¿ØÆÁÁĞÊı
-	int					iInputChannel[DEC_MAX_PHYSICAL_CHANNEL_NUM];	//¸÷·ÖÆÁ°ó¶¨µÄÊä³öÍ¨µÀºÅ£¬Ã»°ó¶¨ÔòÓÃ0x7fffffff±íÊ¾
-	InputChannelParam	tInputChannelParam[DEC_MAX_PHYSICAL_CHANNEL_NUM];//Í¨µÀ²ÎÊı
+	int					iBufSize;									//ç»“æ„ä½“å¤§å°
+	int					iVVOChannelNo;								//æ‹¼æ§é€šé“å·
+	int					iRows;										//æ‹¼æ§å±è¡Œæ•°
+	int					iCols;										//æ‹¼æ§å±åˆ—æ•°
+	int					iInputChannel[DEC_MAX_PHYSICAL_CHANNEL_NUM];	//å„åˆ†å±ç»‘å®šçš„è¾“å‡ºé€šé“å·ï¼Œæ²¡ç»‘å®šåˆ™ç”¨0x7fffffffè¡¨ç¤º
+	InputChannelParam	tInputChannelParam[DEC_MAX_PHYSICAL_CHANNEL_NUM];//é€šé“å‚æ•°
 	int					iScreenType;
 	ScreenPara          tEffectiveArea;
 }CreateVVOInfo, *pCreateVVOInfo;
 
 
-//×Ô¶¨Òå»­Ãæ·Ö¸î·½Ê½
+//è‡ªå®šä¹‰ç”»é¢åˆ†å‰²æ–¹å¼
 typedef struct tagSplitScreen
 {
-	int			iBufSize;										//½á¹¹Ìå´óĞ¡
-	int			iVVOChannelNo;									//Æ´¿ØÍ¨µÀºÅ
-	int			iPicNum;										//»­ÃæÊı£¬16¸ö
-	ScreenPara	tSplitScreenPara[DEC_MAX_PICTURE_NUM];			//»­Ãæ²ÎÊı
+	int			iBufSize;										//ç»“æ„ä½“å¤§å°
+	int			iVVOChannelNo;									//æ‹¼æ§é€šé“å·
+	int			iPicNum;										//ç”»é¢æ•°ï¼Œ16ä¸ª
+	ScreenPara	tSplitScreenPara[DEC_MAX_PICTURE_NUM];			//ç”»é¢å‚æ•°
 }SplitScreen, *pSplitScreen;
 
-//½âÂëÆ÷¸÷¸öÍ¨µÀµÄ×´Ì¬
+//è§£ç å™¨å„ä¸ªé€šé“çš„çŠ¶æ€
 #define CHANEEL_ON_LINE		1
 #define CHANNEL_OFF_LINE	0
 
@@ -744,10 +744,10 @@ typedef struct tagSplitScreen
 #define ENCODE_CHANNEL		1
 typedef struct tagLocalChannelState
 {
-	int			iBufSize;				//ÊäÈë²ÎÊı£º½á¹¹Ìå´óĞ¡
-	int			iChannelNo;				//ÊäÈë²ÎÊı£ºÍ¨µÀºÅ
-	int			iState;					//Êä³ö²ÎÊı£ºÔÚÏß×´Ì¬, 0-²»ÔÚÏß  1-ÔÚÏß  2-²»¿ÉÓÃ
-	int			iType;					//ÊäÈë²ÎÊı£ºÍ¨µÀÀàĞÍ, 0-½âÂëÍ¨µÀ 1-±àÂëÍ¨µÀ
+	int			iBufSize;				//è¾“å…¥å‚æ•°ï¼šç»“æ„ä½“å¤§å°
+	int			iChannelNo;				//è¾“å…¥å‚æ•°ï¼šé€šé“å·
+	int			iState;					//è¾“å‡ºå‚æ•°ï¼šåœ¨çº¿çŠ¶æ€, 0-ä¸åœ¨çº¿  1-åœ¨çº¿  2-ä¸å¯ç”¨
+	int			iType;					//è¾“å…¥å‚æ•°ï¼šé€šé“ç±»å‹, 0-è§£ç é€šé“ 1-ç¼–ç é€šé“
 }LocalChannelState, *pLocalChannelState;
 
 #define DEC_MAX_DAYS	7
@@ -762,76 +762,76 @@ typedef struct tagDEC_SCHEDTIME
 	int      iEnable;
 }DEC_SCHEDTIME, *PDEC_SCHEDTIME;
 
-//Ê±¼ä¶Î
+//æ—¶é—´æ®µ
 typedef struct tagAlarmScheduleParam
 {
 	int				iBuffSize;
-	int				iChannelNo;	//±êÊ¶½øĞĞÖÇÄÜ·ÖÎöµÄÍ¨µÀ
-	int				iAlarmType;	//128£¬ÊÓÆµ¶ªÊ§£»129£¬ÍøÂç¶Ë¿Ú±¨¾¯£»130£¬ÒÆ¶¯Õì²â£»131¡«134£¬Ô¤Áô£»135£¬±¾µØ¶Ë¿Ú±¨¾¯£»
-	int				iWeekday;	//ĞÇÆÚÈÕµ½ĞÇÆÚÁù£¨0-6£©
-	int				iParam1;	//iType=4Ê±±íÊ¾¹æÔòID
-	int				iParam2;	//iType= 4Ê±±íÊ¾ÊÂ¼şÀàĞÍ£¨0£ºµ¥°íÏß 1£ºË«°íÏß 2£ºÖÜ½ç¼ì²â 3£ºÅÇ»² 4£ºÍ£³µ 5£º±¼ÅÜ
-								//6£ºÇøÓòÄÚÈËÔ±ÃÜ¶È 7£º±»µÁÎï 8£ºÒÅÆúÎï 9£ºÈËÁ³Ê¶±ğ 10£ºÊÓÆµÕï¶Ï
-								//11:ÖÇÄÜ¸ú×Ù 12£ºÁ÷Á¿Í³¼Æ 13£ºÈËÈº¾Û¼¯ 14£ºÀë¸Ú¼ì²â£©
-	DEC_SCHEDTIME	timeSeg[DEC_MAX_DAYS][DEC_MAX_TIMESEGMENT];		//	Ê±¼ä¶Î
+	int				iChannelNo;	//æ ‡è¯†è¿›è¡Œæ™ºèƒ½åˆ†æçš„é€šé“
+	int				iAlarmType;	//128ï¼Œè§†é¢‘ä¸¢å¤±ï¼›129ï¼Œç½‘ç»œç«¯å£æŠ¥è­¦ï¼›130ï¼Œç§»åŠ¨ä¾¦æµ‹ï¼›131ï½134ï¼Œé¢„ç•™ï¼›135ï¼Œæœ¬åœ°ç«¯å£æŠ¥è­¦ï¼›
+	int				iWeekday;	//æ˜ŸæœŸæ—¥åˆ°æ˜ŸæœŸå…­ï¼ˆ0-6ï¼‰
+	int				iParam1;	//iType=4æ—¶è¡¨ç¤ºè§„åˆ™ID
+	int				iParam2;	//iType= 4æ—¶è¡¨ç¤ºäº‹ä»¶ç±»å‹ï¼ˆ0ï¼šå•ç»Šçº¿ 1ï¼šåŒç»Šçº¿ 2ï¼šå‘¨ç•Œæ£€æµ‹ 3ï¼šå¾˜å¾Š 4ï¼šåœè½¦ 5ï¼šå¥”è·‘
+								//6ï¼šåŒºåŸŸå†…äººå‘˜å¯†åº¦ 7ï¼šè¢«ç›—ç‰© 8ï¼šé—å¼ƒç‰© 9ï¼šäººè„¸è¯†åˆ« 10ï¼šè§†é¢‘è¯Šæ–­
+								//11:æ™ºèƒ½è·Ÿè¸ª 12ï¼šæµé‡ç»Ÿè®¡ 13ï¼šäººç¾¤èšé›† 14ï¼šç¦»å²—æ£€æµ‹ï¼‰
+	DEC_SCHEDTIME	timeSeg[DEC_MAX_DAYS][DEC_MAX_TIMESEGMENT];		//	æ—¶é—´æ®µ
 	void*			pvReserved;									
 }AlarmScheduleParam, *PAlarmScheduleParam;
 
 typedef struct tagAlarmLink
 {
 	int	iBuffSize;
-	int iChannelNo;			//È¡Öµ·¶Î§¾İÉè±¸ÀàĞÍ¶ø¶¨
-	int	iAlarmType;			//128£¬ÊÓÆµ¶ªÊ§£»129£¬ÍøÂç¶Ë¿Ú±¨¾¯£»130£¬ÒÆ¶¯Õì²â£»131¡«134£¬Ô¤Áô£»135£¬±¾µØ¶Ë¿Ú±¨¾¯£»136£¬µçÔ´±¨¾¯
-	int	iAlarmTypeParam;	//È¡ÖµÓÉiAlarmType¶ø¶¨£¬¼ÙÈçiAlarmTypeÎªÖÇÄÜ·ÖÎö£¬ÔòiAlarmTypeParam±íÊ¾iRuleID
+	int iChannelNo;			//å–å€¼èŒƒå›´æ®è®¾å¤‡ç±»å‹è€Œå®š
+	int	iAlarmType;			//128ï¼Œè§†é¢‘ä¸¢å¤±ï¼›129ï¼Œç½‘ç»œç«¯å£æŠ¥è­¦ï¼›130ï¼Œç§»åŠ¨ä¾¦æµ‹ï¼›131ï½134ï¼Œé¢„ç•™ï¼›135ï¼Œæœ¬åœ°ç«¯å£æŠ¥è­¦ï¼›136ï¼Œç”µæºæŠ¥è­¦
+	int	iAlarmTypeParam;	//å–å€¼ç”±iAlarmTypeè€Œå®šï¼Œå‡å¦‚iAlarmTypeä¸ºæ™ºèƒ½åˆ†æï¼Œåˆ™iAlarmTypeParamè¡¨ç¤ºiRuleID
 	char cReserved[DEC_LEN_32];
-	int	iLinkType;			//Áª¶¯ÀàĞÍ,0£¬Áª¶¯ÉùÒôÌáÊ¾£»1£¬Áª¶¯ÆÁÄ»ÏÔÊ¾£»2£¬Áª¶¯Êä³ö¶Ë¿Ú£»3£¬Áª¶¯Â¼Ïñ£»4£¬Áª¶¯PTZ£»5£¬Áª¶¯×¥ÅÄ£»
-	int	iLinkParam1;	//Áª¶¯²ÎÊı,È¡ÖµÓÉiLinkType¶ø¶¨£ºiLinkType=0,1Ê±£¬iParam1±íÊ¾Ê¹ÄÜiEnable¡£0£¬²»Ê¹ÄÜ£»1£¬Ê¹ÄÜ¡£
-	//iLinkType=2,3,5,6Ê±£¬iParam1±íÊ¾°´Î»Ê¹ÄÜiEnableByBits£¬´Ó×îµÍÎ»ÖÁ×î¸ßÎ»Ã¿Ò»Î»±íÊ¾Ò»¸öÒôÊÓÆµÍ¨µÀ/Êä³ö¶Ë¿ÚµÄÊ¹ÄÜ¡£
-	//iLinkType=4Ê±£¬iParam1±íÊ¾´ıÁª¶¯µÄÍ¨µÀºÅiLinkChannel,È¡Öµ·¶Î§¾İÉè±¸ÀàĞÍ¶ø¶¨£»
-	//iParam2±íÊ¾´ıÁª¶¯µÄÀàĞÍiLinkType£º0£¬²»Áª¶¯¸ÃÍ¨µÀPTZ£¬1Ô¤ÖÃÎ»£¬2¹ì¼££¬3Â·¾¶£»iParam3±íÊ¾PTZºÅiNo£¬
-	//¸ù¾İiParam2µÄÀàĞÍ·Ö±ğ±íÊ¾Ô¤ÖÃÎ»ºÅ£¬¹ì¼£ºÅºÍÂ·¾¶ºÅ
-	int	iLinkParam2;	//Áª¶¯²ÎÊı
-	int	iLinkParam3;	//Áª¶¯²ÎÊı
+	int	iLinkType;			//è”åŠ¨ç±»å‹,0ï¼Œè”åŠ¨å£°éŸ³æç¤ºï¼›1ï¼Œè”åŠ¨å±å¹•æ˜¾ç¤ºï¼›2ï¼Œè”åŠ¨è¾“å‡ºç«¯å£ï¼›3ï¼Œè”åŠ¨å½•åƒï¼›4ï¼Œè”åŠ¨PTZï¼›5ï¼Œè”åŠ¨æŠ“æ‹ï¼›
+	int	iLinkParam1;	//è”åŠ¨å‚æ•°,å–å€¼ç”±iLinkTypeè€Œå®šï¼šiLinkType=0,1æ—¶ï¼ŒiParam1è¡¨ç¤ºä½¿èƒ½iEnableã€‚0ï¼Œä¸ä½¿èƒ½ï¼›1ï¼Œä½¿èƒ½ã€‚
+	//iLinkType=2,3,5,6æ—¶ï¼ŒiParam1è¡¨ç¤ºæŒ‰ä½ä½¿èƒ½iEnableByBitsï¼Œä»æœ€ä½ä½è‡³æœ€é«˜ä½æ¯ä¸€ä½è¡¨ç¤ºä¸€ä¸ªéŸ³è§†é¢‘é€šé“/è¾“å‡ºç«¯å£çš„ä½¿èƒ½ã€‚
+	//iLinkType=4æ—¶ï¼ŒiParam1è¡¨ç¤ºå¾…è”åŠ¨çš„é€šé“å·iLinkChannel,å–å€¼èŒƒå›´æ®è®¾å¤‡ç±»å‹è€Œå®šï¼›
+	//iParam2è¡¨ç¤ºå¾…è”åŠ¨çš„ç±»å‹iLinkTypeï¼š0ï¼Œä¸è”åŠ¨è¯¥é€šé“PTZï¼Œ1é¢„ç½®ä½ï¼Œ2è½¨è¿¹ï¼Œ3è·¯å¾„ï¼›iParam3è¡¨ç¤ºPTZå·iNoï¼Œ
+	//æ ¹æ®iParam2çš„ç±»å‹åˆ†åˆ«è¡¨ç¤ºé¢„ç½®ä½å·ï¼Œè½¨è¿¹å·å’Œè·¯å¾„å·
+	int	iLinkParam2;	//è”åŠ¨å‚æ•°
+	int	iLinkParam3;	//è”åŠ¨å‚æ•°
 }AlarmLink, *PAlarmLink;
 
 #define DEC_MAX_PORT_NUM        64
 #define MAX_ALARM_IN_OUT_TYPE	4
 
-//ÉèÖÃ±¨¾¯ÊäÈëÊÇ¸ßµçÆ½´¥·¢»¹ÊÇµÍµçÆ½´¥·¢
+//è®¾ç½®æŠ¥è­¦è¾“å…¥æ˜¯é«˜ç”µå¹³è§¦å‘è¿˜æ˜¯ä½ç”µå¹³è§¦å‘
 #define DEC_ALARM_IN_LHP	0
-//ÉèÖÃ±¨¾¯Êä³öÊÇ¸ßµçÆ½´¥·¢»¹ÊÇµÍµçÆ½´¥·¢
+//è®¾ç½®æŠ¥è­¦è¾“å‡ºæ˜¯é«˜ç”µå¹³è§¦å‘è¿˜æ˜¯ä½ç”µå¹³è§¦å‘
 #define DEC_ALARM_OUT_LHP	1
-//ÉèÖÃ±¨¾¯ÊäÈë¶Ë¿ÚÊ¹ÄÜ
+//è®¾ç½®æŠ¥è­¦è¾“å…¥ç«¯å£ä½¿èƒ½
 #define DEC_ALARM_IN_PORT	2
-//ÉèÖÃ±¨¾¯Êä³ö¶Ë¿ÚÊ¹ÄÜ
+//è®¾ç½®æŠ¥è­¦è¾“å‡ºç«¯å£ä½¿èƒ½
 #define DEC_ALARM_OUT_PORT	3
 
 typedef struct tagAlarmInAndOut
 {
 	int	iBuffSize;
-	int	iType;		//0£º±¨¾¯ÊäÈë¸ßµÍµçÆ½ÉèÖÃ£»1£º±¨¾¯Êä³ö¸ßµÍµçÆ½ÉèÖÃ£»2£º±¨¾¯ÊäÈë¶Ë¿ÚÊ¹ÄÜ£»3£º±¨¾¯Êä³ö¶Ë¿ÚÊ¹ÄÜ
-	int	iPortNo;	//ÊäÈëÊä³ö¶Ë¿ÚºÅ
-	int	iPara1;		//ÓëiTypeÈ¡ÖµÓĞ¹Ø
-	int	iPara2;		//±£Áô
+	int	iType;		//0ï¼šæŠ¥è­¦è¾“å…¥é«˜ä½ç”µå¹³è®¾ç½®ï¼›1ï¼šæŠ¥è­¦è¾“å‡ºé«˜ä½ç”µå¹³è®¾ç½®ï¼›2ï¼šæŠ¥è­¦è¾“å…¥ç«¯å£ä½¿èƒ½ï¼›3ï¼šæŠ¥è­¦è¾“å‡ºç«¯å£ä½¿èƒ½
+	int	iPortNo;	//è¾“å…¥è¾“å‡ºç«¯å£å·
+	int	iPara1;		//ä¸iTypeå–å€¼æœ‰å…³
+	int	iPara2;		//ä¿ç•™
 }AlarmInAndOut, *PAlarmInAndOut;
 
 typedef struct tagAlarmNotify
 {
 	int	iBuffSize;
-	int	iAlarmType;	//128£¬ÊÓÆµ¶ªÊ§£»129£¬ÍøÂç¶Ë¿Ú±¨¾¯£»130£¬ÒÆ¶¯Õì²â£»131¡«134£¬Ô¤Áô£»135£¬±¾µØ¶Ë¿Ú±¨¾¯£»
-	int	iChannelNo;	//Í¨µÀºÅ,iType = 160£¬±íÊ¾½âÂëÆ÷±¾µØ¶Ë¿ÚºÅ
-	int	iState;		//1£¬±¨¾¯£»0£¬Ïû¾¯
+	int	iAlarmType;	//128ï¼Œè§†é¢‘ä¸¢å¤±ï¼›129ï¼Œç½‘ç»œç«¯å£æŠ¥è­¦ï¼›130ï¼Œç§»åŠ¨ä¾¦æµ‹ï¼›131ï½134ï¼Œé¢„ç•™ï¼›135ï¼Œæœ¬åœ°ç«¯å£æŠ¥è­¦ï¼›
+	int	iChannelNo;	//é€šé“å·,iType = 160ï¼Œè¡¨ç¤ºè§£ç å™¨æœ¬åœ°ç«¯å£å·
+	int	iState;		//1ï¼ŒæŠ¥è­¦ï¼›0ï¼Œæ¶ˆè­¦
 }AlarmNotify, *pAlarmNotify;
 
 typedef struct tagScheduleEnable
 {
 	int	iBuffSize;
 	int iChannelNo;
-	int	iAlarmType;		//128£¬ÊÓÆµ¶ªÊ§£»129£¬ÍøÂç¶Ë¿Ú±¨¾¯£»130£¬ÒÆ¶¯Õì²â£»131¡«134£¬Ô¤Áô£»135£¬±¾µØ¶Ë¿Ú±¨¾¯£»136 µçÔ´¸æ¾¯
-	int	iEnable;		//ÊÇ·ñÊ¹ÄÜ,0£º²»Ê¹ÄÜ 1£ºÊ¹ÄÜ
-	int	iParam1;		//²ÎÊı1
-	int	iParam2;		//²ÎÊı2
-	int	iParam3;		//²ÎÊı3
+	int	iAlarmType;		//128ï¼Œè§†é¢‘ä¸¢å¤±ï¼›129ï¼Œç½‘ç»œç«¯å£æŠ¥è­¦ï¼›130ï¼Œç§»åŠ¨ä¾¦æµ‹ï¼›131ï½134ï¼Œé¢„ç•™ï¼›135ï¼Œæœ¬åœ°ç«¯å£æŠ¥è­¦ï¼›136 ç”µæºå‘Šè­¦
+	int	iEnable;		//æ˜¯å¦ä½¿èƒ½,0ï¼šä¸ä½¿èƒ½ 1ï¼šä½¿èƒ½
+	int	iParam1;		//å‚æ•°1
+	int	iParam2;		//å‚æ•°2
+	int	iParam3;		//å‚æ•°3
 }ScheduleEnable, *pScheduleEnable;
 
 typedef struct tagVGASize
@@ -841,28 +841,28 @@ typedef struct tagVGASize
 	int iVGASize;
 }VGASize, *pVGASize;
 
-//½âÂëÆ÷×Ô¶¯»¯µ÷ÊÔ
+//è§£ç å™¨è‡ªåŠ¨åŒ–è°ƒè¯•
 #define CMD_AUTOTEST_MIN                    0
-#define	CMD_AUTOTEST_SETMACADDR				(CMD_AUTOTEST_MIN+1)	  //ÉèÖÃMACµØÖ·£»
-#define	CMD_AUTOTEST_LAN					(CMD_AUTOTEST_MIN+2)	  //µ÷ÊÔÍø¿¨
-#define	CMD_AUTOTEST_USB					(CMD_AUTOTEST_MIN+10)     //µ÷ÊÔUSB¿Ú£»
-#define	CMD_AUTOTEST_ALARMIN				(CMD_AUTOTEST_MIN+12)	  //µ÷ÊÔ±¨¾¯ÊäÈë¶Ë¿Ú£»
-#define	CMD_AUTOTEST_ALARMOUT				(CMD_AUTOTEST_MIN+13)	  //µ÷ÊÔ±¨¾¯Êä³ö¶Ë¿Ú£»
-#define	CMD_AUTOTEST_RTC			   		(CMD_AUTOTEST_MIN+15)	  //µ÷ÊÔÊ±ÖÓĞ¾Æ¬£»
-#define	CMD_AUTOTEST_BACKUPSYSTEM			(CMD_AUTOTEST_MIN+20)	  //±¸·İÏµÍ³£»
-#define CMD_AUTOTEST_VERIFYTIME				(CMD_AUTOTEST_MIN+26)	  //Ê±¼äĞ£Õı£»
-#define AUTOTEST_SWITCHLAN					(CMD_AUTOTEST_MIN+38)     //ÇĞ»»UIÓïÑÔ£»
-#define CMD_AUTOTEST_FPGASTATUS             (CMD_AUTOTEST_MIN+39)	  //µ÷ÊÔFPGAµÄ¹¤×÷×´Ì¬
-#define CMD_AUTOTEST_DOUBLEPOWER_ALARM      (CMD_AUTOTEST_MIN+40)	  //µ÷ÊÔË«µçÔ´±¨¾¯
-#define CMD_AUTOTEST_UPDATEVOCHIP	        (CMD_AUTOTEST_MIN+41)	  //ÏÂÔØÊÓÆµÊä³öĞ¾Æ¬³ÌĞò
-#define CMD_AUTOTEST_POWERDOWNDETECTIVE     (CMD_AUTOTEST_MIN+42)	  //¹Ø»ú°´¼üĞÅºÅÕì²â
-#define CMD_AUTOTEST_CLUSTER				(CMD_AUTOTEST_MIN+99)	  //S5½âÂëÆ÷¼¯Èºµ÷ÊÔ×é³É¼¯Èº£»
-#define	CMD_AUTOTEST_END					(CMD_AUTOTEST_MIN+100)	  //µ÷ÊÔ½áÊø£»
+#define	CMD_AUTOTEST_SETMACADDR				(CMD_AUTOTEST_MIN+1)	  //è®¾ç½®MACåœ°å€ï¼›
+#define	CMD_AUTOTEST_LAN					(CMD_AUTOTEST_MIN+2)	  //è°ƒè¯•ç½‘å¡
+#define	CMD_AUTOTEST_USB					(CMD_AUTOTEST_MIN+10)     //è°ƒè¯•USBå£ï¼›
+#define	CMD_AUTOTEST_ALARMIN				(CMD_AUTOTEST_MIN+12)	  //è°ƒè¯•æŠ¥è­¦è¾“å…¥ç«¯å£ï¼›
+#define	CMD_AUTOTEST_ALARMOUT				(CMD_AUTOTEST_MIN+13)	  //è°ƒè¯•æŠ¥è­¦è¾“å‡ºç«¯å£ï¼›
+#define	CMD_AUTOTEST_RTC			   		(CMD_AUTOTEST_MIN+15)	  //è°ƒè¯•æ—¶é’ŸèŠ¯ç‰‡ï¼›
+#define	CMD_AUTOTEST_BACKUPSYSTEM			(CMD_AUTOTEST_MIN+20)	  //å¤‡ä»½ç³»ç»Ÿï¼›
+#define CMD_AUTOTEST_VERIFYTIME				(CMD_AUTOTEST_MIN+26)	  //æ—¶é—´æ ¡æ­£ï¼›
+#define AUTOTEST_SWITCHLAN					(CMD_AUTOTEST_MIN+38)     //åˆ‡æ¢UIè¯­è¨€ï¼›
+#define CMD_AUTOTEST_FPGASTATUS             (CMD_AUTOTEST_MIN+39)	  //è°ƒè¯•FPGAçš„å·¥ä½œçŠ¶æ€
+#define CMD_AUTOTEST_DOUBLEPOWER_ALARM      (CMD_AUTOTEST_MIN+40)	  //è°ƒè¯•åŒç”µæºæŠ¥è­¦
+#define CMD_AUTOTEST_UPDATEVOCHIP	        (CMD_AUTOTEST_MIN+41)	  //ä¸‹è½½è§†é¢‘è¾“å‡ºèŠ¯ç‰‡ç¨‹åº
+#define CMD_AUTOTEST_POWERDOWNDETECTIVE     (CMD_AUTOTEST_MIN+42)	  //å…³æœºæŒ‰é”®ä¿¡å·ä¾¦æµ‹
+#define CMD_AUTOTEST_CLUSTER				(CMD_AUTOTEST_MIN+99)	  //S5è§£ç å™¨é›†ç¾¤è°ƒè¯•ç»„æˆé›†ç¾¤ï¼›
+#define	CMD_AUTOTEST_END					(CMD_AUTOTEST_MIN+100)	  //è°ƒè¯•ç»“æŸï¼›
 #define	CMD_AUTOTEST_MAX					(CMD_AUTOTEST_MIN+101)
-//ÖÆÔìÉÌ
+//åˆ¶é€ å•†
 #define PRODUC_TIANDY                        0
 #define PRODUC_OEM                           1
-//UIÓïÑÔ
+//UIè¯­è¨€
 #define LANGUAGE_ENGLISH                     0
 #define LANGUAGE_CHINESE                     1
 
@@ -929,12 +929,12 @@ typedef struct tagChannelRegInfoEx
 #define DEC_SUB_FUNC_4KMODE			19
 #define DEC_SUB_FUNC_POWERALARM		20
 #define DEC_SUB_FUNC_28181PARAM		21
-#define DEC_SUB_FUNC_REBOOTDOCKING	22 //ÖØÆô¶Ô½Ó³ÌĞò
-#define DEC_SUB_FUNC_REMOTESWICHNET	23 //Ô¶³Ì¿ª¹ØÍøÂç·şÎñ
-#define DEC_SUB_FUNC_ENCODECHN_PROOFADJUST	   24 //±àÂëÍ¨µÀÆ«É«Æ«ÆÁµ÷½Ú
-#define DEC_SUB_FUNC_LOCALINPUTCHN_PROOFADJUST 25 //±¾µØÊäÈëÍ¨µÀÆ«É«Æ«ÆÁµ÷½Ú
-#define	DEC_SUB_FUNC_LED_SMALLPITCH			   26 //ÊÇ·ñÖ§³ÖLEDĞ¡¼ä¾à	0£¬±£Áô£»1£¬Ö§³Ö£» 2£¬²»Ö§³Ö
-#define	DEC_SUB_FUNC_SMOOTH_MODE			   27 //0£¬²»Ö§³Ö£»ÆäËû£¬³©ÏÔÄ£Ê½ÏÂÖ§³Ö±¾µØÊäÈëÍ¨µÀ×î´ó¸öÊı£»
+#define DEC_SUB_FUNC_REBOOTDOCKING	22 //é‡å¯å¯¹æ¥ç¨‹åº
+#define DEC_SUB_FUNC_REMOTESWICHNET	23 //è¿œç¨‹å¼€å…³ç½‘ç»œæœåŠ¡
+#define DEC_SUB_FUNC_ENCODECHN_PROOFADJUST	   24 //ç¼–ç é€šé“åè‰²åå±è°ƒèŠ‚
+#define DEC_SUB_FUNC_LOCALINPUTCHN_PROOFADJUST 25 //æœ¬åœ°è¾“å…¥é€šé“åè‰²åå±è°ƒèŠ‚
+#define	DEC_SUB_FUNC_LED_SMALLPITCH			   26 //æ˜¯å¦æ”¯æŒLEDå°é—´è·	0ï¼Œä¿ç•™ï¼›1ï¼Œæ”¯æŒï¼› 2ï¼Œä¸æ”¯æŒ
+#define	DEC_SUB_FUNC_SMOOTH_MODE			   27 //0ï¼Œä¸æ”¯æŒï¼›å…¶ä»–ï¼Œç•…æ˜¾æ¨¡å¼ä¸‹æ”¯æŒæœ¬åœ°è¾“å…¥é€šé“æœ€å¤§ä¸ªæ•°ï¼›
 #define DEC_MAX_SUB_FUNC_TYPE				   28 
 typedef struct _tagDecAbilityLevel
 {
@@ -946,18 +946,18 @@ typedef struct _tagDecAbilityLevel
 
 #define DEC_INVALID_CHANNEL 0x7FFFFFFF
 
-#define DEC_NO_CHANNEL_PARAM -1  //Í¨µÀÎŞ¹Ø
-#define DEC_NO_PIC_PARAM     -1	//»­ÃæÎŞ¹Ø
+#define DEC_NO_CHANNEL_PARAM -1  //é€šé“æ— å…³
+#define DEC_NO_PIC_PARAM     -1	//ç”»é¢æ— å…³
 
 /***************************************************************
 
-Prameter(in) £º	_lID£ºµÇÂ¼ID
-				_uiMsg£ºÏûÏ¢ºÅ
-				_iChannel£ºÍ¨µÀºÅ
-				_iPos£º´°¿ÚºÅ
-				_pvParam£º²ÎÊı
-				_iParamSize£º²ÎÊı´óĞ¡£¨×Ö½Ú£©
-				_pvUserData£ºÓÃ»§Êı¾İ DEC_ClientLogonEx´«Èë
+Prameter(in) ï¼š	_lIDï¼šç™»å½•ID
+				_uiMsgï¼šæ¶ˆæ¯å·
+				_iChannelï¼šé€šé“å·
+				_iPosï¼šçª—å£å·
+				_pvParamï¼šå‚æ•°
+				_iParamSizeï¼šå‚æ•°å¤§å°ï¼ˆå­—èŠ‚ï¼‰
+				_pvUserDataï¼šç”¨æˆ·æ•°æ® DEC_ClientLogonExä¼ å…¥
 ***************************************************************/
 typedef int (*MainNotify)(unsigned long _lID, unsigned int _uiMsg, unsigned int _iChannel, int _iPos, void* _pvParam, int _iParamSize, void* _pvUserData);
 
@@ -1064,13 +1064,13 @@ typedef struct _tagDecNotifyFun
 #define MAX_PAGE_LOG_SIZE	20
 typedef struct	_tagDecLogQuery			
 {
-	int			iChannelNo;		//	Í¨µÀºÅ
-	int			iLogType;		//	ÈÕÖ¾ÀàĞÍ
-	int			iLanguage;		//	ÓïÑÔÀàĞÍ
-	NVS_FILE_TIME	struStartTime;		//	¿ªÊ¼Ê±¼ä
-	NVS_FILE_TIME	struStopTime;		//	½áÊøÊ±¼ä
-	int			iPageSize;		//	Ò³´óĞ¡
-	int			iPageNo;		//	Ò³±àºÅ
+	int			iChannelNo;		//	é€šé“å·
+	int			iLogType;		//	æ—¥å¿—ç±»å‹
+	int			iLanguage;		//	è¯­è¨€ç±»å‹
+	NVS_FILE_TIME	struStartTime;		//	å¼€å§‹æ—¶é—´
+	NVS_FILE_TIME	struStopTime;		//	ç»“æŸæ—¶é—´
+	int			iPageSize;		//	é¡µå¤§å°
+	int			iPageNo;		//	é¡µç¼–å·
 }DecLogQuery, *PDecLogQuery;
 
 
@@ -1155,7 +1155,7 @@ typedef struct tagClusterWorkCardInfo
 	int	   iCardId;
 	int    iCardType;
 	char   cVersion[LEN_64];
-	int    iEncChnNo;	//±àÂëÍ¨µÀÍ¨µÀºÅ£¬±àÂë¿¨Ê¹ÓÃ
+	int    iEncChnNo;	//ç¼–ç é€šé“é€šé“å·ï¼Œç¼–ç å¡ä½¿ç”¨
 	int    iProductModel;
 	char   cFpgaInVersion[LEN_64];    
 	char   cFpgaOutVersion[LEN_64];
@@ -1194,8 +1194,8 @@ typedef struct tagClusterCardState
 typedef struct tagClusterSearchParam
 {
 	int iSize;
-	int iSeekDevice; // SEEK_DEVICE_IPC¡¢SEEK_DEVICE_NVD
-	int iSeekType; //SEEK_TYPE_IP¡¢SEEK_TYPE_DNS¡¢SEEK_TYPE_DMS
+	int iSeekDevice; // SEEK_DEVICE_IPCã€SEEK_DEVICE_NVD
+	int iSeekType; //SEEK_TYPE_IPã€SEEK_TYPE_DNSã€SEEK_TYPE_DMS
 }ClusterSearchParam, *PClusterSearchParam;
 
 typedef struct tagClusterSearchResult
@@ -1218,7 +1218,7 @@ typedef struct tagClusterSearchResult
 	char cClusterId[LEN_64];
 	char cClusterAlias[LEN_64];
 	int iDevNum;
-	int iSeekType;//SEEK_TYPE_IP¡¢SEEK_TYPE_DNS¡¢SEEK_TYPE_DMS
+	int iSeekType;//SEEK_TYPE_IPã€SEEK_TYPE_DNSã€SEEK_TYPE_DMS
 }ClusterSearchResult, *PClusterSearchResult;
 
 #define CHANGEIP_TYPE_SINGLE 0 
@@ -1271,7 +1271,7 @@ typedef struct tagPlanAlias
 typedef struct tagWindowSequence
 {
 	int iSize;
-	int iSequence; // WINDOW_SEQUENCE_TOP ¡¢WINDOW_SEQUENCE_BOTTOM
+	int iSequence; // WINDOW_SEQUENCE_TOP ã€WINDOW_SEQUENCE_BOTTOM
 }WindowSequence, *PWindowSequence;
 
 typedef struct tagChannelLogoParam
@@ -1280,18 +1280,18 @@ typedef struct tagChannelLogoParam
 	TLOGOPARAM tLogoParam;
 }ChannelLogoParam, *pChannelLogoParam;
 
-#define ALIGN_ABOUT_BWLOW_MIDDLE  0		//ÉÏÏÂ¾ÓÖĞ
-#define ALIGN_ABOUT				  1		//ÉÏ¶ÔÆë
-#define ALIGN_BWLOW				  2		//ÏÂ¶ÔÆë
+#define ALIGN_ABOUT_BWLOW_MIDDLE  0		//ä¸Šä¸‹å±…ä¸­
+#define ALIGN_ABOUT				  1		//ä¸Šå¯¹é½
+#define ALIGN_BWLOW				  2		//ä¸‹å¯¹é½
 
-#define ALIGN_LEFT_RIGHT_MIDDLE	  0		//×óÓÒ¶ÔÆë
-#define ALIGN_LEFT				  1		//×ó¶ÔÆë
-#define ALIGN_RIGHT				  2		//ÓÒ¶ÔÆë
+#define ALIGN_LEFT_RIGHT_MIDDLE	  0		//å·¦å³å¯¹é½
+#define ALIGN_LEFT				  1		//å·¦å¯¹é½
+#define ALIGN_RIGHT				  2		//å³å¯¹é½
 
-#define SHOW_STATIC               0		//¾²Ì¬ÏÔÊ¾
-#define SHOW_DYNAMIC_LEFT_RIGHT   1		//×óÓÒÒÆ¶¯¶¯Ì¬ÏÔÊ¾
-#define SHOW_DYNAMIC_ABOUT_BWLOW  2		//ÉÏÏÂÒÆ¶¯¶¯Ì¬ÏÔÊ¾
-#define SHOW_STATIC_LINE_DISPLAY  3     //¾²Ì¬·ÖĞĞÏÔÊ¾
+#define SHOW_STATIC               0		//é™æ€æ˜¾ç¤º
+#define SHOW_DYNAMIC_LEFT_RIGHT   1		//å·¦å³ç§»åŠ¨åŠ¨æ€æ˜¾ç¤º
+#define SHOW_DYNAMIC_ABOUT_BWLOW  2		//ä¸Šä¸‹ç§»åŠ¨åŠ¨æ€æ˜¾ç¤º
+#define SHOW_STATIC_LINE_DISPLAY  3     //é™æ€åˆ†è¡Œæ˜¾ç¤º
 
 typedef struct tagDecOsd
 {
@@ -1302,11 +1302,11 @@ typedef struct tagDecOsd
 	int   iDiaphaneity;//0-100
 	int   iFontSize; // 1-5
 	ScreenPara tArea;
-	int   iAboutBelowAlign;//ALIGN_ABOUT_BWLOW_MIDDLE¡¢ALIGN_ABOUT¡¢ALIGN_BWLOW
-	int   iLeftRightAlign;//ALIGN_LEFT_RIGHT_MIDDLE¡¢ALIGN_LEFT¡¢ALIGN_RIGHT
-	int	  iDynamic;//SHOW_STATIC¡¢SHOW_DYNAMIC_LEFT_RIGHT¡¢SHOW_DYNAMIC_ABOUT_BWLOW¡¢SHOW_STATIC_LINE_DISPLAY
+	int   iAboutBelowAlign;//ALIGN_ABOUT_BWLOW_MIDDLEã€ALIGN_ABOUTã€ALIGN_BWLOW
+	int   iLeftRightAlign;//ALIGN_LEFT_RIGHT_MIDDLEã€ALIGN_LEFTã€ALIGN_RIGHT
+	int	  iDynamic;//SHOW_STATICã€SHOW_DYNAMIC_LEFT_RIGHTã€SHOW_DYNAMIC_ABOUT_BWLOWã€SHOW_STATIC_LINE_DISPLAY
 	int	  iEnbale;
-	int   iSwitchTime;//ÏÔÊ¾ÇĞ»»Ê±¼ä
+	int   iSwitchTime;//æ˜¾ç¤ºåˆ‡æ¢æ—¶é—´
 }DecOsd, *pDecOsd;
 
 typedef struct tagBaseOffset
@@ -1332,7 +1332,7 @@ typedef struct tagServerCommonInfo
 	char cServerPassword[DEC_LEN_64];
 	char cServerPtzProtocol[DEC_LEN_32];
 	int  iServerPtzAddress;
-	int  iSaveCfg;         //±£´æÅäÖÃ±êÖ¾£º0±£´æ£¬ 1²»±£´æ
+	int  iSaveCfg;         //ä¿å­˜é…ç½®æ ‡å¿—ï¼š0ä¿å­˜ï¼Œ 1ä¸ä¿å­˜
 } ServerCommonInfo, *pServerCommonInfo;
 
 #define DEC_CON_SER_MODE_IP			0
@@ -1419,7 +1419,7 @@ typedef struct tagPushStreamResponse
 	int result;
 }PushStreamResponse, *PPushStreamResponse;
 
-#define MAX_DEC_CHANNEL_TYPE	4 //0-ÊÓÆµÊä³öÍ¨µÀ 1-±¨¾¯ÊäÈëÍ¨µÀ 2-±¨¾¯Êä³öÍ¨µÀ 3-±¾µØÊäÈëÍ¨µÀ
+#define MAX_DEC_CHANNEL_TYPE	4 //0-è§†é¢‘è¾“å‡ºé€šé“ 1-æŠ¥è­¦è¾“å…¥é€šé“ 2-æŠ¥è­¦è¾“å‡ºé€šé“ 3-æœ¬åœ°è¾“å…¥é€šé“
 typedef struct tagDevCommonName
 {
 	int  iSize;
@@ -1438,21 +1438,21 @@ typedef struct tagChannelPicNum
 typedef struct tagShowOfflineChan
 {
 	int  iSize;
-	int	 iEnable; //1----ÏÔÊ¾  0:----²»ÏÔÊ¾
+	int	 iEnable; //1----æ˜¾ç¤º  0:----ä¸æ˜¾ç¤º
 } ShowOfflineChan, *pShowOfflineChan;
 
 typedef struct tagComParam
 {
 	int				iSize;
 	int				iCom;
-	unsigned char	ucType;			    //485Ğ­ÒéID£¬0£ºÍ¸Ã÷Í¨µÀ£¬1:Pelco-P£¬...
-	unsigned char	ucAddress;			//485µØÖ·£¨È¡Öµ·¶Î§£º0-255£©
-	int				iBaudrate;		    //485²¨ÌØÂÊ2400£¬4800£¬9600
-	unsigned char	ucDatabit;   		//485Êı¾İÎ»£¬Ä¬ÈÏÎª8
-	unsigned char	ucStopbit;			//485Í£Ö¹Î»£¬Ä¬ÈÏÎª1
-	unsigned char	ucCheckbit; 		//485Ğ£ÑéÎ»£¬ËÄÖÖ¿ÉÑ¡£¬0£ºÎŞĞ£Ñé£»1£ºÆæĞ£Ñé£»2£ºÅ¼Ğ£Ñé£»
-	unsigned char	ucFlowcontrol;		//485Á÷¿Ø£¬Ä¬ÈÏÎªÎŞÁ÷¿Ø£¬ÉèÖÃÎŞĞ§
-	int				iComType;			//0£¬RS485£»1£¬RS232ÂÌ¶Ë×Ó£»2£¬RS232Íø¿Ú
+	unsigned char	ucType;			    //485åè®®IDï¼Œ0ï¼šé€æ˜é€šé“ï¼Œ1:Pelco-Pï¼Œ...
+	unsigned char	ucAddress;			//485åœ°å€ï¼ˆå–å€¼èŒƒå›´ï¼š0-255ï¼‰
+	int				iBaudrate;		    //485æ³¢ç‰¹ç‡2400ï¼Œ4800ï¼Œ9600
+	unsigned char	ucDatabit;   		//485æ•°æ®ä½ï¼Œé»˜è®¤ä¸º8
+	unsigned char	ucStopbit;			//485åœæ­¢ä½ï¼Œé»˜è®¤ä¸º1
+	unsigned char	ucCheckbit; 		//485æ ¡éªŒä½ï¼Œå››ç§å¯é€‰ï¼Œ0ï¼šæ— æ ¡éªŒï¼›1ï¼šå¥‡æ ¡éªŒï¼›2ï¼šå¶æ ¡éªŒï¼›
+	unsigned char	ucFlowcontrol;		//485æµæ§ï¼Œé»˜è®¤ä¸ºæ— æµæ§ï¼Œè®¾ç½®æ— æ•ˆ
+	int				iComType;			//0ï¼ŒRS485ï¼›1ï¼ŒRS232ç»¿ç«¯å­ï¼›2ï¼ŒRS232ç½‘å£
 } ComParam, *PComParam;
 
 typedef struct tagStopViewPara
@@ -1460,56 +1460,56 @@ typedef struct tagStopViewPara
 	int        iSize;
 	int        iChannel;
 	int        iPos;
-	int        iSaveLastFrame;	//ÊÇ·ñ±£Áô×îºóÒ»Ö¡£¬0-²»±£Áô(Ä¬ÈÏÖµ)£»1-±£Áô
-	int        iSaveCfg;		//ÊÇ·ñ±£´æÅäÖÃ£¬0-±£´æ£»1=²»±£´æ£»²»·¢´Ë×Ö¶ÎÄ¬ÈÏ±£´æ
+	int        iSaveLastFrame;	//æ˜¯å¦ä¿ç•™æœ€åä¸€å¸§ï¼Œ0-ä¸ä¿ç•™(é»˜è®¤å€¼)ï¼›1-ä¿ç•™
+	int        iSaveCfg;		//æ˜¯å¦ä¿å­˜é…ç½®ï¼Œ0-ä¿å­˜ï¼›1=ä¸ä¿å­˜ï¼›ä¸å‘æ­¤å­—æ®µé»˜è®¤ä¿å­˜
 }StopViewPara, *pStopViewPara;
 
 //CMD
 #define DEC_COMMAND_MIN							0
-#define DEC_COMMAND_PTZ_CONTROL			(DEC_COMMAND_MIN + 1)		//Éè±¸¿ØÖÆĞ­Òé
-#define DEC_COMMAND_PROOF_ADJUST		(DEC_COMMAND_MIN + 2)		//Ğ£Õı±àÂë¿¨Æ«ÆÁÆ«É«
+#define DEC_COMMAND_PTZ_CONTROL			(DEC_COMMAND_MIN + 1)		//è®¾å¤‡æ§åˆ¶åè®®
+#define DEC_COMMAND_PROOF_ADJUST		(DEC_COMMAND_MIN + 2)		//æ ¡æ­£ç¼–ç å¡åå±åè‰²
 #define DEC_COMMAND_LOGWRITE			(DEC_COMMAND_MIN + 3)		//cgi report log
-#define DEC_COMMAND_USERNUM				(DEC_COMMAND_MIN + 4)		//»ñÈ¡ÓÃ»§ÊıÄ¿
-#define DEC_COMMAND_USERINFO			(DEC_COMMAND_MIN + 5)		//»ñÈ¡ÓÃ»§ĞÅÏ¢
-#define DEC_COMMAND_GETUSERNUM			(DEC_COMMAND_MIN + 6)		//»ñÈ¡ÓÃ»§ÊıÁ¿
-#define DEC_COMMAND_GETUSERINFO			(DEC_COMMAND_MIN + 7)		//»ñÈ¡ÓÃ»§ÃûºÍÃÜÂë
-#define DEC_COMMAND_GETLASTERROR		(DEC_COMMAND_MIN + 8)		//»ñÈ¡Éè±¸´íÎóĞÅÏ¢
-#define DEC_COMMAND_PICSNAP				(DEC_COMMAND_MIN + 9)		//ÏÂ·¢×¥ÅÄÃüÁî
-#define DEC_COMMAND_GETPICFILENAME		(DEC_COMMAND_MIN + 10)		//»ñÈ¡×¥ÅÄÍ¼Æ¬µÄÎÄ¼şÃû
-#define DEC_COMMAND_SCREENCTLSET		(DEC_COMMAND_MIN + 11)      //ÆÁ¿Ø¿ØÖÆÃüÁîÏÂ·¢
-#define DEC_COMMAND_REBOOTTRADE			(DEC_COMMAND_MIN + 12)      //ÖØÆôÍâ¹ÒÇëÇó
-#define DEC_COMMAND_GETUDISK_VIDEOLISTS	(DEC_COMMAND_MIN + 13)      //»ñÈ¡UÅÌÊÓÆµÃû³Æ
-#define DEC_COMMAND_VIDEO_PLAYSET		(DEC_COMMAND_MIN + 14)      //ÃüÁîÏÂ·¢Í¨µÀ»­ÃæµÄ²¥·ÅºÍÍ£Ö¹
-#define DEC_COMMAND_DEL_PICSNAP			(DEC_COMMAND_MIN + 15)		//É¾³ı×¥ÅÄÃüÁî
-#define DEC_COMMAND_SOUNDCTRL_RESULT	(DEC_COMMAND_MIN + 16)		//»ñÈ¡ÉùÒô×´Ì¬
-#define DEC_COMMAND_TALKSERVER_RESULT	(DEC_COMMAND_MIN + 17)		//»ñÈ¡¶Ô½²×´Ì¬
+#define DEC_COMMAND_USERNUM				(DEC_COMMAND_MIN + 4)		//è·å–ç”¨æˆ·æ•°ç›®
+#define DEC_COMMAND_USERINFO			(DEC_COMMAND_MIN + 5)		//è·å–ç”¨æˆ·ä¿¡æ¯
+#define DEC_COMMAND_GETUSERNUM			(DEC_COMMAND_MIN + 6)		//è·å–ç”¨æˆ·æ•°é‡
+#define DEC_COMMAND_GETUSERINFO			(DEC_COMMAND_MIN + 7)		//è·å–ç”¨æˆ·åå’Œå¯†ç 
+#define DEC_COMMAND_GETLASTERROR		(DEC_COMMAND_MIN + 8)		//è·å–è®¾å¤‡é”™è¯¯ä¿¡æ¯
+#define DEC_COMMAND_PICSNAP				(DEC_COMMAND_MIN + 9)		//ä¸‹å‘æŠ“æ‹å‘½ä»¤
+#define DEC_COMMAND_GETPICFILENAME		(DEC_COMMAND_MIN + 10)		//è·å–æŠ“æ‹å›¾ç‰‡çš„æ–‡ä»¶å
+#define DEC_COMMAND_SCREENCTLSET		(DEC_COMMAND_MIN + 11)      //å±æ§æ§åˆ¶å‘½ä»¤ä¸‹å‘
+#define DEC_COMMAND_REBOOTTRADE			(DEC_COMMAND_MIN + 12)      //é‡å¯å¤–æŒ‚è¯·æ±‚
+#define DEC_COMMAND_GETUDISK_VIDEOLISTS	(DEC_COMMAND_MIN + 13)      //è·å–Uç›˜è§†é¢‘åç§°
+#define DEC_COMMAND_VIDEO_PLAYSET		(DEC_COMMAND_MIN + 14)      //å‘½ä»¤ä¸‹å‘é€šé“ç”»é¢çš„æ’­æ”¾å’Œåœæ­¢
+#define DEC_COMMAND_DEL_PICSNAP			(DEC_COMMAND_MIN + 15)		//åˆ é™¤æŠ“æ‹å‘½ä»¤
+#define DEC_COMMAND_SOUNDCTRL_RESULT	(DEC_COMMAND_MIN + 16)		//è·å–å£°éŸ³çŠ¶æ€
+#define DEC_COMMAND_TALKSERVER_RESULT	(DEC_COMMAND_MIN + 17)		//è·å–å¯¹è®²çŠ¶æ€
 #define DEC_COMMAND_MAX					(DEC_COMMAND_MIN + 18)
 
 typedef struct tagPtzControlPara
 {
 	int  iSize;
-	int	 iActionType;	//ÉÏ¡¢ÏÂ¡¢×ó¡¢ÓÒ¡¢±ä±¶¡¢Ô¤ÖÃÎ»µÈ
-	int  iControlType;	//0£¬ÆÕÍ¨ÔÆÌ¨¿ØÖÆ£»1£¬µç×ÓÔÆÌ¨e-PTZ.È±Ê¡Îª0
-	int  iParam1;		//¸ù¾İÃüÁîÀàĞÍÕâÁ½¸ö²ÎÊıµÄº¬ÒåÒ²²»Ò»Ñù£¬Ë®Æ½ËÙ¶È»òÔ¤ÖÃÎ»ºÅ¡­
-	int  iParam2;		//´¹Ö±ËÙ¶È¡­
+	int	 iActionType;	//ä¸Šã€ä¸‹ã€å·¦ã€å³ã€å˜å€ã€é¢„ç½®ä½ç­‰
+	int  iControlType;	//0ï¼Œæ™®é€šäº‘å°æ§åˆ¶ï¼›1ï¼Œç”µå­äº‘å°e-PTZ.ç¼ºçœä¸º0
+	int  iParam1;		//æ ¹æ®å‘½ä»¤ç±»å‹è¿™ä¸¤ä¸ªå‚æ•°çš„å«ä¹‰ä¹Ÿä¸ä¸€æ ·ï¼Œæ°´å¹³é€Ÿåº¦æˆ–é¢„ç½®ä½å·â€¦
+	int  iParam2;		//å‚ç›´é€Ÿåº¦â€¦
 } PtzControlPara, *pPtzControlPara;
 
 
-#define		PROOFADJUST_OPERTYPE_MANU		1		//1-manu£¬ 2-auto 
+#define		PROOFADJUST_OPERTYPE_MANU		1		//1-manuï¼Œ 2-auto 
 #define		PROOFADJUST_OPERTYPE_AUTO		2		
-#define		PROOFADJUST_OUT_DEV_HDMI		1		//out dev 1-HDMI£¬ 2-VGA
+#define		PROOFADJUST_OUT_DEV_HDMI		1		//out dev 1-HDMIï¼Œ 2-VGA
 #define		PROOFADJUST_OUT_DEV_VGA		    2		
-#define    	PROOFADJUST_TYPE_RESO			1       //Type£¬1-Video Resolution  2-Video Color
+#define    	PROOFADJUST_TYPE_RESO			1       //Typeï¼Œ1-Video Resolution  2-Video Color
 #define    	PROOFADJUST_TYPE_COLOR			2
-#define    	PROOFADJUST_CHANNELTYPE_ENCODE     0       //Channel Type£¬0-Encode  1-LocalInput
+#define    	PROOFADJUST_CHANNELTYPE_ENCODE     0       //Channel Typeï¼Œ0-Encode  1-LocalInput
 #define    	PROOFADJUST_CHANNELTYPE_LOCALINPUT 1
 typedef struct tagProofAdjust
 {
 	int  iSize;
-	int	 iOperateMethod;	//1-ÊÖ¶¯£¬ 2-×Ô¶¯
-	int  iVoId;				//1-HDMI£¬ 2-VGA
-	int  iType;				//1-ÊÓÆµ·Ö±æÂÊ  2-ÊÓÆµÑÕÉ«
-	int  iChannelType;      //Í¨µÀÀàĞÍÎŞ¸Ã×Ö¶Î£¬Í¨µÀÀàĞÍÎª±àÂëÍ¨µÀ,0-±àÂëÍ¨µÀ1-±¾µØÊäÈëÍ¨µÀ
+	int	 iOperateMethod;	//1-æ‰‹åŠ¨ï¼Œ 2-è‡ªåŠ¨
+	int  iVoId;				//1-HDMIï¼Œ 2-VGA
+	int  iType;				//1-è§†é¢‘åˆ†è¾¨ç‡  2-è§†é¢‘é¢œè‰²
+	int  iChannelType;      //é€šé“ç±»å‹æ— è¯¥å­—æ®µï¼Œé€šé“ç±»å‹ä¸ºç¼–ç é€šé“,0-ç¼–ç é€šé“1-æœ¬åœ°è¾“å…¥é€šé“
 } ProofAdjust, *pProofAdjust;
 
 typedef struct tagAutoTestResult
@@ -1556,7 +1556,7 @@ typedef struct tagDecCtrlMac
 	int iSize;
 	int iDevId;
 	int iCardId;
-	int iNetId;			//Íø¿¨±àºÅ
+	int iNetId;			//ç½‘å¡ç¼–å·
 	char cPcMac[LEN_64];	  
 }DecCtrlMac, *PDecCtrlMac;
 
@@ -1589,8 +1589,8 @@ typedef struct tagDecCtrlMac
 #define EX_CHANNEL_FLAG		0x7FFFFFFF
 
 //ErrorID
-#define DEC_LASTERROR_ALARMLINK		0x13000		//£¨±¨¾¯Áª¶¯£©µ±Ç°ÕıÔÚÁª¶¯£¬²»ÔÊĞíĞŞ¸ÄÉèÖÃ
-#define DEC_LASTERROR_MODIFY_IP		0x13100		//ipµØÖ·ĞŞ¸ÄÊ§°Ü
+#define DEC_LASTERROR_ALARMLINK		0x13000		//ï¼ˆæŠ¥è­¦è”åŠ¨ï¼‰å½“å‰æ­£åœ¨è”åŠ¨ï¼Œä¸å…è®¸ä¿®æ”¹è®¾ç½®
+#define DEC_LASTERROR_MODIFY_IP		0x13100		//ipåœ°å€ä¿®æ”¹å¤±è´¥
 
 typedef struct tagDecLastError
 {
@@ -1603,26 +1603,26 @@ typedef struct tagDecSinglePic
 {
 	int		iSize;	
 	int		iPicNum;
-	int		iState;	//µ¥»­Ãæ×´Ì¬:0-·Çµ¥»­ÃæÄ£Ê½, 1-µ¥»­Ãæ
+	int		iState;	//å•ç”»é¢çŠ¶æ€:0-éå•ç”»é¢æ¨¡å¼, 1-å•ç”»é¢
 } DecSinglePic, *pDecSinglePic;
 
 typedef struct tagDecScreenRegion
 {
 	int		iSize;
-	int		iEnable;		//Ê¹ÄÜ
-	int		iXPos;			//ÆğÊ¼ºá×ø±ê
-	int		iYPos;			//ÆğÊ¼×İ×ø±ê
-	int		iPixelWidth;	//ÏñËØ¿í¶È
-	int		iPixelHeight;	//ÏñËØ¸ß¶È
+	int		iEnable;		//ä½¿èƒ½
+	int		iXPos;			//èµ·å§‹æ¨ªåæ ‡
+	int		iYPos;			//èµ·å§‹çºµåæ ‡
+	int		iPixelWidth;	//åƒç´ å®½åº¦
+	int		iPixelHeight;	//åƒç´ é«˜åº¦
 } DecScreenRegion, *pDecScreenRegion;
 
 typedef struct tagDecScreenBasicPara
 {
 	int		iSize;	
-	int		iBrightness;	//ÁÁ¶È£¬0¡«100
-	int		iContrast;		//¶Ô±È¶È£¬0¡«100
-	int		iSaturation;	//±¥ºÍ¶È£¬0¡«100
-	int		iHue;			//É«¶È£¬0¡«100
+	int		iBrightness;	//äº®åº¦ï¼Œ0ï½100
+	int		iContrast;		//å¯¹æ¯”åº¦ï¼Œ0ï½100
+	int		iSaturation;	//é¥±å’Œåº¦ï¼Œ0ï½100
+	int		iHue;			//è‰²åº¦ï¼Œ0ï½100
 } DecScreenBasicPara, *pDecScreenBasicPara;
 
 #define SCREEN_OUTPUT_MODE_HDMI				0
@@ -1631,125 +1631,125 @@ typedef struct tagDecScreenBasicPara
 typedef struct tagDecScreenOutputMode
 {
 	int		iSize;	
-	int		iMode;		//0:HDMI 1:DVI 2:×ÔÊÊÓ¦
+	int		iMode;		//0:HDMI 1:DVI 2:è‡ªé€‚åº”
 } DecScreenOutputMode, *pDecScreenOutputMode;
 
 typedef struct tagDecPicLevelRelation
 {
 	int		iSize;
 	int		iPicCount;
-	int		iLevelArray[DEC_MAX_WINDOW_TOTAL_NUM];	//²ã¼¶¹ØÏµ:ÏÂ±êÎª»­ÃæºÅ£¬²ã¼¶¹ØÏµ´Ó×îµ×²ã¿ªÊ¼Îª0£¬ÍùÉÏÒÀ´Î¼Ó1¡£
-			//ÆäÖĞiLevelArray[0]ÊÇµÚ0»­ÃæµÄ²ã¼¶£¬iLevelArray[1]ÊÇµÚ1»­ÃæµÄ²ã¼¶¡­¡­iLevelArray[N]ÊÇµÚN»­ÃæµÄ²ã¼¶
+	int		iLevelArray[DEC_MAX_WINDOW_TOTAL_NUM];	//å±‚çº§å…³ç³»:ä¸‹æ ‡ä¸ºç”»é¢å·ï¼Œå±‚çº§å…³ç³»ä»æœ€åº•å±‚å¼€å§‹ä¸º0ï¼Œå¾€ä¸Šä¾æ¬¡åŠ 1ã€‚
+			//å…¶ä¸­iLevelArray[0]æ˜¯ç¬¬0ç”»é¢çš„å±‚çº§ï¼ŒiLevelArray[1]æ˜¯ç¬¬1ç”»é¢çš„å±‚çº§â€¦â€¦iLevelArray[N]æ˜¯ç¬¬Nç”»é¢çš„å±‚çº§
 } DecPicLevelRelation, *pDecPicLevelRelation;
 
 typedef struct tagDecSyncLoopCtrl
 {
 	int		iSize;	
-	int		iLoopEnable;	//0£ºÍ£Ö¹ÇĞ»»£¬ 1£º¿ªÊ¼ÇĞ»»
+	int		iLoopEnable;	//0ï¼šåœæ­¢åˆ‡æ¢ï¼Œ 1ï¼šå¼€å§‹åˆ‡æ¢
 } DecSyncLoopCtrl, *pDecSyncLoopCtrl;
 
 typedef struct tagDecSyncLoopTime
 {
 	int		iSize;	
-	int		iHoldTime;		//Í£ÁôÊ±¼ä£º10-999
+	int		iHoldTime;		//åœç•™æ—¶é—´ï¼š10-999
 } DecSyncLoopTime, *pDecSyncLoopTime;
 
 typedef struct tagDecEncodePara
 {
 	int		iSize;	
-	int		iWidth;			//ÊÓÆµ¿í
-	int		iHeight;		//ÊÓÆµ¸ß
-	int		iFrameRate;		//Ö¡ÂÊ£¬ÓĞĞ§Öµ£º1¡«25£¬50£¬60
-	int		iBitRate;		//ÂëÂÊ£¬µ¥Î»ÎªKBytes/s£¬Èç1024kbpsµÄÂëÂÊ
+	int		iWidth;			//è§†é¢‘å®½
+	int		iHeight;		//è§†é¢‘é«˜
+	int		iFrameRate;		//å¸§ç‡ï¼Œæœ‰æ•ˆå€¼ï¼š1ï½25ï¼Œ50ï¼Œ60
+	int		iBitRate;		//ç ç‡ï¼Œå•ä½ä¸ºKBytes/sï¼Œå¦‚1024kbpsçš„ç ç‡
 } DecEncodePara, *pDecEncodePara;
 
 typedef struct tagDecHttpPort
 {
 	int		iSize;	
-	int		iPort;			//HTTP¶Ë¿ÚºÅ
-	int		iHttpsPort;		//HTTPS¶Ë¿ÚºÅ
-	int		iRtsPort;		//¶Ë¿ÚºÅ 
-	int		iSchedulePort;	//ÅÅÆÚ¶Ë¿ÚºÅ
+	int		iPort;			//HTTPç«¯å£å·
+	int		iHttpsPort;		//HTTPSç«¯å£å·
+	int		iRtsPort;		//ç«¯å£å· 
+	int		iSchedulePort;	//æ’æœŸç«¯å£å·
 } DecHttpPort, *pDecHttpPort;
 
 typedef struct tagDecShowIcon
 {
 	int     iSize;
-	int     iIconType;		//Í¼±êÀàĞÍ,1-655350-Ô¤Áô,1-»­Ãæµ×¶ËºìÉ«±¨¾¯ÉÁË¸
-	int     iDisp;			//ÊÇ·ñÏÔÊ¾,0 ²»ÏÔÊ¾ 1 ÏÔÊ¾
+	int     iIconType;		//å›¾æ ‡ç±»å‹,1-655350-é¢„ç•™,1-ç”»é¢åº•ç«¯çº¢è‰²æŠ¥è­¦é—ªçƒ
+	int     iDisp;			//æ˜¯å¦æ˜¾ç¤º,0 ä¸æ˜¾ç¤º 1 æ˜¾ç¤º
 } DecShowIcon, *pDecShowIcon;
 
 typedef struct tagDecAlarmEffectLight
 {
 	int     iSize;
-	int     iEnable;				//ÌØĞ§Ê¹ÄÜ£º1--Ê¹ÄÜ£¬0--¹Ø±Õ					
-	int		iDuration;				//ÌØĞ§³ÖĞøÊ±¼ä 	µ¥Î»£ºÃë					
-	int		iColor;					//ÑÕÉ«£º32Î»ÖĞÈ¡µÍ24Î»±íÊ¾ÑÕÉ«rgb, ´ú±íÊı×Ö·½Ê½bgr¡£[((DWORD)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)))]				
-	int		iFlashtime;				//ÉÁË¸¼ä¸ô,	µ¥Î»£ººÁÃë					
+	int     iEnable;				//ç‰¹æ•ˆä½¿èƒ½ï¼š1--ä½¿èƒ½ï¼Œ0--å…³é—­					
+	int		iDuration;				//ç‰¹æ•ˆæŒç»­æ—¶é—´ 	å•ä½ï¼šç§’					
+	int		iColor;					//é¢œè‰²ï¼š32ä½ä¸­å–ä½24ä½è¡¨ç¤ºé¢œè‰²rgb, ä»£è¡¨æ•°å­—æ–¹å¼bgrã€‚[((DWORD)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)))]				
+	int		iFlashtime;				//é—ªçƒé—´éš”,	å•ä½ï¼šæ¯«ç§’					
 } DecAlarmEffectLight, *pDecAlarmEffectLight;
 
 #define MAX_EFFECTREGION_POINT_COUNT		8
 typedef struct tagDecAlarmEffectRegion
 {
 	int     iSize;
-	int     iEnable;				//ÌØĞ§Ê¹ÄÜ£º1--Ê¹ÄÜ£¬0--¹Ø±Õ					
-	int		iDuration;				//ÌØĞ§³ÖĞøÊ±¼ä 	µ¥Î»£ºÃë
-	int		iWidth;					//±ß¿ò¿í¶È
-	int		iColor;					//ÑÕÉ«£º32Î»ÖĞÈ¡µÍ24Î»±íÊ¾ÑÕÉ«rgb, ´ú±íÊı×Ö·½Ê½bgr¡£[((DWORD)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)))]					
-	int		iPointCount;			//ÇøÓò¶¥µãÊı£¬×î´ó8¸öµã					
-	POINT	tPoints[MAX_EFFECTREGION_POINT_COUNT];	//µã×ø±ê, Ïà¶ÔÓÚÊÓÆµ·Ö±æÂÊµÄÍò·Ö±È×ø±ê			
+	int     iEnable;				//ç‰¹æ•ˆä½¿èƒ½ï¼š1--ä½¿èƒ½ï¼Œ0--å…³é—­					
+	int		iDuration;				//ç‰¹æ•ˆæŒç»­æ—¶é—´ 	å•ä½ï¼šç§’
+	int		iWidth;					//è¾¹æ¡†å®½åº¦
+	int		iColor;					//é¢œè‰²ï¼š32ä½ä¸­å–ä½24ä½è¡¨ç¤ºé¢œè‰²rgb, ä»£è¡¨æ•°å­—æ–¹å¼bgrã€‚[((DWORD)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)))]					
+	int		iPointCount;			//åŒºåŸŸé¡¶ç‚¹æ•°ï¼Œæœ€å¤§8ä¸ªç‚¹					
+	POINT	tPoints[MAX_EFFECTREGION_POINT_COUNT];	//ç‚¹åæ ‡, ç›¸å¯¹äºè§†é¢‘åˆ†è¾¨ç‡çš„ä¸‡åˆ†æ¯”åæ ‡			
 } DecAlarmEffectRegion, *pDecAlarmEffectRegion;
 
 typedef struct tagDecAlarmEffectText
 {
 	int     iSize;
-	int     iEnable;				//ÌØĞ§Ê¹ÄÜ£º1--Ê¹ÄÜ£¬0--¹Ø±Õ					
-	int		iDuration;				//ÌØĞ§³ÖĞøÊ±¼ä 	µ¥Î»£ºÃë
-	int		iFontSize;				//×ÖÌå´óĞ¡£¬·¶Î§1-5£¬´ú±í5¸ö¼¶±ğµÄ×ÖÌå´óĞ¡
-	int		iColor;					//ÑÕÉ«£º32Î»ÖĞÈ¡µÍ24Î»±íÊ¾ÑÕÉ«rgb, ´ú±íÊı×Ö·½Ê½bgr¡£[((DWORD)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)))]					
-	char	cText[LEN_64];			//ÎÄ±¾ÄÚÈİ	×î´ó64×Ö½Ú					
-	int		iTextAlign;				//¶ÔÆë·½Ê½£º0--ÓÃ»§×Ô¶¨Òå, 1--×óÉÏ½Ç, 2--×óÏÂ½Ç, 3--ÓÒÉÏ½Ç, 4--ÓÒÏÂ½Ç, 5¾ÓÖĞ					
-	POINT	tPoint;					//×Ö·ûµş¼Ó×óÉÏ½Ç×ø±ê£¬Ïà¶ÔÓÚÊÓÆµ·Ö±æÂÊµÄÍò·Ö±È×ø±ê					
-	int		iTextWidth;				//ÎÄ±¾ÇøÓò¿í¶È£¬Êµ¼Ê·Ö±æÂÊ					
-	int		iTextHeight;			//ÎÄ±¾ÇøÓò¸ß¶È£¬Êµ¼Ê·Ö±æÂÊ					
-	int		iLeft;					//×ó±ß¾à£¬iTextAlignÎª1, 2Ê±ÓĞĞ§					
-	int		iTop;					//ÉÏ±ß¾à£¬iTextAlignÎª1, 3Ê±ÓĞĞ§					
-	int		iRight;					//ÓÒ±ß¾à£¬iTextAlignÎª3, 4Ê±ÓĞĞ§					
-	int		iBottom;				//ÏÂ±ß¾à£¬iTextAlignÎª2, 4Ê±ÓĞĞ§						
+	int     iEnable;				//ç‰¹æ•ˆä½¿èƒ½ï¼š1--ä½¿èƒ½ï¼Œ0--å…³é—­					
+	int		iDuration;				//ç‰¹æ•ˆæŒç»­æ—¶é—´ 	å•ä½ï¼šç§’
+	int		iFontSize;				//å­—ä½“å¤§å°ï¼ŒèŒƒå›´1-5ï¼Œä»£è¡¨5ä¸ªçº§åˆ«çš„å­—ä½“å¤§å°
+	int		iColor;					//é¢œè‰²ï¼š32ä½ä¸­å–ä½24ä½è¡¨ç¤ºé¢œè‰²rgb, ä»£è¡¨æ•°å­—æ–¹å¼bgrã€‚[((DWORD)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)))]					
+	char	cText[LEN_64];			//æ–‡æœ¬å†…å®¹	æœ€å¤§64å­—èŠ‚					
+	int		iTextAlign;				//å¯¹é½æ–¹å¼ï¼š0--ç”¨æˆ·è‡ªå®šä¹‰, 1--å·¦ä¸Šè§’, 2--å·¦ä¸‹è§’, 3--å³ä¸Šè§’, 4--å³ä¸‹è§’, 5å±…ä¸­					
+	POINT	tPoint;					//å­—ç¬¦å åŠ å·¦ä¸Šè§’åæ ‡ï¼Œç›¸å¯¹äºè§†é¢‘åˆ†è¾¨ç‡çš„ä¸‡åˆ†æ¯”åæ ‡					
+	int		iTextWidth;				//æ–‡æœ¬åŒºåŸŸå®½åº¦ï¼Œå®é™…åˆ†è¾¨ç‡					
+	int		iTextHeight;			//æ–‡æœ¬åŒºåŸŸé«˜åº¦ï¼Œå®é™…åˆ†è¾¨ç‡					
+	int		iLeft;					//å·¦è¾¹è·ï¼ŒiTextAlignä¸º1, 2æ—¶æœ‰æ•ˆ					
+	int		iTop;					//ä¸Šè¾¹è·ï¼ŒiTextAlignä¸º1, 3æ—¶æœ‰æ•ˆ					
+	int		iRight;					//å³è¾¹è·ï¼ŒiTextAlignä¸º3, 4æ—¶æœ‰æ•ˆ					
+	int		iBottom;				//ä¸‹è¾¹è·ï¼ŒiTextAlignä¸º2, 4æ—¶æœ‰æ•ˆ						
 } DecAlarmEffectText, *pDecAlarmEffectText;
 
 #define DEC_MAX_PLAN_LOOP_ITEM_NUM MAX_PLAN_COUNT
 typedef struct tagPlanLoopItem
 {
-	int     iIndex;		//ÇĞ»»ĞòÁĞºÅ
-	int		iPlanNo;	//Ô¤°¸±àºÅ
-	int		iHoldTime;	//Í£ÁôÊ±¼ä 30-9999
+	int     iIndex;		//åˆ‡æ¢åºåˆ—å·
+	int		iPlanNo;	//é¢„æ¡ˆç¼–å·
+	int		iHoldTime;	//åœç•™æ—¶é—´ 30-9999
 }PlanLoopItem,*pPlanLoopItem;
 
 typedef struct tagPlanLoopList
 {
-	int     iCount;		//ÇĞ»»ÁĞ±íÊıÄ¿
+	int     iCount;		//åˆ‡æ¢åˆ—è¡¨æ•°ç›®
 	PlanLoopItem tPlanLoopItem[DEC_MAX_PLAN_LOOP_ITEM_NUM];
 }PlanLoopList,*pPlanLoopList;
 
 typedef struct tagPlanLoop
 {
-	int     iEnable;	//Ê¹ÄÜ
-	int     iCount;     //ÊıÄ¿
-	int		iIndex;	    //µ±Ç°ÇĞ»»ĞòÁĞºÅ
-	int		iPlanNo;	//µ±Ç°Ô¤°¸±àºÅ
+	int     iEnable;	//ä½¿èƒ½
+	int     iCount;     //æ•°ç›®
+	int		iIndex;	    //å½“å‰åˆ‡æ¢åºåˆ—å·
+	int		iPlanNo;	//å½“å‰é¢„æ¡ˆç¼–å·
 }PlanLoop,*pPlanLoop;
 
 typedef struct tagPlanLoopItemDel
 {
-	int		iIndex;	    //ÒªÉ¾³ıµÄÇĞ»»ĞòÁĞºÅ
+	int		iIndex;	    //è¦åˆ é™¤çš„åˆ‡æ¢åºåˆ—å·
 }PlanLoopItemDel,*pPlanLoopItemDel;
 
-//Éè±¸ÍøÂç¹¤×÷Ä£Ê½
+//è®¾å¤‡ç½‘ç»œå·¥ä½œæ¨¡å¼
 typedef	struct tagLanParamWorkMode
 {
-	int				iWorkMode;				//¹¤×÷Ä£Ê½0£¬±¸·İ£»1£¬¶àÖ·
-	int				iMainLanNo;				//Ö÷Íø¿¨±àºÅ0£¬Lan1£»1£¬Lan2
+	int				iWorkMode;				//å·¥ä½œæ¨¡å¼0ï¼Œå¤‡ä»½ï¼›1ï¼Œå¤šå€
+	int				iMainLanNo;				//ä¸»ç½‘å¡ç¼–å·0ï¼ŒLan1ï¼›1ï¼ŒLan2
 }LanParamWorkMode, *pLanParamWorkMode;
 
 typedef struct tagSipVideoChannelEx
@@ -1784,48 +1784,48 @@ typedef struct tagDecChanResolutionList
 typedef struct tagPicSnap
 {
 	ServerItem uServerItem;
-	int serType;			//0£¬Tiandy£»1£¬Onvif£»2£¬pushÁ÷£»3£¬rtsp£»4£¬½âÂëÆ÷ÄÚ²¿±àÂëÍ¨µÀ£»5£¬±¾µØÊäÈëÍ¨µÀ
-							//1000¿ªÊ¼ÊÇ³§¼Ò¶Ô½ÓÌØÊâÀàĞÍ  1001£¬LG£» 1002£¬ËÉÏÂ£»
+	int serType;			//0ï¼ŒTiandyï¼›1ï¼ŒOnvifï¼›2ï¼Œpushæµï¼›3ï¼Œrtspï¼›4ï¼Œè§£ç å™¨å†…éƒ¨ç¼–ç é€šé“ï¼›5ï¼Œæœ¬åœ°è¾“å…¥é€šé“
+							//1000å¼€å§‹æ˜¯å‚å®¶å¯¹æ¥ç‰¹æ®Šç±»å‹  1001ï¼ŒLGï¼› 1002ï¼Œæ¾ä¸‹ï¼›
 }PicSnap,*pPicSnap;
 
 typedef struct tagPicSnapResult
 {
-	int     iRet;				//0£¬³É¹¦£»1£¬Ê§°Ü£»
-	int     iSnapID;			//×¥ÅÄID
+	int     iRet;				//0ï¼ŒæˆåŠŸï¼›1ï¼Œå¤±è´¥ï¼›
+	int     iSnapID;			//æŠ“æ‹ID
 }PicSnapResult, *pPicSnapResult;
 
 typedef struct tagPicSnapID
 {
-	int     iSnapID;//×¥ÅÄID
+	int     iSnapID;//æŠ“æ‹ID
 }PicSnapID, *pPicSnapID;
 
 typedef struct tagPicSnapFileName
 {
 	int     iSnapID;
-	int     iState;					//0£¬³É¹¦£»1£¬Ê§°Ü£»2£¬×¥ÅÄÖĞ
-	char    cPicFileName[LEN_256];	//×¥ÅÄÍ¼Æ¬ÎÄ¼şÃû
+	int     iState;					//0ï¼ŒæˆåŠŸï¼›1ï¼Œå¤±è´¥ï¼›2ï¼ŒæŠ“æ‹ä¸­
+	char    cPicFileName[LEN_256];	//æŠ“æ‹å›¾ç‰‡æ–‡ä»¶å
 }PicSnapFileName, *pPicSnapFileName;
 
 typedef struct tagScreenCtlProtocols
 {
-	int		iCount;													//Ğ­Òé¸öÊı
-	char 	cProtocol[MAX_PROTOCOL_NUM][MAX_PROTOCOL_NAME_LEN32+1];	//¸÷Ğ­ÒéÃû³Æ£¬×î¶àÖ§³Ö128¸öĞ­Òé£¬Ã¿ÌõĞ­ÒéÃû³Æ×î³¤32×Ö½Ú£»	
+	int		iCount;													//åè®®ä¸ªæ•°
+	char 	cProtocol[MAX_PROTOCOL_NUM][MAX_PROTOCOL_NAME_LEN32+1];	//å„åè®®åç§°ï¼Œæœ€å¤šæ”¯æŒ128ä¸ªåè®®ï¼Œæ¯æ¡åè®®åç§°æœ€é•¿32å­—èŠ‚ï¼›	
 }ScreenCtlProtocols, *pScreenCtlProtocols;
 
 typedef struct tagScreenCtlProtocol
 {
-	int     iScreenNo;		//Æ´½ÓÆÁµÄ±àºÅ£¬Ö¸µÄÊÇÔÚIEÉÏÏÔÊ¾µÄÆÁÄ»±àºÅ			
-	int     iAddressNo;		//ÆÁÄ»µØÖ·Âë0x11~0xAA				
-	int     iComNo;			//´®¿Ú±àºÅ
+	int     iScreenNo;		//æ‹¼æ¥å±çš„ç¼–å·ï¼ŒæŒ‡çš„æ˜¯åœ¨IEä¸Šæ˜¾ç¤ºçš„å±å¹•ç¼–å·			
+	int     iAddressNo;		//å±å¹•åœ°å€ç 0x11~0xAA				
+	int     iComNo;			//ä¸²å£ç¼–å·
 	char 	cProtocol[MAX_PROTOCOL_NAME_LEN32+1];
 }ScreenCtlProtocol, *pScreenCtlProtocol;
 
 typedef struct tagScreenCtl
 {
-	int     iScreenNo;		//Æ´½ÓÆÁµÄ±àºÅ£¬Ö¸µÄÊÇÔÚIEÉÏÏÔÊ¾µÄÆÁÄ»±àºÅ			
-	int     iActionType;	//ÆÁ¿ØÃüÁî£º1£º¿ª¹Ø»ú£»2£ºÆ´½ÓÆÁÑ¡Ôñ£»3£º¶Ô±È¶È£»4£ºÁÁ¶È£»5£ºÉ«±¥ºÍ¶È£»6£ºÇåÎú¶È
-	int     iParam;			//ÃüÁî¾ßÌå²ÎÊı£º£¨1£©¿ª¹Ø»úÃüÁî0-¹Ø»ú£¬1-¿ª»ú£¨2£©Æ´½ÓÆÁÑ¡ÔñÃüÁîÊ±0-AV£¬
-							//1-S-VIDEO£¬2-VGA£¬3-DVI£¬4-HDMI£¨3£©ËÄ¶È¿ØÖÆ£¨¶Ô±È¶È¡¢ÁÁ¶È¡¢É«±¥ºÍ¶È¡¢ÇåÎú¶È£©ÃüÁî0-¼õÉÙ£¬ÃüÁî1-Ôö¼Ó
+	int     iScreenNo;		//æ‹¼æ¥å±çš„ç¼–å·ï¼ŒæŒ‡çš„æ˜¯åœ¨IEä¸Šæ˜¾ç¤ºçš„å±å¹•ç¼–å·			
+	int     iActionType;	//å±æ§å‘½ä»¤ï¼š1ï¼šå¼€å…³æœºï¼›2ï¼šæ‹¼æ¥å±é€‰æ‹©ï¼›3ï¼šå¯¹æ¯”åº¦ï¼›4ï¼šäº®åº¦ï¼›5ï¼šè‰²é¥±å’Œåº¦ï¼›6ï¼šæ¸…æ™°åº¦
+	int     iParam;			//å‘½ä»¤å…·ä½“å‚æ•°ï¼šï¼ˆ1ï¼‰å¼€å…³æœºå‘½ä»¤0-å…³æœºï¼Œ1-å¼€æœºï¼ˆ2ï¼‰æ‹¼æ¥å±é€‰æ‹©å‘½ä»¤æ—¶0-AVï¼Œ
+							//1-S-VIDEOï¼Œ2-VGAï¼Œ3-DVIï¼Œ4-HDMIï¼ˆ3ï¼‰å››åº¦æ§åˆ¶ï¼ˆå¯¹æ¯”åº¦ã€äº®åº¦ã€è‰²é¥±å’Œåº¦ã€æ¸…æ™°åº¦ï¼‰å‘½ä»¤0-å‡å°‘ï¼Œå‘½ä»¤1-å¢åŠ 
 }ScreenCtl, *pScreenCtl;
 
 typedef struct tagScreenCtlResult
@@ -1833,12 +1833,12 @@ typedef struct tagScreenCtlResult
 	int     iScreenNo;					
 	int     iActionType;	
 	int     iParam; 
-	int     iResult;		//0£ºÔ¤Áô£¬1£º³É¹¦£¬2£ºÊ§°Ü
+	int     iResult;		//0ï¼šé¢„ç•™ï¼Œ1ï¼šæˆåŠŸï¼Œ2ï¼šå¤±è´¥
 }ScreenCtlResult, *pScreenCtlResult;
 
 typedef struct tagRebootTradeResult
 {
-	int       iResult;		//0£ºÔ¤Áô£¬1£º³É¹¦£¬2£ºÊ§°Ü
+	int       iResult;		//0ï¼šé¢„ç•™ï¼Œ1ï¼šæˆåŠŸï¼Œ2ï¼šå¤±è´¥
 }RebootTradeResult,*pRebootTradeResult;
 
 #define DEC_MAX_VIDEOLIST_SIZE			100
@@ -1846,21 +1846,21 @@ typedef struct tagRebootTradeResult
 typedef struct tagUDiskVideoList
 {
 	int      iCount;
-	char 	 cVideoName[DEC_MAX_VIDEOLIST_SIZE][LEN_128];	//ÊÓÆµÃû³Æ	
+	char 	 cVideoName[DEC_MAX_VIDEOLIST_SIZE][LEN_128];	//è§†é¢‘åç§°	
 }UDiskVideoList, *pUDiskVideoList;
 
 typedef struct tagUDiskCurVideo
 {
-	int		iCurVideoState;		//ÊÓÆµ×´Ì¬
-	char 	cVideoName[LEN_128];	//ÊÓÆµÃû³Æ	
+	int		iCurVideoState;		//è§†é¢‘çŠ¶æ€
+	char 	cVideoName[LEN_128];	//è§†é¢‘åç§°	
 }UDiskCurVideo, *pUDiskCurVideo;
 
 
 #define DEC_MAX_UDISK_CHANNEL_VIDEO		20
 typedef struct tagUDiskSetChannelVideo
 {
-	int		iVideoNum; //ÊÓÆµ¸öÊı
-	char 	cVideoName[DEC_MAX_UDISK_CHANNEL_VIDEO][LEN_128];	//ÊÓÆµÃû³Æ	
+	int		iVideoNum; //è§†é¢‘ä¸ªæ•°
+	char 	cVideoName[DEC_MAX_UDISK_CHANNEL_VIDEO][LEN_128];	//è§†é¢‘åç§°	
 	int     iChannelNo;
 	int     iPos;
 }UDiskSetChannelVideo, *pUDiskSetChannelVideo;
@@ -1875,53 +1875,53 @@ typedef struct tagUDiskAllChannelVideo
 
 typedef struct tagVideoPlayMode
 {
-	int		iPlayMode; //²¥·ÅÄ£Ê½ÀàĞÍÊÓÆµ²¥·ÅÀàĞÍ£º1£ºÑ­»·²¥·Å 2£ºË³Ğò²¥·Å  
+	int		iPlayMode; //æ’­æ”¾æ¨¡å¼ç±»å‹è§†é¢‘æ’­æ”¾ç±»å‹ï¼š1ï¼šå¾ªç¯æ’­æ”¾ 2ï¼šé¡ºåºæ’­æ”¾  
 }VideoPlayMode, *pVideoPlayMode;
 
 typedef struct tagVideoPlayCmd
 {
-	int		iPlayCmd;  //²¥·ÅÃüÁî0£ºÍ£Ö¹²¥·Å 1£º¿ªÊ¼²¥·Å  
+	int		iPlayCmd;  //æ’­æ”¾å‘½ä»¤0ï¼šåœæ­¢æ’­æ”¾ 1ï¼šå¼€å§‹æ’­æ”¾  
 }VideoPlayCmd, *pVideoPlayCmd;
 
 typedef struct tagVideoPlayCmdResult
 {
 	int			 iPlayCmd;
-	int			 iResult;      //0£ºÔ¤Áô£¬1£º³É¹¦£¬2£ºÊ§°Ü
+	int			 iResult;      //0ï¼šé¢„ç•™ï¼Œ1ï¼šæˆåŠŸï¼Œ2ï¼šå¤±è´¥
 }VideoPlayCmdResult, *pVideoPlayCmdResult;
 
 typedef struct tagPlanLoopStatus
 {
-	int			 iStatus;//0£º¿ªÊ¼ÇĞ»» 1£ºÍ£Ö¹ÇĞ»»
+	int			 iStatus;//0ï¼šå¼€å§‹åˆ‡æ¢ 1ï¼šåœæ­¢åˆ‡æ¢
 }PlanLoopStatus, *pPlanLoopStatus;
 
 typedef struct tagLoopParam
 {
-	int			 iType;	//0,ÊÓÆµÇĞ»»ÁĞ±í£»1£¬ Ô¤°¸ÇĞ»»ÁĞ±í
+	int			 iType;	//0,è§†é¢‘åˆ‡æ¢åˆ—è¡¨ï¼›1ï¼Œ é¢„æ¡ˆåˆ‡æ¢åˆ—è¡¨
 }LoopParam, *pLoopParam;
 
 typedef struct tagSoundCtrlResult
 {
 	int iAudioStatus;//0:AUDIO_STATUS_CLOSE	1:AUDIO_STATUS_OPEN	-1: AUDIO_STATUS_FAILD
-	int iFailReason;//0£ºÔ¤Áô£»1£º¶Ô½²ÒÑ´ò¿ª£¬Óë±¾µØÒôÆµÔ¤ÀÀ´æÔÚ»¥³â
+	int iFailReason;//0ï¼šé¢„ç•™ï¼›1ï¼šå¯¹è®²å·²æ‰“å¼€ï¼Œä¸æœ¬åœ°éŸ³é¢‘é¢„è§ˆå­˜åœ¨äº’æ–¥
 }SoundCtrlResult;
 
 typedef struct tagTalkServResult
 {
 	int iTalkStatus;//0:TALK_STATUS_CLOSE	1:TALK_STATUS_OPEN	-1:TALK_STATUS_FAILD      
-	int iFailReason;//0£ºÔ¤Áô£»1£º±¾µØÒôÆµÔ¤ÀÀÒÑ´ò¿ª£¬Óë¶Ô½²´æÔÚ»¥³â
+	int iFailReason;//0ï¼šé¢„ç•™ï¼›1ï¼šæœ¬åœ°éŸ³é¢‘é¢„è§ˆå·²æ‰“å¼€ï¼Œä¸å¯¹è®²å­˜åœ¨äº’æ–¥
 }TalkServResult;
 
 typedef struct tagHDModeOutChannel
 {
-	int iOutChnNum;							  //¸ßÇåÄ£Ê½ÏÂ£¬Ö§³ÖÊä³öÍ¨µÀÊıÁ¿
-	int iOutChnn[DEC_MAX_CHANNEL_TOTAL_NUM];  //Êä³öÍ¨µÀºÅ
+	int iOutChnNum;							  //é«˜æ¸…æ¨¡å¼ä¸‹ï¼Œæ”¯æŒè¾“å‡ºé€šé“æ•°é‡
+	int iOutChnn[DEC_MAX_CHANNEL_TOTAL_NUM];  //è¾“å‡ºé€šé“å·
 }HDModeOutChannel;
 
 typedef struct tagSmoothMode
 {
-	int iEnable;							     //³©ÏÔÄ£Ê½Ê¹ÄÜ
-	int iLocalInNum;							 //ÊäÈëÍ¨µÀÊıÁ¿
-	int iEnableChnn[DEC_MAX_ENCODE_CHANNEL_NUM]; //Ê¹ÄÜ±¾µØÊäÈëÍ¨µÀ
+	int iEnable;							     //ç•…æ˜¾æ¨¡å¼ä½¿èƒ½
+	int iLocalInNum;							 //è¾“å…¥é€šé“æ•°é‡
+	int iEnableChnn[DEC_MAX_ENCODE_CHANNEL_NUM]; //ä½¿èƒ½æœ¬åœ°è¾“å…¥é€šé“
 }SmoothMode;
 
 #endif
