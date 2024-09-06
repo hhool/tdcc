@@ -40,13 +40,41 @@ if (WINDOWS)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}")
 endif()
 
+# Add Header files
+if (WINDOWS)
+    include_directories(${CMAKE_SOURCE_DIR}/platform/windows/CH-NVSDK_64/include)
+elseif(LINUX)
+    include_directories(${CMAKE_SOURCE_DIR}/platform/linux/CH-NVSDK_64/include)
+endif()
+
+set(COMMON_SRC_FILES
+    ${CMAKE_SOURCE_DIR}/common/logger.cc
+    ${CMAKE_SOURCE_DIR}/common/logger.h
+    ${CMAKE_SOURCE_DIR}/common/time_utils.cc
+    ${CMAKE_SOURCE_DIR}/common/time_utils.h)
+add_library(common STATIC ${COMMON_SRC_FILES})
+
 # Add source files
 set(SRC_FILES
+    CLS_NVDSDKHelper.cpp
+    CLS_NVDSDKHelper.h
+    common.h
+    native_tiandi_jni_test.cc
     native_tiandi_jni.cc
-    native_tiandi_jni.h)
-
+    native_tiandi_jni.h
+    nvsdk_struct_utils.cc
+    nvsdk_struct_utils.h
+    nvsdk_wrapper.cc
+    nvsdk_wrapper.h)
+if (WINDOWS)
+elseif (LINUX)
+    set(SRC_FILES ${SRC_FILES}
+    CLS_NVDSDKHelper.cpp
+    CLS_NVDSDKHelper.h)
+endif()
 # Add library
 add_library(tiandi_jni SHARED ${SRC_FILES})
+target_link_libraries(tiandi_jni common)
 
 # Include directories
 target_include_directories(tiandi_jni PRIVATE
@@ -82,15 +110,6 @@ endif()
 # Set output prefix
 set_target_properties(tiandi_jni PROPERTIES
     PREFIX "")
-
-# Set output rpath
-if (LINUX)
-    set_target_properties(tiandi_jni PROPERTIES
-        INSTALL_RPATH "$ORIGIN") 
-elseif (WINDOWS)
-    set_target_properties(tiandi_jni PROPERTIES
-        INSTALL_RPATH "$ORIGIN")
-endif()
 
 # Set output install name
 if(WINDOWS)

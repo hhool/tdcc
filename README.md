@@ -82,18 +82,18 @@ Target platform: Windows x64 and Linux x64 (centos 7.8)
 2. Run the following command to generate the JNI header file:
 
    ```shell
-   cd src\main\java
-   javah -jni -d ..\..\..\jni -encoding utf-8 com.gshx.camera.tiandi.NVSDKClient
+   cd src/main/java
+   javah -jni -d ../../../jni -encoding utf-8 com.gshx.camera.tiandi.NVSDKClient
    ```
 
    or
 
    ```shell
    cd jni
-   javah -cp ..\target\classes -o native_tiandi_jni.h -encoding utf-8  com.gshx.camera.tiandi.NVSDKClient
+   javah -cp ../target/classes -o native_tiandi_jni.h -encoding utf-8  com.gshx.camera.tiandi.NVSDKClient
    ```
 
-   The JNI header file is located in the `jni\` directory.
+   The JNI header file is located in the `jni/` directory.
 
 ## Usage
 

@@ -26,42 +26,58 @@ JNIEXPORT void JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeDestroyInst
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientStartup
- * Signature: (JJ)I
+ * Signature: (JI)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStartup
-  (JNIEnv *, jobject, jlong, jlong);
+  (JNIEnv *, jobject, jlong, jint);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientCleanup
- * Signature: ()I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientCleanup
-  (JNIEnv *, jobject);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientLogin
- * Signature: (Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientLogin__Ljava_lang_String_2ILjava_lang_String_2Ljava_lang_String_2
-  (JNIEnv *, jobject, jstring, jint, jstring, jstring);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientLogin
- * Signature: (Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;J)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientLogin__Ljava_lang_String_2ILjava_lang_String_2Ljava_lang_String_2J
-  (JNIEnv *, jobject, jstring, jint, jstring, jstring, jlong);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientLogout
  * Signature: (J)I
  */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientLogout__J
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientCleanup
   (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSetComRecvNotify
+ * Signature: (JLcom/gshx/camera/tiandi/IDecComRecvNotify;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetComRecvNotify
+  (JNIEnv *, jobject, jlong, jobject);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSetMsgCallback
+ * Signature: (JLcom/gshx/camera/tiandi/ITDPostMessageNotify;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetMsgCallback
+  (JNIEnv *, jobject, jlong, jobject);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSetMsgCallbackEx
+ * Signature: (JLcom/gshx/camera/tiandi/ITDPostMessageNotify;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetMsgCallbackEx
+  (JNIEnv *, jobject, jlong, jobject);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientLogin
+ * Signature: (JLjava/lang/String;ILjava/lang/String;Ljava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientLogin__JLjava_lang_String_2ILjava_lang_String_2Ljava_lang_String_2
+  (JNIEnv *, jobject, jlong, jstring, jint, jstring, jstring);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientLogin
+ * Signature: (JLjava/lang/String;ILjava/lang/String;Ljava/lang/String;J)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientLogin__JLjava_lang_String_2ILjava_lang_String_2Ljava_lang_String_2J
+  (JNIEnv *, jobject, jlong, jstring, jint, jstring, jstring, jlong);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
@@ -73,675 +89,699 @@ JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientLogou
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientLogout
+ * Signature: (JJJ)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientLogout__JJJ
+  (JNIEnv *, jobject, jlong, jlong, jlong);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientStartPushStream
- * Signature: (JIIII)I
+ * Signature: (JJIIII)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStartPushStream
-  (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
+  (JNIEnv *, jobject, jlong, jlong, jint, jint, jint, jint);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientStartPushStreamEx
- * Signature: (JIIIILjava/lang/String;)I
+ * Signature: (JJIIIILjava/lang/String;)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStartPushStreamEx
-  (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jstring);
+  (JNIEnv *, jobject, jlong, jlong, jint, jint, jint, jint, jstring);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientStartPushStream_V1
- * Signature: (JIILjava/lang/String;Ljava/lang/String;I)I
+ * Signature: (JJIILjava/lang/String;Ljava/lang/String;I)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStartPushStream_1V1
-  (JNIEnv *, jobject, jlong, jint, jint, jstring, jstring, jint);
+  (JNIEnv *, jobject, jlong, jlong, jint, jint, jstring, jstring, jint);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientSendStream
- * Signature: (J[BI)I
+ * Signature: (JJ[BI)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSendStream
-  (JNIEnv *, jobject, jlong, jbyteArray, jint);
+  (JNIEnv *, jobject, jlong, jlong, jbyteArray, jint);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientStopPushStream
- * Signature: (J)I
+ * Signature: (JJ)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStopPushStream
-  (JNIEnv *, jobject, jlong);
+  (JNIEnv *, jobject, jlong, jlong);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientStopPushStreamEx
- * Signature: (JZ)I
+ * Signature: (JJZ)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStopPushStreamEx
-  (JNIEnv *, jobject, jlong, jboolean);
+  (JNIEnv *, jobject, jlong, jlong, jboolean);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientGetStreamBufferState
- * Signature: (J)I
+ * Signature: (JJ)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetStreamBufferState
-  (JNIEnv *, jobject, jlong);
+  (JNIEnv *, jobject, jlong, jlong);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientStreamControl
- * Signature: (JI[BI)I
+ * Signature: (JJII)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStreamControl
-  (JNIEnv *, jobject, jlong, jint, jbyteArray, jint);
+  (JNIEnv *, jobject, jlong, jlong, jint, jint);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientSendRawFrame
- * Signature: (J[BI)I
+ * Signature: (JJ[B)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSendRawFrame
-  (JNIEnv *, jobject, jlong, jbyteArray, jint);
+  (JNIEnv *, jobject, jlong, jlong, jbyteArray);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientGetDecoderPara
- * Signature: (ILcom/gshx/camera/tiandi/TDDecParam;)I
+ * Signature: (JI)Lcom/gshx/camera/tiandi/TDecParam;
  */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetDecoderPara
-  (JNIEnv *, jobject, jint, jobject);
+JNIEXPORT jobject JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetDecoderPara
+  (JNIEnv *, jobject, jlong, jint);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientSetDDNS
- * Signature: (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)I
+ * Signature: (JILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetDDNS
-  (JNIEnv *, jobject, jint, jstring, jstring, jstring, jint);
+  (JNIEnv *, jobject, jlong, jint, jstring, jstring, jstring, jint);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientSetAlarmOut
- * Signature: (III)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetAlarmOut
-  (JNIEnv *, jobject, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetTVInfo
- * Signature: (III)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetTVInfo
-  (JNIEnv *, jobject, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetChannelMode
- * Signature: (III)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetChannelMode
-  (JNIEnv *, jobject, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetLogo
- * Signature: (ILcom/gshx/camera/tiandi/TLogoParam;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetLogo
-  (JNIEnv *, jobject, jint, jobject);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetLog
- * Signature: (I)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetLog
-  (JNIEnv *, jobject, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetLoopItemCount
- * Signature: (III)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetLoopItemCount
-  (JNIEnv *, jobject, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetLoopItem
- * Signature: (IILcom/gshx/camera/tiandi/TNVSItem;II)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetLoopItem
-  (JNIEnv *, jobject, jint, jint, jobject, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetLoopItemEx
- * Signature: (IILcom/gshx/camera/tiandi/TNVSItemEx;II)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetLoopItemEx
-  (JNIEnv *, jobject, jint, jint, jobject, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetLoopItem_V1
- * Signature: (IIIIILcom/gshx/camera/tiandi/TServerCommonInfo;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetLoopItem_1V1
-  (JNIEnv *, jobject, jint, jint, jint, jint, jint, jobject);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientStartLoop
- * Signature: (III)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStartLoop
-  (JNIEnv *, jobject, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientStopLoop
- * Signature: (III)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStopLoop
-  (JNIEnv *, jobject, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetLoopStatus
- * Signature: (III)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetLoopStatus
-  (JNIEnv *, jobject, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientStopView
- * Signature: (IIIZ)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStopView
-  (JNIEnv *, jobject, jint, jint, jint, jboolean);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientStopView_V1
- * Signature: (IIIZ)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStopView_1V1
-  (JNIEnv *, jobject, jint, jint, jint, jboolean);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientStartView
- * Signature: (ILcom/gshx/camera/tiandi/TNVSItem;II)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStartView
-  (JNIEnv *, jobject, jint, jobject, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientStartViewEx
- * Signature: (ILcom/gshx/camera/tiandi/TNVSItemEx;II)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStartViewEx
-  (JNIEnv *, jobject, jint, jobject, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientStartView_V1
- * Signature: (IIIILcom/gshx/camera/tiandi/TServerCommonInfo;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStartView_1V1
-  (JNIEnv *, jobject, jint, jint, jint, jint, jobject);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetViewItem
- * Signature: (ILcom/gshx/camera/tiandi/TNVSItem;II)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetViewItem
-  (JNIEnv *, jobject, jint, jobject, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetViewItemEx
- * Signature: (ILcom/gshx/camera/tiandi/TNVSItemEx;II)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetViewItemEx
-  (JNIEnv *, jobject, jint, jobject, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetViewItem_V1
- * Signature: (IIIILcom/gshx/camera/tiandi/TServerCommonInfo;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetViewItem_1V1
-  (JNIEnv *, jobject, jint, jint, jint, jint, jobject);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSendKey
- * Signature: (II)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSendKey
-  (JNIEnv *, jobject, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientPTZCtrl
- * Signature: (IIIII)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientPTZCtrl
-  (JNIEnv *, jobject, jint, jint, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClient485Send
- * Signature: (I[BIII)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClient485Send
-  (JNIEnv *, jobject, jint, jbyteArray, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetPTZprotocols
- * Signature: (ILcom/gshx/camera/tiandi/TDecProtocol;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetPTZprotocols
-  (JNIEnv *, jobject, jint, jobject);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSoundCtrl
- * Signature: (IIII)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSoundCtrl
-  (JNIEnv *, jobject, jint, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientTalkServer
- * Signature: (IIII)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientTalkServer
-  (JNIEnv *, jobject, jint, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetAudioStatus
- * Signature: (III)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetAudioStatus
-  (JNIEnv *, jobject, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetTalkStatus
- * Signature: (III)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetTalkStatus
-  (JNIEnv *, jobject, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientRebootDecoder
- * Signature: (I)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientRebootDecoder
-  (JNIEnv *, jobject, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientResetDefault
- * Signature: (I)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientResetDefault
-  (JNIEnv *, jobject, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientUpgrade
- * Signature: (ILjava/lang/String;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientUpgrade
-  (JNIEnv *, jobject, jint, jstring);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientUpgradeLogo
- * Signature: (ILjava/lang/String;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientUpgradeLogo
-  (JNIEnv *, jobject, jint, jstring);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientUpgradeProtocol
- * Signature: (ILjava/lang/String;Ljava/lang/String;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientUpgradeProtocol
-  (JNIEnv *, jobject, jint, jstring, jstring);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientDeleteProtocol
- * Signature: (ILjava/lang/String;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientDeleteProtocol
-  (JNIEnv *, jobject, jint, jstring);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetVersion
- * Signature: (ILjava/lang/String;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetVersion
-  (JNIEnv *, jobject, jint, jstring);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetSDKVersion
- * Signature: (Lcom/gshx/camera/tiandi/TNVDSdkVersion;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetSDKVersion
-  (JNIEnv *, jobject, jobject);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetComRecvNotify
- * Signature: (Lcom/gshx/camera/tiandi/IDecComRecvNotify;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetComRecvNotify
-  (JNIEnv *, jobject, jobject);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetMsgCallback
- * Signature: (Lcom/gshx/camera/tiandi/ITDPostMessageNotify;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetMsgCallback
-  (JNIEnv *, jobject, jobject);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetMsgCallbackEx
- * Signature: (Lcom/gshx/camera/tiandi/ITDPostMessageNotify;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetMsgCallbackEx
-  (JNIEnv *, jobject, jobject);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientUpgradeWeb
- * Signature: (ILjava/lang/String;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientUpgradeWeb
-  (JNIEnv *, jobject, jint, jstring);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetCapability
- * Signature: (ILjava/lang/String;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetCapability
-  (JNIEnv *, jobject, jint, jstring);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetVGASize
- * Signature: (III)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetVGASize
-  (JNIEnv *, jobject, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSendNonstandardRawFrame
- * Signature: (JI[B)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSendNonstandardRawFrame
-  (JNIEnv *, jobject, jlong, jint, jbyteArray);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetVolume
- * Signature: (II)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetVolume
-  (JNIEnv *, jobject, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetVolume
- * Signature: (I)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetVolume
-  (JNIEnv *, jobject, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetCommonEnable
- * Signature: (IIII)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetCommonEnable
-  (JNIEnv *, jobject, jint, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetCommonEnable
- * Signature: (II)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetCommonEnable
-  (JNIEnv *, jobject, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetCommonEnableEx
- * Signature: (IIII)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetCommonEnableEx
-  (JNIEnv *, jobject, jint, jint, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientConfigStreamInfo
- * Signature: (IIII[BI)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientConfigStreamInfo
-  (JNIEnv *, jobject, jint, jint, jint, jint, jbyteArray, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetDevConfig
- * Signature: (JIII[BI)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetDevConfig
-  (JNIEnv *, jobject, jlong, jint, jint, jint, jbyteArray, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientGetDevConfig
- * Signature: (JIII[BI)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetDevConfig
-  (JNIEnv *, jobject, jlong, jint, jint, jint, jbyteArray, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetAutoTest
- * Signature: (JI[BI)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetAutoTest
-  (JNIEnv *, jobject, jlong, jint, jbyteArray, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetSelectPicture
- * Signature: (JII)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetSelectPicture
-  (JNIEnv *, jobject, jlong, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetNotify
- * Signature: (Lcom/gshx/camera/tiandi/IDecNotify;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetNotify
-  (JNIEnv *, jobject, jobject);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientSetNetLog
  * Signature: (JIII)I
  */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetNetLog
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetAlarmOut
   (JNIEnv *, jobject, jlong, jint, jint, jint);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientNetLogGetLogfile
- * Signature: (JILcom/gshx/camera/tiandi/TDecLogData;I)I
+ * Method:    nativeClientSetTVInfo
+ * Signature: (JIII)I
  */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientNetLogGetLogfile
-  (JNIEnv *, jobject, jlong, jint, jobject, jint);
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetTVInfo
+  (JNIEnv *, jobject, jlong, jint, jint, jint);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientNetLogGetLogCount
- * Signature: (JII)I
+ * Method:    nativeClientSetChannelMode
+ * Signature: (JIII)I
  */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientNetLogGetLogCount
-  (JNIEnv *, jobject, jlong, jint, jint);
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetChannelMode
+  (JNIEnv *, jobject, jlong, jint, jint, jint);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeClientUserChangePassword
- * Signature: (JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I
+ * Method:    nativeClientSetLogo
+ * Signature: (JILcom/gshx/camera/tiandi/TLogoParam;)I
  */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientUserChangePassword
-  (JNIEnv *, jobject, jlong, jstring, jstring, jstring);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeSetRegServer
- * Signature: (JLjava/lang/String;II)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeSetRegServer
-  (JNIEnv *, jobject, jlong, jstring, jint, jint);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeSetRegDevice
- * Signature: (JLjava/lang/String;Ljava/lang/String;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeSetRegDevice
-  (JNIEnv *, jobject, jlong, jstring, jstring);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeSetRegChannel
- * Signature: (JILjava/lang/String;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeSetRegChannel
-  (JNIEnv *, jobject, jlong, jint, jstring);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeSetDZInfo
- * Signature: (JLcom/gshx/camera/tiandi/TDZInfoParam;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeSetDZInfo
-  (JNIEnv *, jobject, jlong, jobject);
-
-/*
- * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeSetChannelSipConfig
- * Signature: (JILcom/gshx/camera/tiandi/TSetSipVideoChannel;)I
- */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeSetChannelSipConfig
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetLogo
   (JNIEnv *, jobject, jlong, jint, jobject);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
- * Method:    nativeSetPlatformStart
- * Signature: (JLcom/gshx/camera/tiandi/TPlatforminfo;)I
+ * Method:    nativeClientGetLog
+ * Signature: (JI)I
  */
-JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeSetPlatformStart
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetLog
+  (JNIEnv *, jobject, jlong, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetLoopItemCount
+ * Signature: (JIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetLoopItemCount
+  (JNIEnv *, jobject, jlong, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetLoopItem
+ * Signature: (JIIII)Lcom/gshx/camera/tiandi/TNVSItem;
+ */
+JNIEXPORT jobject JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetLoopItem
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetLoopItemEx
+ * Signature: (JIIII)Lcom/gshx/camera/tiandi/TNVSItemEx;
+ */
+JNIEXPORT jobject JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetLoopItemEx
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSetLoopItem_V1
+ * Signature: (JIIIIILcom/gshx/camera/tiandi/TServerCommonInfo;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetLoopItem_1V1
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jint, jobject);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientDelLoopItem
+ * Signature: (JIIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientDelLoopItem
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientStartLoop
+ * Signature: (JIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStartLoop
+  (JNIEnv *, jobject, jlong, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientStopLoop
+ * Signature: (JIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStopLoop
+  (JNIEnv *, jobject, jlong, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetLoopStatus
+ * Signature: (JIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetLoopStatus
+  (JNIEnv *, jobject, jlong, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientStopView
+ * Signature: (JIIIZ)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStopView
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jboolean);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientStopView_V1
+ * Signature: (JIIIZ)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStopView_1V1
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jboolean);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientStartView
+ * Signature: (JIIILcom/gshx/camera/tiandi/TNVSItem;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStartView
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jobject);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientStartViewEx
+ * Signature: (JIIILcom/gshx/camera/tiandi/TNVSItemEx;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStartViewEx
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jobject);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientStartView_V1
+ * Signature: (JIIIILcom/gshx/camera/tiandi/TServerCommonInfo;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientStartView_1V1
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jobject);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetViewItem
+ * Signature: (JILcom/gshx/camera/tiandi/TNVSItem;II)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetViewItem
+  (JNIEnv *, jobject, jlong, jint, jobject, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetViewItemEx
+ * Signature: (JILcom/gshx/camera/tiandi/TNVSItemEx;II)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetViewItemEx
+  (JNIEnv *, jobject, jlong, jint, jobject, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetViewItem_V1
+ * Signature: (JIIIILcom/gshx/camera/tiandi/TServerCommonInfo;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetViewItem_1V1
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jobject);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSendKey
+ * Signature: (JII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSendKey
+  (JNIEnv *, jobject, jlong, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientPTZCtrl
+ * Signature: (JIIIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientPTZCtrl
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClient485Send
+ * Signature: (JI[BIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClient485Send
+  (JNIEnv *, jobject, jlong, jint, jbyteArray, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetPTZprotocols
+ * Signature: (JILcom/gshx/camera/tiandi/TDecProtocol;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetPTZprotocols
+  (JNIEnv *, jobject, jlong, jint, jobject);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSoundCtrl
+ * Signature: (JIIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSoundCtrl
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientTalkServer
+ * Signature: (JIIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientTalkServer
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetAudioStatus
+ * Signature: (JIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetAudioStatus
+  (JNIEnv *, jobject, jlong, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetTalkStatus
+ * Signature: (JIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetTalkStatus
+  (JNIEnv *, jobject, jlong, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientRebootDecoder
+ * Signature: (JI)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientRebootDecoder
+  (JNIEnv *, jobject, jlong, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientResetDefault
+ * Signature: (JI)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientResetDefault
+  (JNIEnv *, jobject, jlong, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientUpgrade
+ * Signature: (JILjava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientUpgrade
+  (JNIEnv *, jobject, jlong, jint, jstring);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientUpgradeLogo
+ * Signature: (JILjava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientUpgradeLogo
+  (JNIEnv *, jobject, jlong, jint, jstring);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientUpgradeProtocol
+ * Signature: (JILjava/lang/String;Ljava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientUpgradeProtocol
+  (JNIEnv *, jobject, jlong, jint, jstring, jstring);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientDeleteProtocol
+ * Signature: (JILjava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientDeleteProtocol
+  (JNIEnv *, jobject, jlong, jint, jstring);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetVersion
+ * Signature: (JILjava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetVersion
+  (JNIEnv *, jobject, jlong, jint, jstring);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetSDKVersion
+ * Signature: (JLcom/gshx/camera/tiandi/TNVDSdkVersion;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetSDKVersion
   (JNIEnv *, jobject, jlong, jobject);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientUpgradeWeb
+ * Signature: (JILjava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientUpgradeWeb
+  (JNIEnv *, jobject, jlong, jint, jstring);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetCapability
+ * Signature: (JILjava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetCapability
+  (JNIEnv *, jobject, jlong, jint, jstring);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSetVGASize
+ * Signature: (JIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetVGASize
+  (JNIEnv *, jobject, jlong, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSendNonstandardRawFrame
+ * Signature: (JJ[B)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSendNonstandardRawFrame
+  (JNIEnv *, jobject, jlong, jlong, jbyteArray);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSetVolume
+ * Signature: (JII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetVolume
+  (JNIEnv *, jobject, jlong, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetVolume
+ * Signature: (JI)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetVolume
+  (JNIEnv *, jobject, jlong, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSetCommonEnable
+ * Signature: (JIIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetCommonEnable
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetCommonEnable
+ * Signature: (JII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetCommonEnable
+  (JNIEnv *, jobject, jlong, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSetCommonEnableEx
+ * Signature: (JIIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetCommonEnableEx
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientConfigStreamInfo
+ * Signature: (JIIII[B)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientConfigStreamInfo
+  (JNIEnv *, jobject, jlong, jint, jint, jint, jint, jbyteArray);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSetDevConfig
+ * Signature: (JJIII[B)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetDevConfig
+  (JNIEnv *, jobject, jlong, jlong, jint, jint, jint, jbyteArray);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientGetDevConfig
+ * Signature: (JJIII[B)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetDevConfig
+  (JNIEnv *, jobject, jlong, jlong, jint, jint, jint, jbyteArray);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSetAutoTest
+ * Signature: (JJI[BI)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetAutoTest
+  (JNIEnv *, jobject, jlong, jlong, jint, jbyteArray, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSetSelectPicture
+ * Signature: (JJII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetSelectPicture
+  (JNIEnv *, jobject, jlong, jlong, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSetNotify
+ * Signature: (JLcom/gshx/camera/tiandi/IDecNotify;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetNotify
+  (JNIEnv *, jobject, jlong, jobject);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientSetNetLog
+ * Signature: (JJIII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetNetLog
+  (JNIEnv *, jobject, jlong, jlong, jint, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientNetLogGetLogfile
+ * Signature: (JJILcom/gshx/camera/tiandi/TDecLogData;I)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientNetLogGetLogfile
+  (JNIEnv *, jobject, jlong, jlong, jint, jobject, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientNetLogGetLogCount
+ * Signature: (JJII)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientNetLogGetLogCount
+  (JNIEnv *, jobject, jlong, jlong, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeClientUserChangePassword
+ * Signature: (JJLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientUserChangePassword
+  (JNIEnv *, jobject, jlong, jlong, jstring, jstring, jstring);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeSetRegServer
+ * Signature: (JJLjava/lang/String;II)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeSetRegServer
+  (JNIEnv *, jobject, jlong, jlong, jstring, jint, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeSetRegDevice
+ * Signature: (JJLjava/lang/String;Ljava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeSetRegDevice
+  (JNIEnv *, jobject, jlong, jlong, jstring, jstring);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeSetRegChannel
+ * Signature: (JJILjava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeSetRegChannel
+  (JNIEnv *, jobject, jlong, jlong, jint, jstring);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeSetDZInfo
+ * Signature: (JJLcom/gshx/camera/tiandi/TDZInfoParam;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeSetDZInfo
+  (JNIEnv *, jobject, jlong, jlong, jobject);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeSetChannelSipConfig
+ * Signature: (JJILcom/gshx/camera/tiandi/TSetSipVideoChannel;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeSetChannelSipConfig
+  (JNIEnv *, jobject, jlong, jlong, jint, jobject);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeSetPlatformStart
+ * Signature: (JJLcom/gshx/camera/tiandi/TPlatforminfo;)I
+ */
+JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeSetPlatformStart
+  (JNIEnv *, jobject, jlong, jlong, jobject);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeGetPlatformInfo
- * Signature: (J)I
+ * Signature: (JJ)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeGetPlatformInfo
-  (JNIEnv *, jobject, jlong);
+  (JNIEnv *, jobject, jlong, jlong);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeGetRunningPlatformInfo
- * Signature: (J)I
+ * Signature: (JJ)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeGetRunningPlatformInfo
-  (JNIEnv *, jobject, jlong);
+  (JNIEnv *, jobject, jlong, jlong);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeSetPlatformConfig
- * Signature: (JI[BI)I
+ * Signature: (JJI[BI)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeSetPlatformConfig
-  (JNIEnv *, jobject, jlong, jint, jbyteArray, jint);
+  (JNIEnv *, jobject, jlong, jlong, jint, jbyteArray, jint);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientGetClusterConfig
- * Signature: (JI[B)I
+ * Signature: (JJI[B)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetClusterConfig
-  (JNIEnv *, jobject, jlong, jint, jbyteArray);
+  (JNIEnv *, jobject, jlong, jlong, jint, jbyteArray);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientSendCommand
- * Signature: (JIII[B)I
+ * Signature: (JJIII[B)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSendCommand
-  (JNIEnv *, jobject, jlong, jint, jint, jint, jbyteArray);
+  (JNIEnv *, jobject, jlong, jlong, jint, jint, jint, jbyteArray);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientRecvCommand
- * Signature: (JIII[B)I
+ * Signature: (JJIII[B)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientRecvCommand
-  (JNIEnv *, jobject, jlong, jint, jint, jint, jbyteArray);
+  (JNIEnv *, jobject, jlong, jlong, jint, jint, jint, jbyteArray);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientGetLogonState
- * Signature: (J)I
+ * Signature: (JJ)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientGetLogonState
-  (JNIEnv *, jobject, jlong);
+  (JNIEnv *, jobject, jlong, jlong);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientSetSDKWorkMode
- * Signature: (I)I
+ * Signature: (JI)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetSDKWorkMode
-  (JNIEnv *, jobject, jint);
+  (JNIEnv *, jobject, jlong, jint);
 
 /*
  * Class:     com_gshx_camera_tiandi_NVSDKClient
  * Method:    nativeClientSetExternDevLogonInfo
- * Signature: (I)I
+ * Signature: (JI)I
  */
 JNIEXPORT jint JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeClientSetExternDevLogonInfo
-  (JNIEnv *, jobject, jint);
+  (JNIEnv *, jobject, jlong, jint);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeTNVSItemExFromJNI
+ * Signature: (J)Lcom/gshx/camera/tiandi/TNVSItemEx;
+ */
+JNIEXPORT jobject JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeTNVSItemExFromJNI
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeTNVSItemFromJNI
+ * Signature: (J)Lcom/gshx/camera/tiandi/TNVSItem;
+ */
+JNIEXPORT jobject JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeTNVSItemFromJNI
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeTCom485FromJNI
+ * Signature: (J)Lcom/gshx/camera/tiandi/TCom485;
+ */
+JNIEXPORT jobject JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeTCom485FromJNI
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     com_gshx_camera_tiandi_NVSDKClient
+ * Method:    nativeTDecParamFromJNI
+ * Signature: (J)Lcom/gshx/camera/tiandi/TDecParam;
+ */
+JNIEXPORT jobject JNICALL Java_com_gshx_camera_tiandi_NVSDKClient_nativeTDecParamFromJNI
+  (JNIEnv *, jobject, jlong);
 
 #ifdef __cplusplus
 }
