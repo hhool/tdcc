@@ -84,8 +84,8 @@ int OnTDPostMessageNotify(void* hWnd,
       return -1;
     }
   }
-  int wParamHi = (_wParam >> 16) & 0x0000FFFF;
-  int wParamLo = _wParam & 0x0000FFFF;
+  int16_t wParamHi = (_wParam >> 16) & 0x0000FFFF;
+  int16_t wParamLo = _wParam & 0x0000FFFF;
   LOG_F(LG_INFO) << "OnTDPostMessageNotify clz: " << gMsgNotifyCallback.clz
                  << " method: " << gMsgNotifyCallback.method
                  << " obj: " << gMsgNotifyCallback.obj << " hWnd: " << hWnd

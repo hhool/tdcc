@@ -151,17 +151,18 @@ public class Main {
                 list.add(item);
             }
         }
-        System.out.println("输入list size:" + list.size());
-        int iIndex = scanner.nextInt();
-        TNVSItemEx item_ex = list.get(iIndex);
-        System.out.println("itemEx:" + nvItem2String(item_ex));
-        int ret = client.ClientStartViewEx(iId, iChannel, iPos, item_ex);
-        System.out.println("上墙结果:" + ret);
+        if (iCount > 0) {
+            System.out.println("输入list size:" + list.size());
+            int iIndex = scanner.nextInt();
+            TNVSItemEx item_ex = list.get(iIndex);
+            System.out.println("itemEx:" + nvItem2String(item_ex));
+            int ret = client.ClientStartViewEx(iId, iChannel, iPos, item_ex);
+            System.out.println("上墙结果:" + ret);
 
-        System.out.println("输入任意数字停止上墙:");
-        scanner.nextInt();
-
-        client.ClientStopView(iId, iChannel, iPos, false);
+            System.out.println("输入任意数字停止上墙:");
+            scanner.nextInt();
+            client.ClientStopView(iId, iChannel, iPos, false);
+        }
         System.out.println("输入任意数字退出:");
         scanner.nextInt();
 
