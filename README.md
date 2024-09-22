@@ -125,5 +125,7 @@ Target platform: Windows x64 and Linux x64 (centos 7.8)
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-[How to Package JNI Shared Library into Jar File](https://www.dynamsoft.com/codepool/package-jni-shared-library-jar-file.html)
-[Java formatting and linting](https://code.visualstudio.com/docs/java/java-linting)
+- [tiandi nvd sdk linux](https://www.tiandy.com/uploads/single/CH-NVDSDK(Linux64)V5.1.0.0_build20211015.zip)
+- [tiandi nvd sdk windows](https://www.tiandy.com/uploads/single/CH-NVDSDK(Windows64)V5.1.0.0_build20211015.zip)
+- [How to Package JNI Shared Library into Jar File](https://www.dynamsoft.com/codepool/package-jni-shared-library-jar-file.html)
+- [Java formatting and linting](https://code.visualstudio.com/docs/java/java-linting)
