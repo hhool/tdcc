@@ -92,6 +92,8 @@ int OnTDPostMessageNotify(void* hWnd,
                  << " uiMsg: " << uiMsg << " wParamHi: " << wParamHi
                  << " wParamLo: " << wParamLo << " wParam: " << _wParam
                  << " lParam: " << _lParam;
+  bool isLogon = wParamLo == DEC_WCM_DEC_LOGON;
+  bool isLogoSuccess = wParamHi == DEC_LOGON_SUCCESS;
   env->CallStaticVoidMethod(gMsgNotifyCallback.clz, gMsgNotifyCallback.method,
                             gMsgNotifyCallback.obj, hWnd, uiMsg, wParamHi,
                             wParamLo, _lParam);
@@ -99,8 +101,15 @@ int OnTDPostMessageNotify(void* hWnd,
     env->ExceptionDescribe();
     env->ExceptionClear();
   }
-  if (gJavaVM->DetachCurrentThread() != JNI_OK) {
-    return -1;
+  /// @note if logon failed, detach current thread, otherwise, keep it
+  /// attached. This is because logon failed, the thread will be exit the
+  /// thread and the thread will be detached by the base dll. we have no
+  /// chance to detach it.
+  if (isLogon && !isLogoSuccess) {
+    LOG_F(LG_ERROR) << "OnTDPostMessageNotify logon failed";
+    if (gJavaVM->DetachCurrentThread() != JNI_OK) {
+      return 0;
+    }
   }
   return 0;
 }
